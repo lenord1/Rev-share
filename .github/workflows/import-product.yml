@@ -1,7 +1,9 @@
-# 手機用：GitHub App →「Actions」→「import-product」→「Run workflow」→ 貼商品網址 → 開 PR。
-# 只建立「草稿」（src/data/drafts/），合併後也不會出現在網站；補完缺點、優點、評論彙整並通過驗證才能轉正式。
-# 蝦皮／酷澎網址只記商品編號（官方 API 接上前不連線）；其他網站只讀公開的 OpenGraph／JSON-LD，遵守 robots.txt。
-# 網站在 repo 的子資料夾 affiliate-site-kit/affiliate-site-kit，所以這個檔案放在 repo 最外層，指令一律在該資料夾執行。
+# 手機用：GitHub App →「Actions」→「import-product」→「Run workflow」→ 貼商品網址（可再貼官方頁）→ 開 PR。
+# 這個檔案要放在 repo 最外層的 .github/workflows/（網站在子資料夾 affiliate-site-kit/affiliate-site-kit）。
+# 只建立「草稿」（src/data/drafts/），不會出現在網站；補完缺點、優點、評論彙整並通過驗證才能轉正式。
+# 蝦皮／酷澎網址只記商品編號，不連線；名稱與圖片請填 official_url（品牌官網商品頁），由它的 OpenGraph／JSON-LD 取得，
+# 遵守 robots.txt、放慢速度；官網價格不採用。圖片預設「授權待確認」。
+# 注意：workflow_dispatch 只會在「預設分支」上有這個檔案時才出現在 Actions 清單。
 # 第一次使用前：Settings → Actions → General → Workflow permissions，勾選「Allow GitHub Actions to create and approve pull requests」。
 name: import-product
 
@@ -12,8 +14,21 @@ on:
         description: 商品網址（蝦皮需完整網址，不能是 shp.ee 短網址）
         required: true
         type: string
+      official_url:
+        description: 品牌官網商品頁網址（選填；蝦皮／酷澎商品用它取得名稱與圖片）
+        required: false
+        type: string
       category:
         description: 品類代號（可留空，例如 dehumidifier）
+        required: false
+        type: string
+      force:
+        description: 草稿已存在時重新匯入（已填的內容與已確認的圖片授權會保留）
+        required: false
+        type: boolean
+        default: false
+      attach_to:
+        description: 把圖片掛到示範商品的型號做預覽測試（選填，只限 demo 商品，例如 test-lg-puricare-18l）
         required: false
         type: string
 
@@ -45,12 +60,24 @@ jobs:
         env:
           # 輸入一律經由環境變數傳入，不直接嵌進指令，避免網址內容被當成指令執行
           IMPORT_URL: ${{ inputs.url }}
+          IMPORT_OFFICIAL_URL: ${{ inputs.official_url }}
           IMPORT_CATEGORY: ${{ inputs.category }}
+          IMPORT_FORCE: ${{ inputs.force }}
         run: |
           args=()
           if [ -n "$IMPORT_CATEGORY" ]; then args+=(--category "$IMPORT_CATEGORY"); fi
+          if [ -n "$IMPORT_OFFICIAL_URL" ]; then args+=(--official-url "$IMPORT_OFFICIAL_URL"); fi
+          if [ "$IMPORT_FORCE" = "true" ]; then args+=(--force); fi
           node scripts/import-product.mjs "$IMPORT_URL" "${args[@]}" --summary-file "$RUNNER_TEMP/summary.md"
           cat "$RUNNER_TEMP/summary.md" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: 把圖片掛到示範商品（選填）
+        if: ${{ inputs.attach_to != '' }}
+        working-directory: ${{ env.SITE_DIR }}
+        env:
+          DRAFT_ID: ${{ steps.imp.outputs.draft_id }}
+          ATTACH_TO: ${{ inputs.attach_to }}
+        run: node scripts/drafts.mjs attach-image "$DRAFT_ID" "$ATTACH_TO"
 
       - name: 開 PR
         env:
@@ -63,7 +90,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -b "$branch"
-          git add "$SITE_DIR/src/data/drafts" "$SITE_DIR/src/data/image-sources.json" "$SITE_DIR/src/assets/products"
+          git add "$SITE_DIR/src/data/drafts" "$SITE_DIR/src/data/image-sources.json" "$SITE_DIR/src/data/products.json" "$SITE_DIR/src/assets/products"
           if git diff --cached --quiet; then echo "沒有任何變更"; exit 1; fi
           git commit -m "chore(import): 新增商品草稿 ${DRAFT_ID}"
           git push origin "$branch"

@@ -13,6 +13,9 @@
 | 酷澎（coupang.com） | 只解析 productId／itemId／vendorItemId；同上，等官方 API 文件 |
 | 其他網站 | 讀公開的 JSON-LD（Product）與 OpenGraph；遵守 robots.txt、同網域間隔 ≥3 秒、2 MB／8 MB 上限、不重試；轉址逐跳檢查，不進蝦皮／酷澎、不進內網位址 |
 
+**蝦皮／酷澎商品的名稱與圖片**：同時給 `--official-url`（品牌官網商品頁，工作流程欄位 `official_url`），名稱、說明、圖片由官方頁的 OpenGraph／JSON-LD 取得；官網價格不採用，蝦皮價格另行維護。圖片一律「授權待確認」。草稿已存在時加 `--force` 重新匯入，已填的內容與已確認的圖片授權會保留。
+**預覽測試**：`node scripts/drafts.mjs attach-image <草稿代號> <示範商品型號>` 把草稿圖片掛到 `demo: true` 的商品（正式商品拒絕，示範商品過不了嚴格上線檢查）。
+
 抓不到公開資料時結束碼為 3，改用 `--name --price --image-file` 手動補。
 
 ## 草稿檔

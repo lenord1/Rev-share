@@ -2,6 +2,7 @@
 // 貼商品連結 → 產生草稿商品（src/data/drafts/<代號>.json）與圖片（src/assets/products/）。
 // 用法：node scripts/import-product.mjs <網址> [--category 品類] [--name 名稱] [--price 整數] [--brand 品牌]
 //        [--image-file 本機圖片 [--image-license owned|official|licensed]] [--html-file 本機HTML(離線測試)]
+//        [--official-url 品牌官網商品頁（蝦皮／酷澎連結搭配用：名稱、圖片取自官方頁，不取官網價格）]
 //        [--max-images N] [--no-images] [--force] [--dry-run] [--json] [--summary-file 路徑]
 // 結束碼：0 成功　2 網址或參數不對　3 抓不到公開資料（請手動）　4 草稿已存在（--force 覆蓋）　1 其他錯誤
 // 蝦皮／酷澎：只解析網址取編號；名稱、價格、圖片等官方 API 接上後才自動取得（目前請手動補），本工具不連它們的網頁。
@@ -14,9 +15,9 @@ import { extractProduct } from './import/html-meta.mjs';
 import { createFetcher, ImportError, DEFAULT_BLOCKED_HOSTS } from './import/net.mjs';
 import { downloadImages, saveImage } from './import/images.mjs';
 import { loadProductSource, ProviderNotConfigured } from './providers/product-source.mjs';
-import { buildDraft, validateDraft, writeDraft, readDraft, readLedger, writeLedger, ledgerEntry, renderSummary, today, LICENSES } from './import/draft.mjs';
+import { buildDraft, mergePrevious, validateDraft, writeDraft, readDraft, readLedger, writeLedger, ledgerEntry, renderSummary, today, LICENSES } from './import/draft.mjs';
 
-const VALUE_FLAGS = ['category', 'name', 'price', 'brand', 'image-file', 'image-license', 'html-file', 'max-images', 'summary-file'];
+const VALUE_FLAGS = ['category', 'name', 'price', 'brand', 'image-file', 'image-license', 'html-file', 'max-images', 'summary-file', 'official-url'];
 const BOOL_FLAGS = ['no-images', 'force', 'dry-run', 'json'];
 
 export function parseArgs(argv) {
@@ -42,7 +43,9 @@ export async function runImport(opts, deps = {}) {
 
   const fetchedAt = today();
   const id = draftIdFor(parsed);
-  if (readDraft(id) && !opts.force) throw new ImportError('exists', `草稿 ${id} 已存在（加 --force 覆蓋）`);
+  const prev = readDraft(id);
+  if (prev && prev.status === 'promoted') throw new ImportError('exists', `草稿 ${id} 已轉為正式商品，不可覆蓋`);
+  if (prev && !opts.force) throw new ImportError('exists', `草稿 ${id} 已存在（加 --force 重新匯入；已填的缺點、優點、評論彙整、型號、分潤連結與已確認的圖片授權會保留）`);
 
   const manual = {};
   if (opts.name) manual.name = opts.name.trim();
@@ -63,6 +66,7 @@ export async function runImport(opts, deps = {}) {
 
   let extracted = {};
   let method = 'manual';
+  let official = null;
   const notes = [];
 
   if (parsed.kind === 'generic') {
@@ -98,6 +102,29 @@ export async function runImport(opts, deps = {}) {
       if (!(e instanceof ProviderNotConfigured)) throw e;
       notes.push(`${parsed.kind === 'shopee' ? '蝦皮' : '酷澎'}官方 API 尚未接上（等待官方文件），只記下商品編號；名稱、價格、圖片請手動補。本工具不抓取其網頁。`);
     }
+    if (opts['official-url']) {
+      const op = parseProductUrl(opts['official-url']);
+      if (!op.ok || op.kind !== 'generic') throw new ImportError('args', '--official-url 要是品牌官網等一般商品頁網址，不可以是蝦皮／酷澎網址');
+      let html;
+      let baseUrl = op.canonicalUrl;
+      if (opts['html-file']) html = fs.readFileSync(opts['html-file'], 'utf8');
+      else {
+        const r = await fetcher.get(op.canonicalUrl, { maxBytes: ic.maxHtmlBytes });
+        if (!/html|xml/i.test(r.contentType)) throw new ImportError('content-type', `官方頁不是網頁內容（${r.contentType || '未標示'}）`);
+        html = r.body.toString('utf8');
+        baseUrl = r.url;
+      }
+      const ex = extractProduct(html, baseUrl);
+      if (!ex.name && !manual.name) {
+        const e = new ImportError('no-metadata', '官方頁沒有公開的 OpenGraph／JSON-LD 商品資料，請手動補。');
+        e.exitCode = 3;
+        throw e;
+      }
+      official = { url: op.canonicalUrl, fetchedAt, methods: ex.methods };
+      extracted = { ...ex, price: null };
+      method = 'official-page';
+      notes.push(`名稱、說明、圖片取自官方頁 ${op.canonicalUrl}；不取官網價格（蝦皮價格另行維護）。`);
+    }
   }
   if (opts.brand) extracted.brand = opts.brand.trim();
 
@@ -107,8 +134,8 @@ export async function runImport(opts, deps = {}) {
   let images = [];
   let skipped = [];
   if (!opts['no-images'] && !opts['dry-run']) {
-    if (parsed.kind === 'generic' && extracted.imageUrls?.length && !opts['html-file']) {
-      const r = await downloadImages({ urls: extracted.imageUrls, fetcher, destDir, baseName, pageUrl: parsed.canonicalUrl, fetchedAt, max: Number(opts['max-images'] ?? ic.maxImages ?? 3), minSide: ic.minImageSide ?? 300, maxBytes: ic.maxImageBytes });
+    if ((parsed.kind === 'generic' || official) && extracted.imageUrls?.length && !opts['html-file']) {
+      const r = await downloadImages({ urls: extracted.imageUrls, fetcher, destDir, baseName, pageUrl: official?.url ?? parsed.canonicalUrl, fetchedAt, max: Number(opts['max-images'] ?? ic.maxImages ?? 3), minSide: ic.minImageSide ?? 300, maxBytes: ic.maxImageBytes });
       images = r.images; skipped = r.skipped;
     }
     if (opts['image-file']) {
@@ -124,6 +151,8 @@ export async function runImport(opts, deps = {}) {
 
   const draft = buildDraft({ parsed, extracted, manual, images, category: opts.category ?? null, method, notes, fetchedAt });
   draft.draftId = id;
+  if (official) draft.official = official;
+  if (prev && opts.force) mergePrevious(draft, prev, { category: opts.category });
   if (opts['image-file'] && licenseFlag !== 'pending-review') {
     const own = draft.images.find((i) => i.provided === 'user');
     if (own) { own.license = licenseFlag; own.licenseNote = '匯入時由使用者標記'; }
@@ -132,7 +161,6 @@ export async function runImport(opts, deps = {}) {
   if (v.errors.length) throw new ImportError('draft', '產生的草稿結構不正確：' + v.errors.join('；'));
 
   if (!opts['dry-run']) {
-    if (opts.force && readDraft(id)) notes.push('已覆蓋同代號的舊草稿。');
     writeDraft(draft);
     const ledger = readLedger();
     for (const i of draft.images) ledger.images[i.file] = ledgerEntry(id, i);

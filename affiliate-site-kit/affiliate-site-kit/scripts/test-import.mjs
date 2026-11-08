@@ -20,7 +20,8 @@ const { parseRobots, robotsAllows } = await import('./import/robots.mjs');
 const { isPrivateIp, createFetcher, ImportError } = await import('./import/net.mjs');
 const { sniffImage } = await import('./import/images.mjs');
 const { runImport } = await import('./import-product.mjs');
-const { readDraft, writeDraft, validateDraft, promoteDraft, listDrafts } = await import('./import/draft.mjs');
+const { readDraft, writeDraft, validateDraft, promoteDraft, listDrafts, attachImageToDemo } = await import('./import/draft.mjs');
+const { validateProducts } = await import('./validate-products.mjs');
 
 let n = 0;
 const queue = [];
@@ -276,6 +277,54 @@ t('補齊後轉正式：通過 validate-products，圖片授權與評論彙整�
   assert.ok(!JSON.stringify(added).includes('shop.example.com'), '來源網址不可進商品資料');
   assert.equal(readDraft(d.draftId).status, 'promoted');
   assert.equal(promoteDraft(d.draftId).ok, false);
+});
+
+const OFF = 'https://brand.example.com/tw/md181qwe0';
+const offFetcher = () => ({ async get(url) { return url === OFF ? { url, status: 200, contentType: 'text/html', body: Buffer.from(PAGE) } : fakeFetcher().get(url); } });
+t('蝦皮連結＋官方頁：名稱與圖片取自官方頁、不取官網價格、圖片待確認授權、蝦皮編號保留', async () => {
+  const r = await runImport({ _: ['https://shopee.tw/LG-i.55.66?sp_atk=x'], 'official-url': OFF, category: 'dehumidifier' }, { fetcher: offFetcher() });
+  const d = readDraft('shopee-55-66');
+  assert.equal(d.source.kind, 'shopee');
+  assert.deepEqual(d.source.ids, { shopId: '55', itemId: '66' });
+  assert.equal(d.name, 'JSON-LD 商品名');
+  assert.equal(d.product.price, null, '官網價格不可當蝦皮價格');
+  assert.equal(d.official.url, OFF);
+  assert.equal(d.source.method, 'official-page');
+  assert.equal(d.images.length, 1);
+  assert.equal(d.images[0].license, 'pending-review');
+  assert.equal(d.images[0].pageUrl, OFF);
+  assert.ok(r.validation.blockers.some((b) => b.includes('product.price')));
+  await assert.rejects(runImport({ _: ['https://shopee.tw/LG-i.55.67'], 'official-url': 'https://shopee.tw/product/1/2' }, { fetcher: offFetcher() }), (e) => e.code === 'args');
+  await assert.rejects(runImport({ _: ['https://shopee.tw/LG-i.55.67'], 'official-url': 'http://127.0.0.1/x' }, { fetcher: offFetcher() }), (e) => e.code === 'args');
+});
+t('--force 重新匯入：保留已填的內容與已確認的圖片授權；已存在時沒有 --force 會拒絕', async () => {
+  const d0 = readDraft('shopee-55-66');
+  d0.editorial.flaw = '手填的具體缺點內容';
+  d0.product.modelCode = 'keep-me';
+  d0.images[0].license = 'official';
+  writeDraft(d0);
+  const args = { _: ['https://shopee.tw/LG-i.55.66'], 'official-url': OFF };
+  await assert.rejects(runImport(args, { fetcher: offFetcher() }), (e) => e.code === 'exists');
+  await runImport({ ...args, force: true }, { fetcher: offFetcher() });
+  const d = readDraft('shopee-55-66');
+  assert.equal(d.editorial.flaw, '手填的具體缺點內容');
+  assert.equal(d.product.modelCode, 'keep-me');
+  assert.equal(d.product.category, 'dehumidifier');
+  assert.equal(d.images.length, 1);
+  assert.equal(d.images[0].license, 'official');
+});
+t('attach-image：只能掛在示範商品；掛上後帶授權狀態並通過驗證；正式商品與不存在的草稿被拒絕', () => {
+  const r = attachImageToDemo('shopee-55-66', 'demo-dh-a');
+  assert.ok(r.ok, JSON.stringify(r));
+  const prod = JSON.parse(productsRaw()).products.find((x) => x.modelCode === 'demo-dh-a');
+  assert.equal(prod.image.file, readDraft('shopee-55-66').images[0].file);
+  assert.equal(prod.image.license, 'official');
+  assert.ok(prod.image.alt);
+  assert.equal(validateProducts().errors, 0);
+  const real = attachImageToDemo('shopee-55-66', 'import-test-a');
+  assert.equal(real.ok, false);
+  assert.ok(/示範商品/.test(real.message));
+  assert.equal(attachImageToDemo('nope-1', 'demo-dh-a').ok, false);
 });
 
 for (const [name, fn] of queue) {

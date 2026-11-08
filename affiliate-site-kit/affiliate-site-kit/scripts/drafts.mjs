@@ -3,10 +3,11 @@
 //   list [--all]                         列出草稿（預設只列 status=draft）
 //   check <代號> [--ready]               顯示轉正式前還缺什麼；--ready：有缺項就以結束碼 1 結束
 //   license <代號> <檔名> <授權> [--note 說明]   授權：owned／official／licensed／rejected／pending-review
+//   attach-image <代號> <商品型號> [檔名]   把草稿圖片掛到示範商品（demo: true）做預覽測試；正式商品不可
 //   promote <代號> [--dry-run]           補齊且通過 validate-products 才寫入 products.json（失敗會還原）
 import fs from 'node:fs';
 import { p } from './lib.mjs';
-import { listDrafts, readDraft, writeDraft, validateDraft, promoteDraft, readLedger, writeLedger, ledgerEntry, LICENSES } from './import/draft.mjs';
+import { listDrafts, readDraft, writeDraft, validateDraft, promoteDraft, attachImageToDemo, readLedger, writeLedger, ledgerEntry, LICENSES } from './import/draft.mjs';
 
 const [cmd, ...rest] = process.argv.slice(2);
 const flags = new Set(rest.filter((a) => a.startsWith('--') && a !== '--note'));
@@ -41,6 +42,12 @@ if (cmd === 'list') {
   writeDraft(d);
   const l = readLedger(); l.images[file] = ledgerEntry(id, img); writeLedger(l);
   console.log(`✓ ${file} 授權標記為 ${lic}`);
+} else if (cmd === 'attach-image') {
+  const [id, code, file] = pos;
+  if (!id || !code) die('用法：attach-image <草稿代號> <商品型號> [檔名]', 2);
+  const r = attachImageToDemo(id, code, file);
+  if (!r.ok) die(r.message);
+  console.log(`✓ 已把 ${r.file}（授權：${r.license}）掛到示範商品 ${code}`);
 } else if (cmd === 'promote') {
   const r = promoteDraft(pos[0], { dryRun: flags.has('--dry-run') });
   for (const w of r.warnings ?? []) console.log('△ ' + w);

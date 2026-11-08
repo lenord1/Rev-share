@@ -84,6 +84,41 @@ export function buildDraft({ parsed, extracted = {}, manual = {}, images = [], c
   };
 }
 
+// 重新匯入（--force）時保留人工填過的內容：editorial、product 欄位、已確認授權的圖片（依檔案雜湊比對）。
+export function mergePrevious(draft, prev, { category } = {}) {
+  const empty = (v) => v == null || v === '' || (Array.isArray(v) && !v.length) || (typeof v === 'object' && !Array.isArray(v) && !Object.keys(v).length);
+  for (const [k, v] of Object.entries(prev.product ?? {})) if (k !== 'titleTemplate' && !empty(v)) draft.product[k] = v;
+  if (category) draft.product.category = category;
+  draft.editorial = prev.editorial ?? draft.editorial;
+  const bySha = new Map((prev.images ?? []).map((i) => [i.sha256, i]));
+  for (const i of draft.images) {
+    const o = bySha.get(i.sha256);
+    if (o) { i.license = o.license; i.licenseNote = o.licenseNote ?? ''; i.alt = o.alt ?? i.alt; }
+  }
+  const newFiles = new Set(draft.images.map((i) => i.file));
+  const newShas = new Set(draft.images.map((i) => i.sha256));
+  draft.images.push(...(prev.images ?? []).filter((i) => !newFiles.has(i.file) && !newShas.has(i.sha256)));
+  draft.notes = [...(prev.notes ?? []), ...draft.notes];
+}
+
+// 測試用：把草稿的圖片掛到「示範商品」（demo: true）。授權未確認的圖片只允許掛在示範商品上；
+// 示範商品過不了嚴格的上線檢查，所以不會誤上線。正式商品請走 license → promote。
+export function attachImageToDemo(draftId, modelCode, file) {
+  const d = readDraft(draftId);
+  if (!d) return { ok: false, message: `找不到草稿 ${draftId}` };
+  const img = file ? d.images.find((i) => i.file === file) : d.images.find((i) => i.license !== 'rejected');
+  if (!img || img.license === 'rejected') return { ok: false, message: '草稿沒有可用的圖片' };
+  if (!exists('src', 'assets', 'products', img.file)) return { ok: false, message: `找不到圖片檔 src/assets/products/${img.file}` };
+  const f = p('src', 'data', 'products.json');
+  const data = JSON.parse(fs.readFileSync(f, 'utf8'));
+  const prod = data.products.find((x) => x.modelCode === modelCode);
+  if (!prod) return { ok: false, message: `找不到商品 ${modelCode}` };
+  if (!prod.demo) return { ok: false, message: '只能掛在示範商品（demo: true）。正式商品請先 license 確認授權，再 promote。' };
+  prod.image = { file: img.file, alt: String(img.alt || d.name || prod.modelCode).trim(), license: img.license, fetchedAt: img.fetchedAt };
+  fs.writeFileSync(f, JSON.stringify(data, null, 2) + '\n');
+  return { ok: true, file: img.file, license: img.license };
+}
+
 // ── 驗證 ──
 export function validateDraft(d, ctx = {}) {
   const cfg = ctx.cfg ?? loadConfig();
