@@ -48,6 +48,7 @@ if (b.taxRefund) priceParts.push(`退稅／補助 −${fmt.format(b.taxRefund)}`
 <article
   class="pcard overflow-hidden rounded-xl border border-slate-200/80 bg-white shadow-sm transition-shadow hover:shadow-md"
   data-category={p.category}
+  data-finder-tags={(p.finder?.tags ?? []).join(' ') || undefined}
   data-more={more ? '' : undefined}
   data-final={unverified ? undefined : b.final}
   data-area-min={area ? area[0] : undefined}

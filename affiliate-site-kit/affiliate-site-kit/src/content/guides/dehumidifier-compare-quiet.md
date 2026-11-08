@@ -2,6 +2,7 @@
 title: 除濕機靜音比較：哪幾台有公布噪音，睡覺放臥室吵不吵
 description: 整理站內 12 台除濕機官方標示的運轉噪音，沒公布的直接標明，並列出每台的缺點。
 category: dehumidifier
+need: quiet
 updated: 2026-11-08
 author: 挑家電
 draft: false

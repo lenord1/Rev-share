@@ -49,7 +49,7 @@ const { target = '#featured-grid' } = Astro.props;
       final: Number(el.dataset.final),
     });
     // 目前被「選購精靈品類」顯示出來的卡片（精靈用 style.display 控制，這裡用 data-pill-hidden，互不干擾）
-    const shown = () => Array.from(grid.querySelectorAll('[data-category]')).filter((el) => el.style.display !== 'none').map(info);
+    const shown = () => Array.from(grid.querySelectorAll('[data-category]')).filter((el) => el.style.display !== 'none' && !el.hasAttribute('data-entry-hidden')).map(info);
 
     function apply() {
       const cards = shown();

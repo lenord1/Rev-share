@@ -5,6 +5,7 @@ import productsData from '../../data/products.json';
 import { loadGuides, dateText } from '../../lib/guides.mjs';
 import { noindexCategory } from '../../lib/indexing.mjs';
 import { safeJson } from '../../lib/catalog.mjs';
+import { NEED_LABEL } from '../../lib/finder.js';
 
 export function getStaticPaths() {
   return loadGuides().map((g) => ({ params: { slug: g.slug }, props: { guide: g } }));
@@ -15,6 +16,10 @@ const { products, categories } = productsData as { products: any[]; categories: 
 const category = categories.find((c) => c.slug === fm.category);
 const noindex = draft || noindexCategory(products, fm.category);
 const site = Astro.site!;
+// 來源情境：讀者從這篇回首頁時，首頁預設顯示同品類（若有 need 就只列符合的）。只存在讀者自己的瀏覽器，不上傳。
+const entry = category
+  ? { slug: guide.slug, title: fm.title, category: category.slug, group: (category as any).group ?? '', need: fm.need && NEED_LABEL[fm.need] ? fm.need : '', needLabel: fm.need ? NEED_LABEL[fm.need] ?? '' : '' }
+  : null;
 const ld = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
@@ -37,4 +42,16 @@ const ld = {
     </article>
   </main>
   <script type="application/ld+json" set:html={safeJson(ld)} />
+  {entry && <script is:inline define:vars={{ entry }}>
+    try {
+      sessionStorage.setItem('ssp.entry.v1', JSON.stringify(entry));
+      // 首頁選購精靈的條件記在 finder.v1：同品類保留讀者原本的答案，換品類就重來
+      var raw = JSON.parse(localStorage.getItem('finder.v1') || 'null') || {};
+      var same = raw.category === entry.category;
+      var answers = same && raw.answers && typeof raw.answers === 'object' ? raw.answers : {};
+      var labels = same && raw.labels && typeof raw.labels === 'object' ? raw.labels : {};
+      if (entry.need) { answers.need = entry.need; labels.need = entry.needLabel; }
+      localStorage.setItem('finder.v1', JSON.stringify({ category: entry.category, group: entry.group, answers: answers, labels: labels, collapsed: false }));
+    } catch (e) { /* 隱私模式不能存就算了 */ }
+  </script>}
 </Layout>

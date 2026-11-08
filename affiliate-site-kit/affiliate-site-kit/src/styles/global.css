@@ -287,3 +287,7 @@ details p{margin:8px 0 0;color:var(--ink-2)}
 .article a.btn{margin:.2em 0 1em}
 .draft-banner{margin:12px 0 0;padding:10px 14px;background:var(--warn-soft);color:var(--warn-ink);border-radius:var(--radius);font-weight:700}
 .guide-list li{margin-bottom:14px}
+/* 來源情境（從買前指南回首頁） */
+[data-entry-hidden]{display:none!important}
+.entry-banner{margin:16px 0 0;padding:10px 14px;background:var(--accent-soft);border-radius:var(--radius);color:var(--ink)}
+.entry-banner[hidden]{display:none}
