@@ -50,7 +50,7 @@
     if (p.taxRefund) parts.push(`退稅／補助 −${fmt(p.taxRefund)}`);
     const hero = `<div class="result">
       <p class="q" style="margin:0">最適合你的是：${esc(p.name)}${official(p)}</p>
-      ${p.img ? `<a ${attrs(p, 'finder')}><img class="thumb" src="${esc(p.img)}" alt="${esc(p.imgAlt || p.name)}" loading="lazy" style="max-width:360px;border-radius:8px"></a>` : ''}
+      ${p.img ? `<a class="thumb-box" ${attrs(p, 'finder')}><img src="${esc(p.img)}" alt="${esc(p.imgAlt || p.name)}" loading="lazy"></a>` : ''}
       ${reasons.length ? `<div class="why">${reasons.map((r) => `<span class="chip hit">${esc(r)}</span>`).join('')}</div>` : ''}
       <div class="price"><b class="num">${fmt(p.final)}</b> <span class="note">到手價</span></div>
       ${parts.length > 1 ? `<p class="math num">${parts.join(' ')} = ${fmt(p.final)}</p>` : ''}
@@ -72,9 +72,10 @@
         ['缺點', (p) => esc(p.flaw)],
       ];
       cmp = `<div class="cmp-wrap"><p class="q" style="margin:14px 0 6px">前 ${picks.length} 名比較</p>
-        <div class="scroll"><table class="cmp"><thead><tr><th></th>${picks.map(({ p }, i) => `<th scope="col">${i === 0 ? '<span class="chip hit">最推薦</span> ' : ''}<a href="/${esc(p.category)}/${esc(p.slug)}/">${esc(p.name)}</a>${official(p)}</th>`).join('')}</tr></thead>
+        <p class="swipe-hint">共 ${picks.length} 台，左右滑動看全部</p>
+        <div class="cmp-scroller"><div class="scroll"><table class="cmp"><thead><tr><th></th>${picks.map(({ p }, i) => `<th scope="col">${i === 0 ? '<span class="chip hit">最推薦</span> ' : ''}<a href="/${esc(p.category)}/${esc(p.slug)}/">${esc(p.name)}</a>${official(p)}</th>`).join('')}</tr></thead>
         <tbody>${rows.map(([label, fn]) => `<tr><th scope="row">${esc(label)}</th>${picks.map(({ p }) => `<td>${fn(p)}</td>`).join('')}</tr>`).join('')}
-        <tr><th scope="row"></th>${picks.map(({ p }) => `<td><a class="btn small" ${attrs(p, 'finder-compare')}>到${esc(chName(p))}看價格</a></td>`).join('')}</tr></tbody></table></div></div>`;
+        <tr><th scope="row"></th>${picks.map(({ p }) => `<td><a class="btn small" ${attrs(p, 'finder-compare')}>到${esc(chName(p))}看價格</a></td>`).join('')}</tr></tbody></table></div><span class="cmp-fade" aria-hidden="true"></span></div></div>`;
     }
     const rest = pickProducts(inCategory(), state.answers).slice(3).filter((r) => r.score > 0).slice(0, 8);
     const others = rest.length
