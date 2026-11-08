@@ -159,6 +159,7 @@ export function validateProducts({ strict = false } = {}) {
     }
 
     if (x.officialStore !== undefined && typeof x.officialStore !== 'boolean') err('officialStore 必須是 true/false');
+    if (!x.finder) sf('缺 finder（選購精靈搜不到這台）：執行 node scripts/classify-finder.mjs 自動分類');
     if (x.featured || x.officialStore) featured++;
     if (x.demo) sf('仍是示範資料（demo: true），上線前請換成真實資料並移除此旗標');
   }

@@ -5,6 +5,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { p, exists, readJson, loadConfig, loadChannels, hostAllowed, isIsoDate } from '../lib.mjs';
 import { validateProducts } from '../validate-products.mjs';
+import { classifyProducts } from '../classify-finder.mjs';
 
 export const today = () => new Date(Date.now() + 8 * 36e5).toISOString().slice(0, 10);
 export const LICENSES = ['pending-review', 'owned', 'official', 'licensed', 'rejected'];
@@ -220,6 +221,7 @@ export function promoteDraft(id, { dryRun = false } = {}) {
   const original = fs.readFileSync(file, 'utf8');
   const data = JSON.parse(original);
   data.products.push(product);
+  classifyProducts(data.products); // 新商品自動分類（finder），讓選購精靈搜得到
   let report;
   try {
     fs.writeFileSync(file, JSON.stringify(data, null, 2) + '\n');

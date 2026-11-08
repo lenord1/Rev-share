@@ -9566,16 +9566,17 @@
       "discount": 7111,
       "promoBadge": "限時特價",
       "finder": {
-        "area": [
-          12,
-          20
-        ],
-        "budget": "high",
+        "budget": "mid",
         "tags": [
-          "quiet",
-          "family"
+          "family",
+          "quiet"
+        ],
+        "area": [
+          14.5,
+          21.5
         ]
-      }
+      },
+      "finderAuto": true
     },
     {
       "demo": true,
@@ -9877,17 +9878,18 @@
         "fetchedAt": "2026-11-08"
       },
       "officialStore": true,
+      "tags": [],
       "finder": {
-        "area": [
-          12,
-          18
-        ],
         "budget": "mid",
         "tags": [
           "family"
+        ],
+        "area": [
+          13,
+          19
         ]
       },
-      "tags": []
+      "finderAuto": true
     },
     {
       "demo": true,
@@ -9941,17 +9943,18 @@
         "fetchedAt": "2026-11-08"
       },
       "officialStore": true,
+      "tags": [],
       "finder": {
-        "area": [
-          10,
-          15
-        ],
-        "budget": "mid",
+        "budget": "low",
         "tags": [
-          "family"
+          "budget"
+        ],
+        "area": [
+          9.5,
+          14.5
         ]
       },
-      "tags": []
+      "finderAuto": true
     },
     {
       "demo": true,
@@ -9999,17 +10002,18 @@
         "when": "測試：想和示範機種並排比較時"
       },
       "officialStore": true,
+      "tags": [],
       "finder": {
-        "area": [
-          20,
-          30
-        ],
         "budget": "high",
         "tags": [
           "family"
+        ],
+        "area": [
+          22.5,
+          33.5
         ]
       },
-      "tags": []
+      "finderAuto": true
     },
     {
       "demo": true,
@@ -10057,17 +10061,18 @@
         "when": "測試：想和示範機種並排比較時"
       },
       "officialStore": true,
+      "tags": [],
       "finder": {
-        "area": [
-          15,
-          25
-        ],
         "budget": "high",
         "tags": [
           "family"
+        ],
+        "area": [
+          18,
+          27
         ]
       },
-      "tags": []
+      "finderAuto": true
     },
     {
       "demo": true,
@@ -10115,17 +10120,18 @@
         "when": "測試：想和示範機種並排比較時"
       },
       "officialStore": true,
+      "tags": [],
       "finder": {
-        "area": [
-          12,
-          18
-        ],
         "budget": "mid",
         "tags": [
           "family"
+        ],
+        "area": [
+          12,
+          18
         ]
       },
-      "tags": []
+      "finderAuto": true
     },
     {
       "demo": true,
@@ -10172,17 +10178,18 @@
         "modelCode": "demo-dh-a",
         "when": "測試：想和示範機種並排比較時"
       },
+      "tags": [],
       "finder": {
-        "area": [
-          10,
-          15
-        ],
         "budget": "low",
         "tags": [
-          "family"
+          "budget"
+        ],
+        "area": [
+          9.5,
+          14.5
         ]
       },
-      "tags": []
+      "finderAuto": true
     },
     {
       "demo": true,
@@ -10230,17 +10237,18 @@
         "when": "測試：想和示範機種並排比較時"
       },
       "officialStore": true,
+      "tags": [],
       "finder": {
-        "area": [
-          12,
-          18
-        ],
         "budget": "mid",
         "tags": [
           "family"
+        ],
+        "area": [
+          13,
+          19
         ]
       },
-      "tags": []
+      "finderAuto": true
     },
     {
       "demo": true,
@@ -10288,17 +10296,18 @@
         "when": "測試：想和示範機種並排比較時"
       },
       "officialStore": true,
+      "tags": [],
       "finder": {
-        "area": [
-          10,
-          15
-        ],
-        "budget": "mid",
+        "budget": "low",
         "tags": [
-          "family"
+          "budget"
+        ],
+        "area": [
+          9.5,
+          14.5
         ]
       },
-      "tags": []
+      "finderAuto": true
     }
   ]
 }
