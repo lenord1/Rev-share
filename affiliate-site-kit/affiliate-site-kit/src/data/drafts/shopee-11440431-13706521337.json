@@ -1,0 +1,81 @@
+{
+  "draftId": "shopee-11440431-13706521337",
+  "status": "draft",
+  "name": "3M™ 淨呼吸™ 雙效空氣清淨除濕機 FD-A90W",
+  "createdAt": "2026-11-09",
+  "source": {
+    "kind": "shopee",
+    "url": "https://shopee.tw/product/11440431/13706521337",
+    "host": "shopee.tw",
+    "ids": {
+      "shopId": "11440431",
+      "itemId": "13706521337"
+    },
+    "method": "official-page",
+    "fetchedAt": "2026-11-09",
+    "siteCanonical": "https://www.3m.com.tw/3M/zh_TW/p/d/v000231613/"
+  },
+  "extracted": {
+    "name": "3M™ 淨呼吸™ 雙效空氣清淨除濕機 FD-A90W",
+    "description": "雙效能空氣清淨除濕機，高效除濕與空氣濾淨雙效進化。以創新的日本除濕輪科技，每日除濕日高達9.5L，能高效過濾塵蟎等過敏原和危害呼吸道的PM2.5細懸浮微粒，四季使用皆適宜。",
+    "brand": null,
+    "sku": null,
+    "price": null,
+    "imageUrls": [
+      "https://multimedia.3m.com/mws/media/1189592J/3m-tm-filtrete-tm-air-purifier-and-dehumidifier-fd-a90w.jpg"
+    ]
+  },
+  "images": [
+    {
+      "file": "shopee-11440431-13706521337-1.avif",
+      "sourceUrl": "https://multimedia.3m.com/mws/media/1189592J/3m-tm-filtrete-tm-air-purifier-and-dehumidifier-fd-a90w.jpg",
+      "pageUrl": "https://www.3m.com.tw/3M/zh_TW/p/d/v000231613/",
+      "fetchedAt": "2026-11-09",
+      "sha256": "98cf268d6bc86420f6c3aa396996c794affef236e94c535ac3b670aac34a8df9",
+      "bytes": 1079,
+      "width": null,
+      "height": null,
+      "mime": "image/avif",
+      "license": "official",
+      "licenseNote": "官方網站商品圖；使用者於 2026-11-09 授權上架（用於導購評測）",
+      "alt": "3M™ 淨呼吸™ 雙效空氣清淨除濕機 FD-A90W"
+    }
+  ],
+  "product": {
+    "category": "dehumidifier",
+    "slug": null,
+    "modelCode": null,
+    "titleTemplate": "3M™ 淨呼吸™ 雙效空氣清淨除濕機 FD-A90W 評測：{year} 值不值得買",
+    "price": null,
+    "priceUpdatedAt": null,
+    "affiliate": {},
+    "tldr": "",
+    "specs": [],
+    "faq": [],
+    "notFor": []
+  },
+  "editorial": {
+    "flaw": "",
+    "strength": "",
+    "reviewSummary": {
+      "sources": [],
+      "sampleSize": 0,
+      "summarizedAt": null,
+      "summary": "",
+      "pros": [],
+      "cons": [],
+      "sellerLogisticsNotes": []
+    }
+  },
+  "notes": [
+    "蝦皮官方 API 尚未接上（等待官方文件），只記下商品編號；名稱、價格、圖片請手動補。本工具不抓取其網頁。",
+    "名稱、說明、圖片取自官方頁 https://www.3m.com.tw/3M/zh_TW/p/d/v000231613/；不取官網價格（蝦皮價格另行維護）。"
+  ],
+  "official": {
+    "url": "https://www.3m.com.tw/3M/zh_TW/p/d/v000231613/",
+    "fetchedAt": "2026-11-09",
+    "methods": [
+      "opengraph"
+    ]
+  }
+}
