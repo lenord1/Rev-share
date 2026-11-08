@@ -4,7 +4,7 @@ description: 比較站內有公布水箱容量的 5 台除濕機，並用日除�
 category: dehumidifier
 updated: 2026-11-08
 author: 挑家電
-draft: true
+draft: false
 sources:
   - LG 台灣官網 MD181QWE0、MD161QPK3、DD121MWE0 產品頁（水箱容量、日除濕量）
   - 三菱電機台灣官網 MJ-EV280KX 產品頁

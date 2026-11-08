@@ -4,7 +4,7 @@ description: 把站內 12 台除濕機的日除濕量由大到小排開，對照
 category: dehumidifier
 updated: 2026-11-08
 author: 挑家電
-draft: true
+draft: false
 sources:
   - 三菱電機台灣官網 MJ-EV280KX、MJ-EV220KX、MJ-EV150JX 產品頁（日除濕量）
   - LG 台灣官網 MD181QWE0、MD161QPK3、DD121MWE0 產品頁（日除濕量）

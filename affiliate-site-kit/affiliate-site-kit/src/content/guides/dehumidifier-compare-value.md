@@ -4,7 +4,7 @@ description: 用站內到手價除以日除濕量，比較 11 台家用除濕機
 category: dehumidifier
 updated: 2026-11-08
 author: 挑家電
-draft: true
+draft: false
 sources:
   - 站內 src/data/products.json 價格、折扣與日除濕量（2026-11-08）
   - 各品牌台灣官網產品頁（日除濕量）

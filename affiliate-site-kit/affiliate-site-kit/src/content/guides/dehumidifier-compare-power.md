@@ -4,7 +4,7 @@ description: 比較站內有標示耗電或消耗功率的 6 台除濕機，並�
 category: dehumidifier
 updated: 2026-11-08
 author: 挑家電
-draft: true
+draft: false
 sources:
   - LG 台灣官網 MD181QWE0、DD121MWE0 產品頁（耗電、能源等級）
   - Electrolux 台灣官網 ED1251DD 產品頁（耗電、能源效率）
