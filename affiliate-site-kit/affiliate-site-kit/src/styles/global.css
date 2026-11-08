@@ -291,3 +291,5 @@ details p{margin:8px 0 0;color:var(--ink-2)}
 [data-entry-hidden]{display:none!important}
 .entry-banner{margin:16px 0 0;padding:10px 14px;background:var(--accent-soft);border-radius:var(--radius);color:var(--ink)}
 .entry-banner[hidden]{display:none}
+.author-intro{margin:16px 0 20px;padding:14px 18px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+.author-intro p{margin:0}.author-intro .note{margin-top:6px}

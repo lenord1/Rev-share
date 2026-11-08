@@ -6,6 +6,7 @@ import { loadGuides, dateText } from '../../lib/guides.mjs';
 import { noindexCategory } from '../../lib/indexing.mjs';
 import { safeJson } from '../../lib/catalog.mjs';
 import { NEED_LABEL } from '../../lib/finder.js';
+import siteData from '../../data/site.json';
 
 export function getStaticPaths() {
   return loadGuides().map((g) => ({ params: { slug: g.slug }, props: { guide: g } }));
@@ -16,6 +17,11 @@ const { products, categories } = productsData as { products: any[]; categories: 
 const category = categories.find((c) => c.slug === fm.category);
 const noindex = draft || noindexCategory(products, fm.category);
 const site = Astro.site!;
+// 作者簡介（使用者提供的真實資料，見 src/data/site.json）：每篇開頭摘要區都要出現
+const a = (siteData as any).author ?? {};
+const intro = a.bio && fm.promise
+  ? `${a.name ? `我是${a.name}，` : '我'}${a.bio}。我將透過${a.method || '科學、理性'}的方式，帶你${fm.promise}。`
+  : '';
 // 來源情境：讀者從這篇回首頁時，首頁預設顯示同品類（若有 need 就只列符合的）。只存在讀者自己的瀏覽器，不上傳。
 const entry = category
   ? { slug: guide.slug, title: fm.title, category: category.slug, group: (category as any).group ?? '', need: fm.need && NEED_LABEL[fm.need] ? fm.need : '', needLabel: fm.need ? NEED_LABEL[fm.need] ?? '' : '' }
@@ -38,6 +44,12 @@ const ld = {
       <h1>{fm.title}</h1>
       <p class="note">{fm.author}　更新 {dateText(fm.updated)}</p>
       <p class="disclosure">本頁含分潤連結，您購買不會多花錢。價格與優惠以賣場頁面為準。</p>
+      {intro && (
+        <aside class="author-intro" aria-label="作者簡介">
+          <p>{intro}</p>
+          <p class="note">本文整理各品牌官網與賣場標示的規格與價格，不是本站自己實測。</p>
+        </aside>
+      )}
       <Content />
     </article>
   </main>

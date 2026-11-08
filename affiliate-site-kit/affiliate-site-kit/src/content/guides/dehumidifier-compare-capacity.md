@@ -5,6 +5,7 @@ category: dehumidifier
 updated: 2026-11-08
 author: 挑家電
 draft: false
+promise: 看懂日除濕量，選到大小剛好的除濕機
 sources:
   - 三菱電機台灣官網 MJ-EV280KX、MJ-EV220KX、MJ-EV150JX 產品頁（日除濕量）
   - LG 台灣官網 MD181QWE0、MD161QPK3、DD121MWE0 產品頁（日除濕量）

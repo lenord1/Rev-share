@@ -5,6 +5,7 @@ category: dehumidifier
 updated: 2026-11-08
 author: 挑家電
 draft: false
+promise: 算清楚倒水頻率，挑對水箱大小
 sources:
   - LG 台灣官網 MD181QWE0、MD161QPK3、DD121MWE0 產品頁（水箱容量、日除濕量）
   - 三菱電機台灣官網 MJ-EV280KX 產品頁

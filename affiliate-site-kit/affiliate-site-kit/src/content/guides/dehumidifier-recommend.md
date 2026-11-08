@@ -5,6 +5,7 @@ category: dehumidifier
 updated: 2026-11-08
 author: 挑家電
 draft: false
+promise: 依坪數與情境，挑出適合你家的那一台除濕機
 sources:
   - 三菱電機台灣官網 MJ-EV280KX、MJ-EV220KX、MJ-EV150JX 產品頁
   - LG 台灣官網 MD181QWE0、MD161QPK3、DD121MWE0 產品頁

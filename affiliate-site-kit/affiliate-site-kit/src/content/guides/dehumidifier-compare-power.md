@@ -5,6 +5,7 @@ category: dehumidifier
 updated: 2026-11-08
 author: 挑家電
 draft: false
+promise: 看懂耗電標示，算出真正的用電成本
 sources:
   - LG 台灣官網 MD181QWE0、DD121MWE0 產品頁（耗電、能源等級）
   - Electrolux 台灣官網 ED1251DD 產品頁（耗電、能源效率）

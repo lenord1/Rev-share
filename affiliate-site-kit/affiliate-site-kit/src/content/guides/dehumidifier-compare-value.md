@@ -5,6 +5,7 @@ category: dehumidifier
 updated: 2026-11-08
 author: 挑家電
 draft: false
+promise: 算出每公升除濕量的真實價格，不被標價騙
 sources:
   - 站內 src/data/products.json 價格、折扣與日除濕量（2026-11-08）
   - 各品牌台灣官網產品頁（日除濕量）
