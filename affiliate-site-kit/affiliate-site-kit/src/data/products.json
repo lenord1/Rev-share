@@ -9555,6 +9555,12 @@
       "alternative": {
         "modelCode": "demo-dh-a",
         "when": "測試：想和示範機種並排比較時"
+      },
+      "image": {
+        "file": "shopee-108078562-53350123096-1.avif",
+        "alt": "PuriCare™ 雙變頻除濕機 - 18公升(白) MD181QWE0",
+        "license": "pending-review",
+        "fetchedAt": "2026-11-08"
       }
     }
   ]

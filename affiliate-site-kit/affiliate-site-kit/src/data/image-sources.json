@@ -1,0 +1,23 @@
+{
+  "_說明": "圖片來源與抓取日期登記。license：pending-review＝待確認授權（不得上線）；owned／official／licensed＝已確認；rejected＝不可用。",
+  "images": {
+    "shopee-108078562-53350123096-1.avif": {
+      "draftId": "shopee-108078562-53350123096",
+      "sourceUrl": "https://www.lg.com/content/dam/channel/wcms/tw/images/small-appliances/md181qwe0_att_eatt_tw_c/MD181QWE0_ATT_EATT_TW_C-450x450.jpg",
+      "pageUrl": "https://lg.com/tw/small-appliances/lg-md181qwe0",
+      "fetchedAt": "2026-11-08",
+      "sha256": "545d8fe6d3601b0df8b3c6ab223c04ea46637bf28100474c00e7b47467f187ea",
+      "license": "pending-review",
+      "licenseNote": ""
+    },
+    "shopee-108078562-53350123096-2.avif": {
+      "draftId": "shopee-108078562-53350123096",
+      "sourceUrl": "https://www.lg.com/content/dam/channel/wcms/tw/images/small-appliances/md181qwe0_att_eatt_tw_c/gallery/medium01.jpg",
+      "pageUrl": "https://lg.com/tw/small-appliances/lg-md181qwe0",
+      "fetchedAt": "2026-11-08",
+      "sha256": "d08a25fb87eca8d7c4e1d1a457300e75a5b8f50da3c998ca332069b17c0e2501",
+      "license": "pending-review",
+      "licenseNote": ""
+    }
+  }
+}
