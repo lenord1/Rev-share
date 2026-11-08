@@ -1,0 +1,96 @@
+{
+  "draftId": "shopee-108078562-20484757207",
+  "status": "draft",
+  "name": "PuriCare™ 雙變頻除濕機 - 16公升 (粉紅) (無UVC) - 經典款 MD161QPK3",
+  "createdAt": "2026-11-08",
+  "source": {
+    "kind": "shopee",
+    "url": "https://shopee.tw/product/108078562/20484757207",
+    "host": "shopee.tw",
+    "ids": {
+      "shopId": "108078562",
+      "itemId": "20484757207"
+    },
+    "method": "official-page",
+    "fetchedAt": "2026-11-08",
+    "siteCanonical": "https://www.lg.com/tw/air-care/dehumidifiers/md161qpk3/"
+  },
+  "extracted": {
+    "name": "PuriCare™ 雙變頻除濕機 - 16公升 (粉紅) (無UVC) - 經典款 MD161QPK3",
+    "description": "探索 LG MD161QPK3. 點擊查看 LG 的圖片、評論和技術規格 PuriCare™ 雙變頻除濕機 - 16公升 (粉紅) (無UVC) - 經典款.",
+    "brand": "LG",
+    "sku": "MD161QPK3",
+    "price": null,
+    "imageUrls": [
+      "https://www.lg.com/content/dam/channel/wcms/tw/images/small-appliances/md161qpk3_att_eatt_tw_c/MD161QPK3_ATT_EATT_TW_C-450x450.jpg",
+      "https://www.lg.com/content/dam/channel/wcms/tw/images/small-appliances/md161qpk3_att_eatt_tw_c/gallery/medium01.jpg"
+    ]
+  },
+  "images": [
+    {
+      "file": "shopee-108078562-20484757207-1.avif",
+      "sourceUrl": "https://www.lg.com/content/dam/channel/wcms/tw/images/small-appliances/md161qpk3_att_eatt_tw_c/MD161QPK3_ATT_EATT_TW_C-450x450.jpg",
+      "pageUrl": "https://www.lg.com/tw/small-appliances/lg-md161qpk3",
+      "fetchedAt": "2026-11-08",
+      "sha256": "dc08deb6da0c5ceb9eeae58bfa7a31432f2ea44c33dfd9e327420c3c63a66f2c",
+      "bytes": 2799,
+      "width": null,
+      "height": null,
+      "mime": "image/avif",
+      "license": "pending-review",
+      "licenseNote": "",
+      "alt": "PuriCare™ 雙變頻除濕機 - 16公升 (粉紅) (無UVC) - 經典款 MD161QPK3"
+    },
+    {
+      "file": "shopee-108078562-20484757207-2.avif",
+      "sourceUrl": "https://www.lg.com/content/dam/channel/wcms/tw/images/small-appliances/md161qpk3_att_eatt_tw_c/gallery/medium01.jpg",
+      "pageUrl": "https://www.lg.com/tw/small-appliances/lg-md161qpk3",
+      "fetchedAt": "2026-11-08",
+      "sha256": "abc36c5ace769f37529feb2323e211e71a3be5f851a0a1884047cff7b74bc8b2",
+      "bytes": 4818,
+      "width": null,
+      "height": null,
+      "mime": "image/avif",
+      "license": "pending-review",
+      "licenseNote": "",
+      "alt": "PuriCare™ 雙變頻除濕機 - 16公升 (粉紅) (無UVC) - 經典款 MD161QPK3"
+    }
+  ],
+  "product": {
+    "category": "dehumidifier",
+    "slug": null,
+    "modelCode": null,
+    "titleTemplate": "PuriCare™ 雙變頻除濕機 - 16公升 (粉紅) (無UVC) - 經典款 MD161QPK3 評測：{year} 值不值得買",
+    "price": null,
+    "priceUpdatedAt": null,
+    "affiliate": {},
+    "tldr": "",
+    "specs": [],
+    "faq": [],
+    "notFor": []
+  },
+  "editorial": {
+    "flaw": "",
+    "strength": "",
+    "reviewSummary": {
+      "sources": [],
+      "sampleSize": 0,
+      "summarizedAt": null,
+      "summary": "",
+      "pros": [],
+      "cons": [],
+      "sellerLogisticsNotes": []
+    }
+  },
+  "notes": [
+    "蝦皮官方 API 尚未接上（等待官方文件），只記下商品編號；名稱、價格、圖片請手動補。本工具不抓取其網頁。",
+    "名稱、說明、圖片取自官方頁 https://www.lg.com/tw/small-appliances/lg-md161qpk3；不取官網價格（蝦皮價格另行維護）。"
+  ],
+  "official": {
+    "url": "https://www.lg.com/tw/small-appliances/lg-md161qpk3",
+    "fetchedAt": "2026-11-08",
+    "methods": [
+      "jsonld"
+    ]
+  }
+}

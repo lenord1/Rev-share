@@ -1,6 +1,42 @@
 {
   "_說明": "圖片來源與抓取日期登記。license：pending-review＝待確認授權（不得上線）；owned／official／licensed＝已確認；rejected＝不可用。",
   "images": {
+    "shopee-108078562-20484757207-1.avif": {
+      "draftId": "shopee-108078562-20484757207",
+      "sourceUrl": "https://www.lg.com/content/dam/channel/wcms/tw/images/small-appliances/md161qpk3_att_eatt_tw_c/MD161QPK3_ATT_EATT_TW_C-450x450.jpg",
+      "pageUrl": "https://www.lg.com/tw/small-appliances/lg-md161qpk3",
+      "fetchedAt": "2026-11-08",
+      "sha256": "dc08deb6da0c5ceb9eeae58bfa7a31432f2ea44c33dfd9e327420c3c63a66f2c",
+      "license": "pending-review",
+      "licenseNote": ""
+    },
+    "shopee-108078562-20484757207-2.avif": {
+      "draftId": "shopee-108078562-20484757207",
+      "sourceUrl": "https://www.lg.com/content/dam/channel/wcms/tw/images/small-appliances/md161qpk3_att_eatt_tw_c/gallery/medium01.jpg",
+      "pageUrl": "https://www.lg.com/tw/small-appliances/lg-md161qpk3",
+      "fetchedAt": "2026-11-08",
+      "sha256": "abc36c5ace769f37529feb2323e211e71a3be5f851a0a1884047cff7b74bc8b2",
+      "license": "pending-review",
+      "licenseNote": ""
+    },
+    "shopee-108078562-24487509172-1.avif": {
+      "draftId": "shopee-108078562-24487509172",
+      "sourceUrl": "https://www.lg.com/content/dam/channel/wcms/tw/images/small-appliances/dd141mwe0_att_eatt_tw_c/DD141MWE0_ATT_EATT_TW_C-450x450.jpg",
+      "pageUrl": "https://www.lg.com/tw/air-care/dehumidifiers/dd121mwe0/",
+      "fetchedAt": "2026-11-08",
+      "sha256": "6f9e1a4c315e9ddf0a7870c9c8c026c0213fde26ab19285e3129084f92bcf592",
+      "license": "pending-review",
+      "licenseNote": ""
+    },
+    "shopee-108078562-24487509172-2.avif": {
+      "draftId": "shopee-108078562-24487509172",
+      "sourceUrl": "https://www.lg.com/content/dam/channel/wcms/tw/images/small-appliances/dd141mwe0_att_eatt_tw_c/gallery/medium01.jpg",
+      "pageUrl": "https://www.lg.com/tw/air-care/dehumidifiers/dd121mwe0/",
+      "fetchedAt": "2026-11-08",
+      "sha256": "6eb92d99378e0a70cc4307c306337f249eb2ef73c293429fed402e7461ea7760",
+      "license": "pending-review",
+      "licenseNote": ""
+    },
     "shopee-108078562-53350123096-1.avif": {
       "draftId": "shopee-108078562-53350123096",
       "sourceUrl": "https://www.lg.com/content/dam/channel/wcms/tw/images/small-appliances/md181qwe0_att_eatt_tw_c/MD181QWE0_ATT_EATT_TW_C-450x450.jpg",

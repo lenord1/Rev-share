@@ -1,0 +1,56 @@
+{
+  "draftId": "shopee-116309859-49007330382",
+  "status": "draft",
+  "name": "三菱 MITSUBISHI MJ-EV280KX-TW 28L 日製空氣清淨變頻除濕機（蝦皮直營）",
+  "createdAt": "2026-11-08",
+  "source": {
+    "kind": "shopee",
+    "url": "https://shopee.tw/product/116309859/49007330382",
+    "host": "shopee.tw",
+    "ids": {
+      "shopId": "116309859",
+      "itemId": "49007330382"
+    },
+    "method": "manual",
+    "fetchedAt": "2026-11-08",
+    "siteCanonical": null
+  },
+  "extracted": {
+    "name": "",
+    "description": "",
+    "brand": null,
+    "sku": null,
+    "price": null,
+    "imageUrls": []
+  },
+  "images": [],
+  "product": {
+    "category": "dehumidifier",
+    "slug": null,
+    "modelCode": null,
+    "titleTemplate": "三菱 MITSUBISHI MJ-EV280KX-TW 28L 日製空氣清淨變頻除濕機（蝦皮直營） 評測：{year} 值不值得買",
+    "price": null,
+    "priceUpdatedAt": null,
+    "affiliate": {},
+    "tldr": "",
+    "specs": [],
+    "faq": [],
+    "notFor": []
+  },
+  "editorial": {
+    "flaw": "",
+    "strength": "",
+    "reviewSummary": {
+      "sources": [],
+      "sampleSize": 0,
+      "summarizedAt": null,
+      "summary": "",
+      "pros": [],
+      "cons": [],
+      "sellerLogisticsNotes": []
+    }
+  },
+  "notes": [
+    "蝦皮官方 API 尚未接上（等待官方文件），只記下商品編號；名稱、價格、圖片請手動補。本工具不抓取其網頁。"
+  ]
+}
