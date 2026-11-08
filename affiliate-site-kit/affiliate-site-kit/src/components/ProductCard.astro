@@ -38,7 +38,7 @@ const img = p.image?.file ? images[`../assets/products/${p.image.file}`]?.defaul
     : <div class="thumb" aria-hidden="true">{categoryName.slice(0, 2)}</div>}
   <div class="b">
     <span class="cat">{categoryName}</span>
-    <h3>{productName(p)}</h3>
+    <h3>{productName(p)}{p.officialStore && <span class="badge official">官方</span>}</h3>
     {hasPromo && p.promoBadge && <span class="badge">{p.promoBadge}</span>}
     {p.strength && <span class="strength-line">{p.strength}</span>}
     <span class="flaw-line">{p.flaw}</span>

@@ -106,7 +106,7 @@ const ld = [
 <Layout title={`${title}｜挑家電`} description={p.article?.metaDescription ?? p.tldr} noindex={noindexProduct(p)}>
   <main class="wrap">
     <nav class="crumbs" aria-label="麵包屑"><a href="/">首頁</a> / <a href={`/${p.category}/`}>{category.name}</a> / {name}</nav>
-    <h1>{title}</h1>
+    <h1>{title}{p.officialStore && <span class="badge official" style="margin-left:8px;vertical-align:middle">官方</span>}</h1>
     <p class="disclosure">本頁含分潤連結，您購買不會多花錢。價格與優惠以賣場頁面為準。</p>
     <p class="note" style="margin:4px 0 0">評測依據：規格整理自官方資料與賣場標示，非本站實測。資料核對日 {ymd(p.lastChecked)}。{p.demo && '（示範資料，請以真實型號與價格取代）'}</p>
 

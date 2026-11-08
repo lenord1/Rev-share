@@ -158,12 +158,13 @@ export function validateProducts({ strict = false } = {}) {
       if (!exists('src', 'assets', 'products', x.image.file)) sf(`找不到圖片 src/assets/products/${x.image.file}`);
     }
 
-    if (x.featured) featured++;
+    if (x.officialStore !== undefined && typeof x.officialStore !== 'boolean') err('officialStore 必須是 true/false');
+    if (x.featured || x.officialStore) featured++;
     if (x.demo) sf('仍是示範資料（demo: true），上線前請換成真實資料並移除此旗標');
   }
   if (featured === 0) r.warn('沒有任何 featured 商品，首頁九宮格會是空的');
   if (featured > 9) r.warn(`featured 有 ${featured} 個，首頁九宮格只取前 9 個`);
-  if (strict && featured !== 9) r.error(`上線前 featured 應為 9 個，目前 ${featured}`);
+  if (strict && featured < 9) r.error(`上線前 featured 應為 9 個，目前 ${featured}`);
   for (const c of cats) if (!products.some((x) => x.category === c)) r.warn(`品類 ${c} 沒有任何商品`);
 
   // ── 旅遊 ──

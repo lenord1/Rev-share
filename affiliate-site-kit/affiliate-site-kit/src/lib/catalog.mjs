@@ -57,10 +57,12 @@ export function activeCategories(data) {
 }
 
 export function featuredProducts(products, limit = 9) {
-  return products
-    .filter((p) => p.featured)
-    .sort((a, b) => (a.featuredOrder ?? 99) - (b.featuredOrder ?? 99))
-    .slice(0, limit);
+  // 蝦皮商城／品牌官方賣場（officialStore: true）一律推薦，排在前面且不受 limit 限制；
+  // 其餘 featured 商品補滿到 limit。
+  const byOrder = (a, b) => (a.featuredOrder ?? 99) - (b.featuredOrder ?? 99);
+  const official = products.filter((p) => p.officialStore).sort(byOrder);
+  const rest = products.filter((p) => p.featured && !p.officialStore).sort(byOrder);
+  return [...official, ...rest.slice(0, Math.max(0, limit - official.length))];
 }
 
 /** 放進 <script type="application/json"> 前，避免 </script> 或 HTML 註解提早結束。 */
