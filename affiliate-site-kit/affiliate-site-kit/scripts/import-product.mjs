@@ -122,6 +122,12 @@ export async function runImport(opts, deps = {}) {
       }
       official = { url: op.canonicalUrl, fetchedAt, methods: ex.methods };
       extracted = { ...ex, price: null };
+      // 官方頁的 og:image 常是通用分享圖：可另外指定同一官網網域下的商品圖網址（opts.officialImages）
+      if (Array.isArray(opts.officialImages) && opts.officialImages.length) {
+        const host = new URL(op.canonicalUrl).hostname;
+        const same = opts.officialImages.map(String).filter((u) => { try { return new URL(u).hostname === host; } catch { return false; } });
+        if (same.length) extracted.imageUrls = same;
+      }
       method = 'official-page';
       notes.push(`名稱、說明、圖片取自官方頁 ${op.canonicalUrl}；不取官網價格（蝦皮價格另行維護）。`);
     }

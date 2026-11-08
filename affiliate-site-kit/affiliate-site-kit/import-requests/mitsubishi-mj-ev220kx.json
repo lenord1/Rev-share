@@ -1,0 +1,11 @@
+{
+  "url": "https://shopee.tw/product/116309859/48407319325",
+  "officialUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/PRODUCT_MJ_EV220KX.html",
+  "category": "dehumidifier",
+  "force": true,
+  "attachTo": "test-mitsubishi-ev220kx",
+  "imageUrls": [
+    "https://www.mitsubishielectric.com.tw/home/dehumidifier/images/mjev220kx_pd_lg.jpg",
+    "https://www.mitsubishielectric.com.tw/home/dehumidifier/images/mjev220kx_pd.png"
+  ]
+}

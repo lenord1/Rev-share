@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // 處理 import-requests/*.json（每個檔案一筆匯入請求），結果寫到 import-requests/results/<同檔名>，處理完的請求檔會刪除。
 // 請求格式：{ "url": "蝦皮或其他商品網址", "officialUrl": "品牌官網商品頁（選填）", "category": "dehumidifier",
-//            "force": false, "attachTo": "示範商品型號（選填，只限 demo: true）", "name": "手動名稱（選填）", "price": 12900 }
+//            "force": false, "imageUrls": ["官網商品圖網址（選填，須與 officialUrl 同網域）"], "attachTo": "示範商品型號（選填，只限 demo: true）", "name": "手動名稱（選填）", "price": 12900 }
 // 由 .github/workflows/import-requests.yml 在推送請求檔到 preview 分支時執行；失敗只記錄原因，不中斷其他請求。
 import fs from 'node:fs';
 import path from 'node:path';
@@ -28,6 +28,7 @@ export async function processRequests(deps = {}) {
         if (req.officialUrl) opts['official-url'] = String(req.officialUrl);
         if (req.category) opts.category = String(req.category);
         if (req.force) opts.force = true;
+        if (Array.isArray(req.imageUrls)) opts.officialImages = req.imageUrls;
         if (req.name) opts.name = String(req.name);
         if (req.price != null) opts.price = String(req.price);
         const r = await runImport(opts, deps);
