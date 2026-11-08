@@ -467,7 +467,7 @@
     },
     {
       "source": "/go/shopee-test-mitsubishi-ev150jx",
-      "destination": "https://shopee.tw/product/116309859/42629304828",
+      "destination": "https://s.shopee.tw/7puewxnlvk",
       "statusCode": 302
     },
     {
@@ -487,17 +487,92 @@
     },
     {
       "source": "/go/shopee-test-panasonic-f-y22pn",
-      "destination": "https://shopee.tw/product/116309859/26592906704",
+      "destination": "https://s.shopee.tw/8KqvXnDnRX",
       "statusCode": 302
     },
     {
       "source": "/go/shopee-test-sampo-ad-s512t",
-      "destination": "https://shopee.tw/product/116309859/44202972894",
+      "destination": "https://s.shopee.tw/9pfjKGTNhS",
       "statusCode": 302
     },
     {
       "source": "/go/shopee-test-hysure-george",
       "destination": "https://shopee.tw/product/344095175/8554568924",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-hitachi-rd-14fj",
+      "destination": "https://s.shopee.tw/114Ko9JDZu",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-hitachi-rd-22fj",
+      "destination": "https://s.shopee.tw/60T0lMLi01",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-hitachi-rd-460vj",
+      "destination": "https://s.shopee.tw/9KjSjUSTTF",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-panasonic-f-y12pm",
+      "destination": "https://s.shopee.tw/6AmQxo0noX",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-panasonic-f-yv50lx",
+      "destination": "https://s.shopee.tw/BVDom1mbv",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-3m-fd-y60l-plus",
+      "destination": "https://s.shopee.tw/4LKmmUADIL",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-3m-fd-a90w",
+      "destination": "https://s.shopee.tw/1qdRntgh0e",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-3m-fd-y180l-plus",
+      "destination": "https://s.shopee.tw/1BncXw8Sn",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-mitsubishi-mj-ehv180jx",
+      "destination": "https://s.shopee.tw/8KqvThfbUc",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-mitsubishi-mj-ehv280kx",
+      "destination": "https://s.shopee.tw/906cGvd48g",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-sampo-ad-w520t",
+      "destination": "https://s.shopee.tw/6AmQxX2NOS",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-sampo-ad-s552dt",
+      "destination": "https://s.shopee.tw/1qdRnZfyIN",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-heran-hdh-12dy030",
+      "destination": "https://s.shopee.tw/8KqvXP6iXF",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-heran-hdh-24dy03w",
+      "destination": "https://s.shopee.tw/5fqAMZJeZz",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-tatung-tdh-120md",
+      "destination": "https://s.shopee.tw/W84DC5IDx",
       "statusCode": 302
     }
   ],

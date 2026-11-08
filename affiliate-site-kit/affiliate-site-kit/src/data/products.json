@@ -9562,18 +9562,17 @@
       "priceUnverified": true
     },
     {
-      "demo": true,
       "category": "dehumidifier",
       "slug": "test-mitsubishi-ev150jx",
       "modelCode": "test-mitsubishi-ev150jx",
       "titleTemplate": "三菱 MITSUBISHI MJ-EV150JX-TW 15.2L 日製空氣清淨變頻除濕機評測：{year} 值不值得買",
       "affiliate": {
-        "shopee": "https://shopee.tw/product/116309859/42629304828"
+        "shopee": "https://s.shopee.tw/7puewxnlvk"
       },
-      "price": 17900,
-      "priceUpdatedAt": "2026-11-08",
+      "price": 17765,
+      "priceUpdatedAt": "2026-11-09",
       "primaryChannel": "shopee",
-      "lastChecked": "2026-11-08",
+      "lastChecked": "2026-11-09",
       "tldr": "日除濕量與名稱取自蝦皮商品標題，詳細規格與缺點整理中，價格以賣場頁面為準。",
       "flaw": "台灣官網沒有公布噪音與耗電數字，臥室使用前無法事先確認，購買前需向賣場確認規格",
       "specs": [
@@ -9820,18 +9819,17 @@
       "priceUnverified": true
     },
     {
-      "demo": true,
       "category": "dehumidifier",
       "slug": "test-panasonic-f-y22pn",
       "modelCode": "test-panasonic-f-y22pn",
       "titleTemplate": "Panasonic 國際牌 11L nanoeX 除濕機 F-Y22PN評測：{year} 值不值得買",
       "affiliate": {
-        "shopee": "https://shopee.tw/product/116309859/26592906704"
+        "shopee": "https://s.shopee.tw/8KqvXnDnRX"
       },
-      "price": 11900,
-      "priceUpdatedAt": "2026-11-08",
+      "price": 9380,
+      "priceUpdatedAt": "2026-11-09",
       "primaryChannel": "shopee",
-      "lastChecked": "2026-11-08",
+      "lastChecked": "2026-11-09",
       "tldr": "日除濕量與名稱取自蝦皮商品標題，詳細規格與缺點整理中，價格以賣場頁面為準。",
       "flaw": "標示適用 14 坪，空間更大會吃緊；官方型錄沒有標示運轉噪音，評測也提到外型設計偏傳統",
       "specs": [
@@ -9880,18 +9878,17 @@
       "priceUnverified": true
     },
     {
-      "demo": true,
       "category": "dehumidifier",
       "slug": "test-sampo-ad-s512t",
       "modelCode": "test-sampo-ad-s512t",
       "titleTemplate": "SAMPO 聲寶 6L 微電腦除濕機 AD-S512T評測：{year} 值不值得買",
       "affiliate": {
-        "shopee": "https://shopee.tw/product/116309859/44202972894"
+        "shopee": "https://s.shopee.tw/9pfjKGTNhS"
       },
-      "price": 5900,
-      "priceUpdatedAt": "2026-11-08",
+      "price": 4490,
+      "priceUpdatedAt": "2026-11-09",
       "primaryChannel": "shopee",
-      "lastChecked": "2026-11-08",
+      "lastChecked": "2026-11-09",
       "tldr": "日除濕量與名稱取自蝦皮商品標題，詳細規格與缺點整理中，價格以賣場頁面為準。",
       "flaw": "日除濕量只有 6 公升，只適合約 5–7 坪的小空間，空間更大會除不動",
       "specs": [
@@ -9986,6 +9983,813 @@
         ]
       },
       "flawBasis": "評測整理（vocus 海說小坪數除濕機推薦）",
+      "priceUnverified": true
+    },
+    {
+      "category": "dehumidifier",
+      "slug": "hitachi-rd-14fj",
+      "modelCode": "hitachi-rd-14fj",
+      "titleTemplate": "HITACHI 日立 7L 除濕機 RD-14FJ評測：{year} 值不值得買",
+      "affiliate": {
+        "shopee": "https://s.shopee.tw/114Ko9JDZu"
+      },
+      "price": 7490,
+      "priceUpdatedAt": "2026-11-09",
+      "primaryChannel": "shopee",
+      "lastChecked": "2026-11-09",
+      "tldr": "日除濕量與名稱取自蝦皮商品標題，詳細規格與缺點整理中，價格以賣場頁面為準。",
+      "flaw": "日除濕量只有 7 公升，只適合約 5.5–8.5 坪的小空間，客廳或大房間會除不動；這個賣場目前只有 1 筆成交，使用評價資料少",
+      "specs": [
+        {
+          "key": "日除濕量",
+          "value": "7",
+          "unit": "L/日",
+          "score": 5,
+          "higherIsBetter": true
+        },
+        {
+          "key": "運轉噪音",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": false
+        },
+        {
+          "key": "水箱容量",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": true
+        }
+      ],
+      "notFor": [
+        "房間超過 8.5 坪的人"
+      ],
+      "officialStore": false,
+      "tags": [],
+      "finderAuto": true,
+      "finder": {
+        "tags": [],
+        "area": [
+          5.5,
+          8.5
+        ]
+      },
+      "flawBasis": "商品標示容量；適用坪數為本站粗估（編輯判斷）；成交數（蝦皮分潤後台 2026-11-09）：1",
+      "priceUnverified": true
+    },
+    {
+      "category": "dehumidifier",
+      "slug": "hitachi-rd-22fj",
+      "modelCode": "hitachi-rd-22fj",
+      "titleTemplate": "HITACHI 日立 11L 除濕機 RD-22FJ評測：{year} 值不值得買",
+      "affiliate": {
+        "shopee": "https://s.shopee.tw/60T0lMLi01"
+      },
+      "price": 9350,
+      "priceUpdatedAt": "2026-11-09",
+      "primaryChannel": "shopee",
+      "lastChecked": "2026-11-09",
+      "tldr": "日除濕量與名稱取自蝦皮商品標題，詳細規格與缺點整理中，價格以賣場頁面為準。",
+      "flaw": "日除濕量 11 公升，適合約 9–13 坪，超過這個坪數或濕度很重時要開很久；這個賣場目前只有 7 筆成交，使用評價資料少",
+      "specs": [
+        {
+          "key": "日除濕量",
+          "value": "11",
+          "unit": "L/日",
+          "score": 5,
+          "higherIsBetter": true
+        },
+        {
+          "key": "運轉噪音",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": false
+        },
+        {
+          "key": "水箱容量",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": true
+        }
+      ],
+      "notFor": [
+        "房間超過 13 坪的人"
+      ],
+      "officialStore": false,
+      "tags": [],
+      "finderAuto": true,
+      "finder": {
+        "tags": [],
+        "area": [
+          9,
+          13
+        ]
+      },
+      "flawBasis": "商品標示容量；適用坪數為本站粗估（編輯判斷）；成交數（蝦皮分潤後台 2026-11-09）：7",
+      "priceUnverified": true
+    },
+    {
+      "category": "dehumidifier",
+      "slug": "hitachi-rd-460vj",
+      "modelCode": "hitachi-rd-460vj",
+      "titleTemplate": "HITACHI 日立 23L 除濕機 RD-460VJ評測：{year} 值不值得買",
+      "affiliate": {
+        "shopee": "https://s.shopee.tw/9KjSjUSTTF"
+      },
+      "price": 22880,
+      "priceUpdatedAt": "2026-11-09",
+      "primaryChannel": "shopee",
+      "lastChecked": "2026-11-09",
+      "tldr": "日除濕量與名稱取自蝦皮商品標題，詳細規格與缺點整理中，價格以賣場頁面為準。",
+      "flaw": "日除濕量 23 公升是為 18.5 坪以上的大空間設計，小房間用不到這麼大的機種，價格也偏高；這個賣場目前只有 1 筆成交，使用評價資料少",
+      "specs": [
+        {
+          "key": "日除濕量",
+          "value": "23",
+          "unit": "L/日",
+          "score": 5,
+          "higherIsBetter": true
+        },
+        {
+          "key": "運轉噪音",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": false
+        },
+        {
+          "key": "水箱容量",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": true
+        }
+      ],
+      "notFor": [
+        "小套房或單間臥室（機種對空間來說太大）"
+      ],
+      "officialStore": false,
+      "tags": [],
+      "finderAuto": true,
+      "finder": {
+        "tags": [
+          "family"
+        ],
+        "area": [
+          18.5,
+          27.5
+        ]
+      },
+      "flawBasis": "商品標示容量；適用坪數為本站粗估（編輯判斷）；成交數（蝦皮分潤後台 2026-11-09）：1",
+      "priceUnverified": true
+    },
+    {
+      "category": "dehumidifier",
+      "slug": "panasonic-f-y12pm",
+      "modelCode": "panasonic-f-y12pm",
+      "titleTemplate": "Panasonic 國際牌 6L 除濕機 F-Y12PM評測：{year} 值不值得買",
+      "affiliate": {
+        "shopee": "https://s.shopee.tw/6AmQxo0noX"
+      },
+      "price": 6050,
+      "priceUpdatedAt": "2026-11-09",
+      "primaryChannel": "shopee",
+      "lastChecked": "2026-11-09",
+      "tldr": "日除濕量與名稱取自蝦皮商品標題，詳細規格與缺點整理中，價格以賣場頁面為準。",
+      "flaw": "日除濕量只有 6 公升，只適合約 5–7 坪的小空間，客廳或大房間會除不動",
+      "specs": [
+        {
+          "key": "日除濕量",
+          "value": "6",
+          "unit": "L/日",
+          "score": 5,
+          "higherIsBetter": true
+        },
+        {
+          "key": "運轉噪音",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": false
+        },
+        {
+          "key": "水箱容量",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": true
+        }
+      ],
+      "notFor": [
+        "房間超過 7 坪的人"
+      ],
+      "officialStore": false,
+      "tags": [],
+      "finderAuto": true,
+      "finder": {
+        "tags": [],
+        "area": [
+          5,
+          7
+        ]
+      },
+      "flawBasis": "商品標示容量；適用坪數為本站粗估（編輯判斷）；成交數（蝦皮分潤後台 2026-11-09）：1,000+",
+      "priceUnverified": true
+    },
+    {
+      "category": "dehumidifier",
+      "slug": "panasonic-f-yv50lx",
+      "modelCode": "panasonic-f-yv50lx",
+      "titleTemplate": "Panasonic 國際牌 25L 除濕機 F-YV50LX評測：{year} 值不值得買",
+      "affiliate": {
+        "shopee": "https://s.shopee.tw/BVDom1mbv"
+      },
+      "price": 24001,
+      "priceUpdatedAt": "2026-11-09",
+      "primaryChannel": "shopee",
+      "lastChecked": "2026-11-09",
+      "tldr": "日除濕量與名稱取自蝦皮商品標題，詳細規格與缺點整理中，價格以賣場頁面為準。",
+      "flaw": "日除濕量 25 公升是為 20 坪以上的大空間設計，小房間用不到這麼大的機種，價格也偏高",
+      "specs": [
+        {
+          "key": "日除濕量",
+          "value": "25",
+          "unit": "L/日",
+          "score": 5,
+          "higherIsBetter": true
+        },
+        {
+          "key": "運轉噪音",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": false
+        },
+        {
+          "key": "水箱容量",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": true
+        }
+      ],
+      "notFor": [
+        "小套房或單間臥室（機種對空間來說太大）"
+      ],
+      "officialStore": false,
+      "tags": [],
+      "finderAuto": true,
+      "finder": {
+        "tags": [
+          "family"
+        ],
+        "area": [
+          20,
+          30
+        ]
+      },
+      "flawBasis": "商品標示容量；適用坪數為本站粗估（編輯判斷）；成交數（蝦皮分潤後台 2026-11-09）：536",
+      "priceUnverified": true
+    },
+    {
+      "category": "dehumidifier",
+      "slug": "3m-fd-y60l-plus",
+      "modelCode": "3m-fd-y60l-plus",
+      "titleTemplate": "3M 6L 雙效空氣清淨除濕機 FD-Y60L PLUS評測：{year} 值不值得買",
+      "affiliate": {
+        "shopee": "https://s.shopee.tw/4LKmmUADIL"
+      },
+      "price": 7490,
+      "priceUpdatedAt": "2026-11-09",
+      "primaryChannel": "shopee",
+      "lastChecked": "2026-11-09",
+      "tldr": "日除濕量與名稱取自蝦皮商品標題，詳細規格與缺點整理中，價格以賣場頁面為準。",
+      "flaw": "日除濕量只有 6 公升，只適合約 5–7 坪的小空間，客廳或大房間會除不動；雙效機種的清淨濾網需另購更換，賣場上有單獨販售的專用濾網（約 $740–1,020），長期要算進成本；這個賣場目前只有 13 筆成交，使用評價資料少",
+      "specs": [
+        {
+          "key": "日除濕量",
+          "value": "6",
+          "unit": "L/日",
+          "score": 5,
+          "higherIsBetter": true
+        },
+        {
+          "key": "運轉噪音",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": false
+        },
+        {
+          "key": "水箱容量",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": true
+        }
+      ],
+      "notFor": [
+        "只想除濕、不需要空氣清淨的人（雙效機種價格與濾網成本較高）"
+      ],
+      "officialStore": false,
+      "tags": [],
+      "finderAuto": true,
+      "finder": {
+        "tags": [],
+        "area": [
+          5,
+          7
+        ]
+      },
+      "flawBasis": "商品標示容量；適用坪數為本站粗估（編輯判斷）；濾網另購依蝦皮賣場上的專用濾網單獨販售；成交數（蝦皮分潤後台 2026-11-09）：13",
+      "priceUnverified": true
+    },
+    {
+      "category": "dehumidifier",
+      "slug": "3m-fd-a90w",
+      "modelCode": "3m-fd-a90w",
+      "titleTemplate": "3M 9.5L 雙效空氣清淨除濕機 FD-A90W評測：{year} 值不值得買",
+      "affiliate": {
+        "shopee": "https://s.shopee.tw/1qdRntgh0e"
+      },
+      "price": 9900,
+      "priceUpdatedAt": "2026-11-09",
+      "primaryChannel": "shopee",
+      "lastChecked": "2026-11-09",
+      "tldr": "日除濕量與名稱取自蝦皮商品標題，詳細規格與缺點整理中，價格以賣場頁面為準。",
+      "flaw": "日除濕量 9.5 公升，適合約 7.5–11.5 坪，超過這個坪數或濕度很重時要開很久；雙效機種的清淨濾網需另購更換，賣場上有單獨販售的專用濾網（約 $740–1,020），長期要算進成本",
+      "specs": [
+        {
+          "key": "日除濕量",
+          "value": "9.5",
+          "unit": "L/日",
+          "score": 5,
+          "higherIsBetter": true
+        },
+        {
+          "key": "運轉噪音",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": false
+        },
+        {
+          "key": "水箱容量",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": true
+        }
+      ],
+      "notFor": [
+        "只想除濕、不需要空氣清淨的人（雙效機種價格與濾網成本較高）"
+      ],
+      "officialStore": false,
+      "tags": [],
+      "finderAuto": true,
+      "finder": {
+        "tags": [],
+        "area": [
+          7.5,
+          11.5
+        ]
+      },
+      "flawBasis": "商品標示容量；適用坪數為本站粗估（編輯判斷）；濾網另購依蝦皮賣場上的專用濾網單獨販售；成交數（蝦皮分潤後台 2026-11-09）：87",
+      "priceUnverified": true
+    },
+    {
+      "category": "dehumidifier",
+      "slug": "3m-fd-y180l-plus",
+      "modelCode": "3m-fd-y180l-plus",
+      "titleTemplate": "3M 18L 雙效空氣清淨除濕機 FD-Y180L Plus評測：{year} 值不值得買",
+      "affiliate": {
+        "shopee": "https://s.shopee.tw/1BncXw8Sn"
+      },
+      "price": 14990,
+      "priceUpdatedAt": "2026-11-09",
+      "primaryChannel": "shopee",
+      "lastChecked": "2026-11-09",
+      "tldr": "日除濕量與名稱取自蝦皮商品標題，詳細規格與缺點整理中，價格以賣場頁面為準。",
+      "flaw": "日除濕量 18 公升是為 14.5 坪以上的大空間設計，小房間用不到這麼大的機種，價格也偏高；雙效機種的清淨濾網需另購更換，賣場上有單獨販售的專用濾網（約 $740–1,020），長期要算進成本；這個賣場目前只有 1 筆成交，使用評價資料少",
+      "specs": [
+        {
+          "key": "日除濕量",
+          "value": "18",
+          "unit": "L/日",
+          "score": 5,
+          "higherIsBetter": true
+        },
+        {
+          "key": "運轉噪音",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": false
+        },
+        {
+          "key": "水箱容量",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": true
+        }
+      ],
+      "notFor": [
+        "只想除濕、不需要空氣清淨的人（雙效機種價格與濾網成本較高）"
+      ],
+      "officialStore": false,
+      "tags": [],
+      "finderAuto": true,
+      "finder": {
+        "tags": [
+          "family"
+        ],
+        "area": [
+          14.5,
+          21.5
+        ]
+      },
+      "flawBasis": "商品標示容量；適用坪數為本站粗估（編輯判斷）；濾網另購依蝦皮賣場上的專用濾網單獨販售；成交數（蝦皮分潤後台 2026-11-09）：1",
+      "priceUnverified": true
+    },
+    {
+      "category": "dehumidifier",
+      "slug": "mitsubishi-mj-ehv180jx",
+      "modelCode": "mitsubishi-mj-ehv180jx",
+      "titleTemplate": "MITSUBISHI 三菱 18L 除濕機 MJ-EHV180JX-TW評測：{year} 值不值得買",
+      "affiliate": {
+        "shopee": "https://s.shopee.tw/8KqvThfbUc"
+      },
+      "price": 22015,
+      "priceUpdatedAt": "2026-11-09",
+      "primaryChannel": "shopee",
+      "lastChecked": "2026-11-09",
+      "tldr": "日除濕量與名稱取自蝦皮商品標題，詳細規格與缺點整理中，價格以賣場頁面為準。",
+      "flaw": "日除濕量 18 公升是為 14.5 坪以上的大空間設計，小房間用不到這麼大的機種，價格也偏高",
+      "specs": [
+        {
+          "key": "日除濕量",
+          "value": "18",
+          "unit": "L/日",
+          "score": 5,
+          "higherIsBetter": true
+        },
+        {
+          "key": "運轉噪音",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": false
+        },
+        {
+          "key": "水箱容量",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": true
+        }
+      ],
+      "notFor": [
+        "小套房或單間臥室（機種對空間來說太大）"
+      ],
+      "officialStore": false,
+      "tags": [],
+      "finderAuto": true,
+      "finder": {
+        "tags": [
+          "family"
+        ],
+        "area": [
+          14.5,
+          21.5
+        ]
+      },
+      "flawBasis": "商品標示容量；適用坪數為本站粗估（編輯判斷）；成交數（蝦皮分潤後台 2026-11-09）：127",
+      "priceUnverified": true
+    },
+    {
+      "category": "dehumidifier",
+      "slug": "mitsubishi-mj-ehv280kx",
+      "modelCode": "mitsubishi-mj-ehv280kx",
+      "titleTemplate": "MITSUBISHI 三菱 28L 除濕機 MJ-EHV280KX-TW評測：{year} 值不值得買",
+      "affiliate": {
+        "shopee": "https://s.shopee.tw/906cGvd48g"
+      },
+      "price": 31365,
+      "priceUpdatedAt": "2026-11-09",
+      "primaryChannel": "shopee",
+      "lastChecked": "2026-11-09",
+      "tldr": "日除濕量與名稱取自蝦皮商品標題，詳細規格與缺點整理中，價格以賣場頁面為準。",
+      "flaw": "日除濕量 28 公升是為 22.5 坪以上的大空間設計，小房間用不到這麼大的機種，價格也偏高",
+      "specs": [
+        {
+          "key": "日除濕量",
+          "value": "28",
+          "unit": "L/日",
+          "score": 5,
+          "higherIsBetter": true
+        },
+        {
+          "key": "運轉噪音",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": false
+        },
+        {
+          "key": "水箱容量",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": true
+        }
+      ],
+      "notFor": [
+        "小套房或單間臥室（機種對空間來說太大）"
+      ],
+      "officialStore": false,
+      "tags": [],
+      "finderAuto": true,
+      "finder": {
+        "tags": [
+          "family"
+        ],
+        "area": [
+          22.5,
+          33.5
+        ]
+      },
+      "flawBasis": "商品標示容量；適用坪數為本站粗估（編輯判斷）；成交數（蝦皮分潤後台 2026-11-09）：308",
+      "priceUnverified": true
+    },
+    {
+      "category": "dehumidifier",
+      "slug": "sampo-ad-w520t",
+      "modelCode": "sampo-ad-w520t",
+      "titleTemplate": "SAMPO 聲寶 10.5L 除濕機 AD-W520T評測：{year} 值不值得買",
+      "affiliate": {
+        "shopee": "https://s.shopee.tw/6AmQxX2NOS"
+      },
+      "price": 7990,
+      "priceUpdatedAt": "2026-11-09",
+      "primaryChannel": "shopee",
+      "lastChecked": "2026-11-09",
+      "tldr": "日除濕量與名稱取自蝦皮商品標題，詳細規格與缺點整理中，價格以賣場頁面為準。",
+      "flaw": "日除濕量 10.5 公升，適合約 8.5–12.5 坪，超過這個坪數或濕度很重時要開很久；這個賣場目前只有 8 筆成交，使用評價資料少",
+      "specs": [
+        {
+          "key": "日除濕量",
+          "value": "10.5",
+          "unit": "L/日",
+          "score": 5,
+          "higherIsBetter": true
+        },
+        {
+          "key": "運轉噪音",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": false
+        },
+        {
+          "key": "水箱容量",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": true
+        }
+      ],
+      "notFor": [
+        "房間超過 12.5 坪的人"
+      ],
+      "officialStore": false,
+      "tags": [],
+      "finderAuto": true,
+      "finder": {
+        "tags": [],
+        "area": [
+          8.5,
+          12.5
+        ]
+      },
+      "flawBasis": "商品標示容量；適用坪數為本站粗估（編輯判斷）；成交數（蝦皮分潤後台 2026-11-09）：8",
+      "priceUnverified": true
+    },
+    {
+      "category": "dehumidifier",
+      "slug": "sampo-ad-s552dt",
+      "modelCode": "sampo-ad-s552dt",
+      "titleTemplate": "SAMPO 聲寶 26L 除濕機 AD-S552DT評測：{year} 值不值得買",
+      "affiliate": {
+        "shopee": "https://s.shopee.tw/1qdRnZfyIN"
+      },
+      "price": 18490,
+      "priceUpdatedAt": "2026-11-09",
+      "primaryChannel": "shopee",
+      "lastChecked": "2026-11-09",
+      "tldr": "日除濕量與名稱取自蝦皮商品標題，詳細規格與缺點整理中，價格以賣場頁面為準。",
+      "flaw": "日除濕量 26 公升是為 21 坪以上的大空間設計，小房間用不到這麼大的機種，價格也偏高；這個賣場目前只有 2 筆成交，使用評價資料少",
+      "specs": [
+        {
+          "key": "日除濕量",
+          "value": "26",
+          "unit": "L/日",
+          "score": 5,
+          "higherIsBetter": true
+        },
+        {
+          "key": "運轉噪音",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": false
+        },
+        {
+          "key": "水箱容量",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": true
+        }
+      ],
+      "notFor": [
+        "小套房或單間臥室（機種對空間來說太大）"
+      ],
+      "officialStore": false,
+      "tags": [],
+      "finderAuto": true,
+      "finder": {
+        "tags": [
+          "family"
+        ],
+        "area": [
+          21,
+          31
+        ]
+      },
+      "flawBasis": "商品標示容量；適用坪數為本站粗估（編輯判斷）；成交數（蝦皮分潤後台 2026-11-09）：2",
+      "priceUnverified": true
+    },
+    {
+      "category": "dehumidifier",
+      "slug": "heran-hdh-12dy030",
+      "modelCode": "heran-hdh-12dy030",
+      "titleTemplate": "HERAN 禾聯 6L 除濕機 HDH-12DY030(N)評測：{year} 值不值得買",
+      "affiliate": {
+        "shopee": "https://s.shopee.tw/8KqvXP6iXF"
+      },
+      "price": 3990,
+      "priceUpdatedAt": "2026-11-09",
+      "primaryChannel": "shopee",
+      "lastChecked": "2026-11-09",
+      "tldr": "日除濕量與名稱取自蝦皮商品標題，詳細規格與缺點整理中，價格以賣場頁面為準。",
+      "flaw": "日除濕量只有 6 公升，只適合約 5–7 坪的小空間，客廳或大房間會除不動",
+      "specs": [
+        {
+          "key": "日除濕量",
+          "value": "6",
+          "unit": "L/日",
+          "score": 5,
+          "higherIsBetter": true
+        },
+        {
+          "key": "運轉噪音",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": false
+        },
+        {
+          "key": "水箱容量",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": true
+        }
+      ],
+      "notFor": [
+        "房間超過 7 坪的人"
+      ],
+      "officialStore": false,
+      "tags": [],
+      "finderAuto": true,
+      "finder": {
+        "tags": [],
+        "area": [
+          5,
+          7
+        ]
+      },
+      "flawBasis": "商品標示容量；適用坪數為本站粗估（編輯判斷）；成交數（蝦皮分潤後台 2026-11-09）：1萬+",
+      "priceUnverified": true
+    },
+    {
+      "category": "dehumidifier",
+      "slug": "heran-hdh-24dy03w",
+      "modelCode": "heran-hdh-24dy03w",
+      "titleTemplate": "HERAN 禾聯 12L 除濕機 HDH-24DY03W(N)評測：{year} 值不值得買",
+      "affiliate": {
+        "shopee": "https://s.shopee.tw/5fqAMZJeZz"
+      },
+      "price": 8990,
+      "priceUpdatedAt": "2026-11-09",
+      "primaryChannel": "shopee",
+      "lastChecked": "2026-11-09",
+      "tldr": "日除濕量與名稱取自蝦皮商品標題，詳細規格與缺點整理中，價格以賣場頁面為準。",
+      "flaw": "日除濕量 12 公升，適合約 9.5–14.5 坪，超過這個坪數或濕度很重時要開很久",
+      "specs": [
+        {
+          "key": "日除濕量",
+          "value": "12",
+          "unit": "L/日",
+          "score": 5,
+          "higherIsBetter": true
+        },
+        {
+          "key": "運轉噪音",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": false
+        },
+        {
+          "key": "水箱容量",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": true
+        }
+      ],
+      "notFor": [
+        "房間超過 14.5 坪的人"
+      ],
+      "officialStore": false,
+      "tags": [],
+      "finderAuto": true,
+      "finder": {
+        "tags": [],
+        "area": [
+          9.5,
+          14.5
+        ]
+      },
+      "flawBasis": "商品標示容量；適用坪數為本站粗估（編輯判斷）；成交數（蝦皮分潤後台 2026-11-09）：306",
+      "priceUnverified": true
+    },
+    {
+      "category": "dehumidifier",
+      "slug": "tatung-tdh-120md",
+      "modelCode": "tatung-tdh-120md",
+      "titleTemplate": "TATUNG 大同 6L 除濕機 TDH-120MD評測：{year} 值不值得買",
+      "affiliate": {
+        "shopee": "https://s.shopee.tw/W84DC5IDx"
+      },
+      "price": 4829,
+      "priceUpdatedAt": "2026-11-09",
+      "primaryChannel": "shopee",
+      "lastChecked": "2026-11-09",
+      "tldr": "日除濕量與名稱取自蝦皮商品標題，詳細規格與缺點整理中，價格以賣場頁面為準。",
+      "flaw": "日除濕量只有 6 公升，只適合約 5–7 坪的小空間，客廳或大房間會除不動；這個賣場目前只有 12 筆成交，使用評價資料少",
+      "specs": [
+        {
+          "key": "日除濕量",
+          "value": "6",
+          "unit": "L/日",
+          "score": 5,
+          "higherIsBetter": true
+        },
+        {
+          "key": "運轉噪音",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": false
+        },
+        {
+          "key": "水箱容量",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": true
+        }
+      ],
+      "notFor": [
+        "房間超過 7 坪的人"
+      ],
+      "officialStore": false,
+      "tags": [],
+      "finderAuto": true,
+      "finder": {
+        "tags": [],
+        "area": [
+          5,
+          7
+        ]
+      },
+      "flawBasis": "商品標示容量；適用坪數為本站粗估（編輯判斷）；成交數（蝦皮分潤後台 2026-11-09）：12",
       "priceUnverified": true
     }
   ],
