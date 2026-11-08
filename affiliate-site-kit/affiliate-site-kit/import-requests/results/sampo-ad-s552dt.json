@@ -4,7 +4,15 @@
   "ok": true,
   "draftId": "shopee-83898940-28532540852",
   "name": "SAMPO聲寶",
-  "images": [],
+  "images": [
+    {
+      "file": "shopee-83898940-28532540852-1.png",
+      "sourceUrl": "https://www.sampo.com.tw/upload/product/223_638804964815604244.png",
+      "width": 700,
+      "height": 400,
+      "license": "pending-review"
+    }
+  ],
   "blockers": [
     "缺點（editorial.flaw）要具體，至少 8 字",
     "優點（editorial.strength）要有規格或官方說明作依據，至少 8 字",
@@ -19,7 +27,7 @@
     "product.tldr 一句話結論未填",
     "product.specs 至少 3 項（只填官方標示的規格）",
     "product.affiliate 要放你從聯盟後台取得的連結（例如 {\"shopee\":\"https://…\"}）",
-    "沒有圖片：請補 --image-file，且授權需確認"
+    "圖片授權未確認：用 node scripts/drafts.mjs license <代號> <檔名> official|owned|licensed 標記（確認官方素材或自有授權後才可）"
   ],
   "notes": [
     "蝦皮官方 API 尚未接上（等待官方文件），只記下商品編號；名稱、價格、圖片請手動補。本工具不抓取其網頁。",
@@ -29,6 +37,9 @@
     "url": "https://shopee.tw/product/83898940/28532540852",
     "officialUrl": "https://www.sampo.com.tw/pdetail.aspx?pd=1688",
     "category": "dehumidifier",
-    "force": true
+    "force": true,
+    "imageUrls": [
+      "https://www.sampo.com.tw/upload/product/223_638804964815604244.png"
+    ]
   }
 }
