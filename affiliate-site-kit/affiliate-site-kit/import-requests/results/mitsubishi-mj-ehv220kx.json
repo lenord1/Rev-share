@@ -4,7 +4,22 @@
   "ok": true,
   "draftId": "shopee-85405584-40776954219",
   "name": "三菱電機除濕機",
-  "images": [],
+  "images": [
+    {
+      "file": "shopee-85405584-40776954219-1.jpg",
+      "sourceUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/images/mjehv220kx_pd_lg.jpg",
+      "width": 980,
+      "height": 1497,
+      "license": "pending-review"
+    },
+    {
+      "file": "shopee-85405584-40776954219-2.png",
+      "sourceUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/images/mjehv220kx_pd.png",
+      "width": 342,
+      "height": 524,
+      "license": "pending-review"
+    }
+  ],
   "blockers": [
     "缺點（editorial.flaw）要具體，至少 8 字",
     "優點（editorial.strength）要有規格或官方說明作依據，至少 8 字",
@@ -19,7 +34,7 @@
     "product.tldr 一句話結論未填",
     "product.specs 至少 3 項（只填官方標示的規格）",
     "product.affiliate 要放你從聯盟後台取得的連結（例如 {\"shopee\":\"https://…\"}）",
-    "沒有圖片：請補 --image-file，且授權需確認"
+    "圖片授權未確認：用 node scripts/drafts.mjs license <代號> <檔名> official|owned|licensed 標記（確認官方素材或自有授權後才可）"
   ],
   "notes": [
     "蝦皮官方 API 尚未接上（等待官方文件），只記下商品編號；名稱、價格、圖片請手動補。本工具不抓取其網頁。",
@@ -30,6 +45,10 @@
     "url": "https://shopee.tw/product/85405584/40776954219",
     "officialUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/PRODUCT_MJ_EHV220KX.html",
     "category": "dehumidifier",
-    "force": true
+    "force": true,
+    "imageUrls": [
+      "https://www.mitsubishielectric.com.tw/home/dehumidifier/images/mjehv220kx_pd_lg.jpg",
+      "https://www.mitsubishielectric.com.tw/home/dehumidifier/images/mjehv220kx_pd.png"
+    ]
   }
 }

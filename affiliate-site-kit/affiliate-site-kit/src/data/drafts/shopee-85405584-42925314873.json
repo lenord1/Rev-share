@@ -22,10 +22,40 @@
     "sku": null,
     "price": null,
     "imageUrls": [
-      "http://www.mitsubishielectric.com.tw/home/dehumidifier/images/share.jpg"
+      "https://www.mitsubishielectric.com.tw/home/dehumidifier/images/mjev180jx_pd_lg.jpg",
+      "https://www.mitsubishielectric.com.tw/home/dehumidifier/images/mjev180jx_pd.png"
     ]
   },
-  "images": [],
+  "images": [
+    {
+      "file": "shopee-85405584-42925314873-1.jpg",
+      "sourceUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/images/mjev180jx_pd_lg.jpg",
+      "pageUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/PRODUCT_MJ_EV180JX.html",
+      "fetchedAt": "2026-11-09",
+      "sha256": "1719be0373fc97e492c3fcc2c29a251667d77f3e04854609b2dd1f9fc5dd579f",
+      "bytes": 139018,
+      "width": 980,
+      "height": 1500,
+      "mime": "image/jpeg",
+      "license": "pending-review",
+      "licenseNote": "",
+      "alt": "三菱電機除濕機"
+    },
+    {
+      "file": "shopee-85405584-42925314873-2.png",
+      "sourceUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/images/mjev180jx_pd.png",
+      "pageUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/PRODUCT_MJ_EV180JX.html",
+      "fetchedAt": "2026-11-09",
+      "sha256": "3cca4adecee428a13779764d0932a0781108ba51ab729500b642afc5f4a4b5f7",
+      "bytes": 212858,
+      "width": 366,
+      "height": 560,
+      "mime": "image/png",
+      "license": "pending-review",
+      "licenseNote": "",
+      "alt": "三菱電機除濕機"
+    }
+  ],
   "product": {
     "category": "dehumidifier",
     "slug": null,
