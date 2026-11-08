@@ -3,7 +3,7 @@
 // 沒有資料的欄位（缺點整理中、沒有價格紀錄等）直接不渲染。連結走 /go/（HTML 不出現賣場網址）。
 import { Image } from 'astro:assets';
 import { priceBreakdown } from '../lib/pricing.mjs';
-import { productName, primaryChannel, histSummary, histLine } from '../lib/catalog.mjs';
+import { productName, primaryChannel, histSummary, histLine, unitPrice } from '../lib/catalog.mjs';
 
 interface Props {
   product: any;
@@ -33,6 +33,7 @@ const specChips = (p.specs ?? [])
 const points = [...(strength ? [strength] : []), ...specChips].slice(0, 4);
 
 const detail = `/${p.category}/${p.slug}/`;
+const unit = p.priceUnverified ? undefined : unitPrice(p, b.final);
 // 有真實折扣才顯示「限時特價」大標籤與原價；折數 = 到手價 ÷ 標價
 const unverified = !!p.priceUnverified; // 價格還沒跟蝦皮頁面核對：不顯示數字
 const onSale = !unverified && b.active && b.discount > 0 && b.final < b.price;
@@ -51,6 +52,7 @@ if (b.taxRefund) priceParts.push(`退稅／補助 −${fmt.format(b.taxRefund)}`
   data-finder-tags={(p.finder?.tags ?? []).join(' ') || undefined}
   data-more={more ? '' : undefined}
   data-final={unverified ? undefined : b.final}
+  data-unit-price={unit}
   data-area-min={area ? area[0] : undefined}
   data-area-max={area ? area[1] : undefined}
   style={more ? 'display:none' : undefined}
@@ -107,6 +109,7 @@ if (b.taxRefund) priceParts.push(`退稅／補助 −${fmt.format(b.taxRefund)}`
         </div>
         </>)}
         {!unverified && priceParts.length > 1 && <p class="num text-xs text-slate-500">{priceParts.join('　')} = {fmt.format(b.final)}</p>}
+        {unit && <p class="num text-xs text-slate-500">每公升日除濕量約 {fmt.format(unit)}</p>}
         {!unverified && histText && <p class="text-xs text-slate-500">{histText}</p>}
       </div>
 

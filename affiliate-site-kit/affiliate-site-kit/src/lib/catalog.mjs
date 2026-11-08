@@ -71,3 +71,9 @@ export function featuredProducts(products, limit = 9) {
 export function safeJson(value) {
   return JSON.stringify(value).replace(/</g, '\\u003c');
 }
+
+/** CP 值：到手價 ÷ 日除濕量（L/日）＝每公升日除濕量的價格。沒有數值規格就回傳 undefined，不補編。final 一律由 pricing.mjs 的 priceBreakdown 提供。 */
+export function unitPrice(p, final) {
+  const cap = Number((p.specs ?? []).find((s) => s.key === '日除濕量')?.value);
+  return Number.isFinite(cap) && cap > 0 && Number.isFinite(final) && final > 0 ? Math.round(final / cap) : undefined;
+}

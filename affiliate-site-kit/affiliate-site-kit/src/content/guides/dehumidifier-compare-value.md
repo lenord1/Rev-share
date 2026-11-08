@@ -2,6 +2,7 @@
 title: 除濕機 CP 值比較：每公升日除濕量要花多少錢
 description: 用站內到手價除以日除濕量，比較 11 台家用除濕機的單位價格，並列出每台的缺點。
 category: dehumidifier
+sort: value
 updated: 2026-11-08
 author: 挑家電
 draft: false

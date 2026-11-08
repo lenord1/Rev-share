@@ -18,7 +18,9 @@
       const n = document.getElementById('featured-count');
       if (n) n.textContent = String(cards().filter((c) => c.style.display !== 'none' && !c.hasAttribute('data-entry-hidden')).length);
     };
+    const original = cards();
     const clear = () => {
+      original.forEach((c) => grid.append(c)); // 還原預設排序
       cards().forEach((c) => c.removeAttribute('data-entry-hidden'));
       banner.hidden = true;
       try { sessionStorage.removeItem(KEY); } catch { /* 同上 */ }
@@ -31,19 +33,27 @@
       if (!inCat.length) return;
       const hit = entry.need ? inCat.filter((c) => (c.dataset.finderTags || '').split(' ').includes(entry.need)) : inCat;
       const filtered = Boolean(entry.need) && hit.length > 0;
+      // CP 值情境：同品類依「每公升日除濕量的價格」由低到高排到最前面；沒有數值的排最後，不補編
+      const byValue = entry.sort === 'value' && inCat.some((c) => c.dataset.unitPrice);
+      if (byValue) {
+        const u = (c: HTMLElement) => (c.dataset.unitPrice ? Number(c.dataset.unitPrice) : Infinity);
+        grid.prepend(...[...inCat].sort((a, b) => u(a) - u(b)));
+      }
       if (filtered) all.forEach((c) => c.toggleAttribute('data-entry-hidden', !hit.includes(c)));
       const catName = document.querySelector('#finder [data-cat][aria-pressed="true"]')?.firstChild?.textContent || '商品';
       banner.replaceChildren();
       const text = document.createElement('span');
       text.textContent = filtered
         ? `你剛看了〈${entry.title}〉，先列出「${entry.needLabel}」的${catName}，共 ${hit.length} 款。`
-        : `你剛看了〈${entry.title}〉，先列出${catName}。`;
+        : byValue
+          ? `你剛看了〈${entry.title}〉，先列出${catName}，依每公升日除濕量的價格由低到高排序。`
+          : `你剛看了〈${entry.title}〉，先列出${catName}。`;
       banner.append(text);
-      if (filtered) {
+      if (filtered || byValue) {
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'link-btn';
-        btn.textContent = `看全部 ${inCat.length} 款`;
+        btn.textContent = filtered ? `看全部 ${inCat.length} 款` : '恢復預設排序';
         btn.addEventListener('click', clear);
         banner.append(' ', btn);
       }

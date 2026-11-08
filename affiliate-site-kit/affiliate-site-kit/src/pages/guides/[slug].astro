@@ -24,7 +24,7 @@ const intro = a.bio && fm.promise
   : '';
 // 來源情境：讀者從這篇回首頁時，首頁預設顯示同品類（若有 need 就只列符合的）。只存在讀者自己的瀏覽器，不上傳。
 const entry = category
-  ? { slug: guide.slug, title: fm.title, category: category.slug, group: (category as any).group ?? '', need: fm.need && NEED_LABEL[fm.need] ? fm.need : '', needLabel: fm.need ? NEED_LABEL[fm.need] ?? '' : '' }
+  ? { slug: guide.slug, title: fm.title, category: category.slug, group: (category as any).group ?? '', need: fm.need && NEED_LABEL[fm.need] ? fm.need : '', needLabel: fm.need ? NEED_LABEL[fm.need] ?? '' : '', sort: fm.sort === 'value' ? 'value' : '' }
   : null;
 const ld = {
   '@context': 'https://schema.org',
