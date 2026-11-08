@@ -9563,7 +9563,8 @@
         "fetchedAt": "2026-11-08"
       },
       "officialStore": true,
-      "discount": 7111
+      "discount": 7111,
+      "promoBadge": "限時特價"
     }
   ]
 }
