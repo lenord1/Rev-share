@@ -9824,6 +9824,481 @@
         "shopee": 22900
       },
       "tags": []
+    },
+    {
+      "demo": true,
+      "category": "dehumidifier",
+      "slug": "test-lg-md161qpk3",
+      "modelCode": "test-lg-md161qpk3",
+      "titleTemplate": "PuriCare™ 雙變頻除濕機 - 16公升 (粉紅) (無UVC) - 經典款 MD161QPK3（測試）評測：{year} 值不值得買",
+      "affiliate": {
+        "shopee": "https://shopee.tw/product/108078562/20484757207"
+      },
+      "price": 15900,
+      "priceUpdatedAt": "2026-11-08",
+      "primaryChannel": "shopee",
+      "lastChecked": "2026-11-08",
+      "tldr": "測試用：名稱與日除濕量取自蝦皮商品標題；價格是占位價，缺點與其他規格待補。",
+      "flaw": "測試用：缺點待補（尚未取得官方規格與評論資料）",
+      "specs": [
+        {
+          "key": "日除濕量",
+          "value": "16",
+          "unit": "L/日",
+          "score": 7,
+          "higherIsBetter": true
+        },
+        {
+          "key": "運轉噪音",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": false
+        },
+        {
+          "key": "水箱容量",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": true
+        }
+      ],
+      "notFor": [
+        "測試：需要常搬動機器的使用情境"
+      ],
+      "alternative": {
+        "modelCode": "demo-dh-a",
+        "when": "測試：想和示範機種並排比較時"
+      },
+      "image": {
+        "file": "shopee-108078562-20484757207-1.avif",
+        "alt": "PuriCare™ 雙變頻除濕機 - 16公升 (粉紅) (無UVC) - 經典款 MD161QPK3",
+        "license": "pending-review",
+        "fetchedAt": "2026-11-08"
+      },
+      "officialStore": true,
+      "finder": {
+        "area": [
+          12,
+          18
+        ],
+        "budget": "mid",
+        "tags": [
+          "family"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "demo": true,
+      "category": "dehumidifier",
+      "slug": "test-lg-dd121mwe0",
+      "modelCode": "test-lg-dd121mwe0",
+      "titleTemplate": "PuriCare™ 雙變頻除濕機 - 12公升(白) DD121MWE0（測試）評測：{year} 值不值得買",
+      "affiliate": {
+        "shopee": "https://shopee.tw/product/108078562/24487509172"
+      },
+      "price": 13900,
+      "priceUpdatedAt": "2026-11-08",
+      "primaryChannel": "shopee",
+      "lastChecked": "2026-11-08",
+      "tldr": "測試用：名稱與日除濕量取自蝦皮商品標題；價格是占位價，缺點與其他規格待補。",
+      "flaw": "測試用：缺點待補（尚未取得官方規格與評論資料）",
+      "specs": [
+        {
+          "key": "日除濕量",
+          "value": "12",
+          "unit": "L/日",
+          "score": 7,
+          "higherIsBetter": true
+        },
+        {
+          "key": "運轉噪音",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": false
+        },
+        {
+          "key": "水箱容量",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": true
+        }
+      ],
+      "notFor": [
+        "測試：需要常搬動機器的使用情境"
+      ],
+      "alternative": {
+        "modelCode": "demo-dh-a",
+        "when": "測試：想和示範機種並排比較時"
+      },
+      "image": {
+        "file": "shopee-108078562-24487509172-1.avif",
+        "alt": "PuriCare™ 雙變頻除濕機 - 12公升(白) DD121MWE0",
+        "license": "pending-review",
+        "fetchedAt": "2026-11-08"
+      },
+      "officialStore": true,
+      "finder": {
+        "area": [
+          10,
+          15
+        ],
+        "budget": "mid",
+        "tags": [
+          "family"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "demo": true,
+      "category": "dehumidifier",
+      "slug": "test-mitsubishi-ev280kx",
+      "modelCode": "test-mitsubishi-ev280kx",
+      "titleTemplate": "三菱 MITSUBISHI MJ-EV280KX-TW 28L 日製空氣清淨變頻除濕機（測試）評測：{year} 值不值得買",
+      "affiliate": {
+        "shopee": "https://shopee.tw/product/116309859/49007330382"
+      },
+      "price": 27900,
+      "priceUpdatedAt": "2026-11-08",
+      "primaryChannel": "shopee",
+      "lastChecked": "2026-11-08",
+      "tldr": "測試用：名稱與日除濕量取自蝦皮商品標題；價格是占位價，缺點與其他規格待補。",
+      "flaw": "測試用：缺點待補（尚未取得官方規格與評論資料）",
+      "specs": [
+        {
+          "key": "日除濕量",
+          "value": "28",
+          "unit": "L/日",
+          "score": 7,
+          "higherIsBetter": true
+        },
+        {
+          "key": "運轉噪音",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": false
+        },
+        {
+          "key": "水箱容量",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": true
+        }
+      ],
+      "notFor": [
+        "測試：需要常搬動機器的使用情境"
+      ],
+      "alternative": {
+        "modelCode": "demo-dh-a",
+        "when": "測試：想和示範機種並排比較時"
+      },
+      "officialStore": true,
+      "finder": {
+        "area": [
+          20,
+          30
+        ],
+        "budget": "high",
+        "tags": [
+          "family"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "demo": true,
+      "category": "dehumidifier",
+      "slug": "test-mitsubishi-ev220kx",
+      "modelCode": "test-mitsubishi-ev220kx",
+      "titleTemplate": "三菱 MITSUBISHI MJ-EV220KX-TW 22.5L 日製空氣清淨變頻除濕機（測試）評測：{year} 值不值得買",
+      "affiliate": {
+        "shopee": "https://shopee.tw/product/116309859/48407319325"
+      },
+      "price": 22900,
+      "priceUpdatedAt": "2026-11-08",
+      "primaryChannel": "shopee",
+      "lastChecked": "2026-11-08",
+      "tldr": "測試用：名稱與日除濕量取自蝦皮商品標題；價格是占位價，缺點與其他規格待補。",
+      "flaw": "測試用：缺點待補（尚未取得官方規格與評論資料）",
+      "specs": [
+        {
+          "key": "日除濕量",
+          "value": "22.5",
+          "unit": "L/日",
+          "score": 7,
+          "higherIsBetter": true
+        },
+        {
+          "key": "運轉噪音",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": false
+        },
+        {
+          "key": "水箱容量",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": true
+        }
+      ],
+      "notFor": [
+        "測試：需要常搬動機器的使用情境"
+      ],
+      "alternative": {
+        "modelCode": "demo-dh-a",
+        "when": "測試：想和示範機種並排比較時"
+      },
+      "officialStore": true,
+      "finder": {
+        "area": [
+          15,
+          25
+        ],
+        "budget": "high",
+        "tags": [
+          "family"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "demo": true,
+      "category": "dehumidifier",
+      "slug": "test-mitsubishi-ev150jx",
+      "modelCode": "test-mitsubishi-ev150jx",
+      "titleTemplate": "三菱 MITSUBISHI MJ-EV150JX-TW 15.2L 日製空氣清淨變頻除濕機（測試）評測：{year} 值不值得買",
+      "affiliate": {
+        "shopee": "https://shopee.tw/product/116309859/42629304828"
+      },
+      "price": 17900,
+      "priceUpdatedAt": "2026-11-08",
+      "primaryChannel": "shopee",
+      "lastChecked": "2026-11-08",
+      "tldr": "測試用：名稱與日除濕量取自蝦皮商品標題；價格是占位價，缺點與其他規格待補。",
+      "flaw": "測試用：缺點待補（尚未取得官方規格與評論資料）",
+      "specs": [
+        {
+          "key": "日除濕量",
+          "value": "15.2",
+          "unit": "L/日",
+          "score": 7,
+          "higherIsBetter": true
+        },
+        {
+          "key": "運轉噪音",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": false
+        },
+        {
+          "key": "水箱容量",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": true
+        }
+      ],
+      "notFor": [
+        "測試：需要常搬動機器的使用情境"
+      ],
+      "alternative": {
+        "modelCode": "demo-dh-a",
+        "when": "測試：想和示範機種並排比較時"
+      },
+      "officialStore": true,
+      "finder": {
+        "area": [
+          12,
+          18
+        ],
+        "budget": "mid",
+        "tags": [
+          "family"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "demo": true,
+      "category": "dehumidifier",
+      "slug": "test-electrolux-ed1251dd",
+      "modelCode": "test-electrolux-ed1251dd",
+      "titleTemplate": "Electrolux 伊萊克斯 極適家居500 12L 清淨除濕機 ED1251DD（測試）評測：{year} 值不值得買",
+      "affiliate": {
+        "shopee": "https://shopee.tw/product/494140905/44425671665"
+      },
+      "price": 11900,
+      "priceUpdatedAt": "2026-11-08",
+      "primaryChannel": "shopee",
+      "lastChecked": "2026-11-08",
+      "tldr": "測試用：名稱與日除濕量取自蝦皮商品標題；價格是占位價，缺點與其他規格待補。",
+      "flaw": "測試用：缺點待補（尚未取得官方規格與評論資料）",
+      "specs": [
+        {
+          "key": "日除濕量",
+          "value": "12",
+          "unit": "L/日",
+          "score": 7,
+          "higherIsBetter": true
+        },
+        {
+          "key": "運轉噪音",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": false
+        },
+        {
+          "key": "水箱容量",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": true
+        }
+      ],
+      "notFor": [
+        "測試：需要常搬動機器的使用情境"
+      ],
+      "alternative": {
+        "modelCode": "demo-dh-a",
+        "when": "測試：想和示範機種並排比較時"
+      },
+      "finder": {
+        "area": [
+          10,
+          15
+        ],
+        "budget": "low",
+        "tags": [
+          "family"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "demo": true,
+      "category": "dehumidifier",
+      "slug": "test-panasonic-f-yv32nn",
+      "modelCode": "test-panasonic-f-yv32nn",
+      "titleTemplate": "Panasonic 國際牌 16L nanoe 清淨二合一雙變頻微電腦除濕機 F-YV32NN（測試）評測：{year} 值不值得買",
+      "affiliate": {
+        "shopee": "https://shopee.tw/product/116309859/29187928205"
+      },
+      "price": 16900,
+      "priceUpdatedAt": "2026-11-08",
+      "primaryChannel": "shopee",
+      "lastChecked": "2026-11-08",
+      "tldr": "測試用：名稱與日除濕量取自蝦皮商品標題；價格是占位價，缺點與其他規格待補。",
+      "flaw": "測試用：缺點待補（尚未取得官方規格與評論資料）",
+      "specs": [
+        {
+          "key": "日除濕量",
+          "value": "16",
+          "unit": "L/日",
+          "score": 7,
+          "higherIsBetter": true
+        },
+        {
+          "key": "運轉噪音",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": false
+        },
+        {
+          "key": "水箱容量",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": true
+        }
+      ],
+      "notFor": [
+        "測試：需要常搬動機器的使用情境"
+      ],
+      "alternative": {
+        "modelCode": "demo-dh-a",
+        "when": "測試：想和示範機種並排比較時"
+      },
+      "officialStore": true,
+      "finder": {
+        "area": [
+          12,
+          18
+        ],
+        "budget": "mid",
+        "tags": [
+          "family"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "demo": true,
+      "category": "dehumidifier",
+      "slug": "test-panasonic-f-yv24nn",
+      "modelCode": "test-panasonic-f-yv24nn",
+      "titleTemplate": "Panasonic 國際牌 12L nanoe 清淨二合一雙變頻微電腦除濕機 F-YV24NN（測試）評測：{year} 值不值得買",
+      "affiliate": {
+        "shopee": "https://shopee.tw/product/116309859/47950547182"
+      },
+      "price": 13900,
+      "priceUpdatedAt": "2026-11-08",
+      "primaryChannel": "shopee",
+      "lastChecked": "2026-11-08",
+      "tldr": "測試用：名稱與日除濕量取自蝦皮商品標題；價格是占位價，缺點與其他規格待補。",
+      "flaw": "測試用：缺點待補（尚未取得官方規格與評論資料）",
+      "specs": [
+        {
+          "key": "日除濕量",
+          "value": "12",
+          "unit": "L/日",
+          "score": 7,
+          "higherIsBetter": true
+        },
+        {
+          "key": "運轉噪音",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": false
+        },
+        {
+          "key": "水箱容量",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": true
+        }
+      ],
+      "notFor": [
+        "測試：需要常搬動機器的使用情境"
+      ],
+      "alternative": {
+        "modelCode": "demo-dh-a",
+        "when": "測試：想和示範機種並排比較時"
+      },
+      "officialStore": true,
+      "finder": {
+        "area": [
+          10,
+          15
+        ],
+        "budget": "mid",
+        "tags": [
+          "family"
+        ]
+      },
+      "tags": []
     }
   ]
 }

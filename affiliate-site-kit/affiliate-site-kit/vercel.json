@@ -494,6 +494,46 @@
       "source": "/go/coupang-demo-dh-f",
       "destination": "https://www.coupang.com/demo-dh-f",
       "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-test-lg-md161qpk3",
+      "destination": "https://shopee.tw/product/108078562/20484757207",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-test-lg-dd121mwe0",
+      "destination": "https://shopee.tw/product/108078562/24487509172",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-test-mitsubishi-ev280kx",
+      "destination": "https://shopee.tw/product/116309859/49007330382",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-test-mitsubishi-ev220kx",
+      "destination": "https://shopee.tw/product/116309859/48407319325",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-test-mitsubishi-ev150jx",
+      "destination": "https://shopee.tw/product/116309859/42629304828",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-test-electrolux-ed1251dd",
+      "destination": "https://shopee.tw/product/494140905/44425671665",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-test-panasonic-f-yv32nn",
+      "destination": "https://shopee.tw/product/116309859/29187928205",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-test-panasonic-f-yv24nn",
+      "destination": "https://shopee.tw/product/116309859/47950547182",
+      "statusCode": 302
     }
   ],
   "headers": [
