@@ -4,7 +4,7 @@ description: 比較站內有公布水箱容量的 5 台除濕機，並用日除�
 category: dehumidifier
 updated: 2026-11-08
 author: 挑家電
-draft: false
+draft: true
 promise: 算清楚倒水頻率，挑對水箱大小
 sources:
   - LG 台灣官網 MD181QWE0、MD161QPK3、DD121MWE0 產品頁（水箱容量、日除濕量）

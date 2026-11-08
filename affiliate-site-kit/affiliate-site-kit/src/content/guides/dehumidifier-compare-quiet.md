@@ -5,7 +5,7 @@ category: dehumidifier
 need: quiet
 updated: 2026-11-08
 author: 挑家電
-draft: false
+draft: true
 promise: 看懂噪音標示，挑出睡覺不吵的除濕機
 sources:
   - LG 台灣官網 MD181QWE0、MD161QPK3、DD121MWE0 產品頁（運轉噪音）

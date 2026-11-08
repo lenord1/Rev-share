@@ -441,63 +441,18 @@
       "statusCode": 302
     },
     {
-      "source": "/go/shopee-test-lg-puricare-18l",
-      "destination": "https://shopee.tw/product/108078562/53350123096",
-      "statusCode": 302
-    },
-    {
-      "source": "/go/shopee-test-lg-md161qpk3",
-      "destination": "https://shopee.tw/product/108078562/20484757207",
-      "statusCode": 302
-    },
-    {
-      "source": "/go/shopee-test-lg-dd121mwe0",
-      "destination": "https://shopee.tw/product/108078562/24487509172",
-      "statusCode": 302
-    },
-    {
-      "source": "/go/shopee-test-mitsubishi-ev280kx",
-      "destination": "https://shopee.tw/product/116309859/49007330382",
-      "statusCode": 302
-    },
-    {
-      "source": "/go/shopee-test-mitsubishi-ev220kx",
-      "destination": "https://shopee.tw/product/116309859/48407319325",
-      "statusCode": 302
-    },
-    {
-      "source": "/go/shopee-test-mitsubishi-ev150jx",
+      "source": "/go/shopee-mitsubishi-mj-ev150jx",
       "destination": "https://s.shopee.tw/7puewxnlvk",
       "statusCode": 302
     },
     {
-      "source": "/go/shopee-test-electrolux-ed1251dd",
-      "destination": "https://shopee.tw/product/494140905/44425671665",
-      "statusCode": 302
-    },
-    {
-      "source": "/go/shopee-test-panasonic-f-yv32nn",
-      "destination": "https://shopee.tw/product/116309859/29187928205",
-      "statusCode": 302
-    },
-    {
-      "source": "/go/shopee-test-panasonic-f-yv24nn",
-      "destination": "https://shopee.tw/product/116309859/47950547182",
-      "statusCode": 302
-    },
-    {
-      "source": "/go/shopee-test-panasonic-f-y22pn",
+      "source": "/go/shopee-panasonic-f-y22pn",
       "destination": "https://s.shopee.tw/8KqvXnDnRX",
       "statusCode": 302
     },
     {
-      "source": "/go/shopee-test-sampo-ad-s512t",
+      "source": "/go/shopee-sampo-ad-s512t",
       "destination": "https://s.shopee.tw/9pfjKGTNhS",
-      "statusCode": 302
-    },
-    {
-      "source": "/go/shopee-test-hysure-george",
-      "destination": "https://shopee.tw/product/344095175/8554568924",
       "statusCode": 302
     },
     {
