@@ -8,9 +8,10 @@ import { pathToFileURL } from 'node:url';
 import { p } from './lib.mjs';
 import { priceBreakdown } from '../src/lib/pricing.mjs';
 
+// 區間（例如 34–39）取最大值：噪音拿最吵的檔位判斷，除濕量也不高估
 const num = (v) => {
-  const m = String(v ?? '').match(/\d+(?:\.\d+)?/);
-  return m ? Number(m[0]) : null;
+  const m = String(v ?? '').match(/\d+(?:\.\d+)?/g);
+  return m ? Math.max(...m.map(Number)) : null;
 };
 const spec = (x, re) => (x.specs ?? []).find((s) => re.test(s.key));
 const round = (n) => Math.round(n * 2) / 2;

@@ -77,7 +77,12 @@ if (b.taxRefund) priceParts.push(`退稅／補助 −${fmt.format(b.taxRefund)}`
         </ul>
       )}
 
-      {flaw && <p class="rounded-md border border-amber-200/60 bg-amber-50 p-2 text-xs text-amber-900">缺點：{flaw}</p>}
+      {flaw && (
+        <div class="rounded-md border border-amber-200/60 bg-amber-50 p-2 text-xs text-amber-900">
+          <p>缺點：{flaw}</p>
+          {p.flawBasis && <p class="mt-1 text-[11px] text-amber-800/70">依據：{p.flawBasis}</p>}
+        </div>
+      )}
 
       <div class="mt-auto flex flex-col gap-1">
         <div class="flex flex-wrap items-baseline gap-2">

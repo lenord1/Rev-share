@@ -9294,28 +9294,35 @@
       "primaryChannel": "shopee",
       "lastChecked": "2026-11-08",
       "tldr": "日除濕量與名稱取自蝦皮商品標題，詳細規格與缺點整理中，價格以賣場頁面為準。",
-      "flaw": "缺點資料整理中（待取得官方規格與使用者評論）",
+      "flaw": "官網標示日除濕量 16 公升、水箱 5 公升，滿載運轉一天約要倒水 3 次；機身重 17.1 kg，連續排水管需另購",
       "specs": [
         {
           "key": "日除濕量",
           "value": "16",
           "unit": "L/日",
-          "score": 7,
+          "score": 5,
           "higherIsBetter": true
         },
         {
           "key": "運轉噪音",
-          "value": "待補",
-          "unit": "",
+          "value": "34–39",
+          "unit": "dB",
           "score": 5,
           "higherIsBetter": false
         },
         {
           "key": "水箱容量",
-          "value": "待補",
-          "unit": "",
+          "value": "5",
+          "unit": "L",
           "score": 5,
           "higherIsBetter": true
+        },
+        {
+          "key": "機身重量",
+          "value": "17.1",
+          "unit": "kg",
+          "score": 5,
+          "higherIsBetter": false
         }
       ],
       "notFor": [
@@ -9332,14 +9339,17 @@
       "finder": {
         "budget": "mid",
         "tags": [
-          "family"
+          "family",
+          "quiet"
         ],
         "area": [
           13,
           19
         ]
       },
-      "finderAuto": true
+      "finderAuto": true,
+      "flawBasis": "LG 台灣官網規格頁；評測另指出單價偏高、屬高階機種",
+      "strength": "官網標示運轉噪音 34–39 dB，附 Wi-Fi 遠端控制"
     },
     {
       "demo": true,
@@ -9355,28 +9365,42 @@
       "primaryChannel": "shopee",
       "lastChecked": "2026-11-08",
       "tldr": "日除濕量與名稱取自蝦皮商品標題，詳細規格與缺點整理中，價格以賣場頁面為準。",
-      "flaw": "缺點資料整理中（待取得官方規格與使用者評論）",
+      "flaw": "官網標示能源等級為 2 級（不是 1 級），耗電 187 W；連續排水用的軟管需另購",
       "specs": [
         {
           "key": "日除濕量",
-          "value": "12",
+          "value": "12.2",
           "unit": "L/日",
-          "score": 7,
+          "score": 5,
           "higherIsBetter": true
         },
         {
           "key": "運轉噪音",
-          "value": "待補",
-          "unit": "",
+          "value": "34–40",
+          "unit": "dB",
           "score": 5,
           "higherIsBetter": false
         },
         {
           "key": "水箱容量",
-          "value": "待補",
-          "unit": "",
+          "value": "5",
+          "unit": "L",
           "score": 5,
           "higherIsBetter": true
+        },
+        {
+          "key": "耗電",
+          "value": "187",
+          "unit": "W",
+          "score": 5,
+          "higherIsBetter": false
+        },
+        {
+          "key": "機身重量",
+          "value": "15.5",
+          "unit": "kg",
+          "score": 5,
+          "higherIsBetter": false
         }
       ],
       "notFor": [
@@ -9392,13 +9416,17 @@
       "tags": [],
       "finder": {
         "budget": "mid",
-        "tags": [],
+        "tags": [
+          "quiet"
+        ],
         "area": [
-          9.5,
+          10,
           14.5
         ]
       },
-      "finderAuto": true
+      "finderAuto": true,
+      "flawBasis": "LG 台灣官網規格頁",
+      "strength": "官網標示運轉噪音 34–40 dB，附 UV 紫外線殺菌風扇與 Wi-Fi 遠端控制"
     },
     {
       "demo": true,
@@ -9414,26 +9442,26 @@
       "primaryChannel": "shopee",
       "lastChecked": "2026-11-08",
       "tldr": "日除濕量與名稱取自蝦皮商品標題，詳細規格與缺點整理中，價格以賣場頁面為準。",
-      "flaw": "缺點資料整理中（待取得官方規格與使用者評論）",
+      "flaw": "大容量機種，體積約寬 42.4×深 32×高 67.5 公分；濾網約三年更換，耗材費用未公布",
       "specs": [
         {
           "key": "日除濕量",
           "value": "28",
           "unit": "L/日",
-          "score": 7,
+          "score": 5,
           "higherIsBetter": true
         },
         {
           "key": "運轉噪音",
-          "value": "待補",
-          "unit": "",
+          "value": "34",
+          "unit": "dB",
           "score": 5,
           "higherIsBetter": false
         },
         {
           "key": "水箱容量",
-          "value": "待補",
-          "unit": "",
+          "value": "5.5",
+          "unit": "L",
           "score": 5,
           "higherIsBetter": true
         }
@@ -9446,7 +9474,8 @@
       "finder": {
         "budget": "high",
         "tags": [
-          "family"
+          "family",
+          "quiet"
         ],
         "area": [
           22.5,
@@ -9459,7 +9488,8 @@
         "alt": "三菱電機除濕機",
         "license": "pending-review",
         "fetchedAt": "2026-11-08"
-      }
+      },
+      "flawBasis": "三菱電機 28L 新品報導（Techbang，型號對應請以官網為準）"
     },
     {
       "demo": true,
@@ -9475,13 +9505,13 @@
       "primaryChannel": "shopee",
       "lastChecked": "2026-11-08",
       "tldr": "日除濕量與名稱取自蝦皮商品標題，詳細規格與缺點整理中，價格以賣場頁面為準。",
-      "flaw": "缺點資料整理中（待取得官方規格與使用者評論）",
+      "flaw": "台灣官網沒有公布噪音與耗電數字，無法事先確認夜間是否安靜；22.5 公升屬大容量，小空間用會大材小用",
       "specs": [
         {
           "key": "日除濕量",
           "value": "22.5",
           "unit": "L/日",
-          "score": 7,
+          "score": 5,
           "higherIsBetter": true
         },
         {
@@ -9520,7 +9550,8 @@
         "alt": "三菱電機除濕機",
         "license": "pending-review",
         "fetchedAt": "2026-11-08"
-      }
+      },
+      "flawBasis": "三菱電機台灣官網（未公布規格數字）；編輯判斷"
     },
     {
       "demo": true,
@@ -9536,13 +9567,13 @@
       "primaryChannel": "shopee",
       "lastChecked": "2026-11-08",
       "tldr": "日除濕量與名稱取自蝦皮商品標題，詳細規格與缺點整理中，價格以賣場頁面為準。",
-      "flaw": "缺點資料整理中（待取得官方規格與使用者評論）",
+      "flaw": "台灣官網沒有公布噪音與耗電數字，臥室使用前無法事先確認，購買前需向賣場確認規格",
       "specs": [
         {
           "key": "日除濕量",
           "value": "15.2",
           "unit": "L/日",
-          "score": 7,
+          "score": 5,
           "higherIsBetter": true
         },
         {
@@ -9581,7 +9612,8 @@
         "alt": "三菱電機除濕機",
         "license": "pending-review",
         "fetchedAt": "2026-11-08"
-      }
+      },
+      "flawBasis": "三菱電機台灣官網（未公布規格數字）；編輯判斷"
     },
     {
       "demo": true,
@@ -9597,28 +9629,42 @@
       "primaryChannel": "shopee",
       "lastChecked": "2026-11-08",
       "tldr": "日除濕量與名稱取自蝦皮商品標題，詳細規格與缺點整理中，價格以賣場頁面為準。",
-      "flaw": "缺點資料整理中（待取得官方規格與使用者評論）",
+      "flaw": "官網標示運轉音量最高 53 dB，高速運轉時聲音明顯；水箱 4.8 公升、淨重 17.2 kg",
       "specs": [
         {
           "key": "日除濕量",
           "value": "12",
           "unit": "L/日",
-          "score": 7,
+          "score": 5,
           "higherIsBetter": true
         },
         {
           "key": "運轉噪音",
-          "value": "待補",
-          "unit": "",
+          "value": "25–53",
+          "unit": "dB",
           "score": 5,
           "higherIsBetter": false
         },
         {
           "key": "水箱容量",
-          "value": "待補",
-          "unit": "",
+          "value": "4.8",
+          "unit": "L",
           "score": 5,
           "higherIsBetter": true
+        },
+        {
+          "key": "耗電",
+          "value": "182",
+          "unit": "W",
+          "score": 5,
+          "higherIsBetter": false
+        },
+        {
+          "key": "機身重量",
+          "value": "17.2",
+          "unit": "kg",
+          "score": 5,
+          "higherIsBetter": false
         }
       ],
       "notFor": [
@@ -9641,7 +9687,9 @@
         "alt": "12L 極適家居500清淨除濕機除濕適用空間15坪 (曜岩灰)",
         "license": "pending-review",
         "fetchedAt": "2026-11-08"
-      }
+      },
+      "flawBasis": "Electrolux 台灣官網規格頁",
+      "strength": "官網標示除濕能源效率第一級，適用 15 坪，含 HEPA 等級濾網"
     },
     {
       "demo": true,
@@ -9657,26 +9705,26 @@
       "primaryChannel": "shopee",
       "lastChecked": "2026-11-08",
       "tldr": "日除濕量與名稱取自蝦皮商品標題，詳細規格與缺點整理中，價格以賣場頁面為準。",
-      "flaw": "缺點資料整理中（待取得官方規格與使用者評論）",
+      "flaw": "官方型錄沒有標示運轉噪音，耗電 219 W；想放臥室的人無法事先確認夜間聲音",
       "specs": [
         {
           "key": "日除濕量",
           "value": "16",
           "unit": "L/日",
-          "score": 7,
+          "score": 5,
           "higherIsBetter": true
         },
         {
-          "key": "運轉噪音",
-          "value": "待補",
-          "unit": "",
+          "key": "消耗功率",
+          "value": "219",
+          "unit": "W",
           "score": 5,
           "higherIsBetter": false
         },
         {
-          "key": "水箱容量",
-          "value": "待補",
-          "unit": "",
+          "key": "適用坪數",
+          "value": "20",
+          "unit": "坪",
           "score": 5,
           "higherIsBetter": true
         }
@@ -9702,7 +9750,8 @@
         "alt": "除濕機 [指定通路銷售] 變頻高效型 F-YV32NN - Panasonic 台灣",
         "license": "pending-review",
         "fetchedAt": "2026-11-08"
-      }
+      },
+      "flawBasis": "Panasonic 台灣 2025/11 除濕機型錄"
     },
     {
       "demo": true,
@@ -9718,26 +9767,26 @@
       "primaryChannel": "shopee",
       "lastChecked": "2026-11-08",
       "tldr": "日除濕量與名稱取自蝦皮商品標題，詳細規格與缺點整理中，價格以賣場頁面為準。",
-      "flaw": "缺點資料整理中（待取得官方規格與使用者評論）",
+      "flaw": "官方型錄沒有標示運轉噪音，臥室使用前無法事先確認；標示適用 15 坪，空間更大會吃緊",
       "specs": [
         {
           "key": "日除濕量",
           "value": "12",
           "unit": "L/日",
-          "score": 7,
+          "score": 5,
           "higherIsBetter": true
         },
         {
-          "key": "運轉噪音",
-          "value": "待補",
-          "unit": "",
+          "key": "消耗功率",
+          "value": "177",
+          "unit": "W",
           "score": 5,
           "higherIsBetter": false
         },
         {
-          "key": "水箱容量",
-          "value": "待補",
-          "unit": "",
+          "key": "適用坪數",
+          "value": "15",
+          "unit": "坪",
           "score": 5,
           "higherIsBetter": true
         }
@@ -9761,7 +9810,8 @@
         "alt": "除濕機 變頻高效型 F-YV24NN - Panasonic 台灣",
         "license": "pending-review",
         "fetchedAt": "2026-11-08"
-      }
+      },
+      "flawBasis": "Panasonic 台灣 2025/11 除濕機型錄"
     },
     {
       "demo": true,
@@ -9777,7 +9827,7 @@
       "primaryChannel": "shopee",
       "lastChecked": "2026-11-08",
       "tldr": "日除濕量與名稱取自蝦皮商品標題，詳細規格與缺點整理中，價格以賣場頁面為準。",
-      "flaw": "缺點資料整理中（待取得官方規格與使用者評論）",
+      "flaw": "標示適用 14 坪，空間更大會吃緊；官方型錄沒有標示運轉噪音，評測也提到外型設計偏傳統",
       "specs": [
         {
           "key": "日除濕量",
@@ -9787,16 +9837,16 @@
           "higherIsBetter": true
         },
         {
-          "key": "運轉噪音",
-          "value": "待補",
-          "unit": "",
+          "key": "消耗功率",
+          "value": "162",
+          "unit": "W",
           "score": 5,
           "higherIsBetter": false
         },
         {
-          "key": "水箱容量",
-          "value": "待補",
-          "unit": "",
+          "key": "適用坪數",
+          "value": "14",
+          "unit": "坪",
           "score": 5,
           "higherIsBetter": true
         }
@@ -9822,7 +9872,8 @@
         "alt": "除濕機 除濕專用型 F-Y22PN - Panasonic 台灣",
         "license": "pending-review",
         "fetchedAt": "2026-11-08"
-      }
+      },
+      "flawBasis": "Panasonic 台灣 2025/11 除濕機型錄；評測整理（vocus）"
     },
     {
       "demo": true,
@@ -9838,7 +9889,7 @@
       "primaryChannel": "shopee",
       "lastChecked": "2026-11-08",
       "tldr": "日除濕量與名稱取自蝦皮商品標題，詳細規格與缺點整理中，價格以賣場頁面為準。",
-      "flaw": "缺點資料整理中（待取得官方規格與使用者評論）",
+      "flaw": "日除濕量只有 6 公升，只適合約 5–7 坪的小空間，空間更大會除不動",
       "specs": [
         {
           "key": "日除濕量",
@@ -9877,7 +9928,8 @@
           5,
           7
         ]
-      }
+      },
+      "flawBasis": "商品標示容量；適用坪數為本站粗估（編輯判斷）"
     },
     {
       "demo": true,
@@ -9893,12 +9945,19 @@
       "primaryChannel": "shopee",
       "lastChecked": "2026-11-08",
       "tldr": "日除濕量與名稱取自蝦皮商品標題，詳細規格與缺點整理中，價格以賣場頁面為準。",
-      "flaw": "缺點資料整理中（待取得官方規格與使用者評論）",
+      "flaw": "日除濕量只有約 300–400 毫升，只適合約 1–3 坪的浴室、衣櫥等極小空間，一般臥室用效果有限",
       "specs": [
         {
           "key": "日除濕量",
-          "value": "待補",
-          "unit": "",
+          "value": "0.3–0.4",
+          "unit": "L/日",
+          "score": 5,
+          "higherIsBetter": true
+        },
+        {
+          "key": "適用坪數",
+          "value": "1–3",
+          "unit": "坪",
           "score": 5,
           "higherIsBetter": true
         },
@@ -9908,26 +9967,23 @@
           "unit": "",
           "score": 5,
           "higherIsBetter": false
-        },
-        {
-          "key": "水箱容量",
-          "value": "待補",
-          "unit": "",
-          "score": 5,
-          "higherIsBetter": true
         }
       ],
       "notFor": [
         "需要常搬動機器的使用情境"
       ],
       "tags": [],
-      "finderAuto": true,
       "finder": {
+        "area": [
+          1,
+          3
+        ],
         "budget": "low",
         "tags": [
           "budget"
         ]
-      }
+      },
+      "flawBasis": "評測整理（vocus 海說小坪數除濕機推薦）"
     }
   ],
   "groupDesc": {
