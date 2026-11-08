@@ -40,7 +40,7 @@ const saleLabel = p.promoBadge || '優惠價';
 const zhe = onSale ? (Math.round((b.final / b.price) * 100) / 10).toString().replace(/\.0$/, '') : '';
 const area = p.finder?.area;
 // 官方賣場且有真實折扣才寫「領券」，其餘不宣稱沒有資料的優惠
-const cta = unverified ? '🔥 前往蝦皮查看最新價格 ➔' : p.officialStore ? (b.discount > 0 ? '🔥 前往官方旗艦館領券下單 ➔' : '🔥 前往官方旗艦館下單 ➔') : '🔥 前往蝦皮看最新價格 ➔';
+const cta = unverified ? '👉 前往蝦皮查看最新價格 ➔' : p.officialStore ? (b.discount > 0 ? '👉 前往官方旗艦館領券下單 ➔' : '👉 前往官方旗艦館下單 ➔') : '👉 前往蝦皮看最新價格 ➔';
 const priceParts: string[] = [`標價 ${fmt.format(b.price)}`];
 if (b.discount) priceParts.push(`現折 −${fmt.format(b.discount)}`);
 if (b.taxRefund) priceParts.push(`退稅／補助 −${fmt.format(b.taxRefund)}`);
@@ -67,25 +67,27 @@ if (b.taxRefund) priceParts.push(`退稅／補助 −${fmt.format(b.taxRefund)}`
     <div class="flex flex-1 flex-col gap-3 p-4 md:p-5">
       <div class="flex flex-wrap items-center gap-2">
         <span class="text-xs font-medium text-slate-500">{categoryName}</span>
-        {p.officialStore && <span class="rounded-full bg-blue-50 px-2 py-0.5 text-xs font-semibold text-blue-700 ring-1 ring-blue-200">官方</span>}
+        {p.officialStore && <span class="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-semibold text-slate-600">官方</span>}
+        {!unverified && b.taxRefund > 0 && <span class="rounded-md bg-rose-50 px-2 py-0.5 text-xs font-semibold text-rose-600">退稅／補助 −{fmt.format(b.taxRefund)}</span>}
       </div>
 
       <h3 class="text-base font-bold leading-snug text-slate-900 md:text-lg"><a href={detail} class="text-inherit no-underline hover:underline">{productName(p)}</a></h3>
 
       {points.length > 0 && (
-        <ul class="flex flex-wrap gap-2">
+        <ul class="space-y-1.5">
           {points.map((t: string) => (
-            <li class="flex items-start gap-1.5 rounded-md border border-slate-200 bg-white px-2 py-1 text-xs text-slate-700">
-              <span class="mt-0.5 text-emerald-600" aria-hidden="true">●</span><span>{t}</span>
+            <li class="flex items-start gap-2 text-sm leading-relaxed text-slate-700">
+              <svg class="mt-1 h-4 w-4 shrink-0 text-emerald-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 111.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd" /></svg>
+              <span>{t}</span>
             </li>
           ))}
         </ul>
       )}
 
       {flaw && (
-        <div class="rounded-md border border-amber-200/60 bg-amber-50 p-2 text-xs text-amber-900">
+        <div class="rounded-lg bg-amber-50 px-3 py-2.5 text-sm leading-relaxed text-amber-800">
           <p>缺點：{flaw}</p>
-          {p.flawBasis && <p class="mt-1 text-[11px] text-amber-800/70">依據：{p.flawBasis}</p>}
+          {p.flawBasis && <p class="mt-1 text-xs text-amber-800/70">依據：{p.flawBasis}</p>}
         </div>
       )}
 
@@ -97,16 +99,11 @@ if (b.taxRefund) priceParts.push(`退稅／補助 −${fmt.format(b.taxRefund)}`
             <span class="text-xs text-slate-500">賣場標價與限時特價會隨時調整，以蝦皮頁面為準</span>
           </div>
         ) : (<>
-        {onSale && (
-          <div class="flex items-center gap-2">
-            <span class="inline-flex items-center gap-1 rounded-md bg-rose-600 px-2.5 py-1 text-sm font-extrabold text-white shadow-sm"><span aria-hidden="true">⚡</span>{saleLabel}</span>
-            <span class="rounded-md border border-rose-200 bg-rose-50 px-2 py-1 text-sm font-bold text-rose-600">{zhe} 折</span>
-          </div>
-        )}
         <div class="flex flex-wrap items-baseline gap-x-3 gap-y-0.5">
-          <b class={`num text-3xl font-extrabold tracking-tight ${onSale ? 'text-rose-600' : 'text-slate-900'}`}>{fmt.format(b.final)}</b>
-          {onSale && <s class="num text-base text-slate-400">原價 {fmt.format(b.price)}</s>}
           <span class="text-xs text-slate-500">到手價</span>
+          <b class="num text-3xl font-extrabold tracking-tight text-slate-900">{fmt.format(b.final)}</b>
+          {onSale && <s class="num text-base text-slate-400">{fmt.format(b.price)}</s>}
+          {onSale && <span class="text-xs font-semibold text-slate-500">{saleLabel}・{zhe} 折</span>}
         </div>
         </>)}
         {!unverified && priceParts.length > 1 && <p class="num text-xs text-slate-500">{priceParts.join('　')} = {fmt.format(b.final)}</p>}
