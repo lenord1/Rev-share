@@ -9945,10 +9945,8 @@
       "officialStore": true,
       "tags": [],
       "finder": {
-        "budget": "low",
-        "tags": [
-          "budget"
-        ],
+        "budget": "mid",
+        "tags": [],
         "area": [
           9.5,
           14.5
@@ -10134,7 +10132,7 @@
       "officialStore": true,
       "tags": [],
       "finder": {
-        "budget": "mid",
+        "budget": "high",
         "tags": [
           "family"
         ],
@@ -10328,10 +10326,8 @@
       "officialStore": true,
       "tags": [],
       "finder": {
-        "budget": "low",
-        "tags": [
-          "budget"
-        ],
+        "budget": "mid",
+        "tags": [],
         "area": [
           9.5,
           14.5
@@ -10343,6 +10339,178 @@
         "alt": "除濕機 變頻高效型 F-YV24NN - Panasonic 台灣",
         "license": "pending-review",
         "fetchedAt": "2026-11-08"
+      }
+    },
+    {
+      "demo": true,
+      "category": "dehumidifier",
+      "slug": "test-panasonic-f-y22pn",
+      "modelCode": "test-panasonic-f-y22pn",
+      "titleTemplate": "Panasonic 國際牌 11L nanoeX 除濕機 F-Y22PN（測試）評測：{year} 值不值得買",
+      "affiliate": {
+        "shopee": "https://shopee.tw/product/116309859/26592906704"
+      },
+      "price": 11900,
+      "priceUpdatedAt": "2026-11-08",
+      "primaryChannel": "shopee",
+      "lastChecked": "2026-11-08",
+      "tldr": "測試用：名稱與日除濕量取自蝦皮商品標題；價格是占位價，缺點與其他規格待補。",
+      "flaw": "測試用：缺點待補（尚未取得官方規格與評論資料）",
+      "specs": [
+        {
+          "key": "日除濕量",
+          "value": "11",
+          "unit": "L/日",
+          "score": 5,
+          "higherIsBetter": true
+        },
+        {
+          "key": "運轉噪音",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": false
+        },
+        {
+          "key": "水箱容量",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": true
+        }
+      ],
+      "notFor": [
+        "測試：需要常搬動機器的使用情境"
+      ],
+      "alternative": {
+        "modelCode": "demo-dh-a",
+        "when": "測試：想和示範機種並排比較時"
+      },
+      "officialStore": true,
+      "tags": [],
+      "finderAuto": true,
+      "finder": {
+        "budget": "low",
+        "tags": [
+          "budget"
+        ],
+        "area": [
+          9,
+          13
+        ]
+      }
+    },
+    {
+      "demo": true,
+      "category": "dehumidifier",
+      "slug": "test-sampo-ad-s512t",
+      "modelCode": "test-sampo-ad-s512t",
+      "titleTemplate": "SAMPO 聲寶 6L 微電腦除濕機 AD-S512T（測試）評測：{year} 值不值得買",
+      "affiliate": {
+        "shopee": "https://shopee.tw/product/116309859/44202972894"
+      },
+      "price": 5900,
+      "priceUpdatedAt": "2026-11-08",
+      "primaryChannel": "shopee",
+      "lastChecked": "2026-11-08",
+      "tldr": "測試用：名稱與日除濕量取自蝦皮商品標題；價格是占位價，缺點與其他規格待補。",
+      "flaw": "測試用：缺點待補（尚未取得官方規格與評論資料）",
+      "specs": [
+        {
+          "key": "日除濕量",
+          "value": "6",
+          "unit": "L/日",
+          "score": 5,
+          "higherIsBetter": true
+        },
+        {
+          "key": "運轉噪音",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": false
+        },
+        {
+          "key": "水箱容量",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": true
+        }
+      ],
+      "notFor": [
+        "測試：需要常搬動機器的使用情境"
+      ],
+      "alternative": {
+        "modelCode": "demo-dh-a",
+        "when": "測試：想和示範機種並排比較時"
+      },
+      "officialStore": true,
+      "tags": [],
+      "finderAuto": true,
+      "finder": {
+        "budget": "low",
+        "tags": [
+          "budget"
+        ],
+        "area": [
+          5,
+          7
+        ]
+      }
+    },
+    {
+      "demo": true,
+      "category": "dehumidifier",
+      "slug": "test-hysure-george",
+      "modelCode": "test-hysure-george",
+      "titleTemplate": "Hysure 海說 George 小型除濕機（測試）評測：{year} 值不值得買",
+      "affiliate": {
+        "shopee": "https://shopee.tw/product/344095175/8554568924"
+      },
+      "price": 3900,
+      "priceUpdatedAt": "2026-11-08",
+      "primaryChannel": "shopee",
+      "lastChecked": "2026-11-08",
+      "tldr": "測試用：名稱與日除濕量取自蝦皮商品標題；價格是占位價，缺點與其他規格待補。",
+      "flaw": "測試用：缺點待補（尚未取得官方規格與評論資料）",
+      "specs": [
+        {
+          "key": "日除濕量",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": true
+        },
+        {
+          "key": "運轉噪音",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": false
+        },
+        {
+          "key": "水箱容量",
+          "value": "待補",
+          "unit": "",
+          "score": 5,
+          "higherIsBetter": true
+        }
+      ],
+      "notFor": [
+        "測試：需要常搬動機器的使用情境"
+      ],
+      "alternative": {
+        "modelCode": "demo-dh-a",
+        "when": "測試：想和示範機種並排比較時"
+      },
+      "tags": [],
+      "finderAuto": true,
+      "finder": {
+        "budget": "low",
+        "tags": [
+          "budget"
+        ]
       }
     }
   ]

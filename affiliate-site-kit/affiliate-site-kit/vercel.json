@@ -534,6 +534,21 @@
       "source": "/go/shopee-test-panasonic-f-yv24nn",
       "destination": "https://shopee.tw/product/116309859/47950547182",
       "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-test-panasonic-f-y22pn",
+      "destination": "https://shopee.tw/product/116309859/26592906704",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-test-sampo-ad-s512t",
+      "destination": "https://shopee.tw/product/116309859/44202972894",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-test-hysure-george",
+      "destination": "https://shopee.tw/product/344095175/8554568924",
+      "statusCode": 302
     }
   ],
   "headers": [
