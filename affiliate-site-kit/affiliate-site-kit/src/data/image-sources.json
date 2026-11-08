@@ -64,12 +64,66 @@
       "license": "pending-review",
       "licenseNote": ""
     },
+    "shopee-116309859-42629304828-1.jpg": {
+      "draftId": "shopee-116309859-42629304828",
+      "sourceUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/images/mjev150jx_pd_lg.jpg",
+      "pageUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/PRODUCT_MJ_EV150JX.html",
+      "fetchedAt": "2026-11-08",
+      "sha256": "1719be0373fc97e492c3fcc2c29a251667d77f3e04854609b2dd1f9fc5dd579f",
+      "license": "pending-review",
+      "licenseNote": ""
+    },
+    "shopee-116309859-42629304828-2.png": {
+      "draftId": "shopee-116309859-42629304828",
+      "sourceUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/images/mjev150jx_pd.png",
+      "pageUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/PRODUCT_MJ_EV150JX.html",
+      "fetchedAt": "2026-11-08",
+      "sha256": "3cca4adecee428a13779764d0932a0781108ba51ab729500b642afc5f4a4b5f7",
+      "license": "pending-review",
+      "licenseNote": ""
+    },
     "shopee-116309859-47950547182-1.jpg": {
       "draftId": "shopee-116309859-47950547182",
       "sourceUrl": "https://panasonic.com/content/dam/panasonic/tw/zh/pim/dam/F-/F-YV24/F-YV24NN/ast-3067550.jpg",
       "pageUrl": "https://www.panasonic.com/tw/consumer/air-conditioner/dehumidifier/f-yv24nn.html",
       "fetchedAt": "2026-11-08",
       "sha256": "d0904fcfdae874fa98f4b6dd81963cbdf0d6cb7d68188d1a73dee466f9aaa85e",
+      "license": "pending-review",
+      "licenseNote": ""
+    },
+    "shopee-116309859-48407319325-1.jpg": {
+      "draftId": "shopee-116309859-48407319325",
+      "sourceUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/images/mjev220kx_pd_lg.jpg",
+      "pageUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/PRODUCT_MJ_EV220KX.html",
+      "fetchedAt": "2026-11-08",
+      "sha256": "8bf49834037c66f74b8cee0f51d1a7cd5cd6ba18cb718b4d323ab75cc6de8866",
+      "license": "pending-review",
+      "licenseNote": ""
+    },
+    "shopee-116309859-48407319325-2.png": {
+      "draftId": "shopee-116309859-48407319325",
+      "sourceUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/images/mjev220kx_pd.png",
+      "pageUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/PRODUCT_MJ_EV220KX.html",
+      "fetchedAt": "2026-11-08",
+      "sha256": "7a84b953f3b9aa806d896770d0e138e19f4041996f79298cd7aadabba084f78d",
+      "license": "pending-review",
+      "licenseNote": ""
+    },
+    "shopee-116309859-49007330382-1.jpg": {
+      "draftId": "shopee-116309859-49007330382",
+      "sourceUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/images/mjev280kx_pd_lg.jpg",
+      "pageUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/PRODUCT_MJ_EV280KX.html",
+      "fetchedAt": "2026-11-08",
+      "sha256": "eaa093bbad9c9d2b9ebd268f99c65d643259a874eaa76c27592c82f826ee003e",
+      "license": "pending-review",
+      "licenseNote": ""
+    },
+    "shopee-116309859-49007330382-2.png": {
+      "draftId": "shopee-116309859-49007330382",
+      "sourceUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/images/mjev280kx_pd.png",
+      "pageUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/PRODUCT_MJ_EV280KX.html",
+      "fetchedAt": "2026-11-08",
+      "sha256": "6e86f4ad158ded1d344ae325efbf9f73ae7b3bea32a59b5bd0e5df13945e69df",
       "license": "pending-review",
       "licenseNote": ""
     },

@@ -22,10 +22,40 @@
     "sku": null,
     "price": null,
     "imageUrls": [
-      "http://www.mitsubishielectric.com.tw/home/dehumidifier/images/share.jpg"
+      "https://www.mitsubishielectric.com.tw/home/dehumidifier/images/mjev220kx_pd_lg.jpg",
+      "https://www.mitsubishielectric.com.tw/home/dehumidifier/images/mjev220kx_pd.png"
     ]
   },
-  "images": [],
+  "images": [
+    {
+      "file": "shopee-116309859-48407319325-1.jpg",
+      "sourceUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/images/mjev220kx_pd_lg.jpg",
+      "pageUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/PRODUCT_MJ_EV220KX.html",
+      "fetchedAt": "2026-11-08",
+      "sha256": "8bf49834037c66f74b8cee0f51d1a7cd5cd6ba18cb718b4d323ab75cc6de8866",
+      "bytes": 376615,
+      "width": 980,
+      "height": 1497,
+      "mime": "image/jpeg",
+      "license": "pending-review",
+      "licenseNote": "",
+      "alt": "三菱電機除濕機"
+    },
+    {
+      "file": "shopee-116309859-48407319325-2.png",
+      "sourceUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/images/mjev220kx_pd.png",
+      "pageUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/PRODUCT_MJ_EV220KX.html",
+      "fetchedAt": "2026-11-08",
+      "sha256": "7a84b953f3b9aa806d896770d0e138e19f4041996f79298cd7aadabba084f78d",
+      "bytes": 154675,
+      "width": 342,
+      "height": 524,
+      "mime": "image/png",
+      "license": "pending-review",
+      "licenseNote": "",
+      "alt": "三菱電機除濕機"
+    }
+  ],
   "product": {
     "category": "dehumidifier",
     "slug": null,

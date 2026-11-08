@@ -10013,7 +10013,13 @@
           33.5
         ]
       },
-      "finderAuto": true
+      "finderAuto": true,
+      "image": {
+        "file": "shopee-116309859-49007330382-1.jpg",
+        "alt": "三菱電機除濕機",
+        "license": "pending-review",
+        "fetchedAt": "2026-11-08"
+      }
     },
     {
       "demo": true,
@@ -10072,7 +10078,13 @@
           27
         ]
       },
-      "finderAuto": true
+      "finderAuto": true,
+      "image": {
+        "file": "shopee-116309859-48407319325-1.jpg",
+        "alt": "三菱電機除濕機",
+        "license": "pending-review",
+        "fetchedAt": "2026-11-08"
+      }
     },
     {
       "demo": true,
@@ -10131,7 +10143,13 @@
           18
         ]
       },
-      "finderAuto": true
+      "finderAuto": true,
+      "image": {
+        "file": "shopee-116309859-42629304828-1.jpg",
+        "alt": "三菱電機除濕機",
+        "license": "pending-review",
+        "fetchedAt": "2026-11-08"
+      }
     },
     {
       "demo": true,

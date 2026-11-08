@@ -22,10 +22,40 @@
     "sku": null,
     "price": null,
     "imageUrls": [
-      "http://www.mitsubishielectric.com.tw/home/dehumidifier/images/share.jpg"
+      "https://www.mitsubishielectric.com.tw/home/dehumidifier/images/mjev280kx_pd_lg.jpg",
+      "https://www.mitsubishielectric.com.tw/home/dehumidifier/images/mjev280kx_pd.png"
     ]
   },
-  "images": [],
+  "images": [
+    {
+      "file": "shopee-116309859-49007330382-1.jpg",
+      "sourceUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/images/mjev280kx_pd_lg.jpg",
+      "pageUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/PRODUCT_MJ_EV280KX.html",
+      "fetchedAt": "2026-11-08",
+      "sha256": "eaa093bbad9c9d2b9ebd268f99c65d643259a874eaa76c27592c82f826ee003e",
+      "bytes": 20724,
+      "width": 343,
+      "height": 524,
+      "mime": "image/jpeg",
+      "license": "pending-review",
+      "licenseNote": "",
+      "alt": "三菱電機除濕機"
+    },
+    {
+      "file": "shopee-116309859-49007330382-2.png",
+      "sourceUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/images/mjev280kx_pd.png",
+      "pageUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/PRODUCT_MJ_EV280KX.html",
+      "fetchedAt": "2026-11-08",
+      "sha256": "6e86f4ad158ded1d344ae325efbf9f73ae7b3bea32a59b5bd0e5df13945e69df",
+      "bytes": 154675,
+      "width": 342,
+      "height": 524,
+      "mime": "image/png",
+      "license": "pending-review",
+      "licenseNote": "",
+      "alt": "三菱電機除濕機"
+    }
+  ],
   "product": {
     "category": "dehumidifier",
     "slug": null,
