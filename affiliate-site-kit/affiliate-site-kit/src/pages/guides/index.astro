@@ -1,0 +1,27 @@
+---
+// 買前指南索引。草稿只在預覽環境出現；沒有任何指南時不輸出內容列表。
+import Layout from '../../layouts/Layout.astro';
+import productsData from '../../data/products.json';
+import { loadGuides, dateText } from '../../lib/guides.mjs';
+import { noindexCategory } from '../../lib/indexing.mjs';
+
+const guides = loadGuides();
+const noindex = guides.length === 0 || guides.every((g) => g.draft || noindexCategory(productsData.products, g.fm.category));
+---
+<Layout title="買前指南｜挑家電" description="依坪數與情境整理的買前指南，每款都列出缺點與到手價。" noindex={noindex}>
+  <main class="wrap">
+    <nav class="crumbs" aria-label="麵包屑"><a href="/">首頁</a> / 買前指南</nav>
+    <h1>買前指南</h1>
+    <p class="disclosure">本頁含分潤連結，您購買不會多花錢。價格與優惠以賣場頁面為準。</p>
+    <ul class="plain guide-list">
+      {guides.map((g) => (
+        <li>
+          <a href={`/guides/${g.slug}/`}>{g.fm.title}</a>
+          {g.draft && <span class="badge">草稿</span>}
+          <span class="note"> {dateText(g.fm.updated)}</span>
+          <p class="note">{g.fm.description}</p>
+        </li>
+      ))}
+    </ul>
+  </main>
+</Layout>

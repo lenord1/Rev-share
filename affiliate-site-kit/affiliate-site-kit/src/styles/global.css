@@ -273,3 +273,17 @@ details p{margin:8px 0 0;color:var(--ink-2)}
   &::-webkit-scrollbar { display: none; }
 }
 [data-pill-hidden]{display:none!important}
+/* 買前指南（Markdown 文章） */
+.article{max-width:44rem;line-height:1.85}
+.article h2{font-size:var(--step-2);margin:2.2em 0 .6em}
+.article h3{font-size:var(--step-1);margin:1.8em 0 .5em}
+.article p,.article ul,.article ol{margin:0 0 1em}
+.article blockquote{margin:1.2em 0;padding:14px 18px;background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:0 var(--radius) var(--radius) 0}
+.article blockquote p{margin:0}
+.article table{display:block;max-width:100%;overflow-x:auto;border-collapse:collapse;margin:1em 0;font-size:var(--step--1)}
+.article th,.article td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.article thead th{background:var(--surface);white-space:nowrap}
+.article hr{border:0;border-top:1px solid var(--line);margin:2em 0}
+.article a.btn{margin:.2em 0 1em}
+.draft-banner{margin:12px 0 0;padding:10px 14px;background:var(--warn-soft);color:var(--warn-ink);border-radius:var(--radius);font-weight:700}
+.guide-list li{margin-bottom:14px}

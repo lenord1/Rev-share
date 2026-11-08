@@ -1,0 +1,40 @@
+---
+// 買前指南頁：由 src/content/guides/*.md 產生。草稿只在預覽環境輸出（見 src/lib/guides.mjs），且一律 noindex。
+import Layout from '../../layouts/Layout.astro';
+import productsData from '../../data/products.json';
+import { loadGuides, dateText } from '../../lib/guides.mjs';
+import { noindexCategory } from '../../lib/indexing.mjs';
+import { safeJson } from '../../lib/catalog.mjs';
+
+export function getStaticPaths() {
+  return loadGuides().map((g) => ({ params: { slug: g.slug }, props: { guide: g } }));
+}
+const { guide } = Astro.props;
+const { fm, Content, draft } = guide;
+const { products, categories } = productsData as { products: any[]; categories: { slug: string; name: string }[] };
+const category = categories.find((c) => c.slug === fm.category);
+const noindex = draft || noindexCategory(products, fm.category);
+const site = Astro.site!;
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: '首頁', item: new URL('/', site).href },
+    ...(category ? [{ '@type': 'ListItem', position: 2, name: category.name, item: new URL(`/${category.slug}/`, site).href }] : []),
+    { '@type': 'ListItem', position: category ? 3 : 2, name: fm.title, item: new URL(`/guides/${guide.slug}/`, site).href },
+  ],
+};
+---
+<Layout title={`${fm.title}｜挑家電`} description={fm.description} noindex={noindex}>
+  <main class="wrap">
+    <nav class="crumbs" aria-label="麵包屑"><a href="/">首頁</a> / {category ? <><a href={`/${category.slug}/`}>{category.name}</a> / </> : null}買前指南</nav>
+    {draft && <p class="draft-banner" role="note">草稿預覽：這篇還沒發布，只有預覽環境看得到，正式站不會輸出。</p>}
+    <article class="article">
+      <h1>{fm.title}</h1>
+      <p class="note">{fm.author}　更新 {dateText(fm.updated)}</p>
+      <p class="disclosure">本頁含分潤連結，您購買不會多花錢。價格與優惠以賣場頁面為準。</p>
+      <Content />
+    </article>
+  </main>
+  <script type="application/ld+json" set:html={safeJson(ld)} />
+</Layout>
