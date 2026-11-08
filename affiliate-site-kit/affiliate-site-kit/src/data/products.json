@@ -9615,9 +9615,7 @@
       "finderAuto": true,
       "image": {
         "file": "shopee-116309859-42629304828-1.jpg",
-        "alt": "三菱電機除濕機",
-        "license": "pending-review",
-        "fetchedAt": "2026-11-08"
+        "alt": "三菱電機 MJ-EV150JX 除濕機"
       },
       "flawBasis": "三菱電機台灣官網（未公布規格數字）；編輯判斷",
       "priceUnverified": true
@@ -9870,9 +9868,7 @@
       },
       "image": {
         "file": "shopee-116309859-26592906704-1.jpg",
-        "alt": "除濕機 除濕專用型 F-Y22PN - Panasonic 台灣",
-        "license": "pending-review",
-        "fetchedAt": "2026-11-08"
+        "alt": "Panasonic F-Y22PN 除濕機"
       },
       "flawBasis": "Panasonic 台灣 2025/11 除濕機型錄；評測整理（vocus）",
       "priceUnverified": true
@@ -10468,7 +10464,11 @@
         ]
       },
       "flawBasis": "商品標示容量；適用坪數為本站粗估（編輯判斷）；成交數（蝦皮分潤後台 2026-11-09）：127",
-      "priceUnverified": true
+      "priceUnverified": true,
+      "image": {
+        "file": "shopee-85405584-29093016612-1.jpg",
+        "alt": "三菱電機 MJ-EHV180JX 除濕機"
+      }
     },
     {
       "category": "dehumidifier",
@@ -10523,7 +10523,11 @@
         ]
       },
       "flawBasis": "商品標示容量；適用坪數為本站粗估（編輯判斷）；成交數（蝦皮分潤後台 2026-11-09）：308",
-      "priceUnverified": true
+      "priceUnverified": true,
+      "image": {
+        "file": "shopee-85405584-45252216402-1.jpg",
+        "alt": "三菱電機 MJ-EHV280KX 除濕機"
+      }
     },
     {
       "category": "dehumidifier",

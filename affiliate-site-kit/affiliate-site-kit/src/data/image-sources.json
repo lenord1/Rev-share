@@ -61,8 +61,8 @@
       "pageUrl": "https://www.panasonic.com/tw/consumer/air-conditioner/dehumidifier/f-y22pn.html",
       "fetchedAt": "2026-11-08",
       "sha256": "2283007a605b431d04f32a98d8f7a2330a9bc32921a419681770f76c47f22d30",
-      "license": "pending-review",
-      "licenseNote": ""
+      "license": "official",
+      "licenseNote": "官方網站商品圖；使用者於 2026-11-09 授權上架（用於導購評測）"
     },
     "shopee-116309859-29187928205-1.jpg": {
       "draftId": "shopee-116309859-29187928205",
@@ -79,8 +79,8 @@
       "pageUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/PRODUCT_MJ_EV150JX.html",
       "fetchedAt": "2026-11-08",
       "sha256": "1719be0373fc97e492c3fcc2c29a251667d77f3e04854609b2dd1f9fc5dd579f",
-      "license": "pending-review",
-      "licenseNote": ""
+      "license": "official",
+      "licenseNote": "官方網站商品圖；使用者於 2026-11-09 授權上架（用於導購評測）"
     },
     "shopee-116309859-42629304828-2.png": {
       "draftId": "shopee-116309859-42629304828",
@@ -136,33 +136,6 @@
       "license": "pending-review",
       "licenseNote": ""
     },
-    "shopee-494140905-44425671665-1.avif": {
-      "draftId": "shopee-494140905-44425671665",
-      "sourceUrl": "https://www.electrolux.com.tw/globalassets/appliances/dehumidifier/ed1251dd/elx_im_fr_ed1251dc-hk_mar23.png",
-      "pageUrl": "https://www.electrolux.com.tw/appliances/dehumidifier/ed1251dd/",
-      "fetchedAt": "2026-11-08",
-      "sha256": "a006ad68ff420cbf06d934ad85bea8c4b9f61fc73ea321a6eadee93aecadc36a",
-      "license": "pending-review",
-      "licenseNote": ""
-    },
-    "shopee-494140905-44425671665-2.avif": {
-      "draftId": "shopee-494140905-44425671665",
-      "sourceUrl": "https://www.electrolux.com.tw/globalassets/appliances/dehumidifier/ed1251dd/elx_im_cp_ed1251dc-hk_mar23.png",
-      "pageUrl": "https://www.electrolux.com.tw/appliances/dehumidifier/ed1251dd/",
-      "fetchedAt": "2026-11-08",
-      "sha256": "62aa6aa189388dc6f629841c96056bb136270355cb77f2a6f475f3b1f73ab5b2",
-      "license": "pending-review",
-      "licenseNote": ""
-    },
-    "shopee-494140905-44425671665-3.avif": {
-      "draftId": "shopee-494140905-44425671665",
-      "sourceUrl": "https://www.electrolux.com.tw/globalassets/appliances/dehumidifier/ed1251dd/elx_im_bk_ed1251dc-hk_mar23.png",
-      "pageUrl": "https://www.electrolux.com.tw/appliances/dehumidifier/ed1251dd/",
-      "fetchedAt": "2026-11-08",
-      "sha256": "7079fd2179eeda48010bfe2255d7a52c55d1c8a6ada155167e892022978fcf63",
-      "license": "pending-review",
-      "licenseNote": ""
-    },
     "shopee-494140905-27914331867-1.avif": {
       "draftId": "shopee-494140905-27914331867",
       "sourceUrl": "https://www.electrolux.com.tw/globalassets/appliances/dehumidifier/ed2671wa/fr-ed2671wa-1500.png",
@@ -190,6 +163,33 @@
       "license": "pending-review",
       "licenseNote": ""
     },
+    "shopee-494140905-44425671665-1.avif": {
+      "draftId": "shopee-494140905-44425671665",
+      "sourceUrl": "https://www.electrolux.com.tw/globalassets/appliances/dehumidifier/ed1251dd/elx_im_fr_ed1251dc-hk_mar23.png",
+      "pageUrl": "https://www.electrolux.com.tw/appliances/dehumidifier/ed1251dd/",
+      "fetchedAt": "2026-11-08",
+      "sha256": "a006ad68ff420cbf06d934ad85bea8c4b9f61fc73ea321a6eadee93aecadc36a",
+      "license": "pending-review",
+      "licenseNote": ""
+    },
+    "shopee-494140905-44425671665-2.avif": {
+      "draftId": "shopee-494140905-44425671665",
+      "sourceUrl": "https://www.electrolux.com.tw/globalassets/appliances/dehumidifier/ed1251dd/elx_im_cp_ed1251dc-hk_mar23.png",
+      "pageUrl": "https://www.electrolux.com.tw/appliances/dehumidifier/ed1251dd/",
+      "fetchedAt": "2026-11-08",
+      "sha256": "62aa6aa189388dc6f629841c96056bb136270355cb77f2a6f475f3b1f73ab5b2",
+      "license": "pending-review",
+      "licenseNote": ""
+    },
+    "shopee-494140905-44425671665-3.avif": {
+      "draftId": "shopee-494140905-44425671665",
+      "sourceUrl": "https://www.electrolux.com.tw/globalassets/appliances/dehumidifier/ed1251dd/elx_im_bk_ed1251dc-hk_mar23.png",
+      "pageUrl": "https://www.electrolux.com.tw/appliances/dehumidifier/ed1251dd/",
+      "fetchedAt": "2026-11-08",
+      "sha256": "7079fd2179eeda48010bfe2255d7a52c55d1c8a6ada155167e892022978fcf63",
+      "license": "pending-review",
+      "licenseNote": ""
+    },
     "shopee-66851718-29643010579-1.avif": {
       "draftId": "shopee-66851718-29643010579",
       "sourceUrl": "https://www.lg.com/content/dam/channel/wcms/tw/images/small-appliances/dd141mwe0_att_eatt_tw_c/gallery/dd141mwe0-basic.jpg",
@@ -214,8 +214,8 @@
       "pageUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/PRODUCT_MJ_EHV180JX.html",
       "fetchedAt": "2026-11-09",
       "sha256": "1719be0373fc97e492c3fcc2c29a251667d77f3e04854609b2dd1f9fc5dd579f",
-      "license": "pending-review",
-      "licenseNote": ""
+      "license": "official",
+      "licenseNote": "官方網站商品圖；使用者於 2026-11-09 授權上架（用於導購評測）"
     },
     "shopee-85405584-29093016612-2.png": {
       "draftId": "shopee-85405584-29093016612",
@@ -268,8 +268,8 @@
       "pageUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/PRODUCT_MJ_EHV280KX.html",
       "fetchedAt": "2026-11-09",
       "sha256": "8515d56b022fedfa98d24586ad056c26403982c7541ee5abc2ecf07c32d242f6",
-      "license": "pending-review",
-      "licenseNote": ""
+      "license": "official",
+      "licenseNote": "官方網站商品圖；使用者於 2026-11-09 授權上架（用於導購評測）"
     },
     "shopee-85405584-45252216402-2.png": {
       "draftId": "shopee-85405584-45252216402",
