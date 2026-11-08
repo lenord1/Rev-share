@@ -19,6 +19,7 @@ import intentsData from '../data/intents.json';
 import siteData from '../data/site.json';
 import config from '../../scripts/config.json';
 import { buildableIntents } from '../lib/intents.mjs';
+import { loadGuides } from '../lib/guides.mjs';
 
 const now = Date.now();
 const categories = activeCategories(productsData);
@@ -50,6 +51,7 @@ const catalog = {
 const intents = buildableIntents(productsData.products, intentsData.intents, { minProducts: config.minIntentProducts ?? 2 });
 // 網站名稱的結構化資料（讓搜尋結果顯示站名）
 const websiteLd = { '@context': 'https://schema.org', '@type': 'WebSite', name: siteData.name, url: new URL('/', Astro.site!).href };
+const guides = loadGuides();
 const groups = [...new Set(categories.map((c: any) => c.group ?? ''))];
 const count = (slug: string) => productsData.products.filter((p) => p.category === slug).length;
 ---
@@ -68,6 +70,13 @@ const count = (slug: string) => productsData.products.filter((p) => p.category =
       {featured.map((p) => <ProductCard product={p} categoryName={catName[p.category]} history={history} />)}
       {more.map((p) => <ProductCard product={p} categoryName={catName[p.category]} history={history} more />)}
     </section>
+
+    {guides.length > 0 && <>
+      <div class="grid-h" id="guides"><h2>買前指南</h2><a href="/guides/">看全部</a></div>
+      <section class="cats2" aria-label="買前指南">
+        {guides.map((g) => <a href={`/guides/${g.slug}/`}>{g.fm.title}<span>{g.fm.description}</span></a>)}
+      </section>
+    </>}
 
     <div class="grid-h"><h2>用自己的話找</h2></div>
     <SmartSearch />
