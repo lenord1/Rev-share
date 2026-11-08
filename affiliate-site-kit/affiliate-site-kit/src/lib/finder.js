@@ -61,5 +61,6 @@ export function pickProducts(products, answers) {
     }
     return { p, score, reasons };
   });
-  return items.sort((a, b) => b.score - a.score || a.p.final - b.p.final);
+  // 同分時官方賣場商品優先，再比到手價
+  return items.sort((a, b) => b.score - a.score || Number(!!b.p.officialStore) - Number(!!a.p.officialStore) || a.p.final - b.p.final);
 }

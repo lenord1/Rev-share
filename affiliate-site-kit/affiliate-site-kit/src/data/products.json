@@ -9564,7 +9564,18 @@
       },
       "officialStore": true,
       "discount": 7111,
-      "promoBadge": "限時特價"
+      "promoBadge": "限時特價",
+      "finder": {
+        "area": [
+          12,
+          20
+        ],
+        "budget": "high",
+        "tags": [
+          "quiet",
+          "family"
+        ]
+      }
     }
   ]
 }
