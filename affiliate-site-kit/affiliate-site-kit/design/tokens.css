@@ -15,8 +15,8 @@
   --warn-soft: #fff3d6;  /* 缺點區底色 */
   --warn-ink: #7a4b00;
   --radius: 10px;        /* 只有一種圓角；按鈕與標籤另用 999px */
-  --font: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --step--1: 0.8125rem; --step-0: 0.9375rem; --step-1: 1.0625rem;
+  --font: "PingFang TC", "Noto Sans TC", "Noto Sans CJK TC", "Source Han Sans TC", "Microsoft JhengHei", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --step--1: 0.875rem;  --step-0: 1rem;      --step-1: 1.125rem;
   --step-2: 1.375rem;   --step-3: 1.875rem;  --step-4: 2.5rem;
 }
 @media (prefers-color-scheme: dark) {

@@ -116,7 +116,7 @@ const ld = [
       <div class="c-tldr">
         <section class="box" aria-labelledby="tldr">
           <h2 id="tldr" class="verdict">{p.tldr}</h2>
-          {img && <Image class="prod-img" src={img} alt={p.image.alt} widths={[360, 720]} sizes="(min-width: 900px) 600px, 100vw" />}
+          {img && <Image class="prod-img" src={img} alt={p.image.alt} loading="eager" fetchpriority="high" widths={[360, 720]} sizes="(min-width: 900px) 600px, 100vw" />}
           <div class="flaw-box" data-intent-zone="flaw"><b>要先知道的缺點</b>{p.flaw}</div>
         </section>
       </div>
