@@ -22,6 +22,7 @@ const { sniffImage } = await import('./import/images.mjs');
 const { runImport } = await import('./import-product.mjs');
 const { readDraft, writeDraft, validateDraft, promoteDraft, listDrafts, attachImageToDemo } = await import('./import/draft.mjs');
 const { validateProducts } = await import('./validate-products.mjs');
+const { processRequests } = await import('./run-import-requests.mjs');
 
 let n = 0;
 const queue = [];
@@ -325,6 +326,23 @@ t('attach-image：只能掛在示範商品；掛上後帶授權狀態並通過�
   assert.equal(real.ok, false);
   assert.ok(/示範商品/.test(real.message));
   assert.equal(attachImageToDemo('nope-1', 'demo-dh-a').ok, false);
+});
+
+t('匯入請求檔：處理成功寫出結果並刪除請求；失敗只記錄原因，不影響其他請求', async () => {
+  const dir = path.join(tmp, 'import-requests');
+  fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(path.join(dir, 'a-ok.json'), JSON.stringify({ url: 'https://shopee.tw/LG-i.77.88', officialUrl: OFF, category: 'dehumidifier', attachTo: 'demo-dh-b' }));
+  fs.writeFileSync(path.join(dir, 'b-bad.json'), JSON.stringify({ url: 'https://shopee.tw/LG-i.77.89', officialUrl: 'https://shopee.tw/product/1/2' }));
+  fs.writeFileSync(path.join(dir, 'c-broken.json'), '{壞掉');
+  const out = await processRequests({ fetcher: offFetcher() });
+  assert.deepEqual(out.map((r) => r.ok), [true, false, false]);
+  assert.equal(out[0].draftId, 'shopee-77-88');
+  assert.equal(out[0].images.length, 1);
+  assert.equal(out[0].attach.ok, true);
+  assert.equal(out[1].error.code, 'args');
+  assert.equal(out[2].error.code, 'bad-json');
+  assert.deepEqual(fs.readdirSync(dir).filter((f) => f.endsWith('.json')), []);
+  assert.equal(JSON.parse(fs.readFileSync(path.join(dir, 'results', 'a-ok.json'), 'utf8')).draftId, 'shopee-77-88');
 });
 
 for (const [name, fn] of queue) {

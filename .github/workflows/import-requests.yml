@@ -1,0 +1,46 @@
+# 推送「匯入請求檔」到 preview 分支就自動處理：affiliate-site-kit/affiliate-site-kit/import-requests/<名稱>.json
+# 內容：{ "url": "蝦皮商品網址", "officialUrl": "品牌官網商品頁", "category": "dehumidifier", "force": true, "attachTo": "demo 商品型號" }
+# 執行環境可連外網，所以能讀品牌官網的 OpenGraph／JSON-LD 並下載圖片（遵守 robots.txt、放慢速度；圖片預設授權待確認）。
+# 結果寫到 import-requests/results/<同名>.json，並直接 commit 回 preview 分支（Vercel 會自動重新部署預覽）。
+name: import-requests
+
+on:
+  push:
+    branches: [preview]
+    paths:
+      - 'affiliate-site-kit/affiliate-site-kit/import-requests/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: import-requests
+  cancel-in-progress: false
+
+env:
+  SITE_DIR: affiliate-site-kit/affiliate-site-kit
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: 處理匯入請求
+        working-directory: ${{ env.SITE_DIR }}
+        run: node scripts/run-import-requests.mjs
+
+      - name: 把結果 commit 回 preview
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A "$SITE_DIR"
+          if git diff --cached --quiet; then echo "沒有變更"; exit 0; fi
+          git commit -m "chore(import): 處理匯入請求"
+          git pull --rebase origin preview
+          git push origin HEAD:preview
