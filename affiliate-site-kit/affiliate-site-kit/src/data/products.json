@@ -9510,7 +9510,7 @@
       "affiliate": {
         "shopee": "https://shopee.tw/product/108078562/53350123096"
       },
-      "price": 19900,
+      "price": 23900,
       "priceUpdatedAt": "2026-11-08",
       "primaryChannel": "shopee",
       "lastChecked": "2026-11-08",
@@ -9562,7 +9562,8 @@
         "license": "pending-review",
         "fetchedAt": "2026-11-08"
       },
-      "officialStore": true
+      "officialStore": true,
+      "discount": 7111
     }
   ]
 }
