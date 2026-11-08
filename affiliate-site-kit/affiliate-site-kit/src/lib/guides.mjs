@@ -18,4 +18,8 @@ export function loadGuides() {
     .sort((a, b) => String(b.fm.updated).localeCompare(String(a.fm.updated)) || a.slug.localeCompare(b.slug));
 }
 
-export const dateText = (v) => (v instanceof Date ? v.toISOString().slice(0, 10) : String(v ?? ''));
+// 日期顯示成 YYYY-MM-DD（YAML 日期會被解析成 Date，也可能是字串）
+export const dateText = (v) => {
+  const s = v && typeof v.toISOString === 'function' ? v.toISOString() : String(v ?? '');
+  return s.slice(0, 10);
+};
