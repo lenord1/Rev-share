@@ -1,7 +1,7 @@
 {
   "draftId": "shopee-494140905-27914331867",
   "status": "draft",
-  "name": "Electrolux 伊萊克斯 26L 極適家居600除濕機 流光白 ED2671WA",
+  "name": "26L 極適家居600除濕機 除濕適用空間33坪 (流光白)",
   "createdAt": "2026-11-09",
   "source": {
     "kind": "shopee",
@@ -11,24 +11,80 @@
       "shopId": "494140905",
       "itemId": "27914331867"
     },
-    "method": "manual",
+    "method": "official-page",
     "fetchedAt": "2026-11-09",
-    "siteCanonical": null
+    "siteCanonical": "https://www.electrolux.com.tw/appliances/dehumidifier/ed2671wa/"
   },
   "extracted": {
-    "name": "",
-    "description": "",
-    "brand": null,
-    "sku": null,
+    "name": "26L 極適家居600除濕機 除濕適用空間33坪 (流光白)",
+    "description": "大容量強力除濕 負離子清新空氣 Wi-Fi連線APP遠端操控",
+    "brand": "Electrolux",
+    "sku": "ED2671WA",
     "price": null,
-    "imageUrls": []
+    "imageUrls": [
+      "https://www.electrolux.com.tw/globalassets/appliances/dehumidifier/ed2671wa/fr-ed2671wa-1500.png",
+      "https://www.electrolux.com.tw/globalassets/appliances/dehumidifier/ed2671wa/angl-ed2671wa-1500.png",
+      "https://www.electrolux.com.tw/globalassets/appliances/dehumidifier/ed2671wa/angr-ed2671wa-1500.png",
+      "https://www.electrolux.com.tw/globalassets/appliances/dehumidifier/ed2671wa/bk-ed2671wa-1500.png",
+      "https://www.electrolux.com.tw/globalassets/appliances/dehumidifier/ed2671wa/feat-1-ed2671wa-1500.png",
+      "https://www.electrolux.com.tw/globalassets/appliances/dehumidifier/ed2671wa/feat-2-ed2671wa-1500.png",
+      "https://www.electrolux.com.tw/globalassets/appliances/dehumidifier/ed2671wa/feat-3-ed2671wa-1500.png",
+      "https://www.electrolux.com.tw/globalassets/appliances/dehumidifier/ed2671wa/ed2671wa.jpg",
+      "https://www.electrolux.com.tw/globalassets/appliances/dehumidifier/ed2671wa/cp-ed2671wa-1500.png",
+      "https://www.electrolux.com.tw/globalassets/appliances/dehumidifier/ed2671wa/insit-ed2671wa-1500.jpg",
+      "https://www.electrolux.com.tw/globalassets/appliances/dehumidifier/ed2671wa/diag-ed2671wa-1500.jpg",
+      "https://www.electrolux.com.tw/globalassets/appliances/dehumidifier/ed2671wa/fr-ed2671wa-1500.png?width=1200&height=630"
+    ]
   },
-  "images": [],
+  "images": [
+    {
+      "file": "shopee-494140905-27914331867-1.avif",
+      "sourceUrl": "https://www.electrolux.com.tw/globalassets/appliances/dehumidifier/ed2671wa/fr-ed2671wa-1500.png",
+      "pageUrl": "https://www.electrolux.com.tw/appliances/dehumidifier/ed2671wa/",
+      "fetchedAt": "2026-11-09",
+      "sha256": "1c0c7a247045fabc0cf4247db09140b4ae702b586c8f1186cfc63216e506ca4c",
+      "bytes": 19949,
+      "width": null,
+      "height": null,
+      "mime": "image/avif",
+      "license": "pending-review",
+      "licenseNote": "",
+      "alt": "26L 極適家居600除濕機 除濕適用空間33坪 (流光白)"
+    },
+    {
+      "file": "shopee-494140905-27914331867-2.avif",
+      "sourceUrl": "https://www.electrolux.com.tw/globalassets/appliances/dehumidifier/ed2671wa/angl-ed2671wa-1500.png",
+      "pageUrl": "https://www.electrolux.com.tw/appliances/dehumidifier/ed2671wa/",
+      "fetchedAt": "2026-11-09",
+      "sha256": "c89505a426c9db5e244db28ed9d237e830b4dcaeb8ba8e4fd7c95aa82092d32d",
+      "bytes": 26456,
+      "width": null,
+      "height": null,
+      "mime": "image/avif",
+      "license": "pending-review",
+      "licenseNote": "",
+      "alt": "26L 極適家居600除濕機 除濕適用空間33坪 (流光白)"
+    },
+    {
+      "file": "shopee-494140905-27914331867-3.avif",
+      "sourceUrl": "https://www.electrolux.com.tw/globalassets/appliances/dehumidifier/ed2671wa/angr-ed2671wa-1500.png",
+      "pageUrl": "https://www.electrolux.com.tw/appliances/dehumidifier/ed2671wa/",
+      "fetchedAt": "2026-11-09",
+      "sha256": "10884a01f7637e695a072d0f4cae703cdb99e39c8852eb598ebda7bb44e1068b",
+      "bytes": 22880,
+      "width": null,
+      "height": null,
+      "mime": "image/avif",
+      "license": "pending-review",
+      "licenseNote": "",
+      "alt": "26L 極適家居600除濕機 除濕適用空間33坪 (流光白)"
+    }
+  ],
   "product": {
     "category": "dehumidifier",
     "slug": null,
     "modelCode": null,
-    "titleTemplate": "Electrolux 伊萊克斯 26L 極適家居600除濕機 流光白 ED2671WA 評測：{year} 值不值得買",
+    "titleTemplate": "26L 極適家居600除濕機 除濕適用空間33坪 (流光白) 評測：{year} 值不值得買",
     "price": null,
     "priceUpdatedAt": null,
     "affiliate": {
@@ -53,6 +109,14 @@
     }
   },
   "notes": [
-    "蝦皮官方 API 尚未接上（等待官方文件），只記下商品編號；名稱、價格、圖片請手動補。本工具不抓取其網頁。"
-  ]
+    "蝦皮官方 API 尚未接上（等待官方文件），只記下商品編號；名稱、價格、圖片請手動補。本工具不抓取其網頁。",
+    "名稱、說明、圖片取自官方頁 https://www.electrolux.com.tw/appliances/dehumidifier/ed2671wa/；不取官網價格（蝦皮價格另行維護）。"
+  ],
+  "official": {
+    "url": "https://www.electrolux.com.tw/appliances/dehumidifier/ed2671wa/",
+    "fetchedAt": "2026-11-09",
+    "methods": [
+      "jsonld"
+    ]
+  }
 }

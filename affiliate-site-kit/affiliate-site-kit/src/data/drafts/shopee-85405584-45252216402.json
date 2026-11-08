@@ -11,24 +11,56 @@
       "shopId": "85405584",
       "itemId": "45252216402"
     },
-    "method": "manual",
+    "method": "official-page",
     "fetchedAt": "2026-11-09",
-    "siteCanonical": null
+    "siteCanonical": "http://www.mitsubishielectric.com.tw/home/dehumidifier/"
   },
   "extracted": {
-    "name": "",
-    "description": "",
+    "name": "三菱電機除濕機",
+    "description": "三菱電機智慧變頻除濕機，三重除濕系統，高速除濕又省電！",
     "brand": null,
     "sku": null,
     "price": null,
-    "imageUrls": []
+    "imageUrls": [
+      "https://www.mitsubishielectric.com.tw/home/dehumidifier/images/mjehv280kx_pd_lg.jpg",
+      "https://www.mitsubishielectric.com.tw/home/dehumidifier/images/mjehv280kx_pd.png"
+    ]
   },
-  "images": [],
+  "images": [
+    {
+      "file": "shopee-85405584-45252216402-1.jpg",
+      "sourceUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/images/mjehv280kx_pd_lg.jpg",
+      "pageUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/PRODUCT_MJ_EHV280KX.html",
+      "fetchedAt": "2026-11-09",
+      "sha256": "8515d56b022fedfa98d24586ad056c26403982c7541ee5abc2ecf07c32d242f6",
+      "bytes": 68461,
+      "width": 980,
+      "height": 1497,
+      "mime": "image/jpeg",
+      "license": "pending-review",
+      "licenseNote": "",
+      "alt": "三菱電機除濕機"
+    },
+    {
+      "file": "shopee-85405584-45252216402-2.png",
+      "sourceUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/images/mjehv280kx_pd.png",
+      "pageUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/PRODUCT_MJ_EHV280KX.html",
+      "fetchedAt": "2026-11-09",
+      "sha256": "07286493b2a59aa600467aba9576bda74e0d952b2313cd9ab213c1b5eea58dd9",
+      "bytes": 189285,
+      "width": 342,
+      "height": 524,
+      "mime": "image/png",
+      "license": "pending-review",
+      "licenseNote": "",
+      "alt": "三菱電機除濕機"
+    }
+  ],
   "product": {
     "category": "dehumidifier",
     "slug": null,
     "modelCode": null,
-    "titleTemplate": "三菱 MITSUBISHI 28L 變頻空氣清淨除濕機 MJ-EHV280KX-TW 評測：{year} 值不值得買",
+    "titleTemplate": "三菱電機除濕機 評測：{year} 值不值得買",
     "price": null,
     "priceUpdatedAt": null,
     "affiliate": {
@@ -53,6 +85,15 @@
     }
   },
   "notes": [
-    "蝦皮官方 API 尚未接上（等待官方文件），只記下商品編號；名稱、價格、圖片請手動補。本工具不抓取其網頁。"
-  ]
+    "蝦皮官方 API 尚未接上（等待官方文件），只記下商品編號；名稱、價格、圖片請手動補。本工具不抓取其網頁。",
+    "名稱、說明、圖片取自官方頁 https://www.mitsubishielectric.com.tw/home/dehumidifier/PRODUCT_MJ_EHV280KX.html；不取官網價格（蝦皮價格另行維護）。",
+    "圖片略過：http://www.mitsubishielectric.com.tw/home/dehumidifier/images/share.jpg（HTTP 404）"
+  ],
+  "official": {
+    "url": "https://www.mitsubishielectric.com.tw/home/dehumidifier/PRODUCT_MJ_EHV280KX.html",
+    "fetchedAt": "2026-11-09",
+    "methods": [
+      "opengraph"
+    ]
+  }
 }

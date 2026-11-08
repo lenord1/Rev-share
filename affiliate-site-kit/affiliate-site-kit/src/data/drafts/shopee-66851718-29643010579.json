@@ -1,7 +1,7 @@
 {
   "draftId": "shopee-66851718-29643010579",
   "status": "draft",
-  "name": "LG 樂金 DD181MWE0 18公升 雙變頻除濕機 UV抑菌",
+  "name": "PuriCare™ 雙變頻除濕機 - 18公升(白) - 時尚款 DD181MWE0",
   "createdAt": "2026-11-09",
   "source": {
     "kind": "shopee",
@@ -11,24 +11,56 @@
       "shopId": "66851718",
       "itemId": "29643010579"
     },
-    "method": "manual",
+    "method": "official-page",
     "fetchedAt": "2026-11-09",
-    "siteCanonical": null
+    "siteCanonical": "https://www.lg.com/tw/air-care/dehumidifiers/dd181mwe0/"
   },
   "extracted": {
-    "name": "",
-    "description": "",
-    "brand": null,
-    "sku": null,
+    "name": "PuriCare™ 雙變頻除濕機 - 18公升(白) - 時尚款 DD181MWE0",
+    "description": "探索 LG DD181MWE0. 點擊查看 LG 的圖片、評論和技術規格 PuriCare™ 雙變頻除濕機 - 18公升(白) - 時尚款.",
+    "brand": "LG",
+    "sku": "DD181MWE0",
     "price": null,
-    "imageUrls": []
+    "imageUrls": [
+      "https://www.lg.com/content/dam/channel/wcms/tw/images/small-appliances/dd141mwe0_att_eatt_tw_c/gallery/dd141mwe0-basic.jpg",
+      "https://www.lg.com/content/dam/channel/wcms/tw/images/small-appliances/dd141mwe0_att_eatt_tw_c/gallery/medium01.jpg"
+    ]
   },
-  "images": [],
+  "images": [
+    {
+      "file": "shopee-66851718-29643010579-1.avif",
+      "sourceUrl": "https://www.lg.com/content/dam/channel/wcms/tw/images/small-appliances/dd141mwe0_att_eatt_tw_c/gallery/dd141mwe0-basic.jpg",
+      "pageUrl": "https://www.lg.com/tw/air-care/dehumidifiers/dd181mwe0/",
+      "fetchedAt": "2026-11-09",
+      "sha256": "dd484270dfb758668f53df58d5b5332df8c755dbcd31fbca0ed2bb1eca182366",
+      "bytes": 1840,
+      "width": null,
+      "height": null,
+      "mime": "image/avif",
+      "license": "pending-review",
+      "licenseNote": "",
+      "alt": "PuriCare™ 雙變頻除濕機 - 18公升(白) - 時尚款 DD181MWE0"
+    },
+    {
+      "file": "shopee-66851718-29643010579-2.avif",
+      "sourceUrl": "https://www.lg.com/content/dam/channel/wcms/tw/images/small-appliances/dd141mwe0_att_eatt_tw_c/gallery/medium01.jpg",
+      "pageUrl": "https://www.lg.com/tw/air-care/dehumidifiers/dd181mwe0/",
+      "fetchedAt": "2026-11-09",
+      "sha256": "6eb92d99378e0a70cc4307c306337f249eb2ef73c293429fed402e7461ea7760",
+      "bytes": 3522,
+      "width": null,
+      "height": null,
+      "mime": "image/avif",
+      "license": "pending-review",
+      "licenseNote": "",
+      "alt": "PuriCare™ 雙變頻除濕機 - 18公升(白) - 時尚款 DD181MWE0"
+    }
+  ],
   "product": {
     "category": "dehumidifier",
     "slug": null,
     "modelCode": null,
-    "titleTemplate": "LG 樂金 DD181MWE0 18公升 雙變頻除濕機 UV抑菌 評測：{year} 值不值得買",
+    "titleTemplate": "PuriCare™ 雙變頻除濕機 - 18公升(白) - 時尚款 DD181MWE0 評測：{year} 值不值得買",
     "price": null,
     "priceUpdatedAt": null,
     "affiliate": {
@@ -53,6 +85,14 @@
     }
   },
   "notes": [
-    "蝦皮官方 API 尚未接上（等待官方文件），只記下商品編號；名稱、價格、圖片請手動補。本工具不抓取其網頁。"
-  ]
+    "蝦皮官方 API 尚未接上（等待官方文件），只記下商品編號；名稱、價格、圖片請手動補。本工具不抓取其網頁。",
+    "名稱、說明、圖片取自官方頁 https://www.lg.com/tw/air-care/dehumidifiers/dd181mwe0/；不取官網價格（蝦皮價格另行維護）。"
+  ],
+  "official": {
+    "url": "https://www.lg.com/tw/air-care/dehumidifiers/dd181mwe0/",
+    "fetchedAt": "2026-11-09",
+    "methods": [
+      "jsonld"
+    ]
+  }
 }
