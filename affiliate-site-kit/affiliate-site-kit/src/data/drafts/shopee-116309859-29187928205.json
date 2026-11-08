@@ -1,7 +1,7 @@
 {
   "draftId": "shopee-116309859-29187928205",
   "status": "draft",
-  "name": "Panasonic 國際牌 16L nanoe 清淨二合一雙變頻微電腦除濕機 F-YV32NN（蝦皮直營）",
+  "name": "除濕機 [指定通路銷售] 變頻高效型 F-YV32NN - Panasonic 台灣",
   "createdAt": "2026-11-08",
   "source": {
     "kind": "shopee",
@@ -11,24 +11,41 @@
       "shopId": "116309859",
       "itemId": "29187928205"
     },
-    "method": "manual",
+    "method": "official-page",
     "fetchedAt": "2026-11-08",
-    "siteCanonical": null
+    "siteCanonical": "https://www.panasonic.com/tw/consumer/air-conditioner/dehumidifier/f-yv32nn.html"
   },
   "extracted": {
-    "name": "",
-    "description": "",
+    "name": "除濕機 [指定通路銷售] 變頻高效型 F-YV32NN - Panasonic 台灣",
+    "description": "探索 Panasonic 除濕機發掘 Panasonic 功能 [指定通路銷售] 變頻高效型 F-YV32NN,● 除濕能力 16公升/日(室溫27°C/相對濕度60%) ●&nbsp;INVERTER變頻雙轉子壓縮機 ●&nbsp;nanoe™ X 健康科技 ●&nbsp;ECONAVI智慧節能科技 ●&nbsp;IoT智慧健康家電 ●&nbsp;39項安全裝置 ●&nbsp;烘鞋烘衣專用配件 ● HEPA濾網(需另購) ●&nbsp;除濕適用坪數：20坪",
     "brand": null,
     "sku": null,
     "price": null,
-    "imageUrls": []
+    "imageUrls": [
+      "https://panasonic.com/content/dam/panasonic/tw/zh/pim/dam/F-/F-YV32/F-YV32NN/ast-3067439.jpg"
+    ]
   },
-  "images": [],
+  "images": [
+    {
+      "file": "shopee-116309859-29187928205-1.jpg",
+      "sourceUrl": "https://panasonic.com/content/dam/panasonic/tw/zh/pim/dam/F-/F-YV32/F-YV32NN/ast-3067439.jpg",
+      "pageUrl": "https://www.panasonic.com/tw/consumer/air-conditioner/dehumidifier/f-yv32nn.html",
+      "fetchedAt": "2026-11-08",
+      "sha256": "d0904fcfdae874fa98f4b6dd81963cbdf0d6cb7d68188d1a73dee466f9aaa85e",
+      "bytes": 2802177,
+      "width": 3750,
+      "height": 2000,
+      "mime": "image/jpeg",
+      "license": "pending-review",
+      "licenseNote": "",
+      "alt": "除濕機 [指定通路銷售] 變頻高效型 F-YV32NN - Panasonic 台灣"
+    }
+  ],
   "product": {
     "category": "dehumidifier",
     "slug": null,
     "modelCode": null,
-    "titleTemplate": "Panasonic 國際牌 16L nanoe 清淨二合一雙變頻微電腦除濕機 F-YV32NN（蝦皮直營） 評測：{year} 值不值得買",
+    "titleTemplate": "除濕機 [指定通路銷售] 變頻高效型 F-YV32NN - Panasonic 台灣 評測：{year} 值不值得買",
     "price": null,
     "priceUpdatedAt": null,
     "affiliate": {},
@@ -51,6 +68,14 @@
     }
   },
   "notes": [
-    "蝦皮官方 API 尚未接上（等待官方文件），只記下商品編號；名稱、價格、圖片請手動補。本工具不抓取其網頁。"
-  ]
+    "蝦皮官方 API 尚未接上（等待官方文件），只記下商品編號；名稱、價格、圖片請手動補。本工具不抓取其網頁。",
+    "名稱、說明、圖片取自官方頁 https://www.panasonic.com/tw/consumer/air-conditioner/dehumidifier/f-yv32nn.html；不取官網價格（蝦皮價格另行維護）。"
+  ],
+  "official": {
+    "url": "https://www.panasonic.com/tw/consumer/air-conditioner/dehumidifier/f-yv32nn.html",
+    "fetchedAt": "2026-11-08",
+    "methods": [
+      "opengraph"
+    ]
+  }
 }

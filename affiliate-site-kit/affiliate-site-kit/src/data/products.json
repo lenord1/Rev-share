@@ -10189,7 +10189,13 @@
           14.5
         ]
       },
-      "finderAuto": true
+      "finderAuto": true,
+      "image": {
+        "file": "shopee-494140905-44425671665-1.avif",
+        "alt": "12L 極適家居500清淨除濕機除濕適用空間15坪 (曜岩灰)",
+        "license": "pending-review",
+        "fetchedAt": "2026-11-08"
+      }
     },
     {
       "demo": true,
@@ -10248,7 +10254,13 @@
           19
         ]
       },
-      "finderAuto": true
+      "finderAuto": true,
+      "image": {
+        "file": "shopee-116309859-29187928205-1.jpg",
+        "alt": "除濕機 [指定通路銷售] 變頻高效型 F-YV32NN - Panasonic 台灣",
+        "license": "pending-review",
+        "fetchedAt": "2026-11-08"
+      }
     },
     {
       "demo": true,
@@ -10307,7 +10319,13 @@
           14.5
         ]
       },
-      "finderAuto": true
+      "finderAuto": true,
+      "image": {
+        "file": "shopee-116309859-47950547182-1.jpg",
+        "alt": "除濕機 變頻高效型 F-YV24NN - Panasonic 台灣",
+        "license": "pending-review",
+        "fetchedAt": "2026-11-08"
+      }
     }
   ]
 }

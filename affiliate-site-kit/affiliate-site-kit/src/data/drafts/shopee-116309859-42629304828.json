@@ -1,7 +1,7 @@
 {
   "draftId": "shopee-116309859-42629304828",
   "status": "draft",
-  "name": "三菱 MITSUBISHI MJ-EV150JX-TW 15.2L 日製空氣清淨變頻除濕機（蝦皮直營）",
+  "name": "三菱電機除濕機",
   "createdAt": "2026-11-08",
   "source": {
     "kind": "shopee",
@@ -11,24 +11,26 @@
       "shopId": "116309859",
       "itemId": "42629304828"
     },
-    "method": "manual",
+    "method": "official-page",
     "fetchedAt": "2026-11-08",
-    "siteCanonical": null
+    "siteCanonical": "http://www.mitsubishielectric.com.tw/home/dehumidifier/"
   },
   "extracted": {
-    "name": "",
-    "description": "",
+    "name": "三菱電機除濕機",
+    "description": "三菱電機智慧變頻除濕機，三重除濕系統，高速除濕又省電！",
     "brand": null,
     "sku": null,
     "price": null,
-    "imageUrls": []
+    "imageUrls": [
+      "http://www.mitsubishielectric.com.tw/home/dehumidifier/images/share.jpg"
+    ]
   },
   "images": [],
   "product": {
     "category": "dehumidifier",
     "slug": null,
     "modelCode": null,
-    "titleTemplate": "三菱 MITSUBISHI MJ-EV150JX-TW 15.2L 日製空氣清淨變頻除濕機（蝦皮直營） 評測：{year} 值不值得買",
+    "titleTemplate": "三菱電機除濕機 評測：{year} 值不值得買",
     "price": null,
     "priceUpdatedAt": null,
     "affiliate": {},
@@ -51,6 +53,15 @@
     }
   },
   "notes": [
-    "蝦皮官方 API 尚未接上（等待官方文件），只記下商品編號；名稱、價格、圖片請手動補。本工具不抓取其網頁。"
-  ]
+    "蝦皮官方 API 尚未接上（等待官方文件），只記下商品編號；名稱、價格、圖片請手動補。本工具不抓取其網頁。",
+    "名稱、說明、圖片取自官方頁 https://www.mitsubishielectric.com.tw/home/dehumidifier/PRODUCT_MJ_EV150JX.html；不取官網價格（蝦皮價格另行維護）。",
+    "圖片略過：http://www.mitsubishielectric.com.tw/home/dehumidifier/images/share.jpg（HTTP 404）"
+  ],
+  "official": {
+    "url": "https://www.mitsubishielectric.com.tw/home/dehumidifier/PRODUCT_MJ_EV150JX.html",
+    "fetchedAt": "2026-11-08",
+    "methods": [
+      "opengraph"
+    ]
+  }
 }

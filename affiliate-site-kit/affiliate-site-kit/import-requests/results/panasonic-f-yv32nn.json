@@ -3,8 +3,16 @@
   "processedAt": "2026-11-08",
   "ok": true,
   "draftId": "shopee-116309859-29187928205",
-  "name": "Panasonic 國際牌 16L nanoe 清淨二合一雙變頻微電腦除濕機 F-YV32NN（蝦皮直營）",
-  "images": [],
+  "name": "除濕機 [指定通路銷售] 變頻高效型 F-YV32NN - Panasonic 台灣",
+  "images": [
+    {
+      "file": "shopee-116309859-29187928205-1.jpg",
+      "sourceUrl": "https://panasonic.com/content/dam/panasonic/tw/zh/pim/dam/F-/F-YV32/F-YV32NN/ast-3067439.jpg",
+      "width": 3750,
+      "height": 2000,
+      "license": "pending-review"
+    }
+  ],
   "blockers": [
     "缺點（editorial.flaw）要具體，至少 8 字",
     "優點（editorial.strength）要有規格或官方說明作依據，至少 8 字",
@@ -19,14 +27,22 @@
     "product.tldr 一句話結論未填",
     "product.specs 至少 3 項（只填官方標示的規格）",
     "product.affiliate 要放你從聯盟後台取得的連結（例如 {\"shopee\":\"https://…\"}）",
-    "沒有圖片：請補 --image-file，且授權需確認"
+    "圖片授權未確認：用 node scripts/drafts.mjs license <代號> <檔名> official|owned|licensed 標記（確認官方素材或自有授權後才可）"
   ],
   "notes": [
-    "蝦皮官方 API 尚未接上（等待官方文件），只記下商品編號；名稱、價格、圖片請手動補。本工具不抓取其網頁。"
+    "蝦皮官方 API 尚未接上（等待官方文件），只記下商品編號；名稱、價格、圖片請手動補。本工具不抓取其網頁。",
+    "名稱、說明、圖片取自官方頁 https://www.panasonic.com/tw/consumer/air-conditioner/dehumidifier/f-yv32nn.html；不取官網價格（蝦皮價格另行維護）。"
   ],
+  "attach": {
+    "ok": true,
+    "file": "shopee-116309859-29187928205-1.jpg",
+    "license": "pending-review"
+  },
   "request": {
     "url": "https://shopee.tw/product/116309859/29187928205",
-    "name": "Panasonic 國際牌 16L nanoe 清淨二合一雙變頻微電腦除濕機 F-YV32NN（蝦皮直營）",
-    "category": "dehumidifier"
+    "officialUrl": "https://www.panasonic.com/tw/consumer/air-conditioner/dehumidifier/f-yv32nn.html",
+    "category": "dehumidifier",
+    "force": true,
+    "attachTo": "test-panasonic-f-yv32nn"
   }
 }

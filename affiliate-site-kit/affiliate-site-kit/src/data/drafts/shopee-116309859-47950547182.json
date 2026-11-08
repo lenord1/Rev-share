@@ -1,7 +1,7 @@
 {
   "draftId": "shopee-116309859-47950547182",
   "status": "draft",
-  "name": "Panasonic 國際牌 12L nanoe 清淨二合一雙變頻微電腦除濕機 F-YV24NN（蝦皮直營）",
+  "name": "除濕機 變頻高效型 F-YV24NN - Panasonic 台灣",
   "createdAt": "2026-11-08",
   "source": {
     "kind": "shopee",
@@ -11,24 +11,41 @@
       "shopId": "116309859",
       "itemId": "47950547182"
     },
-    "method": "manual",
+    "method": "official-page",
     "fetchedAt": "2026-11-08",
-    "siteCanonical": null
+    "siteCanonical": "https://www.panasonic.com/tw/consumer/air-conditioner/dehumidifier/f-yv24nn.html"
   },
   "extracted": {
-    "name": "",
-    "description": "",
+    "name": "除濕機 變頻高效型 F-YV24NN - Panasonic 台灣",
+    "description": "探索 Panasonic 除濕機發掘 Panasonic 功能 變頻高效型 F-YV24NN,● 除濕能力 12公升/日(室溫27°C/相對濕度60%) ● INVERTER變頻雙轉子壓縮機 ● nanoe™ X 健康科技 ● ECONAVI智慧節能科技 ● IoT智慧健康家電 ● 39項安全裝置 ● 烘鞋烘衣專用配件 ● HEPA濾網(需另購) ● 除濕適用坪數：15坪",
     "brand": null,
     "sku": null,
     "price": null,
-    "imageUrls": []
+    "imageUrls": [
+      "https://panasonic.com/content/dam/panasonic/tw/zh/pim/dam/F-/F-YV24/F-YV24NN/ast-3067550.jpg"
+    ]
   },
-  "images": [],
+  "images": [
+    {
+      "file": "shopee-116309859-47950547182-1.jpg",
+      "sourceUrl": "https://panasonic.com/content/dam/panasonic/tw/zh/pim/dam/F-/F-YV24/F-YV24NN/ast-3067550.jpg",
+      "pageUrl": "https://www.panasonic.com/tw/consumer/air-conditioner/dehumidifier/f-yv24nn.html",
+      "fetchedAt": "2026-11-08",
+      "sha256": "d0904fcfdae874fa98f4b6dd81963cbdf0d6cb7d68188d1a73dee466f9aaa85e",
+      "bytes": 2802177,
+      "width": 3750,
+      "height": 2000,
+      "mime": "image/jpeg",
+      "license": "pending-review",
+      "licenseNote": "",
+      "alt": "除濕機 變頻高效型 F-YV24NN - Panasonic 台灣"
+    }
+  ],
   "product": {
     "category": "dehumidifier",
     "slug": null,
     "modelCode": null,
-    "titleTemplate": "Panasonic 國際牌 12L nanoe 清淨二合一雙變頻微電腦除濕機 F-YV24NN（蝦皮直營） 評測：{year} 值不值得買",
+    "titleTemplate": "除濕機 變頻高效型 F-YV24NN - Panasonic 台灣 評測：{year} 值不值得買",
     "price": null,
     "priceUpdatedAt": null,
     "affiliate": {},
@@ -51,6 +68,14 @@
     }
   },
   "notes": [
-    "蝦皮官方 API 尚未接上（等待官方文件），只記下商品編號；名稱、價格、圖片請手動補。本工具不抓取其網頁。"
-  ]
+    "蝦皮官方 API 尚未接上（等待官方文件），只記下商品編號；名稱、價格、圖片請手動補。本工具不抓取其網頁。",
+    "名稱、說明、圖片取自官方頁 https://www.panasonic.com/tw/consumer/air-conditioner/dehumidifier/f-yv24nn.html；不取官網價格（蝦皮價格另行維護）。"
+  ],
+  "official": {
+    "url": "https://www.panasonic.com/tw/consumer/air-conditioner/dehumidifier/f-yv24nn.html",
+    "fetchedAt": "2026-11-08",
+    "methods": [
+      "opengraph"
+    ]
+  }
 }

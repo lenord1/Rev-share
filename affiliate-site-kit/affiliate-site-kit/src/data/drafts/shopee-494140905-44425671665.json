@@ -1,7 +1,7 @@
 {
   "draftId": "shopee-494140905-44425671665",
   "status": "draft",
-  "name": "Electrolux 伊萊克斯 極適家居500 12L 清淨除濕機 ED1251DD",
+  "name": "12L 極適家居500清淨除濕機除濕適用空間15坪 (曜岩灰)",
   "createdAt": "2026-11-08",
   "source": {
     "kind": "shopee",
@@ -11,24 +11,77 @@
       "shopId": "494140905",
       "itemId": "44425671665"
     },
-    "method": "manual",
+    "method": "official-page",
     "fetchedAt": "2026-11-08",
-    "siteCanonical": null
+    "siteCanonical": "https://www.electrolux.com.tw/appliances/dehumidifier/ed1251dd/"
   },
   "extracted": {
-    "name": "",
-    "description": "",
-    "brand": null,
-    "sku": null,
+    "name": "12L 極適家居500清淨除濕機除濕適用空間15坪 (曜岩灰)",
+    "description": "實證有效去除各種病毒與細菌讓您一夜好眠一機擁有最適空氣一級能效智慧除濕安全可靠環保冷媒R290",
+    "brand": "Electrolux",
+    "sku": "ED1251DD",
     "price": null,
-    "imageUrls": []
+    "imageUrls": [
+      "https://www.electrolux.com.tw/globalassets/appliances/dehumidifier/ed1251dd/elx_im_fr_ed1251dc-hk_mar23.png",
+      "https://www.electrolux.com.tw/globalassets/appliances/dehumidifier/ed1251dd/elx_im_cp_ed1251dc-hk_mar23.png",
+      "https://www.electrolux.com.tw/globalassets/appliances/dehumidifier/ed1251dd/elx_im_bk_ed1251dc-hk_mar23.png",
+      "https://www.electrolux.com.tw/globalassets/appliances/dehumidifier/ed1251dd/elx_im_angr_ed1251dc-hk_mar23.png",
+      "https://www.electrolux.com.tw/globalassets/appliances/dehumidifier/ed1251dd/elx_im_angl_ed1251dc-hk_mar23.png",
+      "https://www.electrolux.com.tw/globalassets/appliances/dehumidifier/ed1251dd/240813vdfc.png",
+      "https://www.electrolux.com.tw/globalassets/appliances/dehumidifier/ed1251dd/ed1251dd.jpg",
+      "https://www.electrolux.com.tw/globalassets/ed1251dd-purifier-energy-label.jpg",
+      "https://www.electrolux.com.tw/globalassets/appliances/dehumidifier/ed1251dd/elx_im_fr_ed1251dc-hk_mar23.png?width=1200&height=630"
+    ]
   },
-  "images": [],
+  "images": [
+    {
+      "file": "shopee-494140905-44425671665-1.avif",
+      "sourceUrl": "https://www.electrolux.com.tw/globalassets/appliances/dehumidifier/ed1251dd/elx_im_fr_ed1251dc-hk_mar23.png",
+      "pageUrl": "https://www.electrolux.com.tw/appliances/dehumidifier/ed1251dd/",
+      "fetchedAt": "2026-11-08",
+      "sha256": "a006ad68ff420cbf06d934ad85bea8c4b9f61fc73ea321a6eadee93aecadc36a",
+      "bytes": 9770,
+      "width": null,
+      "height": null,
+      "mime": "image/avif",
+      "license": "pending-review",
+      "licenseNote": "",
+      "alt": "12L 極適家居500清淨除濕機除濕適用空間15坪 (曜岩灰)"
+    },
+    {
+      "file": "shopee-494140905-44425671665-2.avif",
+      "sourceUrl": "https://www.electrolux.com.tw/globalassets/appliances/dehumidifier/ed1251dd/elx_im_cp_ed1251dc-hk_mar23.png",
+      "pageUrl": "https://www.electrolux.com.tw/appliances/dehumidifier/ed1251dd/",
+      "fetchedAt": "2026-11-08",
+      "sha256": "62aa6aa189388dc6f629841c96056bb136270355cb77f2a6f475f3b1f73ab5b2",
+      "bytes": 32277,
+      "width": null,
+      "height": null,
+      "mime": "image/avif",
+      "license": "pending-review",
+      "licenseNote": "",
+      "alt": "12L 極適家居500清淨除濕機除濕適用空間15坪 (曜岩灰)"
+    },
+    {
+      "file": "shopee-494140905-44425671665-3.avif",
+      "sourceUrl": "https://www.electrolux.com.tw/globalassets/appliances/dehumidifier/ed1251dd/elx_im_bk_ed1251dc-hk_mar23.png",
+      "pageUrl": "https://www.electrolux.com.tw/appliances/dehumidifier/ed1251dd/",
+      "fetchedAt": "2026-11-08",
+      "sha256": "7079fd2179eeda48010bfe2255d7a52c55d1c8a6ada155167e892022978fcf63",
+      "bytes": 61517,
+      "width": null,
+      "height": null,
+      "mime": "image/avif",
+      "license": "pending-review",
+      "licenseNote": "",
+      "alt": "12L 極適家居500清淨除濕機除濕適用空間15坪 (曜岩灰)"
+    }
+  ],
   "product": {
     "category": "dehumidifier",
     "slug": null,
     "modelCode": null,
-    "titleTemplate": "Electrolux 伊萊克斯 極適家居500 12L 清淨除濕機 ED1251DD 評測：{year} 值不值得買",
+    "titleTemplate": "12L 極適家居500清淨除濕機除濕適用空間15坪 (曜岩灰) 評測：{year} 值不值得買",
     "price": null,
     "priceUpdatedAt": null,
     "affiliate": {},
@@ -51,6 +104,14 @@
     }
   },
   "notes": [
-    "蝦皮官方 API 尚未接上（等待官方文件），只記下商品編號；名稱、價格、圖片請手動補。本工具不抓取其網頁。"
-  ]
+    "蝦皮官方 API 尚未接上（等待官方文件），只記下商品編號；名稱、價格、圖片請手動補。本工具不抓取其網頁。",
+    "名稱、說明、圖片取自官方頁 https://www.electrolux.com.tw/appliances/dehumidifier/ed1251dd/；不取官網價格（蝦皮價格另行維護）。"
+  ],
+  "official": {
+    "url": "https://www.electrolux.com.tw/appliances/dehumidifier/ed1251dd/",
+    "fetchedAt": "2026-11-08",
+    "methods": [
+      "jsonld"
+    ]
+  }
 }
