@@ -220,6 +220,18 @@ tbody th{background:var(--surface);font-weight:700;border-right:1px solid var(--
 tbody tr:last-child>*{border-bottom:0}
 td.win{background:var(--win-soft);color:var(--win);font-weight:800;box-shadow:inset 3px 0 0 var(--win)}
 td.win::after{content:" 勝出";font-size:var(--step--1);font-weight:700}
+/* 規格表閱讀性（借鏡雜誌式表格）：輕量表頭、斑馬紋、灰色標籤欄、可換行；單品表格不強制橫滑 */
+table{min-width:480px}
+.tablewrap.single table{min-width:0}
+.tablewrap td{white-space:normal;overflow-wrap:anywhere}
+.tablewrap thead th{background:color-mix(in srgb,var(--line) 30%,var(--surface));color:var(--ink-2);font-weight:700}
+.tablewrap tbody th{color:var(--ink-2);font-weight:600}
+.tablewrap.single tbody th{width:36%}
+.tablewrap tbody tr:nth-child(even)>*{background:color-mix(in srgb,var(--line) 18%,var(--surface))}
+.tablewrap tbody tr:hover>*{background:var(--accent-soft)}
+.tablewrap tbody tr>td.win{background:var(--win-soft)}
+/* 提示框：淡色底＋左側色條（不適合、缺點等） */
+.callout-warn{background:var(--warn-soft);color:var(--warn-ink);border:0;border-left:4px solid color-mix(in srgb,var(--warn-ink) 40%,var(--warn-soft));border-radius:0 var(--radius) var(--radius) 0}
 .hist{display:grid;gap:8px}
 .hist svg{width:100%;height:auto;max-height:150px;display:block}
 .hist .meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;font-size:var(--step--1);color:var(--ink-2)}
@@ -282,7 +294,9 @@ details p{margin:8px 0 0;color:var(--ink-2)}
 .article blockquote p{margin:0}
 .article table{display:block;max-width:100%;overflow-x:auto;border-collapse:collapse;margin:1em 0;font-size:var(--step--1)}
 .article th,.article td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
-.article thead th{background:var(--surface);white-space:nowrap}
+.article thead th{background:color-mix(in srgb,var(--line) 30%,var(--surface));color:var(--ink-2);white-space:nowrap}
+.article tbody tr:nth-child(even)>*{background:color-mix(in srgb,var(--line) 18%,var(--surface))}
+.article tbody th{color:var(--ink-2);font-weight:600}
 .article hr{border:0;border-top:1px solid var(--line);margin:2em 0}
 .article a.btn{margin:.2em 0 1em}
 .draft-banner{margin:12px 0 0;padding:10px 14px;background:var(--warn-soft);color:var(--warn-ink);border-radius:var(--radius);font-weight:700}
