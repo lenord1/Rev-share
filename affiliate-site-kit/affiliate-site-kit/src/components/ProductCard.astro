@@ -1,5 +1,6 @@
 ---
-// 首頁九宮格商品卡：對齊 design/home.html。連結走 /go/（HTML 不出現賣場網址）。
+// 商品卡片（單欄）：手機 100% 寬，桌面左 1/3 方形商品圖、右 2/3 規格與價格。
+// 沒有資料的欄位（缺點整理中、沒有價格紀錄等）直接不渲染。連結走 /go/（HTML 不出現賣場網址）。
 import { Image } from 'astro:assets';
 import { priceBreakdown } from '../lib/pricing.mjs';
 import { productName, primaryChannel, histSummary, histLine } from '../lib/catalog.mjs';
@@ -16,36 +17,87 @@ const b = priceBreakdown(p);
 const hasPromo = b.active && (b.discount > 0 || b.taxRefund > 0);
 const ch = primaryChannel(p);
 const fmt = new Intl.NumberFormat('zh-TW', { style: 'currency', currency: 'TWD', maximumFractionDigits: 0 });
-const histText = histLine(histSummary(history, p), (n: number) => fmt.format(n));
+const h = histSummary(history, p);
+const histText = h?.enough && !h.demo ? histLine(h, (n: number) => fmt.format(n)) : '';
 
 const images = import.meta.glob('../assets/products/*.{jpg,jpeg,png,webp,avif}', { eager: true }) as Record<string, { default: ImageMetadata }>;
 const img = p.image?.file ? images[`../assets/products/${p.image.file}`]?.default : undefined;
+
+const PLACEHOLDER = /整理中|待補|待確認/;
+const flaw = p.flaw && !PLACEHOLDER.test(p.flaw) ? p.flaw : '';
+const strength = p.strength && !PLACEHOLDER.test(p.strength) ? p.strength : '';
+const specChips = (p.specs ?? [])
+  .filter((s: any) => s.value && !PLACEHOLDER.test(String(s.value)))
+  .slice(0, 3)
+  .map((s: any) => `${s.key} ${s.value}${s.unit ? ' ' + s.unit : ''}`);
+const points = [...(strength ? [strength] : []), ...specChips].slice(0, 4);
+
+const detail = `/${p.category}/${p.slug}/`;
+const area = p.finder?.area;
+// 官方賣場且有真實折扣才寫「領券」，其餘不宣稱沒有資料的優惠
+const cta = p.officialStore ? (b.discount > 0 ? '🔥 前往官方旗艦館領券下單 ➔' : '🔥 前往官方旗艦館下單 ➔') : '🔥 前往蝦皮看最新價格 ➔';
+const priceParts: string[] = [`標價 ${fmt.format(b.price)}`];
+if (b.discount) priceParts.push(`現折 −${fmt.format(b.discount)}`);
+if (b.taxRefund) priceParts.push(`退稅／補助 −${fmt.format(b.taxRefund)}`);
 ---
-<a
-  class="pcard"
-  href={`/go/${ch}-${p.modelCode}`}
-  rel="sponsored nofollow noopener"
-  data-track="go"
-  data-channel={ch}
-  data-code={p.modelCode}
-  data-slot={slot}
+<article
+  class="pcard overflow-hidden rounded-xl border border-slate-200/80 bg-white shadow-sm transition-shadow hover:shadow-md"
   data-category={p.category}
   data-more={more ? '' : undefined}
+  data-final={b.final}
+  data-area-min={area ? area[0] : undefined}
+  data-area-max={area ? area[1] : undefined}
   style={more ? 'display:none' : undefined}
 >
-  {img
-    ? <Image class="thumb" src={img} alt={p.image.alt} widths={[240, 480]} sizes="(min-width: 760px) 360px, 50vw" />
-    : <div class="thumb" aria-hidden="true">{categoryName.slice(0, 2)}</div>}
-  <div class="b">
-    <span class="cat">{categoryName}</span>
-    <h3>{productName(p)}{p.officialStore && <span class="badge official">官方</span>}</h3>
-    {hasPromo && p.promoBadge && <span class="badge">{p.promoBadge}</span>}
-    {p.strength && <span class="strength-line">{p.strength}</span>}
-    <span class="flaw-line">{p.flaw}</span>
-    <div class="price">
-      <b class="num">{fmt.format(b.final)}</b>
-      {b.final < b.price && <s class="num">{fmt.format(b.price)}</s>}
+  <div class="md:flex">
+    <a href={detail} class="block bg-white md:w-1/3 md:shrink-0" aria-label={`${productName(p)}：看評測與規格`}>
+      <div class="flex aspect-square w-full items-center justify-center bg-white p-4">
+        {img
+          ? <Image class="h-full w-full object-contain" src={img} alt={p.image.alt} widths={[240, 480, 720]} sizes="(min-width: 768px) 360px, 100vw" />
+          : <span class="text-4xl font-bold text-slate-300" aria-hidden="true">{categoryName.slice(0, 2)}</span>}
+      </div>
+    </a>
+
+    <div class="flex flex-1 flex-col gap-3 p-4 md:p-5">
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="text-xs font-medium text-slate-500">{categoryName}</span>
+        {p.officialStore && <span class="rounded-full bg-blue-50 px-2 py-0.5 text-xs font-semibold text-blue-700 ring-1 ring-blue-200">官方</span>}
+        {hasPromo && p.promoBadge && <span class="rounded-full border border-rose-200 bg-rose-50 px-2 py-0.5 text-xs font-semibold text-rose-600">{p.promoBadge}</span>}
+      </div>
+
+      <h3 class="text-base font-bold leading-snug text-slate-900 md:text-lg"><a href={detail} class="text-inherit no-underline hover:underline">{productName(p)}</a></h3>
+
+      {points.length > 0 && (
+        <ul class="flex flex-wrap gap-2">
+          {points.map((t: string) => (
+            <li class="flex items-start gap-1.5 rounded-md border border-slate-200 bg-white px-2 py-1 text-xs text-slate-700">
+              <span class="mt-0.5 text-emerald-600" aria-hidden="true">●</span><span>{t}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {flaw && <p class="rounded-md border border-amber-200/60 bg-amber-50 p-2 text-xs text-amber-900">缺點：{flaw}</p>}
+
+      <div class="mt-auto flex flex-col gap-1">
+        <div class="flex flex-wrap items-baseline gap-2">
+          <b class="num text-2xl font-extrabold tracking-tight text-slate-900">{fmt.format(b.final)}</b>
+          <span class="text-xs text-slate-500">到手價</span>
+          {b.final < b.price && <s class="num text-xs text-slate-400">{fmt.format(b.price)}</s>}
+        </div>
+        {priceParts.length > 1 && <p class="num text-xs text-slate-500">{priceParts.join('　')} = {fmt.format(b.final)}</p>}
+        {histText && <p class="text-xs text-slate-500">{histText}</p>}
+      </div>
+
+      <a
+        class="flex min-h-12 w-full items-center justify-center rounded-lg bg-gradient-to-r from-orange-500 to-orange-600 px-4 text-base font-bold text-white no-underline transition hover:from-orange-600 hover:to-orange-700 active:scale-[0.98]"
+        href={`/go/${ch}-${p.modelCode}`}
+        rel="sponsored nofollow noopener"
+        data-track="go"
+        data-channel={ch}
+        data-code={p.modelCode}
+        data-slot={slot}
+      >{cta}</a>
     </div>
-    <span class="hist-line">{histText}</span>
   </div>
-</a>
+</article>

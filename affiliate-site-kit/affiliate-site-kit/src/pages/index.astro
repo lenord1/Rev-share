@@ -5,6 +5,7 @@ import SmartSearch from '../components/SmartSearch.astro';
 import ProfileBar from '../components/ProfileBar.astro';
 import QuizDialog from '../components/QuizDialog.astro';
 import ProductCard from '../components/ProductCard.astro';
+import FilterPills from '../components/FilterPills.astro';
 import productsData from '../data/products.json';
 import channelsData from '../data/channels.json';
 import { getImage } from 'astro:assets';
@@ -58,7 +59,8 @@ const count = (slug: string) => productsData.products.filter((p) => p.category =
     </section>
 
     <div class="grid-h"><h2>推薦商品 <span id="featured-count">{featured.length}</span> 台</h2>{updated && <span class="note num">價格更新：{updated}</span>}</div>
-    <section class="grid" id="featured-grid" aria-label="主力商品">
+    <FilterPills target="#featured-grid" />
+    <section class="mt-3 flex flex-col gap-4" id="featured-grid" aria-label="主力商品">
       {featured.map((p) => <ProductCard product={p} categoryName={catName[p.category]} history={history} />)}
       {more.map((p) => <ProductCard product={p} categoryName={catName[p.category]} history={history} more />)}
     </section>

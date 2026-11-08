@@ -22,7 +22,7 @@
 /* 以下來自 design/tokens.css 與 design/base.css（唯一來源，見 docs/ui-spec.md） */
 /* 設計 token：Astro/Tailwind 實作時以此為唯一來源（見 docs/ui-spec.md）。 */
 :root {
-  --paper: #eef2f0;      /* 頁面底色（冷灰綠） */
+  --paper: #f8fafc;      /* 頁面底色（slate-50） */
   --surface: #ffffff;    /* 卡片、表格底 */
   --ink: #16231f;        /* 主要文字 */
   --ink-2: #4a5b55;      /* 次要文字 */
@@ -40,14 +40,6 @@
   --font: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", system-ui, -apple-system, "Segoe UI", sans-serif;
   --step--1: 0.8125rem; --step-0: 0.9375rem; --step-1: 1.0625rem;
   --step-2: 1.375rem;   --step-3: 1.875rem;  --step-4: 2.5rem;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --paper: #1a2420; --surface: #223029; --ink: #eef3f0; --ink-2: #a9b9b2; --line: #33443c;
-    --accent: #8fabff; --accent-ink: #0b1230; --accent-soft: #28375f;
-    --promo: #ff7a70; --promo-soft: #3a1c19; --win: #5fd29b; --win-soft: #12301f;
-    --warn-soft: #3a2e12; --warn-ink: #f2c46d;
-  }
 }
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -261,3 +253,11 @@ details p{margin:8px 0 0;color:var(--ink-2)}
 .filters{flex-wrap:wrap;overflow:visible}
 .cat-select{min-height:44px;padding:0 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font:inherit}
 .grp{font-size:var(--step-0);margin:18px 0 8px;color:var(--ink-2)}
+
+/* 隱藏捲軸（情境膠囊列橫向滑動用） */
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+[data-pill-hidden]{display:none!important}

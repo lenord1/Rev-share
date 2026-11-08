@@ -1,0 +1,83 @@
+---
+// 情境膠囊篩選列：手機橫向滑動。依卡片上的 data-area-max／data-final 即時篩選目前顯示的商品卡（不重載頁面）。
+// 只有目前顯示的卡片帶有坪數資料時才出現（例如除濕機），其他品類自動隱藏。
+interface Props {
+  target?: string;
+}
+const { target = '#featured-grid' } = Astro.props;
+---
+<div id="filter-pills" class="no-scrollbar -mx-4 flex gap-2 overflow-x-auto px-4 py-1" role="group" aria-label="情境篩選" data-target={target} hidden>
+  <button type="button" data-filter="all" aria-pressed="true" class="pill">全部 <span data-count>0</span> 款</button>
+  <button type="button" data-filter="small" aria-pressed="false" class="pill">小坪數／臥室</button>
+  <button type="button" data-filter="big" aria-pressed="false" class="pill">大客廳</button>
+  <button type="button" data-filter="budget" aria-pressed="false" class="pill">萬元平價首選</button>
+</div>
+
+<style>
+  .pill {
+    flex: none;
+    min-height: 40px;
+    padding: 0 16px;
+    border-radius: 999px;
+    border: 1px solid #e2e8f0;
+    background: #fff;
+    color: #475569;
+    font: inherit;
+    font-size: 0.875rem;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .pill[aria-pressed='true'] { background: #0f172a; color: #fff; border-color: #0f172a; }
+  .pill:disabled { opacity: 0.45; cursor: default; }
+</style>
+
+<script>
+  const bar = document.getElementById('filter-pills');
+  const grid = bar ? document.querySelector(bar.getAttribute('data-target') || '#featured-grid') : null;
+  if (bar && grid) {
+    const RULES = {
+      all: () => true,
+      small: (c) => c.areaMax != null && c.areaMax <= 15,
+      big: (c) => c.areaMax != null && c.areaMax >= 18,
+      budget: (c) => c.final > 0 && c.final <= 10000,
+    };
+    let current = 'all';
+    const info = (el) => ({
+      el,
+      areaMax: el.dataset.areaMax !== undefined ? Number(el.dataset.areaMax) : null,
+      final: Number(el.dataset.final),
+    });
+    // 目前被「選購精靈品類」顯示出來的卡片（精靈用 style.display 控制，這裡用 data-pill-hidden，互不干擾）
+    const shown = () => Array.from(grid.querySelectorAll('[data-category]')).filter((el) => el.style.display !== 'none').map(info);
+
+    function apply() {
+      const cards = shown();
+      const hasArea = cards.some((c) => c.areaMax != null);
+      bar.hidden = !hasArea;
+      if (!hasArea) current = 'all';
+      Array.from(grid.querySelectorAll('[data-category]')).forEach((el) => el.toggleAttribute('data-pill-hidden', false));
+      cards.forEach((c) => c.el.toggleAttribute('data-pill-hidden', hasArea ? !RULES[current](c) : false));
+      bar.querySelectorAll('[data-filter]').forEach((btn) => {
+        const key = btn.getAttribute('data-filter');
+        const n = cards.filter((c) => RULES[key](c)).length;
+        btn.setAttribute('aria-pressed', String(key === current));
+        btn.disabled = key !== 'all' && n === 0;
+        const num = btn.querySelector('[data-count]');
+        if (num) num.textContent = String(n);
+      });
+      const total = document.getElementById('featured-count');
+      if (total && hasArea) total.textContent = String(cards.filter((c) => RULES[current](c)).length);
+    }
+
+    bar.addEventListener('click', (e) => {
+      const btn = e.target instanceof Element ? e.target.closest('[data-filter]') : null;
+      if (!btn || btn.disabled) return;
+      current = btn.getAttribute('data-filter');
+      apply();
+    });
+    // 精靈切換品類時會改卡片的 style.display，重新計算
+    new MutationObserver(apply).observe(grid, { attributes: true, subtree: true, attributeFilter: ['style'] });
+    apply();
+  }
+</script>
