@@ -7,8 +7,10 @@ import { parseQuery, rank } from '../src/lib/rank.js';
 import { questionsFor, pickProducts } from '../src/lib/finder.js';
 
 const data = readJson('src', 'data', 'products.json');
-const products = data.products.map((p) => slimProduct(p));
-const slugs = activeCategories(data).map((c) => c.slug);
+// 排序測試用固定測試資料（3 台示範除濕機），不依賴網站上目前有哪些真實商品
+const fixture = readJson('scripts', 'fixtures', 'rank-dehumidifiers.json');
+const products = [...data.products.filter((p) => p.category !== 'dehumidifier'), ...fixture].map((p) => slimProduct(p));
+const slugs = activeCategories({ ...data, products: [...data.products, ...fixture] }).map((c) => c.slug);
 const none = { hasPet: null, hasChild: null, spaceSize: null };
 let n = 0;
 const t = (name, fn) => { fn(); n++; console.log('✓', name); };

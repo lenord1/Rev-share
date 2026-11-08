@@ -229,345 +229,6 @@
   "products": [
     {
       "demo": true,
-      "category": "dehumidifier",
-      "slug": "demo-dehumidifier-a",
-      "modelCode": "demo-dh-a",
-      "titleTemplate": "示範除濕機 A 評測：{year} 值不值得買",
-      "affiliate": {
-        "shopee": "https://shopee.tw/demo-dh-a",
-        "coupang": "https://www.coupang.com/demo-dh-a"
-      },
-      "price": 12900,
-      "priceUpdatedAt": "2026-11-01",
-      "discount": 500,
-      "taxRefund": 1200,
-      "subsidyNote": "示範：需符合能源效率資格，請以官方公告為準",
-      "promoValidUntil": "2026-12-31",
-      "promoBadge": "示範檔期",
-      "featured": true,
-      "featuredOrder": 1,
-      "tldr": "示範資料：適合 10–15 坪、重視靜音的家庭。",
-      "flaw": "示範缺點：水箱取出時偏重且把手位置不順手",
-      "strength": "示範優點：運轉噪音 42 dB 偏安靜，適合 10–15 坪的家庭",
-      "article": {
-        "heading": "買之前，先看這兩個最常後悔的地方",
-        "metaDescription": "示範：睡覺時除濕機太吵、水箱太重不好拿，是買除濕機最常見的煩惱。看這台 42 dB 的取捨與缺點。",
-        "lead": "關上臥室門，除濕機的運轉聲還是從門縫鑽進來；或是開了一整天，水箱滿了才發現，端出來又重又難拿。這兩件事，是買除濕機最常聽到的後悔。示範除濕機 A 把重點放在安靜與 10–15 坪的客廳，但它也有自己的代價，下面照順序說。",
-        "sections": [
-          {
-            "h": "睡覺時除濕機太吵，怎麼辦？",
-            "body": "這台標示運轉噪音 42 dB，在本站收錄的示範除濕機裡偏安靜，但 42 dB 不是無聲：放在床邊，夜裡還是聽得到。比較實際的做法是放在客廳或走廊，睡前設定好，臥室門留一點縫通風。"
-          },
-          {
-            "h": "水箱又重又不好拿，會很麻煩嗎？",
-            "body": "水箱容量 4.5 L，裝滿約 4.5 公斤，加上取出時把手位置不順手（這是要先知道的缺點）。一天要倒一次水的家庭，建議在水槽旁邊找個固定的位置放機器，少走幾步路。"
-          },
-          {
-            "h": "10–15 坪的客廳夠用嗎？",
-            "body": "日除濕量 20 L/日，適合 10–15 坪。超過 20 坪的空間，或需要常常搬來搬去的人，不建議選這台，本頁「不適合你的情況」有列出。"
-          }
-        ]
-      },
-      "specs": [
-        {
-          "key": "日除濕量",
-          "value": "20",
-          "unit": "L/日",
-          "score": 8,
-          "higherIsBetter": true
-        },
-        {
-          "key": "運轉噪音",
-          "value": "42",
-          "unit": "dB",
-          "score": 7,
-          "higherIsBetter": false
-        },
-        {
-          "key": "水箱容量",
-          "value": "4.5",
-          "unit": "L",
-          "score": 6,
-          "higherIsBetter": true
-        }
-      ],
-      "finder": {
-        "area": [
-          10,
-          15
-        ],
-        "budget": "mid",
-        "tags": [
-          "quiet",
-          "family"
-        ]
-      },
-      "faq": [
-        {
-          "q": "示範問題：這台適合幾坪？",
-          "a": "示範回答：請以官方標示的適用坪數為準。"
-        }
-      ],
-      "notFor": [
-        "示範：坪數超過 20 坪的空間",
-        "示範：需要頻繁搬動的使用情境"
-      ],
-      "policy": {
-        "seller": "official",
-        "warranty": "示範：官方保固一年",
-        "returns": "示範：依賣場退貨規則"
-      },
-      "extraCosts": [
-        {
-          "label": "運費",
-          "amount": 0
-        },
-        {
-          "label": "示範：舊機回收",
-          "note": "依賣場方案"
-        }
-      ],
-      "alternative": {
-        "modelCode": "demo-dh-b",
-        "when": "預算有限且空間小於 10 坪"
-      },
-      "primaryChannel": "shopee",
-      "lastChecked": "2026-11-01",
-      "prices": {
-        "shopee": 12900,
-        "coupang": 13200
-      },
-      "tags": [
-        "靜音",
-        "大坪數",
-        "安全鎖"
-      ],
-      "pricesUpdatedAt": {
-        "coupang": "2026-11-01"
-      },
-      "delivery": {
-        "coupang": {
-          "fast": true,
-          "note": "示範：平台頁面標示快速到貨，實際以結帳頁為準",
-          "source": "示範資料",
-          "checkedAt": "2026-11-01"
-        }
-      }
-    },
-    {
-      "demo": true,
-      "category": "dehumidifier",
-      "slug": "demo-dehumidifier-b",
-      "modelCode": "demo-dh-b",
-      "titleTemplate": "示範除濕機 B 評測：{year} 值不值得買",
-      "affiliate": {
-        "shopee": "https://shopee.tw/demo-dh-b"
-      },
-      "price": 8900,
-      "priceUpdatedAt": "2026-11-01",
-      "discount": 0,
-      "taxRefund": 0,
-      "promoBadge": "示範檔期",
-      "featured": true,
-      "featuredOrder": 2,
-      "tldr": "示範資料：預算有限、坪數較小的選擇。",
-      "flaw": "示範缺點：滿水時提示音偏小，容易沒注意到",
-      "strength": "示範優點：價格門檻低，空間小的入門選擇",
-      "article": {
-        "heading": "小空間、預算有限？先看這三個疑慮",
-        "metaDescription": "示範：小套房預算有限，想買便宜的除濕機，但滿水提示音太小怕沒發現。看這台的取捨。",
-        "lead": "租屋或小套房，預算不想花太多，又怕買了便宜的除濕機，滿水停機了自己還不知道，衣服照樣濕。示範除濕機 B 的價格門檻低，適合小坪數，但提示音偏小是它最需要提前知道的地方。",
-        "sections": [
-          {
-            "h": "小套房不想花太多錢，買這台合理嗎？",
-            "body": "日除濕量 12 L/日、適合坪數較小的空間，標價 8,900 元，是本站示範機型裡門檻最低的。空間超過 10 坪或在意靜音，建議改看示範除濕機 A。"
-          },
-          {
-            "h": "滿水提示音太小，會不會一直沒發現？",
-            "body": "這是這台的缺點：滿水時提示音偏小，容易沒注意到。水箱只有 3 L，除濕量大的季節可能一天要倒不只一次。比較穩的做法是睡前先清空水箱，並把機器放在聽得到聲音的位置。"
-          },
-          {
-            "h": "運轉噪音 46 dB，臥室放得住嗎？",
-            "body": "比示範除濕機 A 高 4 dB。如果是睡覺很淺的人，建議放在客廳或浴室外，不要放在床邊。"
-          }
-        ]
-      },
-      "specs": [
-        {
-          "key": "日除濕量",
-          "value": "12",
-          "unit": "L/日",
-          "score": 5,
-          "higherIsBetter": true
-        },
-        {
-          "key": "運轉噪音",
-          "value": "46",
-          "unit": "dB",
-          "score": 5,
-          "higherIsBetter": false
-        },
-        {
-          "key": "水箱容量",
-          "value": "3",
-          "unit": "L",
-          "score": 4,
-          "higherIsBetter": true
-        }
-      ],
-      "finder": {
-        "area": [
-          5,
-          10
-        ],
-        "budget": "low",
-        "tags": [
-          "budget"
-        ]
-      },
-      "faq": [
-        {
-          "q": "示範問題：噪音大嗎？",
-          "a": "示範回答：請以實際使用環境為準。"
-        }
-      ],
-      "notFor": [
-        "示範：需要連續長時間大量除濕的環境"
-      ],
-      "policy": {
-        "seller": "mall",
-        "warranty": "示範：商城保固半年",
-        "returns": "示範：依賣場退貨規則"
-      },
-      "extraCosts": [
-        {
-          "label": "運費",
-          "amount": 0
-        }
-      ],
-      "alternative": {
-        "modelCode": "demo-dh-a",
-        "when": "空間超過 10 坪或在意靜音"
-      },
-      "primaryChannel": "shopee",
-      "lastChecked": "2026-11-01",
-      "tags": [
-        "小坪數",
-        "預算友善",
-        "節能"
-      ]
-    },
-    {
-      "demo": true,
-      "category": "dehumidifier",
-      "slug": "demo-dehumidifier-c",
-      "modelCode": "demo-dh-c",
-      "titleTemplate": "示範除濕機 C 評測：{year} 值不值得買",
-      "affiliate": {
-        "shopee": "https://shopee.tw/demo-dh-c"
-      },
-      "price": 14500,
-      "priceUpdatedAt": "2026-11-01",
-      "discount": 0,
-      "taxRefund": 0,
-      "promoBadge": "示範檔期",
-      "featured": false,
-      "tldr": "示範資料：有寵物與小孩的家庭，重視安全與除臭。",
-      "flaw": "示範缺點：濾網需每兩週清洗一次，毛多的家庭更勤",
-      "strength": "示範優點：有安全鎖與除臭設計，適合有寵物和小孩的家庭",
-      "article": {
-        "heading": "家有毛小孩和小孩，先看這三件事",
-        "metaDescription": "示範：有寵物和小孩的家庭選除濕機，要注意濾網被毛堵住、安全鎖與除臭。",
-        "lead": "家裡有貓狗又有小孩，除濕機放在客廳，毛會被吸進濾網，小孩又喜歡亂按按鈕。這類家庭選除濕機，煩惱跟一般人不一樣。示範除濕機 C 標示寵物友善、除臭、安全鎖，但濾網要常洗，這是代價。",
-        "sections": [
-          {
-            "h": "寵物的毛會不會讓濾網一直堵住？",
-            "body": "會，這是這台要先知道的缺點：濾網需每兩週清洗一次，毛多的家庭要洗得更勤。如果你沒時間定期清洗，這台不適合。"
-          },
-          {
-            "h": "小孩會亂按按鈕，要怎麼防？",
-            "body": "這台有安全鎖標示，可以避免誤觸改變設定。實際鎖定方式與功能，購買前請以官方說明書為準。"
-          },
-          {
-            "h": "家裡有寵物味道，除濕機有幫助嗎？",
-            "body": "這台標有除臭功能，但除濕機不能取代清理貓砂、狗窩，最多是輔助。日除濕量 18 L/日，適合大坪數客廳。"
-          }
-        ]
-      },
-      "specs": [
-        {
-          "key": "日除濕量",
-          "value": "18",
-          "unit": "L/日",
-          "score": 7,
-          "higherIsBetter": true
-        },
-        {
-          "key": "運轉噪音",
-          "value": "44",
-          "unit": "dB",
-          "score": 6,
-          "higherIsBetter": false
-        },
-        {
-          "key": "水箱容量",
-          "value": "4",
-          "unit": "L",
-          "score": 5,
-          "higherIsBetter": true
-        }
-      ],
-      "finder": {
-        "area": [
-          10,
-          15
-        ],
-        "budget": "mid",
-        "tags": [
-          "quiet",
-          "family"
-        ]
-      },
-      "faq": [
-        {
-          "q": "示範問題：有寵物的家庭適合嗎？",
-          "a": "示範回答：請以官方說明為準。"
-        }
-      ],
-      "notFor": [
-        "示範：坪數超過 20 坪的空間",
-        "示範：需要頻繁搬動的使用情境"
-      ],
-      "policy": {
-        "seller": "official",
-        "warranty": "示範：官方保固一年",
-        "returns": "示範：依賣場退貨規則"
-      },
-      "extraCosts": [
-        {
-          "label": "運費",
-          "amount": 0
-        },
-        {
-          "label": "示範：舊機回收",
-          "note": "依賣場方案"
-        }
-      ],
-      "alternative": {
-        "modelCode": "demo-dh-a",
-        "when": "更重視靜音、家裡沒有寵物"
-      },
-      "primaryChannel": "shopee",
-      "lastChecked": "2026-11-01",
-      "tags": [
-        "寵物友善",
-        "除臭",
-        "安全鎖",
-        "大坪數"
-      ]
-    },
-    {
-      "demo": true,
       "category": "washer",
       "slug": "demo-washer-a",
       "modelCode": "demo-wm-a",
@@ -9552,10 +9213,6 @@
       "notFor": [
         "測試：需要常搬動機器的使用情境"
       ],
-      "alternative": {
-        "modelCode": "demo-dh-a",
-        "when": "測試：想和示範機種並排比較時"
-      },
       "image": {
         "file": "shopee-108078562-53350123096-1.avif",
         "alt": "PuriCare™ 雙變頻除濕機 - 18公升(白) MD181QWE0",
@@ -9577,254 +9234,6 @@
         ]
       },
       "finderAuto": true
-    },
-    {
-      "demo": true,
-      "category": "dehumidifier",
-      "slug": "demo-dehumidifier-d",
-      "modelCode": "demo-dh-d",
-      "titleTemplate": "示範除濕機 D 評測：{year} 值不值得買",
-      "affiliate": {
-        "shopee": "https://shopee.tw/demo-dh-d",
-        "coupang": "https://www.coupang.com/demo-dh-d"
-      },
-      "price": 32900,
-      "priceUpdatedAt": "2026-11-01",
-      "discount": 3000,
-      "taxRefund": 0,
-      "promoValidUntil": "2026-12-31",
-      "promoBadge": "示範檔期",
-      "featured": false,
-      "tldr": "示範資料：大坪數、旗艦規格，價格偏高。",
-      "flaw": "示範缺點：價格偏高，機身 21 公斤搬動吃力",
-      "strength": "示範優點：日除濕量 25 L/日，適合 16–24 坪的大空間",
-      "specs": [
-        {
-          "key": "日除濕量",
-          "value": "25",
-          "unit": "L/日",
-          "score": 9,
-          "higherIsBetter": true
-        },
-        {
-          "key": "運轉噪音",
-          "value": "38",
-          "unit": "dB",
-          "score": 8,
-          "higherIsBetter": false
-        },
-        {
-          "key": "水箱容量",
-          "value": "6",
-          "unit": "L",
-          "score": 8,
-          "higherIsBetter": true
-        }
-      ],
-      "finder": {
-        "area": [
-          16,
-          24
-        ],
-        "budget": "high",
-        "tags": [
-          "quiet",
-          "family"
-        ]
-      },
-      "notFor": [
-        "示範：坪數超過 20 坪的空間",
-        "示範：需要頻繁搬動的使用情境"
-      ],
-      "policy": {
-        "seller": "official",
-        "warranty": "示範：官方保固一年",
-        "returns": "示範：依賣場退貨規則"
-      },
-      "extraCosts": [
-        {
-          "label": "運費",
-          "amount": 0
-        },
-        {
-          "label": "示範：舊機回收",
-          "note": "依賣場方案"
-        }
-      ],
-      "alternative": {
-        "modelCode": "demo-dh-a",
-        "when": "預算較低或空間較小"
-      },
-      "primaryChannel": "shopee",
-      "lastChecked": "2026-11-01",
-      "prices": {
-        "shopee": 32900
-      },
-      "tags": []
-    },
-    {
-      "demo": true,
-      "category": "dehumidifier",
-      "slug": "demo-dehumidifier-e",
-      "modelCode": "demo-dh-e",
-      "titleTemplate": "示範除濕機 E 評測：{year} 值不值得買",
-      "affiliate": {
-        "shopee": "https://shopee.tw/demo-dh-e",
-        "coupang": "https://www.coupang.com/demo-dh-e"
-      },
-      "price": 18900,
-      "priceUpdatedAt": "2026-11-01",
-      "discount": 1000,
-      "taxRefund": 0,
-      "promoValidUntil": "2026-12-31",
-      "promoBadge": "示範檔期",
-      "featured": false,
-      "tldr": "示範資料：中大坪數、安靜取向的中價位機種。",
-      "flaw": "示範缺點：沒有衣物烘乾模式",
-      "strength": "示範優點：運轉噪音 36 dB，夜間放客廳也不吵",
-      "specs": [
-        {
-          "key": "日除濕量",
-          "value": "18",
-          "unit": "L/日",
-          "score": 7,
-          "higherIsBetter": true
-        },
-        {
-          "key": "運轉噪音",
-          "value": "36",
-          "unit": "dB",
-          "score": 9,
-          "higherIsBetter": false
-        },
-        {
-          "key": "水箱容量",
-          "value": "5",
-          "unit": "L",
-          "score": 7,
-          "higherIsBetter": true
-        }
-      ],
-      "finder": {
-        "area": [
-          12,
-          18
-        ],
-        "budget": "mid",
-        "tags": [
-          "quiet"
-        ]
-      },
-      "notFor": [
-        "示範：坪數超過 20 坪的空間",
-        "示範：需要頻繁搬動的使用情境"
-      ],
-      "policy": {
-        "seller": "official",
-        "warranty": "示範：官方保固一年",
-        "returns": "示範：依賣場退貨規則"
-      },
-      "extraCosts": [
-        {
-          "label": "運費",
-          "amount": 0
-        },
-        {
-          "label": "示範：舊機回收",
-          "note": "依賣場方案"
-        }
-      ],
-      "alternative": {
-        "modelCode": "demo-dh-a",
-        "when": "預算較低或空間較小"
-      },
-      "primaryChannel": "shopee",
-      "lastChecked": "2026-11-01",
-      "prices": {
-        "shopee": 18900
-      },
-      "tags": []
-    },
-    {
-      "demo": true,
-      "category": "dehumidifier",
-      "slug": "demo-dehumidifier-f",
-      "modelCode": "demo-dh-f",
-      "titleTemplate": "示範除濕機 F 評測：{year} 值不值得買",
-      "affiliate": {
-        "shopee": "https://shopee.tw/demo-dh-f",
-        "coupang": "https://www.coupang.com/demo-dh-f"
-      },
-      "price": 22900,
-      "priceUpdatedAt": "2026-11-01",
-      "taxRefund": 0,
-      "featured": false,
-      "tldr": "示範資料：有衣物烘乾模式，適合梅雨季曬不乾的家庭。",
-      "flaw": "示範缺點：耗電偏高，滿載時約 400 W",
-      "strength": "示範優點：附衣物烘乾模式，日除濕量 22 L/日",
-      "specs": [
-        {
-          "key": "日除濕量",
-          "value": "22",
-          "unit": "L/日",
-          "score": 8,
-          "higherIsBetter": true
-        },
-        {
-          "key": "運轉噪音",
-          "value": "41",
-          "unit": "dB",
-          "score": 6,
-          "higherIsBetter": false
-        },
-        {
-          "key": "水箱容量",
-          "value": "5.5",
-          "unit": "L",
-          "score": 7,
-          "higherIsBetter": true
-        }
-      ],
-      "finder": {
-        "area": [
-          10,
-          20
-        ],
-        "budget": "high",
-        "tags": [
-          "family",
-          "dryer"
-        ]
-      },
-      "notFor": [
-        "示範：坪數超過 20 坪的空間",
-        "示範：需要頻繁搬動的使用情境"
-      ],
-      "policy": {
-        "seller": "official",
-        "warranty": "示範：官方保固一年",
-        "returns": "示範：依賣場退貨規則"
-      },
-      "extraCosts": [
-        {
-          "label": "運費",
-          "amount": 0
-        },
-        {
-          "label": "示範：舊機回收",
-          "note": "依賣場方案"
-        }
-      ],
-      "alternative": {
-        "modelCode": "demo-dh-a",
-        "when": "預算較低或空間較小"
-      },
-      "primaryChannel": "shopee",
-      "lastChecked": "2026-11-01",
-      "prices": {
-        "shopee": 22900
-      },
-      "tags": []
     },
     {
       "demo": true,
@@ -9867,10 +9276,6 @@
       "notFor": [
         "測試：需要常搬動機器的使用情境"
       ],
-      "alternative": {
-        "modelCode": "demo-dh-a",
-        "when": "測試：想和示範機種並排比較時"
-      },
       "image": {
         "file": "shopee-108078562-20484757207-1.avif",
         "alt": "PuriCare™ 雙變頻除濕機 - 16公升 (粉紅) (無UVC) - 經典款 MD161QPK3",
@@ -9932,10 +9337,6 @@
       "notFor": [
         "測試：需要常搬動機器的使用情境"
       ],
-      "alternative": {
-        "modelCode": "demo-dh-a",
-        "when": "測試：想和示範機種並排比較時"
-      },
       "image": {
         "file": "shopee-108078562-24487509172-1.avif",
         "alt": "PuriCare™ 雙變頻除濕機 - 12公升(白) DD121MWE0",
@@ -9995,10 +9396,6 @@
       "notFor": [
         "測試：需要常搬動機器的使用情境"
       ],
-      "alternative": {
-        "modelCode": "demo-dh-a",
-        "when": "測試：想和示範機種並排比較時"
-      },
       "officialStore": true,
       "tags": [],
       "finder": {
@@ -10060,10 +9457,6 @@
       "notFor": [
         "測試：需要常搬動機器的使用情境"
       ],
-      "alternative": {
-        "modelCode": "demo-dh-a",
-        "when": "測試：想和示範機種並排比較時"
-      },
       "officialStore": true,
       "tags": [],
       "finder": {
@@ -10125,10 +9518,6 @@
       "notFor": [
         "測試：需要常搬動機器的使用情境"
       ],
-      "alternative": {
-        "modelCode": "demo-dh-a",
-        "when": "測試：想和示範機種並排比較時"
-      },
       "officialStore": true,
       "tags": [],
       "finder": {
@@ -10190,10 +9579,6 @@
       "notFor": [
         "測試：需要常搬動機器的使用情境"
       ],
-      "alternative": {
-        "modelCode": "demo-dh-a",
-        "when": "測試：想和示範機種並排比較時"
-      },
       "tags": [],
       "finder": {
         "budget": "low",
@@ -10254,14 +9639,10 @@
       "notFor": [
         "測試：需要常搬動機器的使用情境"
       ],
-      "alternative": {
-        "modelCode": "demo-dh-a",
-        "when": "測試：想和示範機種並排比較時"
-      },
       "officialStore": true,
       "tags": [],
       "finder": {
-        "budget": "mid",
+        "budget": "high",
         "tags": [
           "family"
         ],
@@ -10319,10 +9700,6 @@
       "notFor": [
         "測試：需要常搬動機器的使用情境"
       ],
-      "alternative": {
-        "modelCode": "demo-dh-a",
-        "when": "測試：想和示範機種並排比較時"
-      },
       "officialStore": true,
       "tags": [],
       "finder": {
@@ -10382,10 +9759,6 @@
       "notFor": [
         "測試：需要常搬動機器的使用情境"
       ],
-      "alternative": {
-        "modelCode": "demo-dh-a",
-        "when": "測試：想和示範機種並排比較時"
-      },
       "officialStore": true,
       "tags": [],
       "finderAuto": true,
@@ -10447,10 +9820,6 @@
       "notFor": [
         "測試：需要常搬動機器的使用情境"
       ],
-      "alternative": {
-        "modelCode": "demo-dh-a",
-        "when": "測試：想和示範機種並排比較時"
-      },
       "officialStore": true,
       "tags": [],
       "finderAuto": true,
@@ -10506,10 +9875,6 @@
       "notFor": [
         "測試：需要常搬動機器的使用情境"
       ],
-      "alternative": {
-        "modelCode": "demo-dh-a",
-        "when": "測試：想和示範機種並排比較時"
-      },
       "tags": [],
       "finderAuto": true,
       "finder": {
