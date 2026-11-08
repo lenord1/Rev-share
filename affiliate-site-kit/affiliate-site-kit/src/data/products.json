@@ -9576,6 +9576,254 @@
           "family"
         ]
       }
+    },
+    {
+      "demo": true,
+      "category": "dehumidifier",
+      "slug": "demo-dehumidifier-d",
+      "modelCode": "demo-dh-d",
+      "titleTemplate": "示範除濕機 D 評測：{year} 值不值得買",
+      "affiliate": {
+        "shopee": "https://shopee.tw/demo-dh-d",
+        "coupang": "https://www.coupang.com/demo-dh-d"
+      },
+      "price": 32900,
+      "priceUpdatedAt": "2026-11-01",
+      "discount": 3000,
+      "taxRefund": 0,
+      "promoValidUntil": "2026-12-31",
+      "promoBadge": "示範檔期",
+      "featured": false,
+      "tldr": "示範資料：大坪數、旗艦規格，價格偏高。",
+      "flaw": "示範缺點：價格偏高，機身 21 公斤搬動吃力",
+      "strength": "示範優點：日除濕量 25 L/日，適合 16–24 坪的大空間",
+      "specs": [
+        {
+          "key": "日除濕量",
+          "value": "25",
+          "unit": "L/日",
+          "score": 9,
+          "higherIsBetter": true
+        },
+        {
+          "key": "運轉噪音",
+          "value": "38",
+          "unit": "dB",
+          "score": 8,
+          "higherIsBetter": false
+        },
+        {
+          "key": "水箱容量",
+          "value": "6",
+          "unit": "L",
+          "score": 8,
+          "higherIsBetter": true
+        }
+      ],
+      "finder": {
+        "area": [
+          16,
+          24
+        ],
+        "budget": "high",
+        "tags": [
+          "quiet",
+          "family"
+        ]
+      },
+      "notFor": [
+        "示範：坪數超過 20 坪的空間",
+        "示範：需要頻繁搬動的使用情境"
+      ],
+      "policy": {
+        "seller": "official",
+        "warranty": "示範：官方保固一年",
+        "returns": "示範：依賣場退貨規則"
+      },
+      "extraCosts": [
+        {
+          "label": "運費",
+          "amount": 0
+        },
+        {
+          "label": "示範：舊機回收",
+          "note": "依賣場方案"
+        }
+      ],
+      "alternative": {
+        "modelCode": "demo-dh-a",
+        "when": "預算較低或空間較小"
+      },
+      "primaryChannel": "shopee",
+      "lastChecked": "2026-11-01",
+      "prices": {
+        "shopee": 32900
+      },
+      "tags": []
+    },
+    {
+      "demo": true,
+      "category": "dehumidifier",
+      "slug": "demo-dehumidifier-e",
+      "modelCode": "demo-dh-e",
+      "titleTemplate": "示範除濕機 E 評測：{year} 值不值得買",
+      "affiliate": {
+        "shopee": "https://shopee.tw/demo-dh-e",
+        "coupang": "https://www.coupang.com/demo-dh-e"
+      },
+      "price": 18900,
+      "priceUpdatedAt": "2026-11-01",
+      "discount": 1000,
+      "taxRefund": 0,
+      "promoValidUntil": "2026-12-31",
+      "promoBadge": "示範檔期",
+      "featured": false,
+      "tldr": "示範資料：中大坪數、安靜取向的中價位機種。",
+      "flaw": "示範缺點：沒有衣物烘乾模式",
+      "strength": "示範優點：運轉噪音 36 dB，夜間放客廳也不吵",
+      "specs": [
+        {
+          "key": "日除濕量",
+          "value": "18",
+          "unit": "L/日",
+          "score": 7,
+          "higherIsBetter": true
+        },
+        {
+          "key": "運轉噪音",
+          "value": "36",
+          "unit": "dB",
+          "score": 9,
+          "higherIsBetter": false
+        },
+        {
+          "key": "水箱容量",
+          "value": "5",
+          "unit": "L",
+          "score": 7,
+          "higherIsBetter": true
+        }
+      ],
+      "finder": {
+        "area": [
+          12,
+          18
+        ],
+        "budget": "mid",
+        "tags": [
+          "quiet"
+        ]
+      },
+      "notFor": [
+        "示範：坪數超過 20 坪的空間",
+        "示範：需要頻繁搬動的使用情境"
+      ],
+      "policy": {
+        "seller": "official",
+        "warranty": "示範：官方保固一年",
+        "returns": "示範：依賣場退貨規則"
+      },
+      "extraCosts": [
+        {
+          "label": "運費",
+          "amount": 0
+        },
+        {
+          "label": "示範：舊機回收",
+          "note": "依賣場方案"
+        }
+      ],
+      "alternative": {
+        "modelCode": "demo-dh-a",
+        "when": "預算較低或空間較小"
+      },
+      "primaryChannel": "shopee",
+      "lastChecked": "2026-11-01",
+      "prices": {
+        "shopee": 18900
+      },
+      "tags": []
+    },
+    {
+      "demo": true,
+      "category": "dehumidifier",
+      "slug": "demo-dehumidifier-f",
+      "modelCode": "demo-dh-f",
+      "titleTemplate": "示範除濕機 F 評測：{year} 值不值得買",
+      "affiliate": {
+        "shopee": "https://shopee.tw/demo-dh-f",
+        "coupang": "https://www.coupang.com/demo-dh-f"
+      },
+      "price": 22900,
+      "priceUpdatedAt": "2026-11-01",
+      "taxRefund": 0,
+      "featured": false,
+      "tldr": "示範資料：有衣物烘乾模式，適合梅雨季曬不乾的家庭。",
+      "flaw": "示範缺點：耗電偏高，滿載時約 400 W",
+      "strength": "示範優點：附衣物烘乾模式，日除濕量 22 L/日",
+      "specs": [
+        {
+          "key": "日除濕量",
+          "value": "22",
+          "unit": "L/日",
+          "score": 8,
+          "higherIsBetter": true
+        },
+        {
+          "key": "運轉噪音",
+          "value": "41",
+          "unit": "dB",
+          "score": 6,
+          "higherIsBetter": false
+        },
+        {
+          "key": "水箱容量",
+          "value": "5.5",
+          "unit": "L",
+          "score": 7,
+          "higherIsBetter": true
+        }
+      ],
+      "finder": {
+        "area": [
+          10,
+          20
+        ],
+        "budget": "high",
+        "tags": [
+          "family",
+          "dryer"
+        ]
+      },
+      "notFor": [
+        "示範：坪數超過 20 坪的空間",
+        "示範：需要頻繁搬動的使用情境"
+      ],
+      "policy": {
+        "seller": "official",
+        "warranty": "示範：官方保固一年",
+        "returns": "示範：依賣場退貨規則"
+      },
+      "extraCosts": [
+        {
+          "label": "運費",
+          "amount": 0
+        },
+        {
+          "label": "示範：舊機回收",
+          "note": "依賣場方案"
+        }
+      ],
+      "alternative": {
+        "modelCode": "demo-dh-a",
+        "when": "預算較低或空間較小"
+      },
+      "primaryChannel": "shopee",
+      "lastChecked": "2026-11-01",
+      "prices": {
+        "shopee": 22900
+      },
+      "tags": []
     }
   ]
 }
