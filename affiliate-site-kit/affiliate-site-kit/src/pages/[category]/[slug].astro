@@ -5,6 +5,8 @@ import Layout from '../../layouts/Layout.astro';
 import TotalCost from '../../components/TotalCost.astro';
 import PriceHistory from '../../components/PriceHistory.astro';
 import StickyCta from '../../components/StickyCta.astro';
+import BehaviorTracker from '../../components/BehaviorTracker.astro';
+import ExitIntentModal from '../../components/ExitIntentModal.astro';
 import IntentDrawer from '../../components/IntentDrawer.astro';
 import productsData from '../../data/products.json';
 import { priceBreakdown, promoActive } from '../../lib/pricing.mjs';
@@ -209,6 +211,8 @@ const ld = [
     </div>
   </main>
   <StickyCta product={p} />
+  <BehaviorTracker />
+  <ExitIntentModal product={p} />
   <IntentDrawer product={p} />
   {ld.map((j) => <script type="application/ld+json" set:html={safeJson(j)} />)}
 </Layout>

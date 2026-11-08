@@ -1,0 +1,62 @@
+---
+// 即時行為動態定向（原生 JS，無第三方套件）：來源情境路由、停留意圖、離站意圖事件。
+// 掛在含 #featured-grid 的頁面（首頁）或商品頁皆可；找不到的元素會自動略過。偏好與行為不上傳。
+---
+<style is:global>
+  .dwell-hint { max-height: 0; opacity: 0; margin: 0; padding-block: 0; overflow: hidden; transform: translateY(6px); transition: all .4s ease; }
+  .dwell-hint[data-on] { max-height: 2.5rem; opacity: 1; transform: none; padding-block: .25rem; }
+  .intent-ring { animation: intent-ring 1.4s ease-in-out 3; box-shadow: 0 0 0 3px rgb(56 189 248 / .7); }
+  @keyframes intent-ring { 50% { box-shadow: 0 0 0 8px rgb(56 189 248 / .15); } }
+  @media (prefers-reduced-motion: reduce) { .intent-ring, .animate-pulse { animation: none !important; } .dwell-hint { transition: none; } }
+</style>
+<script>
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const q = new URLSearchParams(location.search);
+
+  // 1) 來源情境：?intent=quiet|large_tank、?tag=bedroom → 切換 FilterPills，並把最符合的卡片移到最前面
+  const INTENTS = {
+    quiet: { filter: 'small', re: /靜音|低噪|安靜|dB/ },
+    large_tank: { filter: 'big', re: /大水箱|水箱|大容量|公升|\d+\s*L/i },
+    bedroom: { filter: 'small', re: /臥室|小坪|房間|安靜|靜音/ },
+  };
+  const rule = INTENTS[q.get('intent') || q.get('tag') || ''];
+  const grid = document.querySelector('#featured-grid');
+  if (rule && grid) {
+    const apply = () => {
+      document.querySelector(`#filter-pills [data-filter="${rule.filter}"]:not(:disabled)`)?.click();
+      const best = $$('[data-category]', grid).find((c) => !c.hasAttribute('data-pill-hidden') && rule.re.test(c.textContent || ''));
+      if (best) { grid.prepend(best); best.classList.add('intent-ring'); setTimeout(() => best.classList.remove('intent-ring'), 4300); }
+    };
+    // FilterPills 的 script 在 DOM 載入後才綁定，等一個 tick 再套用
+    addEventListener('load', () => setTimeout(apply, 0));
+  }
+
+  // 2) 停留意圖：卡片在畫面內累計 > 3.5 秒 → CTA 脈動 + 顯示（有資料才渲染的）特價小標籤
+  if ('IntersectionObserver' in window) {
+    const timers = new Map();
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        const el = e.target;
+        if (e.isIntersecting && e.intersectionRatio >= 0.5) {
+          if (!timers.has(el)) timers.set(el, setTimeout(() => {
+            el.querySelector('[data-cta]')?.classList.add('animate-pulse');
+            el.querySelector('[data-dwell-hint]')?.setAttribute('data-on', '');
+            io.unobserve(el);
+          }, 3500));
+        } else { clearTimeout(timers.get(el)); timers.delete(el); }
+      }
+    }, { threshold: [0, 0.5] });
+    $$('article[data-code], article.pcard').forEach((c) => io.observe(c));
+  }
+
+  // 3) 離站意圖：桌機滑鼠移出視窗上緣；手機在頁面上段快速向上捲。只發事件，彈窗由 ExitIntentModal 決定顯示與否
+  const fire = () => document.dispatchEvent(new CustomEvent('exit-intent'));
+  document.addEventListener('mouseout', (e) => { if (!e.relatedTarget && e.clientY <= 10) fire(); });
+  let y0 = scrollY, t0 = performance.now(), deep = false;
+  addEventListener('scroll', () => {
+    const y = scrollY, t = performance.now();
+    if (y > 600) deep = true;
+    if (deep && y < 300 && (y - y0) / Math.max(t - t0, 1) < -1.5) fire();
+    y0 = y; t0 = t;
+  }, { passive: true });
+</script>

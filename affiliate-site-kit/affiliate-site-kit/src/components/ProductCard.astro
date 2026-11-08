@@ -89,6 +89,7 @@ if (b.taxRefund) priceParts.push(`退稅／補助 −${fmt.format(b.taxRefund)}`
       )}
 
       <div class="mt-auto flex flex-col gap-1.5">
+        {onSale && <p data-dwell-hint class="dwell-hint w-fit rounded-md bg-rose-50 px-2 py-1 text-xs font-bold text-rose-700 ring-1 ring-rose-200">⚡ 限時特價中，現折 {fmt.format(b.discount)}{p.promoValidUntil ? ` · 活動至 ${String(p.promoValidUntil).slice(5,10).replace('-','/')}` : ''}</p>}
         {unverified ? (
           <div class="flex flex-col gap-0.5">
             <b class="text-xl font-extrabold text-slate-900">價格請至蝦皮查看</b>
@@ -116,6 +117,7 @@ if (b.taxRefund) priceParts.push(`退稅／補助 −${fmt.format(b.taxRefund)}`
         href={`/go/${ch}-${p.modelCode}`}
         rel="sponsored nofollow noopener"
         data-track="go"
+        data-cta
         data-channel={ch}
         data-code={p.modelCode}
         data-slot={slot}

@@ -6,6 +6,9 @@ import ProfileBar from '../components/ProfileBar.astro';
 import QuizDialog from '../components/QuizDialog.astro';
 import ProductCard from '../components/ProductCard.astro';
 import FilterPills from '../components/FilterPills.astro';
+import BehaviorTracker from '../components/BehaviorTracker.astro';
+import ExitIntentModal from '../components/ExitIntentModal.astro';
+import { priceBreakdown } from '../lib/pricing.mjs';
 import productsData from '../data/products.json';
 import channelsData from '../data/channels.json';
 import { getImage } from 'astro:assets';
@@ -21,6 +24,7 @@ const now = Date.now();
 const categories = activeCategories(productsData);
 const catName = Object.fromEntries(categories.map((c) => [c.slug, c.name]));
 const featured = featuredProducts(productsData.products);
+const saleTop = featured.filter((x: any) => { const k = priceBreakdown(x); return !x.priceUnverified && k.active && k.discount > 0; }).sort((a: any, c: any) => priceBreakdown(c).discount - priceBreakdown(a).discount)[0];
 const more = productsData.products.filter((p) => !featured.includes(p));
 const latest = productsData.products.map((p) => p.priceUpdatedAt).sort().at(-1) ?? '';
 const updated = latest.replaceAll('-', '/');
@@ -86,6 +90,8 @@ const count = (slug: string) => productsData.products.filter((p) => p.category =
     </>}
   </main>
   <QuizDialog />
+  <BehaviorTracker />
+  <ExitIntentModal product={saleTop} />
   <script type="application/json" id="catalog" set:html={safeJson(catalog)} />
   <script type="application/ld+json" set:html={safeJson(websiteLd)} />
 </Layout>
