@@ -66,6 +66,7 @@
       picks.forEach(({ p }) => (p.specs || []).forEach((s) => { if (!keys.includes(s.key)) keys.push(s.key); }));
       const cell = (p, k) => { const s = (p.specs || []).find((x) => x.key === k); return s ? esc(s.value + (s.unit ? ' ' + s.unit : '')) : '—'; };
       const rows = [
+        ['', (p) => (p.img ? `<img src="${esc(p.img)}" alt="${esc(p.imgAlt || p.name)}" loading="lazy" style="width:100%;max-width:140px;aspect-ratio:1;object-fit:contain">` : '')],
         ['到手價', (p) => `<b class="num">${fmt(p.final)}</b>`],
         ...keys.map((k) => [k, (p) => cell(p, k)]),
         ['缺點', (p) => esc(p.flaw)],
@@ -78,7 +79,7 @@
     const rest = pickProducts(inCategory(), state.answers).slice(3).filter((r) => r.score > 0).slice(0, 8);
     const others = rest.length
       ? `<div class="others"><p class="q" style="margin:14px 0 6px">還有 ${rest.length} 台也符合</p><ul class="others-list">${rest
-          .map(({ p, reasons: rs }) => `<li><a href="/${esc(p.category)}/${esc(p.slug)}/">${esc(p.name)}</a>${official(p)} <b class="num">${fmt(p.final)}</b>${rs.length ? ` <span class="note">${esc(rs.join('、'))}</span>` : ''} <a class="btn small ghost" ${attrs(p, 'finder-more')}>到${esc(chName(p))}看價格</a></li>`)
+          .map(({ p, reasons: rs }) => `<li>${p.img ? `<img src="${esc(p.img)}" alt="${esc(p.imgAlt || p.name)}" width="56" height="56" loading="lazy" style="object-fit:contain;border-radius:6px">` : ''}<a href="/${esc(p.category)}/${esc(p.slug)}/">${esc(p.name)}</a>${official(p)} <b class="num">${fmt(p.final)}</b>${rs.length ? ` <span class="note">${esc(rs.join('、'))}</span>` : ''} <a class="btn small ghost" ${attrs(p, 'finder-more')}>到${esc(chName(p))}看價格</a></li>`)
           .join('')}</ul></div>`
       : '';
     bodyEl.innerHTML = `<div class="res-layout">${hero}${cmp}${others}</div>` + `<button type="button" class="link-btn" data-restart>重新選一次</button>
