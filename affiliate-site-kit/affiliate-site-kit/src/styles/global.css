@@ -92,9 +92,9 @@ h1{font-size:var(--step-3)}h2{font-size:var(--step-2)}h3{font-size:var(--step-1)
 .opts button:hover{border-color:var(--accent)}
 .steps{display:flex;gap:6px;margin-top:14px}.steps i{flex:1;height:4px;border-radius:2px;background:var(--line)}.steps i.on{background:var(--accent)}
 .res-layout{display:grid;gap:12px;align-items:start}
-@media (min-width:900px){.res-layout{grid-template-columns:minmax(280px,2fr) 3fr;gap:24px}.res-layout .cmp-wrap>.q{margin-top:14px}}
 .cmp-wrap .scroll{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
 .cmp{border-collapse:collapse;width:100%;min-width:480px;font-size:var(--step--1)}
+@media (min-width:640px){.cmp{min-width:0;table-layout:fixed}.cmp tbody th,.cmp thead th:first-child{width:7em}.cmp td,.cmp thead th{overflow-wrap:anywhere}}
 .cmp th,.cmp td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
 .cmp tbody th{color:var(--ink-2);font-weight:600;white-space:nowrap}
 .result{margin-top:14px;display:grid;gap:8px}
