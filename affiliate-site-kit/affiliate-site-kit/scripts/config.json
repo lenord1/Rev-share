@@ -1,0 +1,64 @@
+{
+  "priceStaleDays": 14,
+  "minSpecs": 3,
+  "minFlawLength": 8,
+  "placeholderHosts": [
+    "example.com",
+    "example.org",
+    "localhost"
+  ],
+  "installCategories": [
+    "washer",
+    "water-heater",
+    "air-conditioner",
+    "dishwasher",
+    "refrigerator",
+    "water-purifier",
+    "smart-lock",
+    "massage-chair",
+    "dryer",
+    "range-hood",
+    "safe",
+    "fitness-equipment",
+    "furniture"
+  ],
+  "priceHistory": {
+    "windowDays": 30,
+    "minPoints": 3,
+    "minSpanDays": 14
+  },
+  "linkCheck": {
+    "delayMs": 1500,
+    "maxHops": 5,
+    "timeoutMs": 10000,
+    "userAgent": "affiliate-link-check/1.0 (site owner health check)"
+  },
+  "provider": "manual",
+  "maxPriceChangePct": 40,
+  "tagVocabulary": [
+    "寵物友善",
+    "除臭",
+    "安全鎖",
+    "靜音",
+    "大坪數",
+    "小坪數",
+    "預算友善",
+    "節能",
+    "省空間",
+    "易清潔"
+  ],
+  "minIntentProducts": 2,
+  "providers": {
+    "coupang": {
+      "urlTemplate": "",
+      "method": "GET",
+      "tokenEnv": "COUPANG_API_TOKEN",
+      "tokenHeader": "Authorization",
+      "tokenPrefix": "Bearer ",
+      "pricePath": "",
+      "dateFormatNote": "",
+      "delayMs": 800,
+      "timeoutMs": 10000
+    }
+  }
+}

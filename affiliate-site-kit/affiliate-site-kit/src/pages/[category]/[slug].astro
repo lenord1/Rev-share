@@ -1,0 +1,214 @@
+---
+// 商品評測頁母版：每個商品一頁（pSEO）。缺資料就讓建置報錯，不補編。
+import { Image } from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
+import TotalCost from '../../components/TotalCost.astro';
+import PriceHistory from '../../components/PriceHistory.astro';
+import StickyCta from '../../components/StickyCta.astro';
+import IntentDrawer from '../../components/IntentDrawer.astro';
+import productsData from '../../data/products.json';
+import { priceBreakdown, promoActive } from '../../lib/pricing.mjs';
+import channelsData from '../../data/channels.json';
+import { productName, primaryChannel, safeJson } from '../../lib/catalog.mjs';
+import { money, ymd, num } from '../../lib/format.mjs';
+import intentsData from '../../data/intents.json';
+import config from '../../../scripts/config.json';
+import { buildableIntents } from '../../lib/intents.mjs';
+import { noindexProduct } from '../../lib/indexing.mjs';
+
+export function getStaticPaths() {
+  const { products, categories } = productsData as { products: any[]; categories: { slug: string; name: string }[] };
+  for (const p of products) {
+    const missing = ['flaw', 'price', 'affiliate', 'specs', 'tldr', 'titleTemplate'].filter((k) => {
+      const v = (p as any)[k];
+      return v == null || v === '' || (typeof v === 'object' && Object.keys(v).length === 0);
+    });
+    if (missing.length) throw new Error(`商品 ${p.modelCode ?? p.slug} 缺少必填欄位：${missing.join('、')}`);
+    if (p.slug === 'for') throw new Error(`商品 ${p.modelCode} 的 slug 不可為 "for"（保留給情境頁）`);
+    if (!categories.some((c) => c.slug === p.category)) throw new Error(`商品 ${p.modelCode} 的品類 ${p.category} 不在 categories 內`);
+  }
+  return products.map((product) => ({ params: { category: product.category, slug: product.slug }, props: { product } }));
+}
+
+const { product: p } = Astro.props as { product: any };
+const { products, categories } = productsData as { products: any[]; categories: { slug: string; name: string }[] };
+const category = categories.find((c) => c.slug === p.category)!;
+const year = new Date().getFullYear();
+const title = p.titleTemplate.replace('{year}', String(year));
+const name = productName(p);
+const b = priceBreakdown(p);
+const alt = p.alternative ? products.find((x) => x.modelCode === p.alternative.modelCode) : undefined;
+const site = Astro.site!;
+const channelName = channelsData.channels.find((c) => c.id === primaryChannel(p))?.name ?? primaryChannel(p);
+
+const images = import.meta.glob('../../assets/products/*.{jpg,jpeg,png,webp,avif}', { eager: true }) as Record<string, { default: ImageMetadata }>;
+const img = p.image?.file ? images[`../../assets/products/${p.image.file}`]?.default : undefined;
+
+// 規格比較表：本商品 vs 建議替代；兩台都有數值且不同才標「勝出」
+const cols = [p, ...(alt ? [alt] : [])];
+const specKeys = [...new Set(cols.flatMap((c) => c.specs.map((s: any) => s.key)))];
+const cell = (c: any, key: string) => c.specs.find((s: any) => s.key === key);
+const rows = specKeys.map((key) => {
+  const cells = cols.map((c) => cell(c, key));
+  let winner = -1;
+  if (cols.length > 1 && cells.every(Boolean)) {
+    const v = cells.map((s: any) => num(s.value));
+    const hib = cells[0].higherIsBetter ?? true;
+    if (v.every((x) => !Number.isNaN(x)) && v[0] !== v[1]) winner = (v[0] > v[1]) === hib ? 0 : 1;
+  }
+  return { key, cells, winner };
+});
+const finals = cols.map((c) => priceBreakdown(c).final);
+// 內部連結：這台出現在哪些情境頁（情境頁只列前 4 台）
+const related = buildableIntents(products, intentsData.intents, { minProducts: config.minIntentProducts ?? 2 })
+  .filter((n) => n.products.slice(0, 4).some((x: any) => x.modelCode === p.modelCode));
+const priceWinner = cols.length > 1 && finals[0] !== finals[1] ? (finals[0] < finals[1] ? 0 : 1) : -1;
+
+const sellerLabel: Record<string, string> = { official: '品牌官方', mall: '平台自營', 'third-party': '第三方賣家' };
+const extra = (e: any) => (e.amount === 0 ? '免費' : typeof e.amount === 'number' ? money(e.amount) : e.note);
+
+const url = new URL(`/${p.category}/${p.slug}/`, site).href;
+const offerPrice = p.price - (promoActive(p) ? p.discount ?? 0 : 0);
+const ld = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: '首頁', item: new URL('/', site).href },
+      { '@type': 'ListItem', position: 2, name: category.name, item: new URL(`/${p.category}/`, site).href },
+      { '@type': 'ListItem', position: 3, name, item: url },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name,
+    description: p.tldr,
+    ...(img ? { image: new URL(img.src, site).href } : {}),
+    // 沒有真實評價資料，所以不輸出評分相關欄位；也不宣稱庫存狀態
+    // offers.price = 標價 − 現折，與到手價明細的「結帳金額」一致（頁面上看得到）
+    offers: {
+      '@type': 'Offer',
+      price: offerPrice,
+      priceCurrency: 'TWD',
+      ...(promoActive(p) && p.promoValidUntil ? { priceValidUntil: p.promoValidUntil } : {}),
+    },
+  },
+  ...(p.faq?.length
+    ? [{
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: p.faq.map((f: any) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+      }]
+    : []),
+];
+---
+<Layout title={`${title}｜挑家電`} description={p.article?.metaDescription ?? p.tldr} noindex={noindexProduct(p)}>
+  <main class="wrap">
+    <nav class="crumbs" aria-label="麵包屑"><a href="/">首頁</a> / <a href={`/${p.category}/`}>{category.name}</a> / {name}</nav>
+    <h1>{title}</h1>
+    <p class="disclosure">本頁含分潤連結，您購買不會多花錢。價格與優惠以賣場頁面為準。</p>
+    <p class="note" style="margin:4px 0 0">評測依據：規格整理自官方資料與賣場標示，非本站實測。資料核對日 {ymd(p.lastChecked)}。{p.demo && '（示範資料，請以真實型號與價格取代）'}</p>
+
+    <div class="layout">
+      <div class="c-tldr">
+        <section class="box" aria-labelledby="tldr">
+          <h2 id="tldr" class="verdict">{p.tldr}</h2>
+          {img && <Image class="prod-img" src={img} alt={p.image.alt} widths={[360, 720]} sizes="(min-width: 900px) 600px, 100vw" />}
+          <div class="flaw-box" data-intent-zone="flaw"><b>要先知道的缺點</b>{p.flaw}</div>
+        </section>
+      </div>
+
+      <TotalCost product={p} />
+
+      <div class="c-rest">
+        {p.article && (
+          <article class="sec article" aria-labelledby="h-article">
+            <h2 id="h-article">{p.article.heading ?? '買之前，先看這幾個煩惱'}</h2>
+            <p class="lead">{p.article.lead}</p>
+            {p.article.sections.map((s: any) => <><h3>{s.h}</h3><p>{s.body}</p></>)}
+            {p.demo && <p class="note">（示範文章：內容依示範資料撰寫，換成真實商品時請改寫，並以官方資料為依據。）</p>}
+          </article>
+        )}
+
+        {p.notFor?.length > 0 && (
+          <section class="sec" aria-labelledby="h-notfor">
+            <h2 id="h-notfor">不適合你的情況</h2>
+            <div class="box"><ul class="plain">{p.notFor.map((n: string) => <li>{n}</li>)}</ul></div>
+          </section>
+        )}
+
+        <section class="sec" aria-labelledby="h-cost">
+          <h2 id="h-cost">買之前確認</h2>
+          <div class="box">
+            <dl class="facts">
+              {(p.extraCosts ?? []).map((e: any) => <><dt>{e.label}</dt><dd>{extra(e)}</dd></>)}
+              {p.policy && <>
+                <dt>保固</dt><dd>{p.policy.warranty}</dd>
+                <dt>退貨</dt><dd>{p.policy.returns}</dd>
+                <dt>賣家</dt><dd>{sellerLabel[p.policy.seller] ?? p.policy.seller}</dd>
+              </>}
+            </dl>
+          </div>
+        </section>
+
+        <PriceHistory product={p} />
+
+        <section class="sec" aria-labelledby="h-spec" data-intent-zone="spec">
+          <h2 id="h-spec">規格{alt ? '比較' : ''}</h2>
+          <div class="tablewrap overflow-x-auto" tabindex="0" role="region" aria-label="規格比較表，可左右捲動">
+            <table>
+              <thead>
+                <tr>
+                  <th class="sticky top-0 left-0">項目</th>
+                  {cols.map((c) => <th class="sticky top-0">{productName(c)}</th>)}
+                </tr>
+              </thead>
+              <tbody>
+                {rows.map((r) => (
+                  <tr>
+                    <th class="sticky left-0" scope="row">{r.key}</th>
+                    {r.cells.map((s: any, i: number) => (
+                      <td class={`num ${r.winner === i ? 'win' : ''}`}>{s ? `${s.value}${s.unit ? ` ${s.unit}` : ''}` : '—'}</td>
+                    ))}
+                  </tr>
+                ))}
+                <tr>
+                  <th class="sticky left-0" scope="row">到手價</th>
+                  {finals.map((f, i) => <td class={`num ${priceWinner === i ? 'win' : ''}`}>{money(f)}</td>)}
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="margin:14px 0 0">
+            <a class="btn" href={`/go/${primaryChannel(p)}-${p.modelCode}`} rel="sponsored nofollow noopener" data-track="go" data-channel={primaryChannel(p)} data-code={p.modelCode} data-slot="table">到{channelName}看最新價格</a>
+          </p>
+        </section>
+
+        {alt && p.alternative?.when && (
+          <section class="sec" aria-labelledby="h-alt">
+            <h2 id="h-alt">如果只能選一台</h2>
+            <div class="alt"><p style="margin:0"><b>選{name}。</b>如果是「{p.alternative.when}」，改看 <a href={`/${alt.category}/${alt.slug}/`}>{productName(alt)}</a>。</p></div>
+          </section>
+        )}
+
+        {related.length > 0 && (
+          <section class="sec" aria-labelledby="h-related">
+            <h2 id="h-related">也可以這樣挑</h2>
+            <ul class="plain">{related.map((n: any) => <li><a href={`/${n.category}/for/${n.slug}/`}>{n.title}</a></li>)}</ul>
+          </section>
+        )}
+
+        {p.faq?.length > 0 && (
+          <section class="sec" aria-labelledby="h-faq">
+            <h2 id="h-faq">常見問題</h2>
+            {p.faq.map((f: any) => <details><summary>{f.q}</summary><p>{f.a}</p></details>)}
+          </section>
+        )}
+      </div>
+    </div>
+  </main>
+  <StickyCta product={p} />
+  <IntentDrawer product={p} />
+  {ld.map((j) => <script type="application/ld+json" set:html={safeJson(j)} />)}
+</Layout>

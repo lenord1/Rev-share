@@ -1,0 +1,2939 @@
+{
+  "demo-dh-a": [
+    {
+      "date": "2026-10-10",
+      "channel": "coupang",
+      "price": 13500
+    },
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 13900
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 13500
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "coupang",
+      "price": 13600
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 13200
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 13900
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "coupang",
+      "price": 13400
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 13900
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 13400
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "coupang",
+      "price": 13200
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 12900
+    }
+  ],
+  "demo-dh-b": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 8700
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 8400
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 8600
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 8300
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 8300
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 8500
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 8900
+    }
+  ],
+  "demo-dh-c": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 14800
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 15000
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 14200
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 13900
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 15200
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 14900
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 14500
+    }
+  ],
+  "demo-wm-a": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 34900
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 32500
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 33900
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 34900
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 34900
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 33900
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 32900
+    }
+  ],
+  "demo-wm-b": [
+    {
+      "date": "2026-10-27",
+      "channel": "shopee",
+      "price": 18900
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 18900
+    }
+  ],
+  "demo-wh-a": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 13300
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 13200
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 13000
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 13300
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 13300
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 13100
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 12800
+    }
+  ],
+  "demo-wh-b": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 6900
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 6900
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 6900
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 6900
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 6900
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 6900
+    }
+  ],
+  "demo-ac-a": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 30900
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 29900
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 30400
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 30900
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 30400
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 29700
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 28900
+    }
+  ],
+  "demo-ac-b": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 16700
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 16500
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 16300
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 16600
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 16100
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 16400
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 16900
+    }
+  ],
+  "demo-rv-a": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 20100
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 19400
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 20700
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 20300
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 19600
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 20500
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 19900
+    }
+  ],
+  "demo-rv-b": [
+    {
+      "date": "2026-10-23",
+      "channel": "shopee",
+      "price": 9900
+    },
+    {
+      "date": "2026-10-28",
+      "channel": "shopee",
+      "price": 9900
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 9900
+    }
+  ],
+  "demo-ap-a": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 12500
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 12400
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 12600
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 12300
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 12300
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 12500
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 12900
+    }
+  ],
+  "demo-ap-b": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 6000
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 5700
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 6100
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 6000
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 5800
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 6100
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 5900
+    }
+  ],
+  "demo-dw-a": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 31500
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 28300
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 30300
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 31500
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 31500
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 30600
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 28900
+    }
+  ],
+  "demo-dw-b": [
+    {
+      "date": "2026-10-27",
+      "channel": "shopee",
+      "price": 15900
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 15900
+    }
+  ],
+  "demo-rf-a": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 45000
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 44600
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 43800
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 45000
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 45000
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 44200
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 42900
+    }
+  ],
+  "demo-rf-b": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 17400
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 17200
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 17500
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 17000
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 17000
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 17400
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 17900
+    }
+  ],
+  "demo-wp-a": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 15100
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 14500
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 15500
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 15300
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 14600
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 15300
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 14900
+    }
+  ],
+  "demo-wp-b": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 7500
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 6800
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 7200
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 7500
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 7500
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 7300
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 6900
+    }
+  ],
+  "demo-fw-a": [
+    {
+      "date": "2026-10-27",
+      "channel": "shopee",
+      "price": 15900
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 15900
+    }
+  ],
+  "demo-fw-b": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 8300
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 8200
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 8100
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 8300
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 8300
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 8100
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 7900
+    }
+  ],
+  "demo-cm-a": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 24200
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 23900
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 24400
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 23700
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 23700
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 24200
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 24900
+    }
+  ],
+  "demo-cm-b": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 6000
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 5700
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 6100
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 6000
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 5800
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 6100
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 5900
+    }
+  ],
+  "demo-so-a": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 20600
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 18500
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 19800
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 20600
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 20600
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 20000
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 18900
+    }
+  ],
+  "demo-so-b": [
+    {
+      "date": "2026-10-27",
+      "channel": "shopee",
+      "price": 3900
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 3900
+    }
+  ],
+  "demo-sl-a": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 10400
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 10300
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 10100
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 10400
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 10400
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 10200
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 9900
+    }
+  ],
+  "demo-sl-b": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 4800
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 4700
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 4800
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 4700
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 4700
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 4800
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 4900
+    }
+  ],
+  "demo-tv-a": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 33400
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 31900
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 34200
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 33700
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 32200
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 33900
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 32900
+    }
+  ],
+  "demo-tv-b": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 10800
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 9700
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 10400
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 10800
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 10800
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 10500
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 9900
+    }
+  ],
+  "demo-fn-a": [
+    {
+      "date": "2026-10-27",
+      "channel": "shopee",
+      "price": 4900
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 4900
+    }
+  ],
+  "demo-fn-b": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 1600
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 1600
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 1500
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 1600
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 1600
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 1500
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 1500
+    }
+  ],
+  "demo-hd-a": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 6700
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 6600
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 6800
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 6600
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 6600
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 6700
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 6900
+    }
+  ],
+  "demo-hd-b": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 1900
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 1800
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 2000
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 1900
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 1900
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 2000
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 1900
+    }
+  ],
+  "demo-pj-a": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 21700
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 19500
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 20900
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 21700
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 21700
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 21100
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 19900
+    }
+  ],
+  "demo-pj-b": [
+    {
+      "date": "2026-10-27",
+      "channel": "shopee",
+      "price": 7900
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 7900
+    }
+  ],
+  "demo-ec-a": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 13500
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 13400
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 13200
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 13500
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 13500
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 13300
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 12900
+    }
+  ],
+  "demo-ec-b": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 11500
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 11400
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 11700
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 11300
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 11300
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 11500
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 11900
+    }
+  ],
+  "demo-mt-a": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 26300
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 25100
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 26900
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 26500
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 25400
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 26700
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 25900
+    }
+  ],
+  "demo-mt-b": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 14100
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 12600
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 13500
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 14100
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 14100
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 13700
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 12900
+    }
+  ],
+  "demo-bg-a": [
+    {
+      "date": "2026-10-27",
+      "channel": "shopee",
+      "price": 16900
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 16900
+    }
+  ],
+  "demo-bg-b": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 7200
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 7200
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 7000
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 7200
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 7200
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 7100
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 6900
+    }
+  ],
+  "demo-pc-a": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 14500
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 14300
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 14600
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 14200
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 14200
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 14500
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 14900
+    }
+  ],
+  "demo-pc-b": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 2900
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 2800
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 3000
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 3000
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 2800
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 3000
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 2900
+    }
+  ],
+  "demo-mc-a": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 98000
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 88100
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 94400
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 98000
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 98000
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 95300
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 89900
+    }
+  ],
+  "demo-mc-b": [
+    {
+      "date": "2026-10-27",
+      "channel": "shopee",
+      "price": 39900
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 39900
+    }
+  ],
+  "demo-dr-a": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 28200
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 28000
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 27400
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 28200
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 28200
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 27700
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 26900
+    }
+  ],
+  "demo-dr-b": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 12500
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 12400
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 12600
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 12300
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 12300
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 12500
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 12900
+    }
+  ],
+  "demo-hc-a": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 2490
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 2390
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 2590
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 2590
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 2490
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 2590
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 2490
+    }
+  ],
+  "demo-hc-b": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 5390
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 4890
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 5190
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 5390
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 5390
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 5290
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 4990
+    }
+  ],
+  "demo-tb-a": [
+    {
+      "date": "2026-10-27",
+      "channel": "shopee",
+      "price": 3900
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 3900
+    }
+  ],
+  "demo-tb-b": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 3000
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 3000
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 3000
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 3000
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 3000
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 3000
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 2900
+    }
+  ],
+  "demo-tm-a": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 19300
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 19100
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 19500
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 18900
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 18900
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 19300
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 19900
+    }
+  ],
+  "demo-tm-b": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 9000
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 8600
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 9300
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 9100
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 8700
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 9200
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 8900
+    }
+  ],
+  "demo-cv-a": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 14100
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 12600
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 13500
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 14100
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 14100
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 13700
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 12900
+    }
+  ],
+  "demo-cv-b": [
+    {
+      "date": "2026-10-27",
+      "channel": "shopee",
+      "price": 5900
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 5900
+    }
+  ],
+  "demo-mi-a": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 5100
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 5100
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 5000
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 5100
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 5100
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 5000
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 4900
+    }
+  ],
+  "demo-mi-b": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 2390
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 2390
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 2490
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 2390
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 2390
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 2390
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 2490
+    }
+  ],
+  "demo-sh-a": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 3200
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 3100
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 3300
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 3300
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 3100
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 3300
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 3200
+    }
+  ],
+  "demo-sh-b": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 6400
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 5800
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 6200
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 6400
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 6400
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 6300
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 5900
+    }
+  ],
+  "demo-rc-a": [
+    {
+      "date": "2026-10-27",
+      "channel": "shopee",
+      "price": 9900
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 9900
+    }
+  ],
+  "demo-rc-b": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 2000
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 2000
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 1900
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 2000
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 2000
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 2000
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 1900
+    }
+  ],
+  "demo-mw-a": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 8600
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 8500
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 8700
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 8500
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 8500
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 8600
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 8900
+    }
+  ],
+  "demo-mw-b": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 3600
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 3400
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 3600
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 3600
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 3400
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 3600
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 3500
+    }
+  ],
+  "demo-bl-a": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 8600
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 7700
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 8300
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 8600
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 8600
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 8400
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 7900
+    }
+  ],
+  "demo-bl-b": [
+    {
+      "date": "2026-10-27",
+      "channel": "shopee",
+      "price": 3200
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 3200
+    }
+  ],
+  "demo-rh-a": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 13500
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 13400
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 13200
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 13500
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 13500
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 13300
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 12900
+    }
+  ],
+  "demo-rh-b": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 5700
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 5700
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 5800
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 5600
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 5600
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 5700
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 5900
+    }
+  ],
+  "demo-im-a": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 15100
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 14500
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 15500
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 15300
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 14600
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 15300
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 14900
+    }
+  ],
+  "demo-im-b": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 6400
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 5800
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 6200
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 6400
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 6400
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 6300
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 5900
+    }
+  ],
+  "demo-sm-a": [
+    {
+      "date": "2026-10-27",
+      "channel": "shopee",
+      "price": 4900
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 4900
+    }
+  ],
+  "demo-sm-b": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 1600
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 1600
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 1500
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 1600
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 1600
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 1500
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 1500
+    }
+  ],
+  "demo-sf-a": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 12500
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 12400
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 12600
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 12300
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 12300
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 12500
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 12900
+    }
+  ],
+  "demo-sf-b": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 5000
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 4800
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 5100
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 5000
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 4800
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 5000
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 4900
+    }
+  ],
+  "demo-fu-a": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 31500
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 28300
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 30300
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 31500
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 31500
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 30600
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 28900
+    }
+  ],
+  "demo-fu-b": [
+    {
+      "date": "2026-10-27",
+      "channel": "shopee",
+      "price": 15900
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 15900
+    }
+  ],
+  "demo-hp-a": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 8300
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 8200
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 8100
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 8300
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 8300
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 8100
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 7900
+    }
+  ],
+  "demo-hp-b": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 2800
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 2800
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 2800
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 2800
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 2800
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 2800
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 2900
+    }
+  ],
+  "demo-sb-a": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 16100
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 15400
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 16500
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 16300
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 15600
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 16400
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 15900
+    }
+  ],
+  "demo-sb-b": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 6400
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 5800
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 6200
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 6400
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 6400
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 6300
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 5900
+    }
+  ],
+  "demo-lt-a": [
+    {
+      "date": "2026-10-27",
+      "channel": "shopee",
+      "price": 32900
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 32900
+    }
+  ],
+  "demo-lt-b": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 12500
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 12400
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 12100
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 12500
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 12500
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 12300
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 11900
+    }
+  ],
+  "demo-cr-a": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 29000
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 28700
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 29300
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 28400
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 28400
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 29000
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 29900
+    }
+  ],
+  "demo-cr-b": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 9000
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 8600
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 9300
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 9100
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 8700
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 9200
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 8900
+    }
+  ],
+  "demo-pg-a": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 1390
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 1290
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 1390
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 1390
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 1390
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 1390
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 1290
+    }
+  ],
+  "demo-pg-b": [
+    {
+      "date": "2026-10-27",
+      "channel": "shopee",
+      "price": 2900
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 2900
+    }
+  ],
+  "demo-kf-a": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 9300
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 9300
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 9100
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 9300
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 9300
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 9200
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 8900
+    }
+  ],
+  "demo-kf-b": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 6700
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 6600
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 6800
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 6600
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 6600
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 6700
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 6900
+    }
+  ],
+  "demo-mg-a": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 4000
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 3800
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 4100
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 4000
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 3800
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 4000
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 3900
+    }
+  ],
+  "demo-mg-b": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 3200
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 2800
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 3000
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 3200
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 3200
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 3100
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 2900
+    }
+  ],
+  "demo-fe-a": [
+    {
+      "date": "2026-10-27",
+      "channel": "shopee",
+      "price": 9900
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 9900
+    }
+  ],
+  "demo-fe-b": [
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "price": 5100
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "price": 5100
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "price": 5000
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "price": 5100
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "price": 5100
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "price": 5000
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "price": 4900
+    }
+  ]
+}

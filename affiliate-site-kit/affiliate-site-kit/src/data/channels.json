@@ -1,0 +1,78 @@
+{
+  "_說明": "通路註冊表，所有通路相關設定的唯一來源。hosts 是分潤目標網址允許的網域（尾綴比對）；requiredParams 是最終落點網址必須帶的聯盟參數名稱；confirmed 代表你已對照聯盟後台實際產生的連結確認過 hosts 與參數。旅遊平台的分潤常經第三方聯盟網路，連結網域可能不同，務必以後台實際連結為準。 第一階段只啟用 shopee 與 coupang；旅遊平台（klook、kkday、agoda）在 Step 14 才啟用。",
+  "channels": [
+    {
+      "id": "shopee",
+      "name": "蝦皮",
+      "enabled": true,
+      "confirmed": false,
+      "verticals": [
+        "appliance",
+        "travel"
+      ],
+      "hosts": [
+        "shopee.tw",
+        "shp.ee"
+      ],
+      "requiredParams": [],
+      "showPrice": true
+    },
+    {
+      "id": "coupang",
+      "name": "酷澎",
+      "enabled": true,
+      "confirmed": false,
+      "verticals": [
+        "appliance"
+      ],
+      "hosts": [
+        "coupang.com",
+        "coupa.ng"
+      ],
+      "requiredParams": [],
+      "showPrice": true
+    },
+    {
+      "id": "klook",
+      "name": "Klook",
+      "enabled": false,
+      "confirmed": false,
+      "verticals": [
+        "travel"
+      ],
+      "hosts": [
+        "klook.com"
+      ],
+      "requiredParams": [],
+      "showPrice": false
+    },
+    {
+      "id": "kkday",
+      "name": "KKday",
+      "enabled": false,
+      "confirmed": false,
+      "verticals": [
+        "travel"
+      ],
+      "hosts": [
+        "kkday.com"
+      ],
+      "requiredParams": [],
+      "showPrice": false
+    },
+    {
+      "id": "agoda",
+      "name": "Agoda",
+      "enabled": false,
+      "confirmed": false,
+      "verticals": [
+        "travel"
+      ],
+      "hosts": [
+        "agoda.com"
+      ],
+      "requiredParams": [],
+      "showPrice": false
+    }
+  ]
+}

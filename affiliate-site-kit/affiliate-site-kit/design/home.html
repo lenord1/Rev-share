@@ -1,0 +1,54 @@
+<!doctype html><html lang="zh-Hant-TW"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>設計參考：首頁</title><link rel="stylesheet" href="tokens.css"><link rel="stylesheet" href="base.css">
+<style>
+.hero{padding:28px 0 8px}.hero h1{max-width:16em}.hero p{color:var(--ink-2);max-width:34em;margin:10px 0 0}
+.finder{margin-top:20px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px}
+.cats{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.cats button{flex:none;min-height:44px;padding:0 16px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;font-weight:600;cursor:pointer}
+.cats button[aria-pressed=true]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.q{margin-top:14px;font-weight:700;font-size:var(--step-1)}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-top:10px}
+.opts button{min-height:52px;border-radius:var(--radius);border:1.5px solid var(--line);background:var(--paper);font:inherit;color:var(--ink);cursor:pointer;font-weight:600}
+.opts button:hover{border-color:var(--accent)}
+.steps{display:flex;gap:6px;margin-top:14px}.steps i{flex:1;height:4px;border-radius:2px;background:var(--line)}.steps i.on{background:var(--accent)}
+.grid-h{display:flex;align-items:baseline;justify-content:space-between;margin:32px 0 12px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:760px){.grid{grid-template-columns:repeat(3,1fr);gap:16px}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;text-decoration:none;color:inherit}
+.card:hover{border-color:var(--accent)}
+.thumb{aspect-ratio:4/3;background:var(--accent-soft);display:grid;place-items:center;color:var(--accent);font-weight:800;font-size:var(--step-2);letter-spacing:.05em}
+.card .b{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card .cat{font-size:var(--step--1);color:var(--ink-2)}
+.card h3{font-size:var(--step-0);font-weight:700}
+.card .price{margin-top:auto;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.card .price b{font-size:var(--step-2);letter-spacing:-.02em}
+.card .price s{color:var(--ink-2);font-size:var(--step--1)}
+.card .b>.badge{align-self:flex-start}.card .flaw{align-self:flex-start;font-size:var(--step--1);color:var(--warn-ink);background:var(--warn-soft);border-radius:6px;padding:4px 8px}
+.cats2{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.cats2 a{display:block;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);color:var(--ink);text-decoration:none;font-weight:700}
+.cats2 a span{display:block;font-weight:400;color:var(--ink-2);font-size:var(--step--1)}
+</style></head><body>
+<div class="inapp" role="status"><span>請改用 Safari / Chrome 開啟，才能順利帶到購物 App。</span><button type="button">知道了</button></div>
+<header class="site-head"><div class="wrap"><a class="brand" href="#">挑家電</a><nav class="nav"><a href="#">除濕機</a><a href="#">洗衣機</a><a href="#">熱水器</a><a href="#">關於本站</a></nav></div></header>
+<main class="wrap">
+<section class="hero"><h1>三題找到適合你家的那一台</h1><p>每台都列出一個真實缺點和扣掉折扣、退稅後的到手價，看完直接去賣場下單。</p>
+<div class="finder" aria-label="選購精靈">
+<div class="cats" role="group" aria-label="選擇品類"><button aria-pressed="true">除濕機</button><button aria-pressed="false">洗衣機</button><button aria-pressed="false">熱水器</button><button aria-pressed="false">冷氣</button><button aria-pressed="false">掃地機</button></div>
+<div class="steps" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+<p class="q">你家要除濕的空間多大？</p>
+<div class="opts"><button>10 坪以下</button><button>10–15 坪</button><button>15 坪以上</button></div>
+</div></section>
+<div class="grid-h"><h2>主力推薦 9 台</h2><span class="note num">價格更新：2026/11/06</span></div>
+<section class="grid" aria-label="主力商品">
+<a class="card" href="#"><div class="thumb">除濕</div><div class="b"><span class="cat">除濕機</span><h3>示範除濕機 A</h3><span class="badge">雙11現折</span><span class="flaw">水箱偏重，取出不順手</span><div class="price"><b class="num">$11,200</b><s class="num">$12,900</s></div></div></a>
+<a class="card" href="#"><div class="thumb">除濕</div><div class="b"><span class="cat">除濕機</span><h3>示範除濕機 B</h3><span class="badge soft">小空間首選</span><span class="flaw">滿水提示音偏小</span><div class="price"><b class="num">$8,900</b></div></div></a>
+<a class="card" href="#"><div class="thumb">洗衣</div><div class="b"><span class="cat">洗衣機</span><h3>示範洗衣機 A</h3><span class="badge">一級退稅</span><span class="flaw">烘乾耗時且耗電</span><div class="price"><b class="num">$30,700</b><s class="num">$32,900</s></div></div></a>
+<a class="card" href="#"><div class="thumb">洗衣</div><div class="b"><span class="cat">洗衣機</span><h3>示範洗衣機 B</h3><span class="flaw">沒有溫水洗</span><div class="price"><b class="num">$18,900</b></div></div></a>
+<a class="card" href="#"><div class="thumb">熱水</div><div class="b"><span class="cat">熱水器</span><h3>示範熱水器 A</h3><span class="flaw">需另購安裝配件</span><div class="price"><b class="num">$14,500</b></div></div></a>
+<a class="card" href="#"><div class="thumb">冷氣</div><div class="b"><span class="cat">冷氣</span><h3>示範冷氣 A</h3><span class="badge">一級退稅</span><span class="flaw">室外機偏大</span><div class="price"><b class="num">$26,800</b><s class="num">$29,000</s></div></div></a>
+</section>
+<div class="grid-h"><h2>依品類慢慢看</h2></div>
+<section class="cats2"><a href="#">除濕機<span>12 款整理</span></a><a href="#">洗衣機<span>9 款整理</span></a><a href="#">熱水器<span>7 款整理</span></a><a href="#">冷氣<span>10 款整理</span></a><a href="#">掃地機<span>8 款整理</span></a></section>
+</main>
+<footer class="site-foot"><div class="wrap"><p>本站部分連結為分潤連結，你購買時不會多花費用，我們可能因此獲得佣金。價格與優惠以賣場頁面為準。</p><p><a href="#">關於本站</a>　<a href="#">分潤揭露</a>　<a href="#">隱私權政策</a></p></div></footer>
+</body></html>

@@ -1,0 +1,49 @@
+---
+// 品類索引頁：列出該品類所有商品（連到各自評測頁），並連到符合條件的情境頁。只為「有商品的品類」產生。
+import Layout from '../../layouts/Layout.astro';
+import CompareCard from '../../components/CompareCard.astro';
+import productsData from '../../data/products.json';
+import intentsData from '../../data/intents.json';
+import config from '../../../scripts/config.json';
+import { buildableIntents } from '../../lib/intents.mjs';
+import { safeJson } from '../../lib/catalog.mjs';
+import { noindexCategory } from '../../lib/indexing.mjs';
+
+export function getStaticPaths() {
+  const { categories, products } = productsData;
+  return categories
+    .filter((c) => products.some((p) => p.category === c.slug))
+    .map((category) => ({ params: { category: category.slug }, props: { category } }));
+}
+const { category } = Astro.props;
+const products = productsData.products.filter((p) => p.category === category.slug);
+const intents = buildableIntents(productsData.products, intentsData.intents, { minProducts: config.minIntentProducts ?? 2 }).filter((n) => n.category === category.slug);
+const site = Astro.site!;
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: '首頁', item: new URL('/', site).href },
+    { '@type': 'ListItem', position: 2, name: category.name, item: new URL(`/${category.slug}/`, site).href },
+  ],
+};
+---
+<Layout title={`${category.name}怎麼選｜挑家電`} description={`${category.name}共 ${products.length} 款，每台列出缺點與扣掉折扣、退稅後的到手價。`} noindex={noindexCategory(productsData.products, category.slug)}>
+  <main class="wrap">
+    <nav class="crumbs" aria-label="麵包屑"><a href="/">首頁</a> / {category.name}</nav>
+    <h1>{category.name}怎麼選</h1>
+    <p class="disclosure">本頁含分潤連結，您購買不會多花錢。價格與優惠以賣場頁面為準。</p>
+    <ol class="results" style="margin-top:16px">
+      {products.map((p) => <CompareCard product={p} slot="grid" />)}
+    </ol>
+    {intents.length > 0 && (
+      <section class="sec" aria-labelledby="h-intents">
+        <h2 id="h-intents">依情境挑</h2>
+        <ul class="plain">
+          {intents.map((n) => <li><a href={`/${n.category}/for/${n.slug}/`}>{n.title}</a></li>)}
+        </ul>
+      </section>
+    )}
+  </main>
+  <script type="application/ld+json" set:html={safeJson(ld)} />
+</Layout>

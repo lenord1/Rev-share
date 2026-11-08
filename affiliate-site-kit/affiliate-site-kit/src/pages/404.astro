@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+import productsData from '../data/products.json';
+import { activeCategories } from '../lib/catalog.mjs';
+const categories = activeCategories(productsData);
+---
+<Layout title="找不到這一頁｜挑家電" noindex canonical={false}>
+  <main class="wrap notfound">
+    <h1>找不到這一頁</h1>
+    <p>網址可能打錯了，或這個商品已經下架。回首頁用選購精靈，或直接從品類找。</p>
+    <div class="actions">
+      <a class="btn" href="/">回首頁</a>
+      {categories.map((c) => <a class="btn ghost" href={`/${c.slug}/`}>{c.name}</a>)}
+    </div>
+  </main>
+</Layout>

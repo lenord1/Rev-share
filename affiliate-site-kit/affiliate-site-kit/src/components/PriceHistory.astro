@@ -1,0 +1,51 @@
+---
+// 價格走勢：建置期內嵌 SVG，零 JS。資料不足（<3 筆或跨度 <14 天）時只說「累積中」，不下任何划算/偏高判斷。
+// 記錄的是標價（不是到手價），來源標示為「本站記錄」，不暗示是全網最低價。
+import { priceStats, verdictLabel } from '../lib/pricing.mjs';
+import { primaryChannel } from '../lib/catalog.mjs';
+import { money, md } from '../lib/format.mjs';
+
+interface Props {
+  product: any;
+}
+const { product: p } = Astro.props;
+const histFiles = import.meta.glob('../data/price-history.json', { eager: true }) as Record<string, { default: Record<string, { date: string; channel: string; price: number }[]> }>;
+const history = Object.values(histFiles)[0]?.default ?? {};
+const channel = primaryChannel(p);
+const entries = (history[p.modelCode] ?? []).filter((e) => e.channel === channel);
+const s = priceStats(entries);
+
+let points = '';
+let last = { x: 0, y: 0 };
+if (s.enough) {
+  const W = 640, padX = 8, top = 12, bottom = 108;
+  const t0 = Date.parse(s.points[0].date);
+  const span = Math.max(Date.parse(s.points.at(-1).date) - t0, 1);
+  const range = Math.max(s.max - s.min, 1);
+  const xy = s.points.map((e) => ({
+    x: padX + ((Date.parse(e.date) - t0) / span) * (W - padX * 2),
+    y: bottom - ((e.price - s.min) / range) * (bottom - top),
+  }));
+  points = xy.map((q) => `${q.x.toFixed(1)},${q.y.toFixed(1)}`).join(' ');
+  last = xy.at(-1)!;
+}
+---
+<section class="sec" aria-labelledby="h-hist">
+  <h2 id="h-hist">價格走勢</h2>
+  <div class="box hist">
+    {s.enough
+      ? <>
+          <svg viewBox="0 0 640 120" role="img" aria-label={`近 30 天標價走勢：最高 ${money(s.max)}，最低 ${money(s.min)}`}>
+            <line x1="0" y1="114" x2="640" y2="114" stroke="var(--line)" vector-effect="non-scaling-stroke" />
+            <polyline fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round" vector-effect="non-scaling-stroke" points={points} />
+            <circle cx={last.x} cy={last.y} r="6" fill="var(--accent)" />
+          </svg>
+          <div class="meta">
+            <span>近 30 天最高 <b class="num">{money(s.max)}</b>　最低 <b class="num">{money(s.min)}</b></span>
+            <span class="tag">{verdictLabel[s.verdict]}</span>
+          </div>
+          <p class="note" style="margin:0">本站自行記錄的標價，共 {s.count} 筆（{md(s.points[0].date)}–{md(s.points.at(-1).date)}），不代表全網最低價。{p.demo && '（示範：這是模擬資料，不是真實價格紀錄。）'}</p>
+        </>
+      : <p style="margin:0">價格資料累積中（目前 {s.count} 筆）。累積到 3 筆以上、跨度 14 天以上，才會顯示走勢與判斷。{p.demo && '（示範：模擬資料，用來展示資料不足的狀態。）'}</p>}
+  </div>
+</section>

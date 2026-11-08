@@ -1,0 +1,35 @@
+{
+  "name": "affiliate-site",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "prebuild": "node scripts/validate-products.mjs",
+    "audit": "node scripts/audit-dist.mjs",
+    "verify": "node scripts/verify.mjs",
+    "launch-check": "node scripts/validate-products.mjs --strict && node scripts/gen-redirects.mjs --check && npm run build && node scripts/audit-dist.mjs --strict",
+    "update-prices": "node scripts/csv-to-products.mjs && node scripts/validate-products.mjs && node scripts/record-price.mjs && node scripts/gen-redirects.mjs",
+    "check-links": "node scripts/check-links.mjs",
+    "price-stats": "node scripts/record-price.mjs --stats",
+    "sync": "node scripts/gen-redirects.mjs",
+    "daily": "node scripts/daily.mjs",
+    "weekly-report": "node scripts/weekly-report.mjs",
+    "shots": "node scripts/screenshot.mjs",
+    "local": "npm run build && node scripts/serve-local.mjs --sim",
+    "local:serve": "node scripts/serve-local.mjs --sim",
+    "local:check": "node scripts/local-check.mjs"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
+    "@tailwindcss/vite": "^4.3.5",
+    "astro": "^7.4.7",
+    "tailwindcss": "^4.3.5"
+  },
+  "devDependencies": {
+    "playwright": "^1.65.0"
+  }
+}

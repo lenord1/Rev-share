@@ -1,0 +1,45 @@
+---
+import Layout from '../layouts/Layout.astro';
+import site from '../data/site.json';
+import { ymd } from '../lib/format.mjs';
+const built = ymd(new Date().toISOString());
+---
+<Layout title={`關於本站｜${site.name}`} description="本站怎麼選品、怎麼呈現價格，以及如何獲利。">
+  <main class="wrap prose" style="padding-top:24px">
+    <h1>關於本站</h1>
+    <p>{site.name}是一個高單價家電的規格與到手價整理站。目標很單純：讓你在幾十秒內，看懂一台家電真正要花多少錢、有什麼缺點、適不適合你家，然後直接去賣場下單。</p>
+
+    <h2>每台商品都會有的資訊</h2>
+    <ul>
+      <li><b>一個具體的缺點。</b>沒有缺點可寫的商品不會被收錄。</li>
+      <li><b>到手價算式。</b>標價 − 折扣 − 退稅或補助；促銷過期就不計入。</li>
+      <li><b>額外費用、保固與退貨。</b>運費、安裝、舊機回收等，以及出事時怎麼辦。</li>
+      <li><b>不適合誰。</b>告訴你什麼情況下不該買這台。</li>
+    </ul>
+
+    <h2>資料怎麼來</h2>
+    <p>規格整理自品牌官方資料與賣場標示，<b>不是本站實測</b>，頁面上會如實標示。價格是我們記錄當下的標價，會隨賣場活動變動，實際金額請以賣場結帳頁為準。價格走勢只會在記錄累積到足夠筆數與時間後才顯示，而且只代表本站自己的記錄，不代表全網最低價。</p>
+
+    <h2>本站如何獲利</h2>
+    <p>本站部分連結是分潤連結：你透過連結到購物平台下單，我們可能獲得佣金，你不會因此多付錢。這不影響我們列出缺點的方式，也不會讓我們編造規格、價格或評價。詳見<a href="/disclosure/">分潤揭露</a>。</p>
+
+    <h2>我們不做的事</h2>
+    <ul>
+      <li>不做假倒數、假庫存、「N 人正在看」這類催促。</li>
+      <li>沒有真實評價資料，就不顯示評分。</li>
+      <li>沒有資料支持，就不說「最低價」或「較快到貨」。</li>
+    </ul>
+
+    <h2>你的偏好資料</h2>
+    <p>選購時填的「寵物、小孩、空間大小」只存在你自己的瀏覽器，不會上傳，隨時可以清除。詳見<a href="/privacy/">隱私權政策</a>。</p>
+
+    {(site.operator || site.contactEmail) && (
+      <>
+        <h2>聯絡我們</h2>
+        {site.operator && <p>{site.operator}</p>}
+        {site.contactEmail && <p>資料有誤或想回報問題：<a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a></p>}
+      </>
+    )}
+    <p class="updated">頁面建置日期：{built}</p>
+  </main>
+</Layout>

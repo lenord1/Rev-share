@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>個人化意圖推薦｜參考實作（單檔原生版）</title>
+<!--
+  這是「個人化意圖推薦系統」的可執行參考稿（docs/personalization-spec.md 的實作範例）。
+  純原生 HTML / CSS / JS，沒有任何第三方套件、沒有任何網路請求。
+  Astro 版要把同樣的邏輯拆成 src/lib/profile.js、src/lib/rank.js、
+  以及 QuizDialog / SmartSearch / IntentDrawer 三個元件（見規格書）。
+
+  ┌────────────────── 三個模組如何透過 userProfile 串聯 ──────────────────┐
+  │                                                                        │
+  │   模組一 問卷 ──寫入──▶ ┌──────────────┐ ◀──讀取── 模組二 搜尋排序     │
+  │   (Quiz)               │ userProfile  │          (Search / Rank)      │
+  │                        │ + 訂閱機制    │                               │
+  │   模組三 行為偵測 ─讀取─▶ └──────────────┘ ──通知──▶ 重新排序、更新      │
+  │   (抽屜文案個人化)         │                      畫像列、抽屜文案  │
+  │                              ▼                                         │
+  │                        localStorage（只存在使用者自己的瀏覽器）          │
+  └────────────────────────────────────────────────────────────────────────┘
+  關鍵：三個模組互相「不認識」，只認識 Profile 這一個共享物件。
+  Profile.set() 一改，所有 subscribe 的模組自動更新，這就是跨模組串聯。
+-->
+<style>
+/* 設計 token：與 design/tokens.css 相同（Astro 版直接用全域 token） */
+:root{
+  --paper:#eef2f0;--surface:#fff;--ink:#16231f;--ink-2:#4a5b55;--line:#d3dbd8;
+  --accent:#1f4fd8;--accent-ink:#fff;--accent-soft:#e4ebfc;
+  --promo:#d92d20;--promo-soft:#fdeceb;--win:#0f7a4d;--win-soft:#e2f4eb;
+  --warn-soft:#fff3d6;--warn-ink:#7a4b00;--radius:10px;
+  --font:"PingFang TC","Noto Sans TC","Microsoft JhengHei",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root{
+  --paper:#0e1512;--surface:#162019;--ink:#e8efec;--ink-2:#9fb0a9;--line:#2a3832;
+  --accent:#7c9cff;--accent-ink:#0b1230;--accent-soft:#1b2748;
+  --promo:#ff7a70;--promo-soft:#3a1c19;--win:#5fd29b;--win-soft:#12301f;
+  --warn-soft:#3a2e12;--warn-ink:#f2c46d}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.7 var(--font);font-variant-numeric:tabular-nums}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.wrap{max-width:760px;margin:0 auto;padding:16px}
+h1{font-size:22px;line-height:1.3;margin:8px 0 4px}
+h2{font-size:17px;line-height:1.3;margin:0 0 8px}
+.muted{color:var(--ink-2);font-size:13px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--line);background:var(--surface);cursor:pointer;white-space:nowrap;text-decoration:none}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:700}
+.btn.small{min-height:36px;padding:0 12px;font-size:13px}
+.chip{display:inline-block;align-self:flex-start;font-size:12px;padding:1px 10px;border-radius:999px;border:1px solid var(--line);background:var(--paper);color:var(--ink-2)}
+.chip.hit{background:var(--win-soft);border-color:transparent;color:var(--win);font-weight:700}
+.chip.promo{background:var(--promo-soft);border-color:transparent;color:var(--promo)}
+
+/* 畫像列：讓使用者看得到、改得到系統記住了什麼（透明 = 信任） */
+.profilebar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0}
+.profilebar .label{font-size:13px;color:var(--ink-2)}
+
+/* 搜尋框 */
+.search{display:flex;gap:8px;margin:8px 0 4px}
+.search input{flex:1;min-width:0;min-height:48px;padding:0 16px;border:1px solid var(--line);border-radius:999px;background:var(--surface)}
+.parsed{min-height:28px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:6px 0 12px}
+
+/* 商品卡 */
+.list{display:grid;gap:12px;margin:0;padding:0;list-style:none}
+.prod{display:grid;gap:8px}
+.prod .row{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.prod .name{font-weight:700;font-size:17px;line-height:1.35;margin:0}
+.prod .price{font-size:22px;font-weight:800;white-space:nowrap}
+.tags,.reasons{display:flex;flex-wrap:wrap;gap:6px}
+.rank{font-size:12px;color:var(--ink-2)}
+
+/* 詳情頁（取代列表區，捲動深度以整個視窗計算，貼近真實的商品頁） */
+.detail[hidden]{display:none}
+.spec{width:100%;border-collapse:collapse;font-size:14px}
+.spec th,.spec td{text-align:left;padding:8px 0;border-bottom:1px dotted var(--line)}
+.spec td{text-align:right;font-weight:700}
+.flaw{background:var(--warn-soft);color:var(--warn-ink);border-radius:var(--radius);padding:12px 14px}
+.spark{width:100%;height:96px;display:block}
+.section{margin:14px 0}
+.spacer{min-height:240px}
+
+/* 模組三：購買意圖抽屜。手機＝底部抽屜（會讓出 StickyCta 的位置）、桌機＝右下角卡片。只用 transform / opacity 過渡 */
+.drawer{position:fixed;z-index:50;background:var(--surface);border:1px solid var(--line);
+  right:16px;bottom:16px;width:min(380px,calc(100vw - 32px));border-left:4px solid var(--accent);border-radius:var(--radius);padding:12px 14px;
+  transform:translateY(24px);opacity:0;pointer-events:none;transition:transform .35s ease,opacity .35s ease}
+.drawer.show{transform:translateY(0);opacity:1;pointer-events:auto}
+.drawer p{margin:0 0 8px;font-size:14px}
+.drawer .note{font-size:12px;color:var(--ink-2);margin:8px 0 0}
+.drawer .cta{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.drawer .cta.single{grid-template-columns:1fr}
+.drawer .cta a{flex-direction:column;gap:0;min-height:52px;line-height:1.3;padding:6px 10px}
+.drawer .cta a small{font-weight:400;font-size:12px;opacity:.85}
+.drawer .cta a.alt{background:var(--surface);color:var(--ink);border-color:var(--accent)}
+.drawer .head{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.drawer .x{background:none;border:0;cursor:pointer;color:var(--ink-2);min-height:36px;padding:0 6px;flex:none}
+@media (max-width:640px){.drawer{right:0;left:0;bottom:0;width:auto;border-radius:var(--radius) var(--radius) 0 0;border-left:1px solid var(--line);border-top:4px solid var(--accent);padding-bottom:max(12px,env(safe-area-inset-bottom))}}
+@media (prefers-reduced-motion:reduce){.drawer{transition:none}}
+.filters{display:flex;gap:8px;overflow-x:auto;padding:4px 0 8px;margin:0}
+.filters button{flex:none}
+.filters .on{background:var(--accent-soft);border-color:var(--accent);font-weight:700}
+
+/* 模組一：問卷（原生 <dialog>：自帶焦點陷阱、Esc 關閉） */
+dialog{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);color:var(--ink);padding:0;width:min(440px,calc(100vw - 24px))}
+dialog::backdrop{background:rgba(10,20,16,.5)}
+.quiz{padding:20px}
+.bar{display:flex;gap:6px;margin-bottom:14px}
+.bar i{flex:1;height:4px;border-radius:2px;background:var(--line)}
+.bar i.on{background:var(--accent)}
+.opts{display:grid;gap:10px;margin:14px 0}
+.opt{min-height:52px;text-align:left;padding:0 16px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);cursor:pointer}
+.opt:hover{border-color:var(--accent)}
+.quiz .foot{display:flex;justify-content:space-between;align-items:center}
+.link{background:none;border:0;color:var(--ink-2);text-decoration:underline;cursor:pointer;min-height:36px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>除濕機與清淨機選購</h1>
+    <p class="muted">示範資料（demo）。本頁所有偏好只存在你的瀏覽器，不會上傳。</p>
+  </header>
+
+  <!-- 畫像列：Profile 的可視化，模組一寫入、這裡訂閱顯示 -->
+  <div class="profilebar" id="profilebar" aria-live="polite"></div>
+
+  <main id="listView">
+    <!-- 模組二：搜尋 -->
+    <form class="search" id="searchForm" role="search">
+      <input id="q" type="search" placeholder="試試：除濕機 貓　或　有小孩的家庭用什麼清淨機" aria-label="搜尋商品或描述你的情況" autocomplete="off">
+      <button class="btn primary" type="submit">找</button>
+    </form>
+    <div class="parsed" id="parsed" aria-live="polite"></div>
+    <div class="filters" id="filters" role="group" aria-label="篩選"></div>
+    <ol class="list" id="list"></ol>
+  </main>
+
+  <article class="detail" id="detailView" hidden></article>
+</div>
+
+<!-- 模組三的購買意圖抽屜（role=status：螢幕閱讀器會溫和朗讀，不搶焦點） -->
+<div class="drawer" id="drawer" role="status" aria-live="polite"></div>
+
+<!-- 模組一的問卷 -->
+<dialog id="quizDlg" aria-labelledby="quizTitle"><div class="quiz" id="quizBody"></div></dialog>
+
+<script>
+'use strict';
+/* =====================================================================
+   0. 設定（所有門檻集中在這裡，方便調整與測試）
+   ===================================================================== */
+const CONFIG = {
+  dwellMs: 5000,          // 意圖門檻：「缺點區或規格區」在畫面內累計 5 秒（分頁在背景不計）
+  visibleRatio: 0.5,      // 區塊至少有 50% 在畫面內才算「正在看」
+  staleDays: 14,          // 價格或到貨資訊超過 14 天沒確認，就不拿來做「較低／較快」的比較
+  priceWindowDays: 30,    // 「歷史最低價」的比較視窗
+  minPoints: 3,           // 價格紀錄至少 3 筆
+  minSpanDays: 14,        // 且跨度至少 14 天，否則不下任何價格判斷（與 pricing.mjs 同規則）
+  storeKey: 'ssp.profile.v1'
+};
+
+/* =====================================================================
+   1. 隱形用戶畫像 + 商品資料庫
+   ===================================================================== */
+// userProfile 預設值。null = 還沒回答（和 false「確定沒有」不同，排序時不會亂扣分）
+const DEFAULT_PROFILE = { hasPet: null, hasChild: null, spaceSize: null, answered: false };
+//   hasPet:    null | false | 'cat' | 'dog' | 'other'
+//   hasChild:  null | true | false
+//   spaceSize: null | 'small' | 'large'
+
+// 價格紀錄以「幾天前」表示，載入時換算成日期，示範資料才不會過期。[daysAgo, price]
+const PRODUCTS = [
+  { id:'demo-dh-a', code:'demo-dh-a', cat:'除濕機', name:'示範除濕機 A（大空間靜音）', price:12900,
+    tags:['靜音','大坪數','安全鎖'], flaw:'水箱取出時偏重且把手位置不順手',
+    specs:[['日除濕量','20 L/日'],['運轉噪音','42 dB'],['水箱容量','4.5 L']],
+    hist:[[40,13900],[33,13500],[26,13200],[19,13200],[12,13500],[5,13000],[0,12900]],
+    coupang:{ price:13200, daysOld:3 }, delivery:{ coupang:{ fast:true, note:'示範：平台標示快速到貨', source:'示範資料', daysOld:3 } } },   // 現價為 30 天最低
+  { id:'demo-dh-b', code:'demo-dh-b', cat:'除濕機', name:'示範除濕機 B（小空間入門）', price:8900,
+    tags:['小坪數','預算友善','節能'], flaw:'滿水時提示音偏小，容易沒注意到',
+    specs:[['日除濕量','12 L/日'],['運轉噪音','46 dB'],['水箱容量','3 L']],
+    hist:[[38,8500],[30,8400],[22,8900],[14,8900],[7,9200],[0,8900]] },                    // 現價高於低點
+  { id:'demo-dh-c', code:'demo-dh-c', cat:'除濕機', name:'示範除濕機 C（寵物家庭款）', price:14500,
+    tags:['寵物友善','除臭','安全鎖','大坪數'], flaw:'濾網需每兩週清洗一次，毛多的家庭更勤',
+    specs:[['日除濕量','18 L/日'],['運轉噪音','44 dB'],['水箱容量','4 L']],
+    hist:[[36,16500],[28,16200],[21,15800],[14,15500],[7,15000],[0,14500]],
+    coupang:{ price:14500, daysOld:2 } },                                                 // 兩邊同價：不標「較低」              // 現價為 30 天最低
+  { id:'demo-ap-a', code:'demo-ap-a', cat:'清淨機', name:'示範清淨機 A（寵物除毛款）', price:9800,
+    tags:['寵物友善','除臭','大坪數'], flaw:'高風量時噪音明顯，不適合臥室夜間使用',
+    specs:[['適用坪數','20 坪'],['運轉噪音','52 dB（最高風量）'],['濾網壽命','約 12 個月']],
+    hist:[[35,9800],[25,9800],[15,10200],[8,9900],[0,9800]] },                              // 現價等於低點
+  { id:'demo-ap-b', code:'demo-ap-b', cat:'清淨機', name:'示範清淨機 B（兒童房靜音款）', price:7200,
+    tags:['安全鎖','靜音','小坪數'], flaw:'濾網價格偏高，長期耗材成本要算進去',
+    specs:[['適用坪數','8 坪'],['運轉噪音','28 dB（低風量）'],['濾網壽命','約 12 個月']],
+    hist:[[20,7600],[0,7200]] },                                                            // 紀錄太少：不下判斷
+  { id:'demo-ap-c', code:'demo-ap-c', cat:'清淨機', name:'示範清淨機 C（客廳旗艦）', price:18800,
+    tags:['靜音','大坪數','安全鎖'], flaw:'體積大，需要預留 60 公分以上的通風空間',
+    specs:[['適用坪數','30 坪'],['運轉噪音','35 dB（低風量）'],['濾網壽命','約 18 個月']],
+    hist:[[39,18800],[30,19200],[21,19500],[14,19500],[6,18900],[0,18800]],
+    coupang:{ price:19200, daysOld:30 } }                                                  // 酷澎價格太舊：不拿來比較               // 現價為 30 天最低
+];
+const byId = (id) => PRODUCTS.find((p) => p.id === id);
+
+/* =====================================================================
+   2. 價格判斷（對應 src/lib/pricing.mjs 的 priceStats；資料不足就不說）
+   ===================================================================== */
+function priceVerdict(p) {
+  const pts = p.hist.map(([d, v]) => ({ d, v })).filter((x) => x.d <= CONFIG.priceWindowDays);
+  if (pts.length < CONFIG.minPoints) return { ok: false };
+  const span = Math.max(...pts.map((x) => x.d)) - Math.min(...pts.map((x) => x.d));
+  if (span < CONFIG.minSpanDays) return { ok: false };
+  const min = Math.min(...pts.map((x) => x.v));
+  return { ok: true, min, isLowest: p.price <= min, above: p.price - min };
+}
+
+// 雙通路比較（對應 src/lib/pricing.mjs 的 compareChannels）：標籤只能由資料算出來
+function compareChannels(p) {
+  const fresh = (d) => d !== undefined && d <= CONFIG.staleDays;
+  const opts = [{ channel: 'shopee', price: p.price, fresh: true }];
+  if (p.coupang) opts.push({ channel: 'coupang', price: p.coupang.price, fresh: fresh(p.coupang.daysOld) });
+  const usable = opts.filter((o) => o.fresh).sort((a, b) => a.price - b.price);
+  const cheaper = usable.length >= 2 && usable[0].price < usable[1].price ? usable[0].channel : null;   // 要兩邊都是新價格且不同價
+  const fast = Object.entries(p.delivery || {}).filter(([, d]) => d.fast && d.note && d.source && fresh(d.daysOld)).map(([c]) => c);
+  return { dual: opts.length >= 2, cheaper, fastest: fast.length === 1 ? fast[0] : null };
+}
+const CH = { shopee: '蝦皮', coupang: '酷澎' };
+// 事件紀錄（隱私友善：只記商品代碼與動作，不含畫像）。接 umami / plausible，沒有時只留在 window.__events 供測試
+window.__events = [];
+function track(name, data) {
+  window.__events.push({ name, ...data });
+  try { if (window.umami?.track) window.umami.track(name, data); else if (typeof window.plausible === 'function') window.plausible(name, { props: data }); } catch {}
+}
+
+/* =====================================================================
+   3. 共享核心：Profile（單一事實來源 + 訂閱機制 + 持久化）
+      三個模組只透過它溝通。
+   ===================================================================== */
+const Profile = (() => {
+  let data = { ...DEFAULT_PROFILE };
+  const subs = new Set();
+  try { Object.assign(data, JSON.parse(localStorage.getItem(CONFIG.storeKey) || '{}')); } catch {}   // 讀取失敗（隱私模式）就用預設，不報錯
+  return {
+    get: () => ({ ...data }),
+    set(patch) {                                   // 模組一（問卷）、畫像列「修改」都呼叫這裡
+      data = { ...data, ...patch };
+      try { localStorage.setItem(CONFIG.storeKey, JSON.stringify(data)); } catch {}   // 永久儲存
+      subs.forEach((fn) => fn(data));              // 通知所有訂閱者（排序、畫像列、抽屜）
+    },
+    reset() { this.set({ ...DEFAULT_PROFILE }); try { localStorage.removeItem(CONFIG.storeKey); } catch {} },
+    subscribe(fn) { subs.add(fn); return () => subs.delete(fn); }
+  };
+})();
+
+const petLabel = (v) => ({ cat:'有貓', dog:'有狗', other:'有寵物' }[v] || '');
+const hasPet = (pr) => !!pr.hasPet;
+
+/* =====================================================================
+   4. 模組二：語意解析 + 動態加權排序
+   ===================================================================== */
+// 詞庫：詞 → 意圖。把「說法」對應到「需求」，這就是最小的語意層（不需要 AI、不需要後端）。
+const LEXICON = [
+  { intent:'pet',   pet:'cat',   words:['養貓','貓咪','貓'] },
+  { intent:'pet',   pet:'dog',   words:['養狗','狗狗','狗'] },
+  { intent:'pet',   pet:'other', words:['毛小孩','毛孩','寵物','掉毛','毛髮'] },
+  { intent:'child', words:['小孩','孩子','兒童','寶寶','嬰兒','幼兒','小朋友','有小孩'] },
+  { intent:'quiet', words:['靜音','安靜','好睡','睡覺','不吵','低噪'] },
+  { intent:'large', words:['大坪數','大空間','客廳','大房間','大間'] },
+  { intent:'small', words:['小坪數','小空間','套房','雅房','臥室','小房間','小間'] },
+  { intent:'budget',words:['便宜','預算','平價','省錢','入門'] },
+  { cat:'除濕機', words:['除濕機','除濕','抽濕','潮濕'] },
+  { cat:'清淨機', words:['空氣清淨機','清淨機','清淨','過敏'] }
+];
+// 意圖 → 對應的商品標籤
+const INTENT_TAGS = { pet:['寵物友善','除臭'], child:['安全鎖'], quiet:['靜音'], large:['大坪數'], small:['小坪數'], budget:['預算友善'] };
+const INTENT_LABEL = { pet:'寵物', child:'有小孩', quiet:'靜音', large:'大空間', small:'小空間', budget:'預算' };
+// 權重：寵物最高（需求最硬：毛髮、氣味、誤食），其次小孩（安全）。
+const W = { query:{ pet:60, child:45, quiet:35, large:35, small:35, budget:30 },
+            profile:{ pet:50, child:40, large:30, small:30 } };
+
+// 解析：長詞優先、命中後從字串移除（避免「毛小孩」被拆成「小孩」誤判成有孩子）
+function parseQuery(q) {
+  const out = { intents: new Set(), pet: null, cat: null, rest: '' };
+  let s = (q || '').toLowerCase();
+  const entries = LEXICON.flatMap((e) => e.words.map((w) => [w, e])).sort((a, b) => b[0].length - a[0].length);
+  for (const [w, e] of entries) {
+    if (!s.includes(w)) continue;
+    if (e.intent) { out.intents.add(e.intent); if (e.pet) out.pet = out.pet === 'cat' || out.pet === 'dog' ? out.pet : e.pet; }
+    if (e.cat) out.cat = e.cat;
+    s = s.split(w).join(' ');
+  }
+  out.rest = s.replace(/[的用什麼哪個有沒有家庭推薦嗎呢，。？?\s]+/g, ' ').trim();
+  return out;
+}
+
+// 排序：query 意圖 ＋ profile 記憶 → 分數與「為什麼推薦」的理由
+function rank(query) {
+  const pr = Profile.get();
+  const parsed = parseQuery(query);
+  // 有效意圖 = 搜尋字詞的意圖 ∪ 畫像推導的意圖（兩邊都命中同一意圖 → 加成）
+  const fromProfile = new Set();
+  if (hasPet(pr)) fromProfile.add('pet');
+  if (pr.hasChild === true) fromProfile.add('child');
+  if (pr.spaceSize === 'large') fromProfile.add('large');
+  if (pr.spaceSize === 'small') fromProfile.add('small');
+
+  const items = PRODUCTS.filter((p) => !parsed.cat || p.cat === parsed.cat).map((p) => {
+    let score = 0; const reasons = [];
+    for (const it of new Set([...parsed.intents, ...fromProfile])) {
+      const hit = INTENT_TAGS[it].some((t) => p.tags.includes(t));
+      const q = parsed.intents.has(it), m = fromProfile.has(it);
+      const base = Math.max(q ? W.query[it] : 0, m ? (W.profile[it] || 0) : 0);
+      if (hit) {
+        score += base + (q && m ? 10 : 0);                          // 搜尋與記憶一致 → 雙重命中加成
+        const who = it === 'pet' ? (petLabel(parsed.pet || pr.hasPet) || '寵物') : INTENT_LABEL[it];
+        reasons.push(it === 'pet' ? `符合${who}需求` : it === 'child' ? '有安全鎖，適合有小孩' : `符合：${INTENT_LABEL[it]}`);
+      } else if (m && it === 'child') score -= 20;                  // 家裡有小孩卻沒有安全鎖 → 扣分
+    }
+    // 空間不合：大空間家庭不推小坪數機種；小空間家庭輕扣大機種（不是不能用，只是不划算）
+    if (pr.spaceSize === 'large' && p.tags.includes('小坪數')) score -= 25;
+    if (pr.spaceSize === 'small' && p.tags.includes('大坪數')) score -= 15;
+    // 其餘自由字詞：比對名稱與型號
+    if (parsed.rest) for (const t of parsed.rest.split(' ')) if (t && (p.name.toLowerCase().includes(t) || p.code.includes(t))) { score += 15; reasons.push(`名稱符合「${t}」`); }
+    return { p, score, reasons };
+  });
+  items.sort((a, b) => b.score - a.score || a.p.price - b.p.price);   // 同分時便宜的在前
+  return { items, parsed };
+}
+
+/* =====================================================================
+   5. UI：畫像列、搜尋結果
+   ===================================================================== */
+const $ = (s) => document.querySelector(s);
+const fmt = (n) => 'NT$ ' + n.toLocaleString('en-US');
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]));
+
+function renderProfileBar() {
+  const pr = Profile.get(); const chips = [];
+  if (pr.hasPet) chips.push(petLabel(pr.hasPet));
+  if (pr.hasChild === true) chips.push('有小孩');
+  if (pr.spaceSize) chips.push(pr.spaceSize === 'large' ? '空間偏大' : '空間偏小');
+  $('#profilebar').innerHTML = pr.answered && chips.length
+    ? `<span class="label">依你的情況排序：</span>${chips.map((c) => `<span class="chip hit">${c}</span>`).join('')}
+       <button class="btn small" data-act="quiz">修改</button><button class="link" data-act="clear">清除資料</button>`
+    : `<button class="btn small" data-act="quiz">回答 3 個問題，讓排序更貼近你家</button>`;
+}
+
+function renderList() {
+  const q = $('#q').value;
+  let { items, parsed } = rank(q);
+  // 自適應篩選：選項由「目前資料」長出來，沒有商品的品類／標籤不會出現（不會點了是空的）
+  const cats = [...new Set(PRODUCTS.map((p) => p.cat))];
+  const inCat = PRODUCTS.filter((p) => !State.cat || p.cat === State.cat);
+  const tagCount = {}; inCat.forEach((p) => p.tags.forEach((t) => (tagCount[t] = (tagCount[t] || 0) + 1)));
+  const tags = Object.keys(tagCount).filter((t) => tagCount[t] < inCat.length || State.tag === t);   // 每台都有的標籤沒有篩選意義
+  $('#filters').innerHTML =
+    `<button class="btn small ${!State.cat ? 'on' : ''}" data-act="filter-cat" data-v="">全部</button>` +
+    cats.map((c) => `<button class="btn small ${State.cat === c ? 'on' : ''}" data-act="filter-cat" data-v="${c}">${c}</button>`).join('') +
+    tags.map((t) => `<button class="btn small ${State.tag === t ? 'on' : ''}" data-act="filter-tag" data-v="${t}" aria-pressed="${State.tag === t}">${t}</button>`).join('');
+  items = items.filter(({ p }) => (!State.cat || p.cat === State.cat) && (!State.tag || p.tags.includes(State.tag)));
+  // 讓使用者看到「系統怎麼理解你的句子」，解析錯了也能發現
+  const chips = [...parsed.intents].map((i) => `<span class="chip hit">${i === 'pet' ? (petLabel(parsed.pet) || '寵物') : INTENT_LABEL[i]}</span>`);
+  if (parsed.cat) chips.unshift(`<span class="chip">${parsed.cat}</span>`);
+  // 搜尋字詞提到、但畫像還沒記住的需求 → 問一句要不要記住（不擅自寫入）
+  const pr = Profile.get(); let offer = '';
+  if (parsed.pet && !hasPet(pr)) offer = `<button class="btn small" data-act="remember-pet" data-v="${parsed.pet}">記住「${petLabel(parsed.pet)}」</button>`;
+  $('#parsed').innerHTML = (chips.length ? '<span class="label muted">我的理解：</span>' + chips.join('') : '') + offer;
+
+  $('#list').innerHTML = items.map(({ p, score, reasons }, i) => {
+    const v = priceVerdict(p);
+    const badge = v.ok && v.isLowest ? '<span class="chip promo">30 天最低價</span>' : '';
+    return `<li class="card prod">
+      <div class="row"><div><span class="rank">${i === 0 && score > 0 ? '最符合你的情況' : p.cat}</span>
+        <h2 class="name">${esc(p.name)}</h2></div><div class="price">${fmt(p.price)}</div></div>
+      <div class="tags">${badge}${p.tags.map((t) => `<span class="chip">${t}</span>`).join('')}</div>
+      ${reasons.length ? `<div class="reasons">${[...new Set(reasons)].map((r) => `<span class="chip hit">${esc(r)}</span>`).join('')}</div>` : ''}
+      <div><button class="btn small primary" data-act="open" data-id="${p.id}">看細節</button></div></li>`;
+  }).join('') || '<li class="card muted">沒有符合的商品，換個說法試試。</li>';
+}
+
+/* =====================================================================
+   6. 詳情頁 + 模組三：停留時間 × 捲動深度 雙重意圖偵測
+   ===================================================================== */
+function sparkline(p) {
+  const pts = p.hist.slice().sort((a, b) => b[0] - a[0]);
+  const vals = pts.map((x) => x[1]); const lo = Math.min(...vals), hi = Math.max(...vals), r = hi - lo || 1;
+  const W_ = 300, H = 90;
+  const xy = pts.map(([d, v], i) => `${(i / Math.max(pts.length - 1, 1)) * W_},${H - 8 - ((v - lo) / r) * (H - 16)}`).join(' ');
+  return `<svg class="spark" viewBox="0 0 ${W_} ${H}" preserveAspectRatio="none" role="img" aria-label="近 ${CONFIG.priceWindowDays} 天以上的價格紀錄">
+    <polyline points="${xy}" fill="none" stroke="var(--accent)" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>`;
+}
+
+function openDetail(id, push = true) {
+  const p = byId(id); if (!p) return;
+  const v = priceVerdict(p);
+  $('#listView').hidden = true;
+  const d = $('#detailView'); d.hidden = false;
+  d.innerHTML = `
+    <p><button class="btn small" data-act="back">← 回到列表</button></p>
+    <h1>${esc(p.name)}</h1>
+    <div class="price" style="font-size:30px;font-weight:800">${fmt(p.price)}</div>
+    <div class="tags section">${p.tags.map((t) => `<span class="chip">${t}</span>`).join('')}</div>
+    <div class="flaw section" data-intent-zone="flaw"><strong>要先知道的缺點：</strong>${esc(p.flaw)}</div>
+    <section class="card section" data-intent-zone="spec"><h2>規格</h2><table class="spec">${p.specs.map(([k, val]) => `<tr><th scope="row">${k}</th><td>${val}</td></tr>`).join('')}</table></section>
+    <section class="card section"><h2>價格紀錄</h2>${sparkline(p)}
+      <p class="muted">${v.ok ? `近 ${CONFIG.priceWindowDays} 天最低 ${fmt(v.min)}。` : '價格紀錄還在累積中，暫時不判斷是否划算。'}</p></section>
+    <div class="spacer"></div>
+    <p><a class="btn primary" href="/go/shopee-${p.code}" rel="sponsored nofollow noopener" data-track="go" data-channel="shopee" data-code="${p.code}" data-slot="detail">到蝦皮看最新價格</a></p>
+    <p class="muted">本站為聯盟行銷成員，透過連結購買我們可能獲得分潤，不影響你的價格。價格以賣場頁面為準。</p>
+    <div class="spacer"></div>`;
+  window.scrollTo(0, 0);
+  if (push) history.pushState({ id }, '', '#p/' + id);
+  Watch.start(p);
+}
+function closeDetail(push = true) {
+  Watch.stop(); Drawer.hide();
+  $('#detailView').hidden = true; $('#listView').hidden = false;
+  if (push && location.hash) history.pushState(null, '', location.pathname + location.search);
+}
+
+// 模組三的核心：用 IntersectionObserver 看「使用者的眼睛停在哪裡」。
+// 缺點區（「這個缺點我能接受嗎？」）或規格區（「我家放得下嗎？」）在畫面內累計 5 秒 → 視為猶豫中的購買訊號。
+// 比「整頁開著 N 秒 + 捲動比例」更貼近真正的閱讀行為：快速滑過的人不會觸發。
+const Watch = (() => {
+  let timer = null, io = null, p = null, dwell = 0, fired = false;
+  const seen = new Set();                          // 目前「有 ≥50% 在畫面內」的區塊
+  return {
+    start(prod) {
+      this.stop(); p = prod; dwell = 0; fired = false;
+      if (!('IntersectionObserver' in window)) return;     // 不支援就不觸發（寧可不打擾）
+      io = new IntersectionObserver((es) => es.forEach((e) => {
+        (e.isIntersecting && e.intersectionRatio >= CONFIG.visibleRatio) ? seen.add(e.target.dataset.intentZone) : seen.delete(e.target.dataset.intentZone);
+      }), { threshold: [0, CONFIG.visibleRatio, 1] });
+      document.querySelectorAll('[data-intent-zone]').forEach((el) => io.observe(el));
+      timer = setInterval(() => {
+        if (document.hidden || !seen.size || fired) return;    // 分頁在背景、區塊不在畫面內都不計時
+        dwell += 250;
+        if (dwell >= CONFIG.dwellMs) {
+          fired = true;
+          if (!seenBefore(p.id)) { markSeen(p.id); Drawer.show(p, [...seen][0]); }   // 每個商品每個工作階段最多一次
+        }
+      }, 250);
+    },
+    stop() { clearInterval(timer); io?.disconnect(); io = null; seen.clear(); p = null; }
+  };
+})();
+const seenBefore = (id) => { try { return (sessionStorage.getItem('ssp.drawer') || '').split(',').includes(id); } catch { return false; } };
+const markSeen = (id) => { try { sessionStorage.setItem('ssp.drawer', (sessionStorage.getItem('ssp.drawer') || '') + ',' + id); } catch {} };
+
+// 抽屜文案：讀 Profile 與「真實價格紀錄」。沒有資料支持的話，不說「最低價」、不說「較便宜／較快」。
+function buildDrawer(p) {
+  const pr = Profile.get(), v = priceVerdict(p);
+  let fit = '';                                    // 1) 個人化：這台為什麼適合你（只在標籤真的相符時才說）
+  if (hasPet(pr) && p.tags.includes('寵物友善')) fit = `這台符合您${petLabel(pr.hasPet).replace('有', '養')}家庭的除臭需求`;
+  else if (pr.hasChild === true && p.tags.includes('安全鎖')) fit = '這台有安全鎖，適合有小孩的家庭';
+  else if (pr.spaceSize === 'large' && p.tags.includes('大坪數')) fit = '這台適合您偏大的空間';
+  else if (pr.spaceSize === 'small' && p.tags.includes('小坪數')) fit = '這台適合您偏小的空間';
+  let price = '';                                  // 2) 價格：三種誠實狀態
+  if (!v.ok) price = '價格紀錄還在累積中，暫時無法判斷是否划算。';
+  else if (v.isLowest) price = '目前正處於 30 天內歷史最低價！';
+  else price = `目前比 30 天最低價高 ${fmt(v.above)}。`;
+  return (v.ok && v.isLowest ? '📉 價格追蹤：' : '📊 價格追蹤：') + (fit ? fit + '，' : '') + price;
+}
+
+const Drawer = {
+  el: null,
+  show(p, zone) {
+    const c = compareChannels(p);
+    const btn = (ch, cls, slot, label, sub) => `<a class="btn ${cls}" href="/go/${ch}-${p.code}" rel="sponsored nofollow noopener" data-track="go" data-channel="${ch}" data-code="${p.code}" data-slot="${slot}">到${CH[ch]}看最新價格${sub ? `<small>${sub}</small>` : ''}</a>`;
+    // 雙通路：兩個互斥按鈕；「標價較低／較快到貨」只在 compareChannels 算得出來時才出現
+    const ctas = c.dual
+      ? btn('shopee', 'primary', 'drawer-shopee', '', c.cheaper === 'shopee' ? '標價較低' : c.fastest === 'shopee' ? '較快到貨' : '') +
+        btn('coupang', c.cheaper === 'coupang' || c.fastest === 'coupang' ? 'primary' : 'alt', 'drawer-coupang', '', c.cheaper === 'coupang' ? '標價較低' : c.fastest === 'coupang' ? '較快到貨' : '')
+      : btn('shopee', 'primary', 'drawer-shopee', '', '');
+    this.el.innerHTML = `<div class="head"><p>${esc(buildDrawer(p))}</p><button class="x" data-act="drawer-close" aria-label="關閉提示">關閉</button></div>
+      <div class="cta ${c.dual ? '' : 'single'}">${ctas}</div>
+      <p class="note">價格以各平台頁面為準，實際金額含券與運費請在結帳頁確認。</p>`;
+    requestAnimationFrame(() => this.el.classList.add('show'));   // 下一幀才加 class，CSS transition 才會生效
+    track('intent-shown', { code: p.code, zone });
+  },
+  hide(userClosed) { if (userClosed) track('intent-closed', {}); this.el.classList.remove('show'); }
+};
+
+/* =====================================================================
+   7. 模組一：引導式環境問卷（<dialog>）
+   ===================================================================== */
+const QUIZ = [
+  { key:'hasPet',   q:'家裡有養寵物嗎？', opts:[['有貓','cat'],['有狗','dog'],['其他寵物','other'],['沒有',false]] },
+  { key:'hasChild', q:'家裡有小孩嗎？',   opts:[['有',true],['沒有',false]] },
+  { key:'spaceSize',q:'主要使用的空間大小？', opts:[['小（約 10 坪以下，套房／臥室）','small'],['大（約 15 坪以上，客廳／大房間）','large']] }
+];
+let quizStep = 0, quizDraft = {};
+function renderQuiz() {
+  const s = QUIZ[quizStep];
+  $('#quizBody').innerHTML = `
+    <div class="bar" aria-hidden="true">${QUIZ.map((_, i) => `<i class="${i <= quizStep ? 'on' : ''}"></i>`).join('')}</div>
+    <h2 id="quizTitle">${s.q}</h2><p class="muted">第 ${quizStep + 1} / ${QUIZ.length} 題。只存在你的瀏覽器，可隨時清除。</p>
+    <div class="opts">${s.opts.map(([label, val], i) => `<button class="opt" data-act="quiz-pick" data-i="${i}">${label}</button>`).join('')}</div>
+    <div class="foot"><button class="link" data-act="quiz-skip">先跳過</button>
+      ${quizStep > 0 ? '<button class="link" data-act="quiz-prev">上一題</button>' : '<span></span>'}</div>`;
+}
+function openQuiz() { quizStep = 0; quizDraft = {}; renderQuiz(); $('#quizDlg').showModal(); }
+function pickQuiz(i) {
+  const s = QUIZ[quizStep]; quizDraft[s.key] = s.opts[i][1];
+  if (quizStep < QUIZ.length - 1) { quizStep++; renderQuiz(); return; }
+  Profile.set({ ...quizDraft, answered: true });   // ★ 問卷完成 → 寫入共享 Profile → 所有訂閱者即時更新
+  $('#quizDlg').close();
+}
+
+/* =====================================================================
+   8. 接線：把三個模組透過 Profile 串起來
+   ===================================================================== */
+Drawer.el = $('#drawer');
+const State = { cat: null, tag: null };           // 篩選狀態（只影響顯示，不寫入畫像）
+Profile.subscribe(() => { renderProfileBar(); renderList(); });   // 畫像一變：畫像列 + 排序自動重算（模組一 → 模組二）
+// 模組三不需要訂閱：每次觸發抽屜時才讀 Profile.get()，文案永遠用最新的畫像
+
+document.addEventListener('click', (e) => {
+  const el = e.target.closest('[data-act]'); if (!el) return;
+  const a = el.dataset.act;
+  if (a === 'quiz') openQuiz();
+  else if (a === 'quiz-pick') pickQuiz(+el.dataset.i);
+  else if (a === 'quiz-prev') { quizStep = Math.max(0, quizStep - 1); renderQuiz(); }
+  else if (a === 'quiz-skip') { try { localStorage.setItem('ssp.quizSkipped', '1'); } catch {} $('#quizDlg').close(); }
+  else if (a === 'clear') Profile.reset();
+  else if (a === 'remember-pet') Profile.set({ hasPet: el.dataset.v, answered: true });
+  else if (a === 'open') openDetail(el.dataset.id);
+  else if (a === 'back') { history.length > 1 ? history.back() : closeDetail(false); }
+  else if (a === 'drawer-close') Drawer.hide(true);
+  else if (a === 'filter-cat') { State.cat = el.dataset.v || null; State.tag = null; renderList(); }
+  else if (a === 'filter-tag') { State.tag = State.tag === el.dataset.v ? null : el.dataset.v; renderList(); }
+});
+$('#searchForm').addEventListener('submit', (e) => { e.preventDefault(); renderList(); });
+$('#q').addEventListener('input', renderList);
+addEventListener('popstate', () => {
+  const m = location.hash.match(/^#p\/(.+)$/);
+  m ? openDetail(m[1], false) : closeDetail(false);
+});
+
+renderProfileBar(); renderList();
+if (location.hash.startsWith('#p/')) openDetail(location.hash.slice(3), false);
+// 第一次來且沒跳過過 → 自動跳出問卷（只問一次；跳過後不再自動打擾）
+else { let skipped = false; try { skipped = localStorage.getItem('ssp.quizSkipped') === '1'; } catch {}
+  if (!Profile.get().answered && !skipped) setTimeout(openQuiz, 600); }
+</script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+---
+// 語意搜尋：把「除濕機 貓」「有小孩的家庭用什麼除濕機」拆成意圖，結合共享畫像排序，並顯示「我的理解」與命中理由。
+// 篩選選項在 client 由建置期內嵌的商品資料長出來：沒有商品的品類、每台都有的標籤都不會出現。
+---
+<section id="search" aria-label="依你的情況找家電">
+  <form class="search" id="search-form" role="search">
+    <input id="search-q" type="search" placeholder="試試：除濕機 貓　或　有小孩的家庭用什麼除濕機" aria-label="搜尋商品或描述你的情況" autocomplete="off" />
+    <button class="btn" type="submit">找</button>
+  </form>
+  <div class="parsed" id="search-parsed" aria-live="polite"></div>
+  <div class="filters" id="search-filters" role="group" aria-label="篩選"></div>
+  <ol class="results" id="search-list"></ol>
+</section>
+
+<script>
+  import { Profile, hasPet, petLabel } from '../lib/profile.js';
+  import { rank, INTENT_LABEL } from '../lib/rank.js';
+  import { readCatalog, fmt, esc } from '../lib/client.js';
+
+  const { products = [], categories = [] } = readCatalog();
+  const slugs = categories.map((c) => c.slug);
+  const catName = Object.fromEntries(categories.map((c) => [c.slug, c.name]));
+  const input = document.getElementById('search-q') as HTMLInputElement | null;
+  const parsedEl = document.getElementById('search-parsed');
+  const filtersEl = document.getElementById('search-filters');
+  const listEl = document.getElementById('search-list');
+  const state: { category: string | null; tag: string | null } = { category: null, tag: null };
+
+  function render() {
+    const query = input?.value ?? '';
+    const pr = Profile.get();
+    const { items, parsed } = rank(products, query, pr, slugs);
+
+    // 自適應篩選：選項由目前資料長出來
+    const inCat = products.filter((p) => !state.category || p.category === state.category);
+    const count: Record<string, number> = {};
+    inCat.forEach((p) => p.tags.forEach((t: string) => (count[t] = (count[t] || 0) + 1)));
+    const tags = Object.keys(count).filter((t) => count[t] < inCat.length || state.tag === t);
+    if (filtersEl) {
+      filtersEl.innerHTML =
+        `<select class="cat-select" data-cat-select aria-label="品類"><option value="">全部品類</option>${categories.map((c) => `<option value="${esc(c.slug)}"${state.category === c.slug ? ' selected' : ''}>${esc(c.name)}</option>`).join('')}</select>` +
+        tags.map((t) => `<button type="button" class="btn ghost small ${state.tag === t ? 'on' : ''}" data-tag="${esc(t)}" aria-pressed="${state.tag === t}">${esc(t)}</button>`).join('');
+    }
+    const shown = items.filter(({ p }) => (!state.category || p.category === state.category) && (!state.tag || p.tags.includes(state.tag)));
+
+    // 「我的理解」：讓使用者看到系統怎麼解讀這句話，理解錯了也能發現
+    const chips = [...parsed.intents].map((i) => `<span class="chip hit">${esc(i === 'pet' ? petLabel(parsed.pet) || '寵物' : INTENT_LABEL[i])}</span>`);
+    if (parsed.category) chips.unshift(`<span class="chip">${esc(catName[parsed.category] ?? parsed.category)}</span>`);
+    // 搜尋字詞提到、畫像沒記住的寵物：問一句要不要記住，不擅自寫入
+    const offer = parsed.pet && !hasPet(pr) ? `<button type="button" class="btn ghost small" data-remember-pet="${esc(parsed.pet)}">記住「${esc(petLabel(parsed.pet))}」</button>` : '';
+    if (parsedEl) parsedEl.innerHTML = (chips.length ? '<span class="label">我的理解：</span>' + chips.join('') : '') + offer;
+
+    if (listEl) {
+      listEl.innerHTML =
+        shown
+          .map(({ p, score, reasons }, i) => `<li class="panel res">
+            <div class="row"><div><span class="rank">${i === 0 && score > 0 ? '最符合你的情況' : esc(catName[p.category] ?? '')}</span>
+              <h2 class="name">${esc(p.name)}</h2></div>
+              <div class="price num">${fmt(p.final)}</div></div>
+            <div class="tags">${p.tags.map((t: string) => `<span class="chip">${esc(t)}</span>`).join('')}</div>
+            ${reasons.length ? `<div class="reasons">${[...new Set(reasons as string[])].map((r) => `<span class="chip hit">${esc(r)}</span>`).join('')}</div>` : ''}
+            ${p.strength ? `<p class="strength-line">${esc(p.strength)}</p>` : ''}
+            <p class="flaw-line">缺點：${esc(p.flaw)}</p>
+            <div><a class="btn small" href="/${esc(p.category)}/${esc(p.slug)}/">看到手價與細節</a></div></li>`)
+          .join('') || '<li class="panel note">沒有符合的商品，換個說法試試。</li>';
+    }
+  }
+
+  document.getElementById('search')?.addEventListener('click', (e) => {
+    const t = e.target instanceof Element ? e.target : null;
+    const cat = t?.closest('[data-cat]');
+    const tag = t?.closest('[data-tag]');
+    const rem = t?.closest('[data-remember-pet]');
+    if (cat) {
+      state.category = cat.getAttribute('data-cat') || null;
+      state.tag = null;
+      render();
+    } else if (tag) {
+      const v = tag.getAttribute('data-tag');
+      state.tag = state.tag === v ? null : v;
+      render();
+    } else if (rem) Profile.set({ hasPet: rem.getAttribute('data-remember-pet'), answered: true });
+  });
+  document.getElementById('search')?.addEventListener('change', (e) => {
+    const t = e.target;
+    if (t instanceof HTMLSelectElement && t.hasAttribute('data-cat-select')) {
+      state.category = t.value || null;
+      state.tag = null;
+      render();
+    }
+  });
+  document.getElementById('search-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    render();
+  });
+  input?.addEventListener('input', render);
+  Profile.subscribe(render); // 畫像一變，排序自動重算
+  render();
+</script>

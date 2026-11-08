@@ -1,0 +1,32 @@
+---
+// 比較卡（情境頁、品類頁共用）：型號連到自己的評測頁、到手價算式、缺點、CTA 走 /go/。
+import channelsData from '../data/channels.json';
+import { priceBreakdown } from '../lib/pricing.mjs';
+import { primaryChannel, productName } from '../lib/catalog.mjs';
+import { money } from '../lib/format.mjs';
+
+interface Props {
+  product: any;
+  slot?: string;
+}
+const { product: p, slot = 'grid' } = Astro.props;
+const b = priceBreakdown(p);
+const ch = primaryChannel(p);
+const chName = channelsData.channels.find((c) => c.id === ch)?.name ?? ch;
+const parts = [`標價 ${money(b.price)}`];
+if (b.discount) parts.push(`現折 −${money(b.discount)}`);
+if (b.taxRefund) parts.push(`退稅／補助 −${money(b.taxRefund)}`);
+---
+<li class="panel res" data-code={p.modelCode}>
+  <div class="row">
+    <h3 class="name"><a href={`/${p.category}/${p.slug}/`}>{productName(p)}</a></h3>
+    <div class="price num">{money(b.final)}</div>
+  </div>
+  {parts.length > 1 && <p class="note num" style="margin:0">到手價 = {parts.join(' ')}</p>}
+  <p class="flaw-line">缺點：{p.flaw}</p>
+  <p style="margin:0">{p.tldr}</p>
+  <div class="actions">
+    <a class="btn small ghost" href={`/${p.category}/${p.slug}/`}>看評測與規格</a>
+    <a class="btn small" href={`/go/${ch}-${p.modelCode}`} rel="sponsored nofollow noopener" data-track="go" data-channel={ch} data-code={p.modelCode} data-slot={slot}>到{chName}看最新價格</a>
+  </div>
+</li>

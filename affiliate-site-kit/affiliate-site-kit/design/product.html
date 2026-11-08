@@ -1,0 +1,111 @@
+<!doctype html><html lang="zh-Hant-TW"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>設計參考：商品頁</title><link rel="stylesheet" href="tokens.css"><link rel="stylesheet" href="base.css">
+<style>
+.crumbs{font-size:var(--step--1);color:var(--ink-2);padding:14px 0 6px}.crumbs a{color:var(--ink-2)}
+.layout{display:grid;gap:16px;margin-top:12px;grid-template-columns:minmax(0,1fr);grid-template-areas:"tldr" "aside" "rest"}
+.layout>*{min-width:0}
+.c-tldr{grid-area:tldr}.aside{grid-area:aside}.c-rest{grid-area:rest}
+@media(min-width:900px){.layout{grid-template-columns:minmax(0,1fr) 340px;grid-template-areas:"tldr aside" "rest aside";column-gap:32px;align-items:start}.aside{position:sticky;top:16px}.sticky-bar{display:none!important}}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+.box+.box{margin-top:16px}
+.verdict{font-size:var(--step-2);font-weight:800;line-height:1.4;letter-spacing:-.01em}
+.fit{display:grid;gap:10px;margin-top:14px}
+@media(min-width:600px){.fit{grid-template-columns:1fr 1fr}}
+.fit div{border-radius:8px;padding:10px 12px;font-size:var(--step-0)}
+.fit .yes{background:var(--win-soft)}.fit .no{background:var(--paper);border:1px solid var(--line)}
+.fit b{display:block;font-size:var(--step--1);margin-bottom:2px}
+.flaw-box{margin-top:14px;background:var(--warn-soft);color:var(--warn-ink);border-radius:8px;padding:10px 12px}
+.flaw-box b{display:block;font-size:var(--step--1)}
+/* 記憶點：到手價明細（收據式） */
+.receipt{border-top:3px solid var(--ink)}
+.receipt h2{font-size:var(--step-1)}
+.rl{display:flex;align-items:baseline;margin-top:10px}
+.rl .d{flex:1;border-bottom:2px dotted var(--line);margin:0 8px;transform:translateY(-4px)}
+.rl .minus{color:var(--promo);font-weight:700}
+.rl.total{margin-top:14px;padding-top:12px;border-top:2px solid var(--ink);align-items:baseline}
+.rl.total .d{border-bottom-color:transparent}
+.rl.total strong{font-size:var(--step-4);letter-spacing:-.03em;line-height:1}
+.rl.total span:first-child{font-weight:800}
+.receipt .btn{width:100%;margin-top:16px}
+.receipt .by{display:flex;justify-content:space-between;margin-top:10px}
+.other-ch{margin-top:12px;font-size:var(--step--1);color:var(--ink-2);border-top:1px solid var(--line);padding-top:10px}
+.other-ch a{font-weight:700}
+.sec{margin-top:36px}.c-rest>.sec:first-child{margin-top:20px}.sec>h2{margin-bottom:12px}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
+table{border-collapse:separate;border-spacing:0;width:100%;min-width:560px}
+th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+thead th{position:sticky;top:0;background:var(--surface);font-size:var(--step--1);color:var(--ink-2)}
+tbody th{position:sticky;left:0;background:var(--surface);font-weight:700;border-right:1px solid var(--line);z-index:1}
+tbody tr:last-child>*{border-bottom:0}
+td.win{background:var(--win-soft);color:var(--win);font-weight:800;box-shadow:inset 3px 0 0 var(--win)}
+td.win::after{content:" 勝出";font-size:var(--step--1);font-weight:700}
+.hist{display:grid;gap:8px}
+.hist svg{width:100%;height:auto;display:block}
+.hist .meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;font-size:var(--step--1);color:var(--ink-2)}
+.hist .tag{font-weight:800;color:var(--win)}
+dl.facts{margin:0;display:grid;grid-template-columns:7em 1fr;gap:10px 12px}
+dl.facts dt{color:var(--ink-2);font-weight:600}dl.facts dd{margin:0}
+.alt{border-left:4px solid var(--accent);padding:4px 0 4px 14px}
+details{border-bottom:1px solid var(--line);padding:12px 0}
+summary{font-weight:700;cursor:pointer;list-style:none}summary::-webkit-details-marker{display:none}
+summary::after{content:"+";float:right;color:var(--ink-2)}details[open] summary::after{content:"−"}
+details p{margin:8px 0 0;color:var(--ink-2)}
+.sticky-bar{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--surface);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom));display:flex;gap:14px;align-items:center}
+.sticky-bar .p{line-height:1.2}.sticky-bar .p small{display:block;color:var(--ink-2);font-size:var(--step--1)}.sticky-bar .p b{font-size:var(--step-2)}
+.sticky-bar .btn{flex:1;min-height:48px}
+</style></head><body>
+<header class="site-head"><div class="wrap"><a class="brand" href="#">挑家電</a><nav class="nav"><a href="#">除濕機</a><a href="#">洗衣機</a><a href="#">熱水器</a><a href="#">關於本站</a></nav></div></header>
+<main class="wrap">
+<nav class="crumbs" aria-label="麵包屑"><a href="#">首頁</a> / <a href="#">除濕機</a> / 示範除濕機 A</nav>
+<h1>示範除濕機 A 評測：2026 年值不值得買</h1>
+<p class="disclosure">本頁含分潤連結，你購買不會多花錢。價格與優惠以賣場頁面為準。</p>
+<div class="layout">
+<div class="c-tldr">
+<section class="box" aria-labelledby="tldr"><h2 id="tldr" class="verdict">10–15 坪、在意夜間安靜的家庭，買它。</h2>
+<div class="fit"><div class="yes"><b>適合</b>臥室或客廳長時間開、想省去倒水次數的人</div><div class="no"><b>不適合</b>空間超過 20 坪，或需要常搬動的人</div></div>
+<div class="flaw-box"><b>要先知道的缺點</b>水箱取出時偏重，把手位置不順手。</div></section>
+</div>
+
+<aside class="aside box receipt" aria-labelledby="rc">
+<h2 id="rc">到手價明細</h2>
+<div class="rl"><span>標價</span><span class="d"></span><span class="num">$12,900</span></div>
+<div class="rl"><span>現折</span><span class="d"></span><span class="num minus">−$500</span></div>
+<div class="rl"><span>能源效率補助</span><span class="d"></span><span class="num minus">−$1,200</span></div>
+<div class="rl total"><span>到手價</span><span class="d"></span><strong class="num">$11,200</strong></div>
+<a class="btn" href="#" rel="sponsored nofollow noopener" data-track="go">到蝦皮看最新價格</a>
+<div class="by note"><span>優惠至 2026/12/31</span><span class="num">價格更新 11/06</span></div>
+<div class="other-ch">酷澎目前 <span class="num">$13,200</span>，比蝦皮高 <span class="num">$300</span>。<a href="#" rel="sponsored nofollow noopener">看酷澎</a></div>
+</aside>
+
+<div class="c-rest">
+<section class="sec" aria-labelledby="h-cost"><h2 id="h-cost">買之前確認</h2>
+<div class="box"><dl class="facts">
+<dt>運費</dt><dd>免運</dd><dt>舊機回收</dt><dd>依賣場方案，下單前確認</dd>
+<dt>保固</dt><dd>官方保固一年</dd><dt>退貨</dt><dd>依賣場退貨規則（拆封後可能不退）</dd><dt>賣家</dt><dd>品牌官方旗艦店</dd></dl></div></section>
+
+<section class="sec" aria-labelledby="h-hist"><h2 id="h-hist">價格走勢</h2>
+<div class="box hist">
+<svg viewBox="0 0 320 90" role="img" aria-label="近 30 天價格走勢：從 13,500 降到 12,900"><line x1="0" y1="80" x2="320" y2="80" stroke="var(--line)"/><polyline fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round" points="4,14 60,14 118,30 176,30 234,52 292,70"/><circle cx="292" cy="70" r="5" fill="var(--accent)"/></svg>
+<div class="meta"><span>近 30 天最高 <b class="num">$13,500</b>　最低 <b class="num">$12,900</b></span><span class="tag">目前接近近期最低價</span></div>
+<p class="note" style="margin:0">本站自行記錄，共 6 筆，不代表全網最低價。</p></div></section>
+
+<section class="sec" aria-labelledby="h-spec"><h2 id="h-spec">規格比較</h2>
+<div class="tablewrap" tabindex="0" role="region" aria-label="規格比較表，可左右捲動"><table>
+<thead><tr><th>項目</th><th>示範 A</th><th>示範 B</th></tr></thead><tbody>
+<tr><th>日除濕量</th><td class="win num">20 L/日</td><td class="num">12 L/日</td></tr>
+<tr><th>運轉噪音</th><td class="win num">42 dB</td><td class="num">46 dB</td></tr>
+<tr><th>水箱容量</th><td class="win num">4.5 L</td><td class="num">3 L</td></tr>
+<tr><th>價格</th><td class="num">$11,200</td><td class="win num">$8,900</td></tr></tbody></table></div></section>
+
+<section class="sec" aria-labelledby="h-alt"><h2 id="h-alt">如果只能選一台</h2>
+<div class="alt"><p style="margin:0"><b>選示範 A。</b>只有預算有限、空間小於 10 坪時，改看 <a href="#">示範除濕機 B</a>。</p></div></section>
+
+<section class="sec" aria-labelledby="h-faq"><h2 id="h-faq">常見問題</h2>
+<details><summary>這台適合幾坪？</summary><p>請以官方標示的適用坪數為準，一般臥室與客廳綽綽有餘。</p></details>
+<details><summary>噪音會影響睡眠嗎？</summary><p>標示 42 dB，實際感受依空間而異。</p></details></section>
+</div>
+</div>
+</main>
+<footer class="site-foot"><div class="wrap"><p>本站部分連結為分潤連結，你購買時不會多花費用，我們可能因此獲得佣金。</p><p><a href="#">關於本站</a>　<a href="#">分潤揭露</a>　<a href="#">隱私權政策</a></p></div></footer>
+<div class="sticky-bar"><div class="p"><small>示範除濕機 A 到手價</small><b class="num">$11,200</b></div><a class="btn" href="#" rel="sponsored nofollow noopener" data-track="go">到蝦皮看最新價格</a></div>
+</body></html>

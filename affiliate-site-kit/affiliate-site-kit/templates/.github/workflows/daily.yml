@@ -1,0 +1,49 @@
+# 每日自動化：取得價格觀測 → 驗證 → 記錄價格 → 同步 vercel.json → 有變動就 commit（Vercel 隨即自動部署）；
+# 沒有變動則觸發 Deploy Hook 重建（讓促銷到期、年份、價格更新日期保持正確）。失敗會自動開 issue。
+# 設定：Secrets 加 VERCEL_DEPLOY_HOOK。若 main 有分支保護，bot 無法直接 push，請改為開 PR 或對 bot 開放例外。
+name: daily
+on:
+  schedule:
+    - cron: "0 20 * * *"   # UTC 20:00 = 台灣 04:00
+  workflow_dispatch:
+permissions:
+  contents: write
+  issues: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/daily.mjs
+        env:
+          COUPANG_API_TOKEN: ${{ secrets.COUPANG_API_TOKEN }}   # 只有 provider 設為 coupang 時才需要；金鑰只放 Secrets
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: daily-report
+          path: reports/
+      - id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data vercel.json
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "chore: daily data update"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+      - if: steps.commit.outputs.changed == 'false'
+        run: curl -fsS -X POST "$HOOK"
+        env:
+          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+      - if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh label create automation --color 5319E7 || true
+          gh issue create --label automation --title "每日資料更新失敗" --body "daily workflow 失敗，請看 Actions 紀錄：${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"

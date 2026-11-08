@@ -1,0 +1,30 @@
+{
+  "guides": [
+    {
+      "demo": true,
+      "slug": "demo-tokyo",
+      "destination": "東京",
+      "titleTemplate": "示範東京自由行 {year} 預訂指南",
+      "summary": "示範資料：說明該怎麼比較票券與住宿平台。",
+      "lastReviewed": "2026-11-01",
+      "priceNote": "價格變動快，請以平台頁面為準",
+      "offers": [
+        {
+          "kind": "tour",
+          "channel": "shopee",
+          "code": "demo-tokyo-tour",
+          "label": "示範：票券",
+          "note": "示範備註",
+          "affiliate": "https://shopee.tw/demo-tokyo-tour"
+        }
+      ],
+      "faq": [
+        {
+          "q": "示範問題：哪個平台比較便宜？",
+          "a": "示範回答：價格隨時變動，請同時比較。"
+        }
+      ]
+    }
+  ],
+  "_說明": "Step 14 才使用：複製為 src/data/travel.json，並先在 channels.json 啟用旅遊通路。"
+}

@@ -1,0 +1,479 @@
+{
+  "redirects": [
+    {
+      "source": "/go/shopee-demo-dh-a",
+      "destination": "https://shopee.tw/demo-dh-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/coupang-demo-dh-a",
+      "destination": "https://www.coupang.com/demo-dh-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-dh-b",
+      "destination": "https://shopee.tw/demo-dh-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-dh-c",
+      "destination": "https://shopee.tw/demo-dh-c",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-wm-a",
+      "destination": "https://shopee.tw/demo-wm-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-wm-b",
+      "destination": "https://shopee.tw/demo-wm-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-wh-a",
+      "destination": "https://shopee.tw/demo-wh-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-wh-b",
+      "destination": "https://shopee.tw/demo-wh-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-ac-a",
+      "destination": "https://shopee.tw/demo-ac-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-ac-b",
+      "destination": "https://shopee.tw/demo-ac-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-rv-a",
+      "destination": "https://shopee.tw/demo-rv-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-rv-b",
+      "destination": "https://shopee.tw/demo-rv-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-ap-a",
+      "destination": "https://shopee.tw/demo-ap-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-ap-b",
+      "destination": "https://shopee.tw/demo-ap-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-dw-a",
+      "destination": "https://shopee.tw/demo-dw-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-dw-b",
+      "destination": "https://shopee.tw/demo-dw-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-rf-a",
+      "destination": "https://shopee.tw/demo-rf-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-rf-b",
+      "destination": "https://shopee.tw/demo-rf-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-wp-a",
+      "destination": "https://shopee.tw/demo-wp-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-wp-b",
+      "destination": "https://shopee.tw/demo-wp-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-fw-a",
+      "destination": "https://shopee.tw/demo-fw-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-fw-b",
+      "destination": "https://shopee.tw/demo-fw-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-cm-a",
+      "destination": "https://shopee.tw/demo-cm-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-cm-b",
+      "destination": "https://shopee.tw/demo-cm-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-so-a",
+      "destination": "https://shopee.tw/demo-so-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-so-b",
+      "destination": "https://shopee.tw/demo-so-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-sl-a",
+      "destination": "https://shopee.tw/demo-sl-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-sl-b",
+      "destination": "https://shopee.tw/demo-sl-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-tv-a",
+      "destination": "https://shopee.tw/demo-tv-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-tv-b",
+      "destination": "https://shopee.tw/demo-tv-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-fn-a",
+      "destination": "https://shopee.tw/demo-fn-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-fn-b",
+      "destination": "https://shopee.tw/demo-fn-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-hd-a",
+      "destination": "https://shopee.tw/demo-hd-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-hd-b",
+      "destination": "https://shopee.tw/demo-hd-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-pj-a",
+      "destination": "https://shopee.tw/demo-pj-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-pj-b",
+      "destination": "https://shopee.tw/demo-pj-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-ec-a",
+      "destination": "https://shopee.tw/demo-ec-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-ec-b",
+      "destination": "https://shopee.tw/demo-ec-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-mt-a",
+      "destination": "https://shopee.tw/demo-mt-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-mt-b",
+      "destination": "https://shopee.tw/demo-mt-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-bg-a",
+      "destination": "https://shopee.tw/demo-bg-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-bg-b",
+      "destination": "https://shopee.tw/demo-bg-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-pc-a",
+      "destination": "https://shopee.tw/demo-pc-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-pc-b",
+      "destination": "https://shopee.tw/demo-pc-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-mc-a",
+      "destination": "https://shopee.tw/demo-mc-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-mc-b",
+      "destination": "https://shopee.tw/demo-mc-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-dr-a",
+      "destination": "https://shopee.tw/demo-dr-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-dr-b",
+      "destination": "https://shopee.tw/demo-dr-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-hc-a",
+      "destination": "https://shopee.tw/demo-hc-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-hc-b",
+      "destination": "https://shopee.tw/demo-hc-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-tb-a",
+      "destination": "https://shopee.tw/demo-tb-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-tb-b",
+      "destination": "https://shopee.tw/demo-tb-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-tm-a",
+      "destination": "https://shopee.tw/demo-tm-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-tm-b",
+      "destination": "https://shopee.tw/demo-tm-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-cv-a",
+      "destination": "https://shopee.tw/demo-cv-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-cv-b",
+      "destination": "https://shopee.tw/demo-cv-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-mi-a",
+      "destination": "https://shopee.tw/demo-mi-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-mi-b",
+      "destination": "https://shopee.tw/demo-mi-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-sh-a",
+      "destination": "https://shopee.tw/demo-sh-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-sh-b",
+      "destination": "https://shopee.tw/demo-sh-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-rc-a",
+      "destination": "https://shopee.tw/demo-rc-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-rc-b",
+      "destination": "https://shopee.tw/demo-rc-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-mw-a",
+      "destination": "https://shopee.tw/demo-mw-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-mw-b",
+      "destination": "https://shopee.tw/demo-mw-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-bl-a",
+      "destination": "https://shopee.tw/demo-bl-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-bl-b",
+      "destination": "https://shopee.tw/demo-bl-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-rh-a",
+      "destination": "https://shopee.tw/demo-rh-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-rh-b",
+      "destination": "https://shopee.tw/demo-rh-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-im-a",
+      "destination": "https://shopee.tw/demo-im-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-im-b",
+      "destination": "https://shopee.tw/demo-im-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-sm-a",
+      "destination": "https://shopee.tw/demo-sm-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-sm-b",
+      "destination": "https://shopee.tw/demo-sm-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-sf-a",
+      "destination": "https://shopee.tw/demo-sf-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-sf-b",
+      "destination": "https://shopee.tw/demo-sf-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-fu-a",
+      "destination": "https://shopee.tw/demo-fu-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-fu-b",
+      "destination": "https://shopee.tw/demo-fu-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-hp-a",
+      "destination": "https://shopee.tw/demo-hp-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-hp-b",
+      "destination": "https://shopee.tw/demo-hp-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-sb-a",
+      "destination": "https://shopee.tw/demo-sb-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-sb-b",
+      "destination": "https://shopee.tw/demo-sb-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-lt-a",
+      "destination": "https://shopee.tw/demo-lt-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-lt-b",
+      "destination": "https://shopee.tw/demo-lt-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-cr-a",
+      "destination": "https://shopee.tw/demo-cr-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-cr-b",
+      "destination": "https://shopee.tw/demo-cr-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-pg-a",
+      "destination": "https://shopee.tw/demo-pg-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-pg-b",
+      "destination": "https://shopee.tw/demo-pg-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-kf-a",
+      "destination": "https://shopee.tw/demo-kf-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-kf-b",
+      "destination": "https://shopee.tw/demo-kf-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-mg-a",
+      "destination": "https://shopee.tw/demo-mg-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-mg-b",
+      "destination": "https://shopee.tw/demo-mg-b",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-fe-a",
+      "destination": "https://shopee.tw/demo-fe-a",
+      "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-demo-fe-b",
+      "destination": "https://shopee.tw/demo-fe-b",
+      "statusCode": 302
+    }
+  ],
+  "headers": [
+    {
+      "source": "/go/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
+      ]
+    }
+  ]
+}

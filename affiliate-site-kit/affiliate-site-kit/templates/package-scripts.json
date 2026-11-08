@@ -1,0 +1,16 @@
+{
+  "_說明": "把這些 scripts 合併進 package.json（保留 dev/build/preview）。同時在 astro.config.mjs 註冊 integrations/validate-data.mjs（見 stages.md Step 3），這才是擋住壞資料的主要防線；prebuild 只是本機的提前檢查。vercel.json 用 npm run sync 產生並 commit。",
+  "scripts": {
+    "prebuild": "node scripts/validate-products.mjs",
+    "audit": "node scripts/audit-dist.mjs",
+    "verify": "node scripts/verify.mjs",
+    "launch-check": "node scripts/validate-products.mjs --strict && node scripts/gen-redirects.mjs --check && npm run build && node scripts/audit-dist.mjs --strict",
+    "update-prices": "node scripts/csv-to-products.mjs && node scripts/validate-products.mjs && node scripts/record-price.mjs && node scripts/gen-redirects.mjs",
+    "check-links": "node scripts/check-links.mjs",
+    "price-stats": "node scripts/record-price.mjs --stats",
+    "sync": "node scripts/gen-redirects.mjs",
+    "daily": "node scripts/daily.mjs",
+    "weekly-report": "node scripts/weekly-report.mjs",
+    "shots": "node scripts/screenshot.mjs"
+  }
+}

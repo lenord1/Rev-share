@@ -1,0 +1,20 @@
+# 每次 PR 與推送到 main 都跑：資料驗證 → vercel.json 同步檢查 → 建置 → 建置稽核。
+name: ci
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: node scripts/validate-products.mjs
+      - run: node scripts/gen-redirects.mjs --check
+      - run: npm run build
+      - run: node scripts/audit-dist.mjs

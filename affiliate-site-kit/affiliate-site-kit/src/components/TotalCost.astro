@@ -1,0 +1,46 @@
+---
+// 到手價明細（收據式）：標價 − 折扣 − 退稅/補助 = 到手價。促銷過期自動不計；計算只走 pricing.mjs。
+// 多通路：用 compareChannels 誠實標出較低者與價差；資料太舊或同價就不比較。
+import channelsData from '../data/channels.json';
+import { priceBreakdown, compareChannels, daysLeft } from '../lib/pricing.mjs';
+import { primaryChannel } from '../lib/catalog.mjs';
+import { money, ymd, md } from '../lib/format.mjs';
+
+interface Props {
+  product: any;
+}
+const { product: p } = Astro.props;
+const b = priceBreakdown(p);
+const primary = primaryChannel(p);
+const name = Object.fromEntries(channelsData.channels.map((c) => [c.id, c.name]));
+const cmp = compareChannels(p);
+const other = cmp.options.find((o) => o.channel !== primary);
+const left = daysLeft(p);
+const expired = !b.active && ((p.discount ?? 0) > 0 || (p.taxRefund ?? 0) > 0);
+const go = (ch: string) => `/go/${ch}-${p.modelCode}`;
+---
+<aside class="aside box receipt" aria-labelledby="rc">
+  <h2 id="rc">到手價明細</h2>
+  <div class="rl"><span>標價</span><span class="d"></span><span class="num">{money(b.price)}</span></div>
+  {b.discount > 0 && <div class="rl"><span>現折</span><span class="d"></span><span class="num minus">−{money(b.discount)}</span></div>}
+  {b.discount > 0 && b.taxRefund > 0 && <div class="rl"><span>結帳金額</span><span class="d"></span><span class="num">{money(b.price - b.discount)}</span></div>}
+  {b.taxRefund > 0 && <div class="rl"><span>退稅／補助</span><span class="d"></span><span class="num minus">−{money(b.taxRefund)}</span></div>}
+  <div class="rl total"><span>到手價</span><span class="d"></span><strong class="num">{money(b.final)}</strong></div>
+  {b.taxRefund > 0 && p.subsidyNote && <p class="note" style="margin:8px 0 0">{p.subsidyNote}</p>}
+  {expired && <p class="note" style="margin:8px 0 0">原促銷已於 {ymd(p.promoValidUntil)} 結束，未計入到手價。</p>}
+  <a class="btn" href={go(primary)} rel="sponsored nofollow noopener" data-track="go" data-channel={primary} data-code={p.modelCode} data-slot="tldr" data-cta-anchor>到{name[primary] ?? primary}看最新價格</a>
+  <div class="by note">
+    <span>{left !== null && left <= 14 ? `優惠至 ${ymd(p.promoValidUntil)}（剩 ${left} 天）` : ''}</span>
+    <span class="num">價格更新 {md(p.priceUpdatedAt)}</span>
+  </div>
+  {other && (
+    <div class="other-ch">
+      {cmp.cheaper
+        ? <>
+            {name[other.channel] ?? other.channel}標價 <span class="num">{money(other.price)}</span>，比{name[primary] ?? primary}{cmp.cheaper === other.channel ? '低' : '高'} <span class="num">{money(Math.abs(other.price - b.price))}</span>（均為未計券與折扣的標價）。
+          </>
+        : <>{name[other.channel] ?? other.channel}也有販售，但兩邊價格無法可靠比較（觀測日期過舊或價格相同），請以平台頁面為準。</>}
+      <a href={go(other.channel)} rel="sponsored nofollow noopener" data-track="go" data-channel={other.channel} data-code={p.modelCode} data-slot="tldr">到{name[other.channel] ?? other.channel}看最新價格</a>
+    </div>
+  )}
+</aside>

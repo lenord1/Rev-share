@@ -1,0 +1,38 @@
+---
+// 手機底部固定購買列（桌機不顯示，右側有黏性到手價明細）。到手價明細的 CTA 進入視窗、或購買意圖抽屜顯示時讓位，避免重複與重疊。
+import channelsData from '../data/channels.json';
+import { priceBreakdown } from '../lib/pricing.mjs';
+import { primaryChannel, productName } from '../lib/catalog.mjs';
+import { money } from '../lib/format.mjs';
+
+interface Props {
+  product: any;
+}
+const { product: p } = Astro.props;
+const b = priceBreakdown(p);
+const ch = primaryChannel(p);
+const chName = channelsData.channels.find((c) => c.id === ch)?.name ?? ch;
+---
+<div class="sticky-bar fixed inset-x-0 bottom-0" id="sticky-cta" data-hidden="false">
+  <div class="p"><small>{productName(p)} 到手價</small><b class="num">{money(b.final)}</b></div>
+  <a class="btn" href={`/go/${ch}-${p.modelCode}`} rel="sponsored nofollow noopener" data-track="go" data-channel={ch} data-code={p.modelCode} data-slot="sticky">到{chName}看最新價格</a>
+</div>
+
+<script>
+  const bar = document.getElementById('sticky-cta');
+  const anchors = document.querySelectorAll('[data-cta-anchor]');
+  let anchorVisible = false;
+  const update = () => {
+    const drawer = document.documentElement.dataset.drawerOpen === 'true';
+    bar?.setAttribute('data-hidden', anchorVisible || drawer ? 'true' : 'false');
+  };
+  if (bar && 'IntersectionObserver' in window && anchors.length) {
+    const io = new IntersectionObserver((es) => {
+      anchorVisible = es.some((e) => e.isIntersecting);
+      update();
+    });
+    anchors.forEach((a) => io.observe(a));
+  }
+  // 抽屜開關會改 <html data-drawer-open>，跟著更新
+  new MutationObserver(update).observe(document.documentElement, { attributes: true, attributeFilter: ['data-drawer-open'] });
+</script>

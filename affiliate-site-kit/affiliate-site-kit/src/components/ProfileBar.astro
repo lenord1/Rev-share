@@ -1,0 +1,31 @@
+---
+// 畫像列：讓使用者看得到、改得到系統記住了什麼（透明 = 信任）。訂閱共享 Profile。
+---
+<div class="profilebar" id="profilebar" aria-live="polite"></div>
+
+<script>
+  import { Profile, petLabel } from '../lib/profile.js';
+  import { esc } from '../lib/client.js';
+
+  const el = document.getElementById('profilebar');
+  function render() {
+    if (!el) return;
+    const pr = Profile.get();
+    const chips = [];
+    if (pr.hasPet) chips.push(petLabel(pr.hasPet));
+    if (pr.hasChild === true) chips.push('有小孩');
+    if (pr.spaceSize) chips.push(pr.spaceSize === 'large' ? '空間偏大' : '空間偏小');
+    el.innerHTML = chips.length
+      ? `<span class="label">依你的情況排序：</span>${chips.map((c) => `<span class="chip hit">${esc(c)}</span>`).join('')}
+         <button type="button" class="btn ghost small" data-open-quiz>修改</button>
+         <button type="button" class="link-btn" data-clear-profile>清除資料</button>
+         <span class="note">只存在你的瀏覽器，不會上傳。</span>`
+      : `<button type="button" class="btn ghost small" data-open-quiz>回答 3 個問題，讓排序更貼近你家</button>
+         <span class="note">只存在你的瀏覽器，不會上傳。</span>`;
+  }
+  el?.addEventListener('click', (e) => {
+    if (e.target instanceof Element && e.target.closest('[data-clear-profile]')) Profile.reset();
+  });
+  Profile.subscribe(render);
+  render();
+</script>

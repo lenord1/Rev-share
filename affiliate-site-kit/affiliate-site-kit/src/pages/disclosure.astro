@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+import channelsData from '../data/channels.json';
+import site from '../data/site.json';
+const names = channelsData.channels.filter((c) => c.enabled).map((c) => c.name).join('、');
+---
+<Layout title={`分潤揭露｜${site.name}`} description="本站的連結為什麼是分潤連結、對你的價格有沒有影響。">
+  <main class="wrap prose" style="padding-top:24px">
+    <h1>分潤揭露</h1>
+    <p>本站部分連結為分潤連結。你點擊後到購物平台（目前包含{names}）下單，我們可能因此獲得佣金。</p>
+
+    <h2>對你有什麼影響</h2>
+    <ul>
+      <li><b>價格：</b>你不會因為透過本站連結而多付任何費用。</li>
+      <li><b>內容：</b>每台商品都會列出缺點、額外費用與不適合的情況，不會因為某台分潤較高就隱藏缺點。</li>
+      <li><b>價格與優惠：</b>以賣場頁面為準。本站顯示的是記錄當下的標價與整理出的到手價，活動、優惠券與運費請在結帳頁確認。</li>
+    </ul>
+
+    <h2>怎麼辨認分潤連結</h2>
+    <p>本站所有前往購物平台的按鈕，都是站內的 <code>/go/</code> 連結，並標記 <code>rel="sponsored nofollow noopener"</code>。每個有分潤連結的頁面都有揭露文字。</p>
+
+    <h2>點擊紀錄</h2>
+    <p>為了對帳與改善頁面，本站可能記錄「哪個商品的哪個按鈕被點了」，不含任何個人資料。詳見<a href="/privacy/">隱私權政策</a>。</p>
+  </main>
+</Layout>

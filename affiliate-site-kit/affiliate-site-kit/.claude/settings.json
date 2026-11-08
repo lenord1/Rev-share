@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node scripts/*)",
+      "Bash(NODE_PATH=* node scripts/screenshot.mjs *)",
+      "Bash(npm run *)",
+      "Bash(npx astro *)",
+      "Bash(git status)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(curl -I *)",
+      "Bash(curl -sI *)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [{ "type": "command", "command": "node scripts/hook-validate.mjs" }]
+      }
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+# 每日連結健康檢查。失敗（有錯誤）時 workflow 會變紅，GitHub 會通知你。
+# 設定：repo → Settings → Secrets and variables → Actions → Variables 新增 SITE_URL（例如 https://你的網域）。
+name: link-check
+permissions:
+  contents: read
+  issues: write
+on:
+  schedule:
+    - cron: "30 20 * * *"   # UTC 20:30 = 台灣 04:30（接在 rebuild 之後）
+  workflow_dispatch:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # 每日只檢查自己的網域（穩定可靠）。--follow 會連到賣場，從 GitHub 的機房 IP 常被限流而「無法判斷」，
+      # 建議每週在自己電腦手動執行：node scripts/check-links.mjs --base https://你的網域 --follow
+      - run: node scripts/check-links.mjs --base "$SITE_URL"
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: link-check-report
+          path: reports/
+      - if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh label create link-check --color D93F0B || true
+          if [ "$(gh issue list --label link-check --state open --json number --jq 'length')" = "0" ]; then
+            gh issue create --label link-check --title "連結檢查失敗" --body "請看 Actions 紀錄與報告：${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          fi

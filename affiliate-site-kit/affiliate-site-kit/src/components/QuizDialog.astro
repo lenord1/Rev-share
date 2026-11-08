@@ -1,0 +1,70 @@
+---
+// 引導式環境問卷（原生 <dialog>：焦點陷阱、Esc 關閉）。3 題，完成寫入共享 Profile；只自動跳出一次。
+---
+<dialog id="quiz-dialog" aria-labelledby="quiz-title">
+  <div class="quiz" id="quiz-body"></div>
+</dialog>
+
+<script>
+  import { Profile } from '../lib/profile.js';
+  import { esc } from '../lib/client.js';
+
+  const QUIZ = [
+    { key: 'hasPet', q: '家裡有養寵物嗎？', opts: [['有貓', 'cat'], ['有狗', 'dog'], ['其他寵物', 'other'], ['沒有', false]] },
+    { key: 'hasChild', q: '家裡有小孩嗎？', opts: [['有', true], ['沒有', false]] },
+    { key: 'spaceSize', q: '主要使用的空間大小？', opts: [['小（約 10 坪以下，套房／臥室）', 'small'], ['大（約 15 坪以上，客廳／大房間）', 'large']] },
+  ];
+  const dlg = document.getElementById('quiz-dialog') as HTMLDialogElement | null;
+  const body = document.getElementById('quiz-body');
+  let step = 0;
+  let draft: Record<string, unknown> = {};
+
+  function render() {
+    const s = QUIZ[step];
+    if (!body) return;
+    body.innerHTML = `
+      <div class="steps" aria-hidden="true" style="margin:0 0 14px">${QUIZ.map((_, i) => `<i class="${i <= step ? 'on' : ''}"></i>`).join('')}</div>
+      <h2 id="quiz-title">${esc(s.q)}</h2>
+      <p class="note">第 ${step + 1} / ${QUIZ.length} 題。只存在你的瀏覽器，可隨時清除。</p>
+      <div class="quiz-opts">${s.opts.map(([label], i) => `<button type="button" class="quiz-opt" data-pick="${i}">${esc(label as string)}</button>`).join('')}</div>
+      <div class="quiz-foot"><button type="button" class="link-btn" data-skip>先跳過</button>
+        ${step > 0 ? '<button type="button" class="link-btn" data-prev>上一題</button>' : '<span></span>'}</div>`;
+  }
+  function open() {
+    if (!dlg || dlg.open) return;
+    step = 0;
+    draft = {};
+    render();
+    dlg.showModal();
+  }
+
+  body?.addEventListener('click', (e) => {
+    const t = e.target instanceof Element ? e.target : null;
+    const pick = t?.closest('[data-pick]');
+    if (pick) {
+      const s = QUIZ[step];
+      draft[s.key] = s.opts[Number(pick.getAttribute('data-pick'))][1];
+      if (step < QUIZ.length - 1) {
+        step++;
+        render();
+        body.querySelector<HTMLElement>('.quiz-opt')?.focus();
+      } else {
+        Profile.set({ ...draft, answered: true }); // 問卷完成 → 共享 Profile → 所有訂閱者即時更新
+        dlg?.close();
+      }
+    } else if (t?.closest('[data-prev]')) {
+      step = Math.max(0, step - 1);
+      render();
+    } else if (t?.closest('[data-skip]')) {
+      Profile.set({ skipped: true }); // 跳過後不再自動打擾
+      dlg?.close();
+    }
+  });
+  document.addEventListener('click', (e) => {
+    if (e.target instanceof Element && e.target.closest('[data-open-quiz]')) open();
+  });
+
+  // 第一次來且沒跳過過才自動跳出（只問一次）
+  const pr = Profile.get();
+  if (!pr.answered && !pr.skipped) setTimeout(open, 600);
+</script>

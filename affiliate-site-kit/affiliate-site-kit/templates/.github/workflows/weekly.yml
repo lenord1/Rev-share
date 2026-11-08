@@ -1,0 +1,23 @@
+# 每週產生營運報告並開成 issue（待更新價格、即將到期促銷、價格走勢、連結檢查與對帳摘要）。
+name: weekly-report
+on:
+  schedule:
+    - cron: "0 1 * * 1"   # UTC 週一 01:00 = 台灣週一 09:00
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/weekly-report.mjs
+      - env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh label create weekly --color 0E8A16 || true
+          gh issue create --label weekly --title "每週營運報告 $(date -u +%F)" --body-file "$(ls reports/weekly-*.md | tail -1)"

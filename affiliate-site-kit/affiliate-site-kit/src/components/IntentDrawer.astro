@@ -1,0 +1,136 @@
+---
+// 購買意圖抽屜：商品頁的缺點區或規格區（data-intent-zone）≥50% 在畫面內累計 5 秒才出現，每商品每工作階段一次。
+// 價格與「標價較低／較快到貨」說法都在建置時由 pricing.mjs 算好再內嵌：沒有資料支持就不說。
+// 掛在商品頁（Step 5）；缺點區與規格區要加上 data-intent-zone="flaw"、"spec"。
+import channelsData from '../data/channels.json';
+import { priceStats, compareChannels } from '../lib/pricing.mjs';
+import { primaryChannel, safeJson } from '../lib/catalog.mjs';
+
+interface Props {
+  product: any;
+}
+const { product: p } = Astro.props;
+
+const histFiles = import.meta.glob('../data/price-history.json', { eager: true }) as Record<string, { default: Record<string, { date: string; channel: string; price: number }[]> }>;
+const history = Object.values(histFiles)[0]?.default ?? {};
+const primary = primaryChannel(p);
+
+// 價格事實的三種誠實狀態：目前就是 30 天最低 / 高於最低 / 紀錄不足
+const stats = priceStats((history[p.modelCode] ?? []).filter((e) => e.channel === primary));
+const price = !stats.enough
+  ? { state: 'unknown' }
+  : p.price <= stats.min
+    ? { state: 'lowest' }
+    : { state: 'above', above: p.price - stats.min };
+
+// 雙通路 CTA：副標只由 compareChannels 決定
+const cmp = compareChannels(p);
+const name = Object.fromEntries(channelsData.channels.map((c) => [c.id, c.name]));
+const picks = cmp.dual ? cmp.options.map((o) => o.channel) : [primary];
+const ctas = picks.map((ch) => ({
+  channel: ch,
+  name: name[ch] ?? ch,
+  sub: cmp.cheaper === ch ? '標價較低' : cmp.fastest === ch ? '較快到貨' : '',
+}));
+const config = { code: p.modelCode, tags: p.tags ?? [], price, ctas };
+---
+<div class="drawer" id="intent-drawer" role="status" aria-live="polite" data-show="false"></div>
+<script type="application/json" id="intent-config" set:html={safeJson(config)} />
+
+<script>
+  import { Profile, hasPet, petLabel } from '../lib/profile.js';
+  import { trackEvent } from '../lib/track.js';
+  import { fmt, esc } from '../lib/client.js';
+
+  // 所有門檻集中在這裡。「停在缺點區 5 秒＝猶豫中」只是行為假設，要用事件紀錄驗證，不好就調整或關掉。
+  const CONFIG = { dwellMs: 5000, visibleRatio: 0.5, tickMs: 250, sessionKey: 'ssp.drawer' };
+
+  const el = document.getElementById('intent-drawer');
+  let cfg: any = null;
+  try {
+    cfg = JSON.parse(document.getElementById('intent-config')?.textContent || 'null');
+  } catch {
+    cfg = null;
+  }
+
+  const seenBefore = (code: string) => {
+    try {
+      return (sessionStorage.getItem(CONFIG.sessionKey) || '').split(',').includes(code);
+    } catch {
+      return false;
+    }
+  };
+  const markSeen = (code: string) => {
+    try {
+      sessionStorage.setItem(CONFIG.sessionKey, (sessionStorage.getItem(CONFIG.sessionKey) || '') + ',' + code);
+    } catch {
+      /* 無法記錄就算了 */
+    }
+  };
+
+  // 文案：個人化「為什麼適合你」只在標籤真的相符時才說；價格事實是三種誠實狀態之一
+  function message() {
+    const pr = Profile.get();
+    const tags: string[] = cfg.tags;
+    let fit = '';
+    if (hasPet(pr) && tags.includes('寵物友善')) fit = `這台符合您${petLabel(pr.hasPet).replace('有', '養')}家庭的除臭需求`;
+    else if (pr.hasChild === true && tags.includes('安全鎖')) fit = '這台有安全鎖，適合有小孩的家庭';
+    else if (pr.spaceSize === 'large' && tags.includes('大坪數')) fit = '這台適合您偏大的空間';
+    else if (pr.spaceSize === 'small' && tags.includes('小坪數')) fit = '這台適合您偏小的空間';
+    let price = '價格紀錄還在累積中，暫時無法判斷是否划算。';
+    if (cfg.price.state === 'lowest') price = '目前正處於 30 天內本站記錄的最低價。';
+    else if (cfg.price.state === 'above') price = `目前比 30 天內本站記錄的最低價高 ${fmt(cfg.price.above)}。`;
+    return '價格追蹤：' + (fit ? fit + '，' : '') + price;
+  }
+
+  function show(zone: string) {
+    if (!el) return;
+    const dual = cfg.ctas.length > 1;
+    const link = (c: any, i: number) =>
+      `<a class="btn ${i === 0 || c.sub ? '' : 'ghost'}" href="/go/${esc(c.channel)}-${esc(cfg.code)}" rel="sponsored nofollow noopener" data-track="go" data-channel="${esc(c.channel)}" data-code="${esc(cfg.code)}" data-slot="drawer-${esc(c.channel)}">到${esc(c.name)}看最新價格${c.sub ? `<small>${esc(c.sub)}</small>` : ''}</a>`;
+    el.innerHTML = `<div class="head"><p>${esc(message())}</p><button type="button" class="x" data-drawer-close aria-label="關閉提示">關閉</button></div>
+      <div class="cta ${dual ? '' : 'single'}">${cfg.ctas.map(link).join('')}</div>
+      <p class="note">價格以各平台頁面為準，實際金額含券與運費請在結帳頁確認。</p>`;
+    requestAnimationFrame(() => {
+      el.dataset.show = 'true'; // 下一幀才設定，CSS 過渡才會生效
+      document.documentElement.dataset.drawerOpen = 'true'; // 手機固定購買列看到這個就讓位
+    });
+    trackEvent('intent-shown', { code: cfg.code, zone });
+  }
+  function hide(userClosed: boolean) {
+    if (!el) return;
+    if (userClosed) trackEvent('intent-closed', { code: cfg.code });
+    el.dataset.show = 'false';
+    delete document.documentElement.dataset.drawerOpen;
+  }
+  el?.addEventListener('click', (e) => {
+    if (e.target instanceof Element && e.target.closest('[data-drawer-close]')) hide(true);
+  });
+
+  // 用 IntersectionObserver 看使用者的視線停在哪：任一區塊 ≥50% 在畫面內才計時，分頁在背景不計。
+  if (cfg && 'IntersectionObserver' in window && !seenBefore(cfg.code)) {
+    const visible = new Set<string>();
+    const io = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((en) => {
+          const zone = (en.target as HTMLElement).dataset.intentZone || '';
+          if (en.isIntersecting && en.intersectionRatio >= CONFIG.visibleRatio) visible.add(zone);
+          else visible.delete(zone);
+        }),
+      { threshold: [0, CONFIG.visibleRatio, 1] },
+    );
+    document.querySelectorAll('[data-intent-zone]').forEach((z) => io.observe(z));
+    let dwell = 0;
+    const timer = setInterval(() => {
+      if (document.hidden || !visible.size) return;
+      dwell += CONFIG.tickMs;
+      if (dwell < CONFIG.dwellMs) return;
+      clearInterval(timer);
+      io.disconnect();
+      if (!seenBefore(cfg.code)) {
+        markSeen(cfg.code); // 每個商品每個工作階段最多一次
+        show([...visible][0]);
+      }
+    }, CONFIG.tickMs);
+  }
+</script>

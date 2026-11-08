@@ -1,0 +1,32 @@
+---
+// 內嵌瀏覽器（LINE / IG / FB / Threads）提示條。偵測規則寫成陣列，容易增補。
+// Threads 的 UA 字串尚不確定（需用真機確認，記入 BUILD_LOG），先以 Barcelona 為候選規則。
+---
+<div class="inapp" id="inapp-warning" role="status" aria-hidden="true">
+  <span id="inapp-text">請改用 Safari / Chrome 開啟，才能順利喚醒購物 App。</span>
+  <button type="button" id="inapp-close">知道了</button>
+</div>
+
+<script>
+  const RULES = [
+    { name: 'LINE', test: /Line\//i, text: '請點右上角選單，選「以預設瀏覽器開啟」，才能順利喚醒購物 App。' },
+    { name: 'Instagram', test: /Instagram/i, text: '請點右上角「⋯」，選「在瀏覽器中開啟」，才能順利喚醒購物 App。' },
+    { name: 'Facebook', test: /FBAN|FBAV/i, text: '請點右上角「⋯」，選「在瀏覽器中開啟」，才能順利喚醒購物 App。' },
+    { name: 'Threads', test: /Barcelona/i, text: '請點右上角「⋯」，選「在瀏覽器中開啟」，才能順利喚醒購物 App。' },
+  ];
+  const KEY = 'inapp-dismissed';
+  const el = document.getElementById('inapp-warning');
+  const rule = RULES.find((r) => r.test.test(navigator.userAgent));
+  let dismissed = false;
+  try { dismissed = sessionStorage.getItem(KEY) === '1'; } catch {}
+  if (el && rule && !dismissed) {
+    document.getElementById('inapp-text')!.textContent = rule.text;
+    el.dataset.show = 'true';
+    el.setAttribute('aria-hidden', 'false');
+    document.getElementById('inapp-close')?.addEventListener('click', () => {
+      el.dataset.show = 'false';
+      el.setAttribute('aria-hidden', 'true');
+      try { sessionStorage.setItem(KEY, '1'); } catch {}
+    });
+  }
+</script>

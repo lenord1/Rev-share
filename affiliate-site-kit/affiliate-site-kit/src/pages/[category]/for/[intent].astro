@@ -1,0 +1,83 @@
+---
+// 情境落地頁 /{品類}/for/{情境}：鎖定「家有嬰兒 除濕機」這類高購買意圖搜尋。
+// 只有「符合商品數達門檻 且 導言已審核」才會產生（buildableIntents，與驗證器、稽核共用同一規則）。
+import Layout from '../../../layouts/Layout.astro';
+import CompareCard from '../../../components/CompareCard.astro';
+import productsData from '../../../data/products.json';
+import intentsData from '../../../data/intents.json';
+import config from '../../../../scripts/config.json';
+import { buildableIntents } from '../../../lib/intents.mjs';
+import { slimProduct, safeJson } from '../../../lib/catalog.mjs';
+import { noindexIntent } from '../../../lib/indexing.mjs';
+
+export function getStaticPaths() {
+  return buildableIntents(productsData.products, intentsData.intents, { minProducts: config.minIntentProducts ?? 2 }).map((intent) => ({
+    params: { category: intent.category, intent: intent.slug },
+    props: { intent },
+  }));
+}
+const { intent } = Astro.props;
+const category = productsData.categories.find((c) => c.slug === intent.category)!;
+const cards = intent.products.slice(0, 4); // 2–4 台比較；預設依價格由低到高，畫像排序在 client 套用
+const site = Astro.site!;
+const ld = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: '首頁', item: new URL('/', site).href },
+      { '@type': 'ListItem', position: 2, name: category.name, item: new URL(`/${category.slug}/`, site).href },
+      { '@type': 'ListItem', position: 3, name: intent.title, item: new URL(`/${category.slug}/for/${intent.slug}/`, site).href },
+    ],
+  },
+  ...(intent.faq?.length
+    ? [{
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: intent.faq.map((f: any) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+      }]
+    : []),
+];
+const catalog = { products: cards.map((p: any) => slimProduct(p)) };
+---
+<Layout title={`${intent.title}｜挑家電`} description={intent.intro.slice(0, 90)} noindex={noindexIntent(intent)}>
+  <main class="wrap">
+    <nav class="crumbs" aria-label="麵包屑"><a href="/">首頁</a> / <a href={`/${category.slug}/`}>{category.name}</a> / {intent.title}</nav>
+    <h1>{intent.title}</h1>
+    <p class="disclosure">本頁含分潤連結，您購買不會多花錢。價格與優惠以賣場頁面為準。</p>
+    <p class="intro">{intent.intro}</p>
+    <ol class="results" id="intent-list" style="margin-top:16px">
+      {cards.map((p: any) => <CompareCard product={p} slot="grid" />)}
+    </ol>
+    {intent.faq?.length > 0 && (
+      <section class="sec" aria-labelledby="h-faq">
+        <h2 id="h-faq">常見問題</h2>
+        {intent.faq.map((f: any) => <details><summary>{f.q}</summary><p>{f.a}</p></details>)}
+      </section>
+    )}
+  </main>
+  <script type="application/json" id="catalog" set:html={safeJson(catalog)} />
+  <script type="application/ld+json" set:html={safeJson(ld[0])} />
+  {ld[1] && <script type="application/ld+json" set:html={safeJson(ld[1])} />}
+
+  <script>
+    // 依共享畫像重排（HTML 預設依價格；沒有畫像或沒有命中就維持原順序）
+    import { Profile } from '../../../lib/profile.js';
+    import { rank } from '../../../lib/rank.js';
+    import { readCatalog } from '../../../lib/client.js';
+    const { products = [] } = readCatalog();
+    const list = document.getElementById('intent-list');
+    function reorder() {
+      if (!list) return;
+      const { items } = rank(products, '', Profile.get());
+      if (items.every((x) => x.score === 0)) return;
+      const byCode = new Map([...list.children].map((li) => [(li as HTMLElement).dataset.code, li]));
+      items.forEach(({ p }) => {
+        const li = byCode.get(p.code);
+        if (li) list.appendChild(li);
+      });
+    }
+    Profile.subscribe(reorder);
+    reorder();
+  </script>
+</Layout>

@@ -1,0 +1,51 @@
+---
+// 首頁九宮格商品卡：對齊 design/home.html。連結走 /go/（HTML 不出現賣場網址）。
+import { Image } from 'astro:assets';
+import { priceBreakdown } from '../lib/pricing.mjs';
+import { productName, primaryChannel, histSummary, histLine } from '../lib/catalog.mjs';
+
+interface Props {
+  product: any;
+  categoryName: string;
+  slot?: string;
+  history?: Record<string, any[]>;
+  more?: boolean;
+}
+const { product: p, categoryName, slot = 'grid', history = {}, more = false } = Astro.props;
+const b = priceBreakdown(p);
+const hasPromo = b.active && (b.discount > 0 || b.taxRefund > 0);
+const ch = primaryChannel(p);
+const fmt = new Intl.NumberFormat('zh-TW', { style: 'currency', currency: 'TWD', maximumFractionDigits: 0 });
+const histText = histLine(histSummary(history, p), (n: number) => fmt.format(n));
+
+const images = import.meta.glob('../assets/products/*.{jpg,jpeg,png,webp,avif}', { eager: true }) as Record<string, { default: ImageMetadata }>;
+const img = p.image?.file ? images[`../assets/products/${p.image.file}`]?.default : undefined;
+---
+<a
+  class="pcard"
+  href={`/go/${ch}-${p.modelCode}`}
+  rel="sponsored nofollow noopener"
+  data-track="go"
+  data-channel={ch}
+  data-code={p.modelCode}
+  data-slot={slot}
+  data-category={p.category}
+  data-more={more ? '' : undefined}
+  style={more ? 'display:none' : undefined}
+>
+  {img
+    ? <Image class="thumb" src={img} alt={p.image.alt} widths={[240, 480]} sizes="(min-width: 760px) 360px, 50vw" />
+    : <div class="thumb" aria-hidden="true">{categoryName.slice(0, 2)}</div>}
+  <div class="b">
+    <span class="cat">{categoryName}</span>
+    <h3>{productName(p)}</h3>
+    {hasPromo && p.promoBadge && <span class="badge">{p.promoBadge}</span>}
+    {p.strength && <span class="strength-line">{p.strength}</span>}
+    <span class="flaw-line">{p.flaw}</span>
+    <div class="price">
+      <b class="num">{fmt.format(b.final)}</b>
+      {b.final < b.price && <s class="num">{fmt.format(b.price)}</s>}
+    </div>
+    <span class="hist-line">{histText}</span>
+  </div>
+</a>
