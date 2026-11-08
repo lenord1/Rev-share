@@ -21,7 +21,10 @@
     "shots": "node scripts/screenshot.mjs",
     "local": "npm run build && node scripts/serve-local.mjs --sim",
     "local:serve": "node scripts/serve-local.mjs --sim",
-    "local:check": "node scripts/local-check.mjs"
+    "local:check": "node scripts/local-check.mjs",
+    "import-product": "node scripts/import-product.mjs",
+    "drafts": "node scripts/drafts.mjs",
+    "test:import": "node scripts/test-import.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

@@ -11,6 +11,9 @@
     "sync": "node scripts/gen-redirects.mjs",
     "daily": "node scripts/daily.mjs",
     "weekly-report": "node scripts/weekly-report.mjs",
-    "shots": "node scripts/screenshot.mjs"
+    "shots": "node scripts/screenshot.mjs",
+    "import-product": "node scripts/import-product.mjs",
+    "drafts": "node scripts/drafts.mjs",
+    "test:import": "node scripts/test-import.mjs"
   }
 }

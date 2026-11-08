@@ -1,0 +1,71 @@
+# 手機用：GitHub App →「Actions」→「import-product」→「Run workflow」→ 貼商品網址 → 開 PR。
+# 只建立「草稿」（src/data/drafts/），合併後也不會出現在網站；補完缺點、優點、評論彙整並通過驗證才能轉正式。
+# 蝦皮／酷澎網址只記商品編號（官方 API 接上前不連線）；其他網站只讀公開的 OpenGraph／JSON-LD，遵守 robots.txt。
+# 網站在 repo 的子資料夾 affiliate-site-kit/affiliate-site-kit，所以這個檔案放在 repo 最外層，指令一律在該資料夾執行。
+# 第一次使用前：Settings → Actions → General → Workflow permissions，勾選「Allow GitHub Actions to create and approve pull requests」。
+name: import-product
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 商品網址（蝦皮需完整網址，不能是 shp.ee 短網址）
+        required: true
+        type: string
+      category:
+        description: 品類代號（可留空，例如 dehumidifier）
+        required: false
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: import-product
+  cancel-in-progress: false
+
+env:
+  SITE_DIR: affiliate-site-kit/affiliate-site-kit
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: 建立草稿
+        id: imp
+        working-directory: ${{ env.SITE_DIR }}
+        env:
+          # 輸入一律經由環境變數傳入，不直接嵌進指令，避免網址內容被當成指令執行
+          IMPORT_URL: ${{ inputs.url }}
+          IMPORT_CATEGORY: ${{ inputs.category }}
+        run: |
+          args=()
+          if [ -n "$IMPORT_CATEGORY" ]; then args+=(--category "$IMPORT_CATEGORY"); fi
+          node scripts/import-product.mjs "$IMPORT_URL" "${args[@]}" --summary-file "$RUNNER_TEMP/summary.md"
+          cat "$RUNNER_TEMP/summary.md" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: 開 PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DRAFT_ID: ${{ steps.imp.outputs.draft_id }}
+          DRAFT_NAME: ${{ steps.imp.outputs.name }}
+          BASE_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          branch="import/${DRAFT_ID}-${GITHUB_RUN_NUMBER}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add "$SITE_DIR/src/data/drafts" "$SITE_DIR/src/data/image-sources.json" "$SITE_DIR/src/assets/products"
+          if git diff --cached --quiet; then echo "沒有任何變更"; exit 1; fi
+          git commit -m "chore(import): 新增商品草稿 ${DRAFT_ID}"
+          git push origin "$branch"
+          gh pr create --base "$BASE_BRANCH" --head "$branch" \
+            --title "商品草稿：${DRAFT_NAME}" --body-file "$RUNNER_TEMP/summary.md"

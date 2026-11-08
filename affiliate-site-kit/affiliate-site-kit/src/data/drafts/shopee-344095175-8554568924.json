@@ -1,0 +1,56 @@
+{
+  "draftId": "shopee-344095175-8554568924",
+  "status": "draft",
+  "name": "【現貨免運★台灣保固】Hysure海說George 除濕機 空氣清淨除濕機 除溼機 小型除濕機 除濕器 除濕 浴室除濕機",
+  "createdAt": "2026-11-08",
+  "source": {
+    "kind": "shopee",
+    "url": "https://shopee.tw/product/344095175/8554568924",
+    "host": "shopee.tw",
+    "ids": {
+      "shopId": "344095175",
+      "itemId": "8554568924"
+    },
+    "method": "manual",
+    "fetchedAt": "2026-11-08",
+    "siteCanonical": null
+  },
+  "extracted": {
+    "name": "",
+    "description": "",
+    "brand": null,
+    "sku": null,
+    "price": null,
+    "imageUrls": []
+  },
+  "images": [],
+  "product": {
+    "category": "dehumidifier",
+    "slug": null,
+    "modelCode": null,
+    "titleTemplate": "【現貨免運★台灣保固】Hysure海說George 除濕機 空氣清淨除濕機 除溼機 小型除濕機 除濕器 除濕 浴室除濕機 評測：{year} 值不值得買",
+    "price": null,
+    "priceUpdatedAt": null,
+    "affiliate": {},
+    "tldr": "",
+    "specs": [],
+    "faq": [],
+    "notFor": []
+  },
+  "editorial": {
+    "flaw": "",
+    "strength": "",
+    "reviewSummary": {
+      "sources": [],
+      "sampleSize": 0,
+      "summarizedAt": null,
+      "summary": "",
+      "pros": [],
+      "cons": [],
+      "sellerLogisticsNotes": []
+    }
+  },
+  "notes": [
+    "蝦皮官方 API 尚未接上（等待官方文件），只記下商品編號；名稱、價格、圖片請手動補。本工具不抓取其網頁。"
+  ]
+}

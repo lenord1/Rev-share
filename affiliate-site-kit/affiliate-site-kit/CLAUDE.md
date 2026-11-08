@@ -30,6 +30,7 @@
 - `/draft-guide <品類>`、`/social-drafts <slug>`：內容與貼文起草（只起草，發布需我核准）
 - `npm run local`：建置後在 http://localhost:4322 開本機網站，照 vercel.json 套用 /go/ 轉址（示範商品停在模擬轉址頁）；`npm run local:serve` 不重新建置
 - `npm run local:check`：本機一鍵完整檢查（驗證、建置、閘門 0–8、全站頁面、/go/ 302、404、連結檢查、瀏覽器實測），結果寫入 reports/local-check.json。**部署前每次改動都先跑它**
+- `node scripts/import-product.mjs <商品網址> [--category …]`：貼連結產生**草稿**商品與圖片（`src/data/drafts/`，不進網站）；`node scripts/drafts.mjs list|check|license|promote`：補完缺點、優點、評論彙整、圖片授權後才轉正式；`npm run test:import` 離線測試。蝦皮／酷澎只解析網址編號，資料等官方 API（`scripts/providers/*-product.mjs`），不爬網頁。說明：`docs/product-import.md`
 - `node scripts/verify.mjs <0-16|all>`：步驟閘門（建站流程用 `/affiliate-site-architect`）
 
 ## 不可違反

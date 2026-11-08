@@ -9500,6 +9500,62 @@
         "省空間",
         "預算友善"
       ]
+    },
+    {
+      "demo": true,
+      "category": "dehumidifier",
+      "slug": "test-lg-puricare-18l",
+      "modelCode": "test-lg-puricare-18l",
+      "titleTemplate": "LG PuriCare 18公升雙變頻除濕機（測試）評測：{year} 值不值得買",
+      "affiliate": {
+        "shopee": "https://shopee.tw/demo-test-lg"
+      },
+      "price": 19900,
+      "priceUpdatedAt": "2026-11-08",
+      "primaryChannel": "shopee",
+      "lastChecked": "2026-11-08",
+      "tldr": "測試用：規格取自 LG 台灣官網 MD181QWE0 頁面；價格是占位價，蝦皮型號 DD181MWE0 是否為同款尚待確認。",
+      "flaw": "官網標示機身重 17.1 kg，需要常搬動的家庭會比較吃力",
+      "strength": "官網標示除濕量 18 公升／日、運轉噪音 34–39 dB",
+      "specs": [
+        {
+          "key": "日除濕量",
+          "value": "18",
+          "unit": "L/日",
+          "higherIsBetter": true
+        },
+        {
+          "key": "運轉噪音",
+          "value": "34–39",
+          "unit": "dB",
+          "higherIsBetter": false
+        },
+        {
+          "key": "水箱容量",
+          "value": "5",
+          "unit": "L",
+          "higherIsBetter": true
+        },
+        {
+          "key": "耗電",
+          "value": "288",
+          "unit": "W",
+          "higherIsBetter": false
+        },
+        {
+          "key": "機身重量",
+          "value": "17.1",
+          "unit": "kg",
+          "higherIsBetter": false
+        }
+      ],
+      "notFor": [
+        "測試：需要常搬動機器的使用情境"
+      ],
+      "alternative": {
+        "modelCode": "demo-dh-a",
+        "when": "測試：想和示範機種並排比較時"
+      }
     }
   ]
 }

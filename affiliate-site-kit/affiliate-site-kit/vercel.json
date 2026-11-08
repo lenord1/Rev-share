@@ -459,6 +459,11 @@
       "source": "/go/shopee-demo-fe-b",
       "destination": "https://shopee.tw/demo-fe-b",
       "statusCode": 302
+    },
+    {
+      "source": "/go/shopee-test-lg-puricare-18l",
+      "destination": "https://shopee.tw/demo-test-lg",
+      "statusCode": 302
     }
   ],
   "headers": [

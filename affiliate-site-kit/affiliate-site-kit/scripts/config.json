@@ -60,5 +60,30 @@
       "delayMs": 800,
       "timeoutMs": 10000
     }
+  },
+  "importer": {
+    "userAgent": "affiliate-product-importer/1.0 (site owner; low-rate metadata reader)",
+    "delayMs": 3000,
+    "timeoutMs": 15000,
+    "maxRedirects": 4,
+    "maxHtmlBytes": 2097152,
+    "maxImageBytes": 8388608,
+    "maxImages": 3,
+    "minImageSide": 300,
+    "minReviewSample": 10,
+    "approvedImageLicenses": [
+      "owned",
+      "official",
+      "licensed"
+    ]
+  },
+  "productSources": {
+    "_說明": "蝦皮／酷澎的商品資料只走官方 API，待官方文件後實作（見 scripts/providers/*-product.mjs）。這裡不放金鑰。",
+    "shopee": {
+      "enabled": false
+    },
+    "coupang": {
+      "enabled": false
+    }
   }
 }
