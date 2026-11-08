@@ -1,0 +1,58 @@
+{
+  "draftId": "shopee-494140905-27914331867",
+  "status": "draft",
+  "name": "Electrolux 伊萊克斯 26L 極適家居600除濕機 流光白 ED2671WA",
+  "createdAt": "2026-11-09",
+  "source": {
+    "kind": "shopee",
+    "url": "https://shopee.tw/product/494140905/27914331867",
+    "host": "shopee.tw",
+    "ids": {
+      "shopId": "494140905",
+      "itemId": "27914331867"
+    },
+    "method": "manual",
+    "fetchedAt": "2026-11-09",
+    "siteCanonical": null
+  },
+  "extracted": {
+    "name": "",
+    "description": "",
+    "brand": null,
+    "sku": null,
+    "price": null,
+    "imageUrls": []
+  },
+  "images": [],
+  "product": {
+    "category": "dehumidifier",
+    "slug": null,
+    "modelCode": null,
+    "titleTemplate": "Electrolux 伊萊克斯 26L 極適家居600除濕機 流光白 ED2671WA 評測：{year} 值不值得買",
+    "price": null,
+    "priceUpdatedAt": null,
+    "affiliate": {
+      "shopee": "https://s.shopee.tw/8pnC4cdhTd"
+    },
+    "tldr": "",
+    "specs": [],
+    "faq": [],
+    "notFor": []
+  },
+  "editorial": {
+    "flaw": "",
+    "strength": "",
+    "reviewSummary": {
+      "sources": [],
+      "sampleSize": 0,
+      "summarizedAt": null,
+      "summary": "",
+      "pros": [],
+      "cons": [],
+      "sellerLogisticsNotes": []
+    }
+  },
+  "notes": [
+    "蝦皮官方 API 尚未接上（等待官方文件），只記下商品編號；名稱、價格、圖片請手動補。本工具不抓取其網頁。"
+  ]
+}
