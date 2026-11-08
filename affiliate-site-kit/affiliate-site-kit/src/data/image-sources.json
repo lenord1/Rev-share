@@ -136,6 +136,33 @@
       "license": "pending-review",
       "licenseNote": ""
     },
+    "shopee-494140905-27914331867-1.avif": {
+      "draftId": "shopee-494140905-27914331867",
+      "sourceUrl": "https://www.electrolux.com.tw/globalassets/appliances/dehumidifier/ed2671wa/fr-ed2671wa-1500.png",
+      "pageUrl": "https://www.electrolux.com.tw/appliances/dehumidifier/ed2671wa/",
+      "fetchedAt": "2026-11-09",
+      "sha256": "1c0c7a247045fabc0cf4247db09140b4ae702b586c8f1186cfc63216e506ca4c",
+      "license": "pending-review",
+      "licenseNote": ""
+    },
+    "shopee-494140905-27914331867-2.avif": {
+      "draftId": "shopee-494140905-27914331867",
+      "sourceUrl": "https://www.electrolux.com.tw/globalassets/appliances/dehumidifier/ed2671wa/angl-ed2671wa-1500.png",
+      "pageUrl": "https://www.electrolux.com.tw/appliances/dehumidifier/ed2671wa/",
+      "fetchedAt": "2026-11-09",
+      "sha256": "c89505a426c9db5e244db28ed9d237e830b4dcaeb8ba8e4fd7c95aa82092d32d",
+      "license": "pending-review",
+      "licenseNote": ""
+    },
+    "shopee-494140905-27914331867-3.avif": {
+      "draftId": "shopee-494140905-27914331867",
+      "sourceUrl": "https://www.electrolux.com.tw/globalassets/appliances/dehumidifier/ed2671wa/angr-ed2671wa-1500.png",
+      "pageUrl": "https://www.electrolux.com.tw/appliances/dehumidifier/ed2671wa/",
+      "fetchedAt": "2026-11-09",
+      "sha256": "10884a01f7637e695a072d0f4cae703cdb99e39c8852eb598ebda7bb44e1068b",
+      "license": "pending-review",
+      "licenseNote": ""
+    },
     "shopee-494140905-44425671665-1.avif": {
       "draftId": "shopee-494140905-44425671665",
       "sourceUrl": "https://www.electrolux.com.tw/globalassets/appliances/dehumidifier/ed1251dd/elx_im_fr_ed1251dc-hk_mar23.png",
@@ -160,6 +187,24 @@
       "pageUrl": "https://www.electrolux.com.tw/appliances/dehumidifier/ed1251dd/",
       "fetchedAt": "2026-11-08",
       "sha256": "7079fd2179eeda48010bfe2255d7a52c55d1c8a6ada155167e892022978fcf63",
+      "license": "pending-review",
+      "licenseNote": ""
+    },
+    "shopee-66851718-29643010579-1.avif": {
+      "draftId": "shopee-66851718-29643010579",
+      "sourceUrl": "https://www.lg.com/content/dam/channel/wcms/tw/images/small-appliances/dd141mwe0_att_eatt_tw_c/gallery/dd141mwe0-basic.jpg",
+      "pageUrl": "https://www.lg.com/tw/air-care/dehumidifiers/dd181mwe0/",
+      "fetchedAt": "2026-11-09",
+      "sha256": "dd484270dfb758668f53df58d5b5332df8c755dbcd31fbca0ed2bb1eca182366",
+      "license": "pending-review",
+      "licenseNote": ""
+    },
+    "shopee-66851718-29643010579-2.avif": {
+      "draftId": "shopee-66851718-29643010579",
+      "sourceUrl": "https://www.lg.com/content/dam/channel/wcms/tw/images/small-appliances/dd141mwe0_att_eatt_tw_c/gallery/medium01.jpg",
+      "pageUrl": "https://www.lg.com/tw/air-care/dehumidifiers/dd181mwe0/",
+      "fetchedAt": "2026-11-09",
+      "sha256": "6eb92d99378e0a70cc4307c306337f249eb2ef73c293429fed402e7461ea7760",
       "license": "pending-review",
       "licenseNote": ""
     }
