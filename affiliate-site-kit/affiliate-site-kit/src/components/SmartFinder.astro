@@ -77,9 +77,9 @@
       <p class="q" style="margin:0">最適合你的是：${esc(p.name)}${official(p)}</p>
       ${p.img ? `<a class="thumb-box" ${attrs(p, 'finder')}><img src="${esc(p.img)}" alt="${esc(p.imgAlt || p.name)}" loading="lazy"></a>` : ''}
       ${reasons.length ? `<div class="why">${reasons.map((r) => `<span class="chip hit">${esc(r)}</span>`).join('')}</div>` : ''}
-      <div class="price"><b class="num">${fmt(p.final)}</b> <span class="note">到手價</span></div>
+      ${p.badge && p.discount ? `<div><span class="sale-pill">⚡ ${esc(p.badge)}</span></div>` : ''}
+      <div class="price"><b class="num"${p.badge && p.discount ? ' style="color:#e11d48"' : ''}>${fmt(p.final)}</b>${p.discount ? ` <s class="num" style="color:var(--ink-2);font-size:var(--step-0)">原價 ${fmt(p.price)}</s>` : ''} <span class="note">到手價</span></div>
       ${parts.length > 1 ? `<p class="math num">${parts.join(' ')} = ${fmt(p.final)}</p>` : ''}
-      ${p.badge ? `<span class="badge">${esc(p.badge)}</span>` : ''}
       ${p.strength ? `<p class="strength-line">${esc(p.strength)}</p>` : ''}
       <p class="flaw-line">注意：${esc(p.flaw)}</p>
       <p class="hist-line">${esc(histLine(p.hist, fmt))}</p>

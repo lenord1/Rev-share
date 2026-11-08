@@ -9289,7 +9289,7 @@
       "affiliate": {
         "shopee": "https://shopee.tw/product/108078562/20484757207"
       },
-      "price": 15900,
+      "price": 18900,
       "priceUpdatedAt": "2026-11-08",
       "primaryChannel": "shopee",
       "lastChecked": "2026-11-08",
@@ -9349,7 +9349,15 @@
       },
       "finderAuto": true,
       "flawBasis": "LG 台灣官網規格頁；評測另指出單價偏高、屬高階機種",
-      "strength": "官網標示運轉噪音 34–39 dB，附 Wi-Fi 遠端控制"
+      "strength": "官網標示運轉噪音 34–39 dB，附 Wi-Fi 遠端控制",
+      "discount": 5000,
+      "promoBadge": "限時特價",
+      "extraCosts": [
+        {
+          "label": "運費",
+          "note": "賣場標示 $0 起，實際以結帳頁為準"
+        }
+      ]
     },
     {
       "demo": true,
