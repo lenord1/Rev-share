@@ -1,0 +1,81 @@
+{
+  "draftId": "shopee-77697116-52110737057",
+  "status": "draft",
+  "name": "3M™ 淨呼吸™ 6公升雙效空氣清淨除溼機 FD-Y60L",
+  "createdAt": "2026-11-09",
+  "source": {
+    "kind": "shopee",
+    "url": "https://shopee.tw/product/77697116/52110737057",
+    "host": "shopee.tw",
+    "ids": {
+      "shopId": "77697116",
+      "itemId": "52110737057"
+    },
+    "method": "official-page",
+    "fetchedAt": "2026-11-09",
+    "siteCanonical": "https://www.3m.com.tw/3M/zh_TW/p/d/v101370007/"
+  },
+  "extracted": {
+    "name": "3M™ 淨呼吸™ 6公升雙效空氣清淨除溼機 FD-Y60L",
+    "description": "3M FD-Y60L雙效空氣清淨除溼機，除濕、清淨、乾衣，一機搞定！適用最大3.3坪空間，輕鬆讓租屋套房、儲藏室或衣帽間都乾爽舒適。 搭載3M獨特專利靜電技術濾網，不僅能有效過濾比PM2.5小800倍的0.003微米的塵埃、花粉、塵螨、寵物毛屑等過敏原，更能有效濾除99.9%細菌及99.99%病毒，不只除濕更有效清淨健康好空氣。",
+    "brand": null,
+    "sku": null,
+    "price": null,
+    "imageUrls": [
+      "https://multimedia.3m.com/mws/media/2119407J/fd-y60l-deh.jpg"
+    ]
+  },
+  "images": [
+    {
+      "file": "shopee-77697116-52110737057-1.avif",
+      "sourceUrl": "https://multimedia.3m.com/mws/media/2119407J/fd-y60l-deh.jpg",
+      "pageUrl": "https://www.3m.com.tw/3M/zh_TW/p/d/v101370007/",
+      "fetchedAt": "2026-11-09",
+      "sha256": "c63c4f6273a458b568671f6f518c5f5f0b9b700e9cb48a65e22b69e8bff2d40a",
+      "bytes": 3947,
+      "width": null,
+      "height": null,
+      "mime": "image/avif",
+      "license": "pending-review",
+      "licenseNote": "",
+      "alt": "3M™ 淨呼吸™ 6公升雙效空氣清淨除溼機 FD-Y60L"
+    }
+  ],
+  "product": {
+    "category": "dehumidifier",
+    "slug": null,
+    "modelCode": null,
+    "titleTemplate": "3M™ 淨呼吸™ 6公升雙效空氣清淨除溼機 FD-Y60L 評測：{year} 值不值得買",
+    "price": null,
+    "priceUpdatedAt": null,
+    "affiliate": {},
+    "tldr": "",
+    "specs": [],
+    "faq": [],
+    "notFor": []
+  },
+  "editorial": {
+    "flaw": "",
+    "strength": "",
+    "reviewSummary": {
+      "sources": [],
+      "sampleSize": 0,
+      "summarizedAt": null,
+      "summary": "",
+      "pros": [],
+      "cons": [],
+      "sellerLogisticsNotes": []
+    }
+  },
+  "notes": [
+    "蝦皮官方 API 尚未接上（等待官方文件），只記下商品編號；名稱、價格、圖片請手動補。本工具不抓取其網頁。",
+    "名稱、說明、圖片取自官方頁 https://www.3m.com.tw/3M/zh_TW/p/d/v101370007/；不取官網價格（蝦皮價格另行維護）。"
+  ],
+  "official": {
+    "url": "https://www.3m.com.tw/3M/zh_TW/p/d/v101370007/",
+    "fetchedAt": "2026-11-09",
+    "methods": [
+      "opengraph"
+    ]
+  }
+}

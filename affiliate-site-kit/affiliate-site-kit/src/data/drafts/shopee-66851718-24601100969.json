@@ -1,0 +1,64 @@
+{
+  "draftId": "shopee-66851718-24601100969",
+  "status": "draft",
+  "name": "除濕專用型RD-FJ系列除濕機｜日立冷氣",
+  "createdAt": "2026-11-09",
+  "source": {
+    "kind": "shopee",
+    "url": "https://shopee.tw/product/66851718/24601100969",
+    "host": "shopee.tw",
+    "ids": {
+      "shopId": "66851718",
+      "itemId": "24601100969"
+    },
+    "method": "official-page",
+    "fetchedAt": "2026-11-09",
+    "siteCanonical": "https://www.hitachiaircon.com/tw/ranges/dehumidifier/dehumidifier-rd-fj"
+  },
+  "extracted": {
+    "name": "除濕專用型RD-FJ系列除濕機｜日立冷氣",
+    "description": "除濕專用型RD-FJ系列除濕機",
+    "brand": null,
+    "sku": null,
+    "price": null,
+    "imageUrls": []
+  },
+  "images": [],
+  "product": {
+    "category": "dehumidifier",
+    "slug": null,
+    "modelCode": null,
+    "titleTemplate": "除濕專用型RD-FJ系列除濕機｜日立冷氣 評測：{year} 值不值得買",
+    "price": null,
+    "priceUpdatedAt": null,
+    "affiliate": {},
+    "tldr": "",
+    "specs": [],
+    "faq": [],
+    "notFor": []
+  },
+  "editorial": {
+    "flaw": "",
+    "strength": "",
+    "reviewSummary": {
+      "sources": [],
+      "sampleSize": 0,
+      "summarizedAt": null,
+      "summary": "",
+      "pros": [],
+      "cons": [],
+      "sellerLogisticsNotes": []
+    }
+  },
+  "notes": [
+    "蝦皮官方 API 尚未接上（等待官方文件），只記下商品編號；名稱、價格、圖片請手動補。本工具不抓取其網頁。",
+    "名稱、說明、圖片取自官方頁 https://www.hitachiaircon.com/tw/ranges/dehumidifier/dehumidifier-rd-fj；不取官網價格（蝦皮價格另行維護）。"
+  ],
+  "official": {
+    "url": "https://www.hitachiaircon.com/tw/ranges/dehumidifier/dehumidifier-rd-fj",
+    "fetchedAt": "2026-11-09",
+    "methods": [
+      "opengraph"
+    ]
+  }
+}

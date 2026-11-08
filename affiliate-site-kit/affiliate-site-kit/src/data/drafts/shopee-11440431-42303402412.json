@@ -1,0 +1,81 @@
+{
+  "draftId": "shopee-11440431-42303402412",
+  "status": "draft",
+  "name": "3M™ 淨呼吸™ 18公升雙效空氣清淨除溼機 FD-Y180L",
+  "createdAt": "2026-11-09",
+  "source": {
+    "kind": "shopee",
+    "url": "https://shopee.tw/product/11440431/42303402412",
+    "host": "shopee.tw",
+    "ids": {
+      "shopId": "11440431",
+      "itemId": "42303402412"
+    },
+    "method": "official-page",
+    "fetchedAt": "2026-11-09",
+    "siteCanonical": "https://www.3m.com.tw/3M/zh_TW/p/d/v100844446/"
+  },
+  "extracted": {
+    "name": "3M™ 淨呼吸™ 18公升雙效空氣清淨除溼機 FD-Y180L",
+    "description": "美國冷凍空調協會(ASHRAE)建議室內溼度不宜超過65%，但台灣氣候溫暖潮溼，全台各地平均溼度均超過70%，相對溼度過高時易導致黴菌滋生，除了導致衣物發霉、壁癌，更會誘發皮膚或呼吸道過敏疾病。FD-Y180L雙效清淨除溼機每日除溼力高達18公升，適用坪數22坪。就算在相對溼度高達90%的潮溼環境，也能在半小時內將溼度快速降低至體感舒適的60%以下。",
+    "brand": null,
+    "sku": null,
+    "price": null,
+    "imageUrls": [
+      "https://multimedia.3m.com/mws/media/1665221J/fd-y180l-dehumidifying-purifier.jpg"
+    ]
+  },
+  "images": [
+    {
+      "file": "shopee-11440431-42303402412-1.avif",
+      "sourceUrl": "https://multimedia.3m.com/mws/media/1665221J/fd-y180l-dehumidifying-purifier.jpg",
+      "pageUrl": "https://www.3m.com.tw/3M/zh_TW/p/d/v100844446/",
+      "fetchedAt": "2026-11-09",
+      "sha256": "8912ffd47371c621011d62c7a1212c8a4c19d529e224e6face6b2c00dafc8be0",
+      "bytes": 1862,
+      "width": null,
+      "height": null,
+      "mime": "image/avif",
+      "license": "pending-review",
+      "licenseNote": "",
+      "alt": "3M™ 淨呼吸™ 18公升雙效空氣清淨除溼機 FD-Y180L"
+    }
+  ],
+  "product": {
+    "category": "dehumidifier",
+    "slug": null,
+    "modelCode": null,
+    "titleTemplate": "3M™ 淨呼吸™ 18公升雙效空氣清淨除溼機 FD-Y180L 評測：{year} 值不值得買",
+    "price": null,
+    "priceUpdatedAt": null,
+    "affiliate": {},
+    "tldr": "",
+    "specs": [],
+    "faq": [],
+    "notFor": []
+  },
+  "editorial": {
+    "flaw": "",
+    "strength": "",
+    "reviewSummary": {
+      "sources": [],
+      "sampleSize": 0,
+      "summarizedAt": null,
+      "summary": "",
+      "pros": [],
+      "cons": [],
+      "sellerLogisticsNotes": []
+    }
+  },
+  "notes": [
+    "蝦皮官方 API 尚未接上（等待官方文件），只記下商品編號；名稱、價格、圖片請手動補。本工具不抓取其網頁。",
+    "名稱、說明、圖片取自官方頁 https://www.3m.com.tw/3M/zh_TW/p/d/v100844446/；不取官網價格（蝦皮價格另行維護）。"
+  ],
+  "official": {
+    "url": "https://www.3m.com.tw/3M/zh_TW/p/d/v100844446/",
+    "fetchedAt": "2026-11-09",
+    "methods": [
+      "opengraph"
+    ]
+  }
+}

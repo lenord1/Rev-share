@@ -1,0 +1,15 @@
+{
+  "file": "tatung-tdh-120md.json",
+  "processedAt": "2026-11-09",
+  "ok": false,
+  "error": {
+    "code": "robots",
+    "message": "robots.txt 不允許抓取 https://www.tatung.com/Product/Consumer/4952"
+  },
+  "request": {
+    "url": "https://shopee.tw/product/116309859/43119168399",
+    "officialUrl": "https://www.tatung.com/Product/Consumer/4952",
+    "category": "dehumidifier",
+    "force": true
+  }
+}

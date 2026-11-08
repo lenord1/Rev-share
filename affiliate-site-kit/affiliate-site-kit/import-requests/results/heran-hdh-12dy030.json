@@ -1,0 +1,15 @@
+{
+  "file": "heran-hdh-12dy030.json",
+  "processedAt": "2026-11-09",
+  "ok": false,
+  "error": {
+    "code": "robots",
+    "message": "robots.txt 不允許抓取 https://www.heran.com.tw/product/hdh-12dy030n/"
+  },
+  "request": {
+    "url": "https://shopee.tw/product/215416404/7815769816",
+    "officialUrl": "https://www.heran.com.tw/product/hdh-12dy030n/",
+    "category": "dehumidifier",
+    "force": true
+  }
+}

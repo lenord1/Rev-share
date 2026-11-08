@@ -1,0 +1,42 @@
+{
+  "file": "panasonic-f-y12pm.json",
+  "processedAt": "2026-11-09",
+  "ok": true,
+  "draftId": "shopee-116309859-42369294899",
+  "name": "除濕機 [指定通路銷售] 除濕專用型 F-Y12PM - Panasonic 台灣",
+  "images": [
+    {
+      "file": "shopee-116309859-42369294899-1.jpg",
+      "sourceUrl": "https://panasonic.com/content/dam/panasonic/tw/zh/pim/dam/F-/F-Y12P/F-Y12PM/ast-3070125.jpg",
+      "width": 3750,
+      "height": 2000,
+      "license": "pending-review"
+    }
+  ],
+  "blockers": [
+    "缺點（editorial.flaw）要具體，至少 8 字",
+    "優點（editorial.strength）要有規格或官方說明作依據，至少 8 字",
+    "評論彙整（editorial.reviewSummary.sources）要列出來源平台與則數，例如 {\"platform\":\"蝦皮\",\"count\":120}",
+    "評論彙整日期（reviewSummary.summarizedAt）要是有效日期",
+    "評論彙整摘要（reviewSummary.summary）至少 20 字，並用自己的話寫",
+    "評論彙整要有至少一條優點（pros）與一條缺點（cons）",
+    "product.slug 要填小寫英數與連字號（不可為 for）",
+    "product.modelCode 要填官方型號（小寫英數與連字號，全站唯一）",
+    "product.price 要是正整數（TWD）",
+    "product.priceUpdatedAt 要是有效日期",
+    "product.tldr 一句話結論未填",
+    "product.specs 至少 3 項（只填官方標示的規格）",
+    "product.affiliate 要放你從聯盟後台取得的連結（例如 {\"shopee\":\"https://…\"}）",
+    "圖片授權未確認：用 node scripts/drafts.mjs license <代號> <檔名> official|owned|licensed 標記（確認官方素材或自有授權後才可）"
+  ],
+  "notes": [
+    "蝦皮官方 API 尚未接上（等待官方文件），只記下商品編號；名稱、價格、圖片請手動補。本工具不抓取其網頁。",
+    "名稱、說明、圖片取自官方頁 https://www.panasonic.com/tw/consumer/air-conditioner/dehumidifier/f-y12pm.html；不取官網價格（蝦皮價格另行維護）。"
+  ],
+  "request": {
+    "url": "https://shopee.tw/product/116309859/42369294899",
+    "officialUrl": "https://www.panasonic.com/tw/consumer/air-conditioner/dehumidifier/f-y12pm.html",
+    "category": "dehumidifier",
+    "force": true
+  }
+}

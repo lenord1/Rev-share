@@ -1,0 +1,64 @@
+{
+  "draftId": "shopee-83898940-26923643724",
+  "status": "draft",
+  "name": "SAMPO聲寶",
+  "createdAt": "2026-11-09",
+  "source": {
+    "kind": "shopee",
+    "url": "https://shopee.tw/product/83898940/26923643724",
+    "host": "shopee.tw",
+    "ids": {
+      "shopId": "83898940",
+      "itemId": "26923643724"
+    },
+    "method": "official-page",
+    "fetchedAt": "2026-11-09",
+    "siteCanonical": null
+  },
+  "extracted": {
+    "name": "SAMPO聲寶",
+    "description": "聲寶股份有限公司，是台灣一家電子機械製造公司，也是歷史悠久的家電大廠。聲寶成立於1962年9月11日，由陳茂榜及其弟陳茂標共同創辦。",
+    "brand": null,
+    "sku": null,
+    "price": null,
+    "imageUrls": []
+  },
+  "images": [],
+  "product": {
+    "category": "dehumidifier",
+    "slug": null,
+    "modelCode": null,
+    "titleTemplate": "SAMPO聲寶 評測：{year} 值不值得買",
+    "price": null,
+    "priceUpdatedAt": null,
+    "affiliate": {},
+    "tldr": "",
+    "specs": [],
+    "faq": [],
+    "notFor": []
+  },
+  "editorial": {
+    "flaw": "",
+    "strength": "",
+    "reviewSummary": {
+      "sources": [],
+      "sampleSize": 0,
+      "summarizedAt": null,
+      "summary": "",
+      "pros": [],
+      "cons": [],
+      "sellerLogisticsNotes": []
+    }
+  },
+  "notes": [
+    "蝦皮官方 API 尚未接上（等待官方文件），只記下商品編號；名稱、價格、圖片請手動補。本工具不抓取其網頁。",
+    "名稱、說明、圖片取自官方頁 https://www.sampo.com.tw/pdetail.aspx?pd=1641；不取官網價格（蝦皮價格另行維護）。"
+  ],
+  "official": {
+    "url": "https://www.sampo.com.tw/pdetail.aspx?pd=1641",
+    "fetchedAt": "2026-11-09",
+    "methods": [
+      "title"
+    ]
+  }
+}

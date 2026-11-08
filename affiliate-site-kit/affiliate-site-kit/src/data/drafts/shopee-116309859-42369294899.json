@@ -1,0 +1,81 @@
+{
+  "draftId": "shopee-116309859-42369294899",
+  "status": "draft",
+  "name": "除濕機 [指定通路銷售] 除濕專用型 F-Y12PM - Panasonic 台灣",
+  "createdAt": "2026-11-09",
+  "source": {
+    "kind": "shopee",
+    "url": "https://shopee.tw/product/116309859/42369294899",
+    "host": "shopee.tw",
+    "ids": {
+      "shopId": "116309859",
+      "itemId": "42369294899"
+    },
+    "method": "official-page",
+    "fetchedAt": "2026-11-09",
+    "siteCanonical": "https://www.panasonic.com/tw/consumer/air-conditioner/dehumidifier/f-y12pm.html"
+  },
+  "extracted": {
+    "name": "除濕機 [指定通路銷售] 除濕專用型 F-Y12PM - Panasonic 台灣",
+    "description": "探索 Panasonic 除濕機發掘 Panasonic 功能 [指定通路銷售] 除濕專用型 F-Y12PM,● 除濕能力 6公升/日(室溫27°C/相對濕度60%) ● DC馬達 ● 25項安全裝置 ● 除濕適用坪數：8坪",
+    "brand": null,
+    "sku": null,
+    "price": null,
+    "imageUrls": [
+      "https://panasonic.com/content/dam/panasonic/tw/zh/pim/dam/F-/F-Y12P/F-Y12PM/ast-3070125.jpg"
+    ]
+  },
+  "images": [
+    {
+      "file": "shopee-116309859-42369294899-1.jpg",
+      "sourceUrl": "https://panasonic.com/content/dam/panasonic/tw/zh/pim/dam/F-/F-Y12P/F-Y12PM/ast-3070125.jpg",
+      "pageUrl": "https://www.panasonic.com/tw/consumer/air-conditioner/dehumidifier/f-y12pm.html",
+      "fetchedAt": "2026-11-09",
+      "sha256": "7bb2ed8f1c1bd70bae949a99cc771bfcc1348f4cde77829dc245cc80fcafccd5",
+      "bytes": 3674164,
+      "width": 3750,
+      "height": 2000,
+      "mime": "image/jpeg",
+      "license": "pending-review",
+      "licenseNote": "",
+      "alt": "除濕機 [指定通路銷售] 除濕專用型 F-Y12PM - Panasonic 台灣"
+    }
+  ],
+  "product": {
+    "category": "dehumidifier",
+    "slug": null,
+    "modelCode": null,
+    "titleTemplate": "除濕機 [指定通路銷售] 除濕專用型 F-Y12PM - Panasonic 台灣 評測：{year} 值不值得買",
+    "price": null,
+    "priceUpdatedAt": null,
+    "affiliate": {},
+    "tldr": "",
+    "specs": [],
+    "faq": [],
+    "notFor": []
+  },
+  "editorial": {
+    "flaw": "",
+    "strength": "",
+    "reviewSummary": {
+      "sources": [],
+      "sampleSize": 0,
+      "summarizedAt": null,
+      "summary": "",
+      "pros": [],
+      "cons": [],
+      "sellerLogisticsNotes": []
+    }
+  },
+  "notes": [
+    "蝦皮官方 API 尚未接上（等待官方文件），只記下商品編號；名稱、價格、圖片請手動補。本工具不抓取其網頁。",
+    "名稱、說明、圖片取自官方頁 https://www.panasonic.com/tw/consumer/air-conditioner/dehumidifier/f-y12pm.html；不取官網價格（蝦皮價格另行維護）。"
+  ],
+  "official": {
+    "url": "https://www.panasonic.com/tw/consumer/air-conditioner/dehumidifier/f-y12pm.html",
+    "fetchedAt": "2026-11-09",
+    "methods": [
+      "opengraph"
+    ]
+  }
+}
