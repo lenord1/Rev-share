@@ -2,6 +2,7 @@
 // 3 秒選購精靈：品類（預設選第一個）→ 最多 3 題大按鈕 → 一台推薦。資料由首頁以 #catalog 內嵌，client 不 fetch。
 ---
 <section class="finder" id="finder" aria-label="選購精靈">
+  <div class="finder-summary" id="finder-summary" hidden><span class="s-text" id="finder-summary-text"></span><button type="button" class="btn ghost small" data-expand>調整條件</button></div>
   <div class="cats" id="finder-cats" role="group" aria-label="選擇品類"></div>
   <div class="steps" id="finder-steps" aria-hidden="true"></div>
   <div id="finder-body" aria-live="polite"></div>
@@ -14,13 +15,35 @@
   import { readCatalog, fmt, esc } from '../lib/client.js';
   import { histLine } from '../lib/catalog.mjs';
 
-  const { products = [], categories = [], channels = {} } = readCatalog();
+  const { products = [], categories = [], channels = {}, groupDesc = {} } = readCatalog();
   const catsEl = document.getElementById('finder-cats');
   const stepsEl = document.getElementById('finder-steps');
   const bodyEl = document.getElementById('finder-body');
+  const summaryEl = document.getElementById('finder-summary');
+  const summaryText = document.getElementById('finder-summary-text');
 
   const groups = [...new Set(categories.map((c) => c.group).filter(Boolean))];
-  const state = { category: categories[0]?.slug, group: categories[0]?.group || '', step: 0, answers: {} };
+  const state = { category: categories[0]?.slug, group: categories[0]?.group || '', step: 0, answers: {}, labels: {}, collapsed: false };
+  const KEY = 'finder.v1';
+  // 條件記在瀏覽器：下次進來直接顯示結果，條件區縮成一行
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify({ category: state.category, group: state.group, answers: state.answers, labels: state.labels, collapsed: state.collapsed })); } catch {}
+  }
+  function load() {
+    try {
+      const s = JSON.parse(localStorage.getItem(KEY) || 'null');
+      if (!s || !categories.some((c) => c.slug === s.category)) return;
+      state.category = s.category;
+      state.group = categories.find((c) => c.slug === s.category)?.group || state.group;
+      state.answers = s.answers && typeof s.answers === 'object' ? s.answers : {};
+      state.labels = s.labels && typeof s.labels === 'object' ? s.labels : {};
+      const qs = questionsFor(products.filter((p) => p.category === state.category));
+      const firstOpen = qs.findIndex((q) => state.answers[q.key] === undefined);
+      state.step = firstOpen === -1 ? qs.length : firstOpen;
+      state.collapsed = !!s.collapsed && state.step >= qs.length && qs.length > 0;
+    } catch {}
+  }
+  const countIn = (slug) => products.filter((p) => p.category === slug).length;
   const inCategory = () => products.filter((p) => p.category === state.category);
 
   // 品類很多時分兩層：先選大類（廚房與用水…），再選品類；沒有大類資料就只顯示品類
@@ -29,9 +52,11 @@
     const groupRow = groups.length
       ? `<div class="cat-row" role="group" aria-label="選擇大類">${groups.map((g) => `<button type="button" class="grp-btn" data-group="${esc(g)}" aria-pressed="${g === state.group}">${esc(g)}</button>`).join('')}</div>`
       : '';
-    catsEl.innerHTML = groupRow + `<div class="cat-row" role="group" aria-label="選擇品類">${list
-      .map((c) => `<button type="button" data-cat="${esc(c.slug)}" aria-pressed="${c.slug === state.category}">${esc(c.name)}</button>`)
-      .join('')}</div>`;
+    const gDesc = groups.length && groupDesc[state.group] ? `<p class="cat-desc">${esc(groupDesc[state.group])}</p>` : '';
+    const cur = categories.find((c) => c.slug === state.category);
+    catsEl.innerHTML = groupRow + gDesc + `<div class="cat-row" role="group" aria-label="選擇品類">${list
+      .map((c) => `<button type="button" data-cat="${esc(c.slug)}" aria-pressed="${c.slug === state.category}">${esc(c.name)}<small>${countIn(c.slug)}</small></button>`)
+      .join('')}</div>` + (cur?.desc ? `<p class="cat-desc"><b>${esc(cur.name)}</b>：${esc(cur.desc)}</p>` : '');
   }
 
   function renderResult(qs) {
@@ -103,6 +128,12 @@
     syncGrid();
     renderCats();
     const qs = questionsFor(inCategory());
+    const cur = categories.find((c) => c.slug === state.category);
+    const collapsed = state.collapsed && state.step >= qs.length;
+    catsEl.hidden = collapsed;
+    stepsEl.hidden = collapsed;
+    summaryEl.hidden = !collapsed;
+    if (collapsed) summaryText.textContent = [cur?.name, ...qs.map((q) => state.labels[q.key]).filter(Boolean)].filter(Boolean).join('・');
     stepsEl.innerHTML = qs.map((_, i) => `<i class="${i <= state.step ? 'on' : ''}"></i>`).join('');
     if (state.step >= qs.length) return renderResult(qs);
     const q = qs[state.step];
@@ -120,27 +151,43 @@
       state.category = categories.find((c) => c.group === state.group)?.slug ?? state.category;
       state.step = 0;
       state.answers = {};
+      state.labels = {};
+      state.collapsed = false;
+      save();
       render();
     } else if (cat) {
       state.category = cat.getAttribute('data-cat');
       state.step = 0;
       state.answers = {};
+      state.labels = {};
+      state.collapsed = false;
+      save();
       render();
     } else if (opt) {
       const q = questionsFor(inCategory())[state.step];
       const o = q.options[Number(opt.getAttribute('data-opt'))];
       state.answers[q.key] = o.value;
+      state.labels[q.key] = o.label;
       // 空間的答案同步寫入共享畫像；「中間」不代表大或小，不寫入
       if (q.key === 'area' && o.space) Profile.set({ spaceSize: o.space, answered: true });
       state.step++;
+      // 全部答完：條件區縮成一行，結果留在眼前；要改再按「調整條件」
+      const done = state.step >= questionsFor(inCategory()).length;
+      state.collapsed = done;
+      save();
       render();
-      bodyEl.querySelector('a,button')?.focus({ preventScroll: true });
-    } else if (t?.closest('[data-restart]')) {
+      if (done) document.getElementById('finder')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      else bodyEl.querySelector('a,button')?.focus({ preventScroll: true });
+    } else if (t?.closest('[data-restart]') || t?.closest('[data-expand]')) {
       state.step = 0;
       state.answers = {};
+      state.labels = {};
+      state.collapsed = false;
+      save();
       render();
     }
   });
 
+  load();
   if (categories.length) render();
 </script>

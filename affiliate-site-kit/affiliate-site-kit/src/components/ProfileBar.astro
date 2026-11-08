@@ -8,6 +8,7 @@
   import { esc } from '../lib/client.js';
 
   const el = document.getElementById('profilebar');
+  let open = false; // 設定好之後預設收成一行，點開才看到修改／清除
   function render() {
     if (!el) return;
     const pr = Profile.get();
@@ -16,15 +17,17 @@
     if (pr.hasChild === true) chips.push('有小孩');
     if (pr.spaceSize) chips.push(pr.spaceSize === 'large' ? '空間偏大' : '空間偏小');
     el.innerHTML = chips.length
-      ? `<span class="label">依你的情況排序：</span>${chips.map((c) => `<span class="chip hit">${esc(c)}</span>`).join('')}
-         <button type="button" class="btn ghost small" data-open-quiz>修改</button>
+      ? `<button type="button" class="pb-toggle" data-pb-toggle aria-expanded="${open}"><span class="label">依你的情況排序</span>${chips.map((c) => `<span class="chip hit">${esc(c)}</span>`).join('')}<span class="pb-arrow" aria-hidden="true">${open ? '▴' : '▾'}</span></button>
+         ${open ? `<div class="pb-more"><button type="button" class="btn ghost small" data-open-quiz>修改</button>
          <button type="button" class="link-btn" data-clear-profile>清除資料</button>
-         <span class="note">只存在你的瀏覽器，不會上傳。</span>`
+         <span class="note">只存在你的瀏覽器，不會上傳。</span></div>` : ''}`
       : `<button type="button" class="btn ghost small" data-open-quiz>回答 3 個問題，讓排序更貼近你家</button>
          <span class="note">只存在你的瀏覽器，不會上傳。</span>`;
   }
   el?.addEventListener('click', (e) => {
-    if (e.target instanceof Element && e.target.closest('[data-clear-profile]')) Profile.reset();
+    const t = e.target instanceof Element ? e.target : null;
+    if (t?.closest('[data-clear-profile]')) Profile.reset();
+    else if (t?.closest('[data-pb-toggle]')) { open = !open; render(); }
   });
   Profile.subscribe(render);
   render();

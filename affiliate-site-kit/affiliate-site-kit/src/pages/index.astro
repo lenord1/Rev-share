@@ -33,7 +33,8 @@ for (const p of productsData.products as any[]) {
 }
 // 傳給 client 的資料只帶精靈與搜尋需要的欄位，建置期內嵌，不另行 fetch
 const catalog = {
-  categories: categories.map((c) => ({ slug: c.slug, name: c.name, group: c.group ?? '' })),
+  categories: categories.map((c: any) => ({ slug: c.slug, name: c.name, group: c.group ?? '', desc: c.desc ?? '' })),
+  groupDesc: (productsData as any).groupDesc ?? {},
   products: productsData.products.map((p: any) => ({
     ...slimProduct(p, now, history),
     img: thumbs[p.modelCode] ?? '',
