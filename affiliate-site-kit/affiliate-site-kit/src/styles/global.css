@@ -91,6 +91,10 @@ h1{font-size:var(--step-3)}h2{font-size:var(--step-2)}h3{font-size:var(--step-1)
 .opts button{min-height:52px;border-radius:var(--radius);border:1.5px solid var(--line);background:var(--paper);font:inherit;color:var(--ink);cursor:pointer;font-weight:600}
 .opts button:hover{border-color:var(--accent)}
 .steps{display:flex;gap:6px;margin-top:14px}.steps i{flex:1;height:4px;border-radius:2px;background:var(--line)}.steps i.on{background:var(--accent)}
+.cmp-wrap .scroll{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+.cmp{border-collapse:collapse;width:100%;min-width:480px;font-size:var(--step--1)}
+.cmp th,.cmp td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+.cmp tbody th{color:var(--ink-2);font-weight:600;white-space:nowrap}
 .result{margin-top:14px;display:grid;gap:8px}
 .result .why{display:flex;flex-wrap:wrap;gap:6px}
 .result .price b{font-size:var(--step-3);letter-spacing:-.02em}

@@ -7,6 +7,7 @@ import QuizDialog from '../components/QuizDialog.astro';
 import ProductCard from '../components/ProductCard.astro';
 import productsData from '../data/products.json';
 import channelsData from '../data/channels.json';
+import { getImage } from 'astro:assets';
 import { slimProduct, activeCategories, featuredProducts, safeJson } from '../lib/catalog.mjs';
 const histFiles = import.meta.glob('../data/price-history.json', { eager: true }) as Record<string, { default: Record<string, { date: string; channel: string; price: number }[]> }>;
 const history = Object.values(histFiles)[0]?.default ?? {};
@@ -23,10 +24,21 @@ const more = productsData.products.filter((p) => !featured.includes(p));
 const latest = productsData.products.map((p) => p.priceUpdatedAt).sort().at(-1) ?? '';
 const updated = latest.replaceAll('-', '/');
 
+const imageFiles = import.meta.glob('../assets/products/*.{jpg,jpeg,png,webp,avif}', { eager: true }) as Record<string, { default: ImageMetadata }>;
+const thumbs: Record<string, string> = {};
+for (const p of productsData.products as any[]) {
+  const meta = p.image?.file ? imageFiles[`../assets/products/${p.image.file}`]?.default : undefined;
+  if (meta) thumbs[p.modelCode] = (await getImage({ src: meta, width: 360, format: 'webp' })).src;
+}
 // 傳給 client 的資料只帶精靈與搜尋需要的欄位，建置期內嵌，不另行 fetch
 const catalog = {
   categories: categories.map((c) => ({ slug: c.slug, name: c.name, group: c.group ?? '' })),
-  products: productsData.products.map((p) => slimProduct(p, now, history)),
+  products: productsData.products.map((p: any) => ({
+    ...slimProduct(p, now, history),
+    img: thumbs[p.modelCode] ?? '',
+    imgAlt: p.image?.alt ?? '',
+    specs: (p.specs ?? []).map((s: any) => ({ key: s.key, value: s.value, unit: s.unit ?? '' })),
+  })),
   channels: Object.fromEntries(channelsData.channels.map((c) => [c.id, c.name])),
 };
 const intents = buildableIntents(productsData.products, intentsData.intents, { minProducts: config.minIntentProducts ?? 2 });
