@@ -98,7 +98,7 @@ export function mergePrevious(draft, prev, { category } = {}) {
   const newFiles = new Set(draft.images.map((i) => i.file));
   const newShas = new Set(draft.images.map((i) => i.sha256));
   draft.images.push(...(prev.images ?? []).filter((i) => !newFiles.has(i.file) && !newShas.has(i.sha256)));
-  draft.notes = [...(prev.notes ?? []), ...draft.notes];
+  draft.notes = [...new Set([...(prev.notes ?? []), ...draft.notes])];
 }
 
 // 測試用：把草稿的圖片掛到「示範商品」（demo: true）。授權未確認的圖片只允許掛在示範商品上；
