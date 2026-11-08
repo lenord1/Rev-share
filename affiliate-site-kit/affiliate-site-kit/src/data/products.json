@@ -9423,7 +9423,6 @@
       "officialStore": true,
       "tags": [],
       "finder": {
-        "budget": "mid",
         "tags": [
           "quiet"
         ],
@@ -9434,7 +9433,8 @@
       },
       "finderAuto": true,
       "flawBasis": "LG 台灣官網規格頁",
-      "strength": "官網標示運轉噪音 34–40 dB，附 UV 紫外線殺菌風扇與 Wi-Fi 遠端控制"
+      "strength": "官網標示運轉噪音 34–40 dB，附 UV 紫外線殺菌風扇與 Wi-Fi 遠端控制",
+      "priceUnverified": true
     },
     {
       "demo": true,
@@ -9480,7 +9480,6 @@
       "officialStore": true,
       "tags": [],
       "finder": {
-        "budget": "high",
         "tags": [
           "family",
           "quiet"
@@ -9497,7 +9496,8 @@
         "license": "pending-review",
         "fetchedAt": "2026-11-08"
       },
-      "flawBasis": "三菱電機 28L 新品報導（Techbang，型號對應請以官網為準）"
+      "flawBasis": "三菱電機 28L 新品報導（Techbang，型號對應請以官網為準）",
+      "priceUnverified": true
     },
     {
       "demo": true,
@@ -9543,7 +9543,6 @@
       "officialStore": true,
       "tags": [],
       "finder": {
-        "budget": "high",
         "tags": [
           "family"
         ],
@@ -9559,7 +9558,8 @@
         "license": "pending-review",
         "fetchedAt": "2026-11-08"
       },
-      "flawBasis": "三菱電機台灣官網（未公布規格數字）；編輯判斷"
+      "flawBasis": "三菱電機台灣官網（未公布規格數字）；編輯判斷",
+      "priceUnverified": true
     },
     {
       "demo": true,
@@ -9605,7 +9605,6 @@
       "officialStore": true,
       "tags": [],
       "finder": {
-        "budget": "high",
         "tags": [
           "family"
         ],
@@ -9621,7 +9620,8 @@
         "license": "pending-review",
         "fetchedAt": "2026-11-08"
       },
-      "flawBasis": "三菱電機台灣官網（未公布規格數字）；編輯判斷"
+      "flawBasis": "三菱電機台灣官網（未公布規格數字）；編輯判斷",
+      "priceUnverified": true
     },
     {
       "demo": true,
@@ -9680,10 +9680,7 @@
       ],
       "tags": [],
       "finder": {
-        "budget": "low",
-        "tags": [
-          "budget"
-        ],
+        "tags": [],
         "area": [
           9.5,
           14.5
@@ -9697,7 +9694,8 @@
         "fetchedAt": "2026-11-08"
       },
       "flawBasis": "Electrolux 台灣官網規格頁",
-      "strength": "官網標示除濕能源效率第一級，適用 15 坪，含 HEPA 等級濾網"
+      "strength": "官網標示除濕能源效率第一級，適用 15 坪，含 HEPA 等級濾網",
+      "priceUnverified": true
     },
     {
       "demo": true,
@@ -9743,7 +9741,6 @@
       "officialStore": true,
       "tags": [],
       "finder": {
-        "budget": "high",
         "tags": [
           "family"
         ],
@@ -9759,7 +9756,8 @@
         "license": "pending-review",
         "fetchedAt": "2026-11-08"
       },
-      "flawBasis": "Panasonic 台灣 2025/11 除濕機型錄"
+      "flawBasis": "Panasonic 台灣 2025/11 除濕機型錄",
+      "priceUnverified": true
     },
     {
       "demo": true,
@@ -9805,7 +9803,6 @@
       "officialStore": true,
       "tags": [],
       "finder": {
-        "budget": "mid",
         "tags": [],
         "area": [
           9.5,
@@ -9819,7 +9816,8 @@
         "license": "pending-review",
         "fetchedAt": "2026-11-08"
       },
-      "flawBasis": "Panasonic 台灣 2025/11 除濕機型錄"
+      "flawBasis": "Panasonic 台灣 2025/11 除濕機型錄",
+      "priceUnverified": true
     },
     {
       "demo": true,
@@ -9866,10 +9864,7 @@
       "tags": [],
       "finderAuto": true,
       "finder": {
-        "budget": "low",
-        "tags": [
-          "budget"
-        ],
+        "tags": [],
         "area": [
           9,
           13
@@ -9881,7 +9876,8 @@
         "license": "pending-review",
         "fetchedAt": "2026-11-08"
       },
-      "flawBasis": "Panasonic 台灣 2025/11 除濕機型錄；評測整理（vocus）"
+      "flawBasis": "Panasonic 台灣 2025/11 除濕機型錄；評測整理（vocus）",
+      "priceUnverified": true
     },
     {
       "demo": true,
@@ -9928,16 +9924,14 @@
       "tags": [],
       "finderAuto": true,
       "finder": {
-        "budget": "low",
-        "tags": [
-          "budget"
-        ],
+        "tags": [],
         "area": [
           5,
           7
         ]
       },
-      "flawBasis": "商品標示容量；適用坪數為本站粗估（編輯判斷）"
+      "flawBasis": "商品標示容量；適用坪數為本站粗估（編輯判斷）",
+      "priceUnverified": true
     },
     {
       "demo": true,
@@ -9991,7 +9985,8 @@
           "budget"
         ]
       },
-      "flawBasis": "評測整理（vocus 海說小坪數除濕機推薦）"
+      "flawBasis": "評測整理（vocus 海說小坪數除濕機推薦）",
+      "priceUnverified": true
     }
   ],
   "groupDesc": {

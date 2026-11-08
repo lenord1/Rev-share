@@ -45,6 +45,7 @@ export function slimProduct(p, now = Date.now(), history = {}) {
     tags: p.tags ?? [],
     finder: p.finder ?? {},
     officialStore: !!p.officialStore,
+    priceUnverified: !!p.priceUnverified,
     flaw: p.flaw,
     strength: p.strength ?? '',
     hist: histSummary(history, p, now),

@@ -21,11 +21,15 @@ const go = (ch: string) => `/go/${ch}-${p.modelCode}`;
 ---
 <aside class="aside box receipt" aria-labelledby="rc">
   <h2 id="rc">到手價明細</h2>
+  {p.priceUnverified ? (
+    <p class="note" style="margin:0 0 8px">這台的標價與限時特價尚未跟蝦皮頁面核對，請以賣場頁面顯示為準。</p>
+  ) : (<>
   <div class="rl"><span>標價</span><span class="d"></span><span class="num">{money(b.price)}</span></div>
   {b.discount > 0 && <div class="rl"><span>現折</span><span class="d"></span><span class="num minus">−{money(b.discount)}</span></div>}
   {b.discount > 0 && b.taxRefund > 0 && <div class="rl"><span>結帳金額</span><span class="d"></span><span class="num">{money(b.price - b.discount)}</span></div>}
   {b.taxRefund > 0 && <div class="rl"><span>退稅／補助</span><span class="d"></span><span class="num minus">−{money(b.taxRefund)}</span></div>}
   <div class="rl total"><span>到手價</span><span class="d"></span><strong class="num">{money(b.final)}</strong></div>
+  </>)}
   {b.taxRefund > 0 && p.subsidyNote && <p class="note" style="margin:8px 0 0">{p.subsidyNote}</p>}
   {expired && <p class="note" style="margin:8px 0 0">原促銷已於 {ymd(p.promoValidUntil)} 結束，未計入到手價。</p>}
   <a class="btn" href={go(primary)} rel="sponsored nofollow noopener" data-track="go" data-channel={primary} data-code={p.modelCode} data-slot="tldr" data-cta-anchor>到{name[primary] ?? primary}看最新價格</a>

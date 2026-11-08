@@ -14,7 +14,7 @@ const ch = primaryChannel(p);
 const chName = channelsData.channels.find((c) => c.id === ch)?.name ?? ch;
 ---
 <div class="sticky-bar fixed inset-x-0 bottom-0" id="sticky-cta" data-hidden="false">
-  <div class="p"><small>{productName(p)} 到手價</small><b class="num">{money(b.final)}</b></div>
+  <div class="p"><small>{productName(p)}{p.priceUnverified ? '' : ' 到手價'}</small>{p.priceUnverified ? <b>價格請至蝦皮查看</b> : <b class="num">{money(b.final)}</b>}</div>
   <a class="btn" href={`/go/${ch}-${p.modelCode}`} rel="sponsored nofollow noopener" data-track="go" data-channel={ch} data-code={p.modelCode} data-slot="sticky">到{chName}看最新價格</a>
 </div>
 

@@ -37,7 +37,9 @@ export function classifyProducts(products) {
     const db = num(spec(x, /噪音/)?.value);
     if (db && db <= 40) out.tags.push('quiet');
     if (/烘乾|衣物乾燥/.test(`${x.titleTemplate ?? ''}${x.tldr ?? ''}`)) out.tags.push('dryer');
-    if (budget === 'low') out.tags.push('budget');
+    if (budget === 'low' && !x.priceUnverified) out.tags.push('budget');
+    // 價格還沒核對過的商品不依價格分預算級距（避免用假價格推薦）
+    if (x.priceUnverified) { delete out.budget; out.tags = out.tags.filter((t) => t !== 'budget'); }
     x.finder = out;
     x.finderAuto = true;
   }

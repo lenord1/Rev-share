@@ -34,12 +34,13 @@ const points = [...(strength ? [strength] : []), ...specChips].slice(0, 4);
 
 const detail = `/${p.category}/${p.slug}/`;
 // 有真實折扣才顯示「限時特價」大標籤與原價；折數 = 到手價 ÷ 標價
-const onSale = b.active && b.discount > 0 && b.final < b.price;
+const unverified = !!p.priceUnverified; // 價格還沒跟蝦皮頁面核對：不顯示數字
+const onSale = !unverified && b.active && b.discount > 0 && b.final < b.price;
 const saleLabel = p.promoBadge || '優惠價';
 const zhe = onSale ? (Math.round((b.final / b.price) * 100) / 10).toString().replace(/\.0$/, '') : '';
 const area = p.finder?.area;
 // 官方賣場且有真實折扣才寫「領券」，其餘不宣稱沒有資料的優惠
-const cta = p.officialStore ? (b.discount > 0 ? '🔥 前往官方旗艦館領券下單 ➔' : '🔥 前往官方旗艦館下單 ➔') : '🔥 前往蝦皮看最新價格 ➔';
+const cta = unverified ? '🔥 前往蝦皮查看最新價格 ➔' : p.officialStore ? (b.discount > 0 ? '🔥 前往官方旗艦館領券下單 ➔' : '🔥 前往官方旗艦館下單 ➔') : '🔥 前往蝦皮看最新價格 ➔';
 const priceParts: string[] = [`標價 ${fmt.format(b.price)}`];
 if (b.discount) priceParts.push(`現折 −${fmt.format(b.discount)}`);
 if (b.taxRefund) priceParts.push(`退稅／補助 −${fmt.format(b.taxRefund)}`);
@@ -48,7 +49,7 @@ if (b.taxRefund) priceParts.push(`退稅／補助 −${fmt.format(b.taxRefund)}`
   class="pcard overflow-hidden rounded-xl border border-slate-200/80 bg-white shadow-sm transition-shadow hover:shadow-md"
   data-category={p.category}
   data-more={more ? '' : undefined}
-  data-final={b.final}
+  data-final={unverified ? undefined : b.final}
   data-area-min={area ? area[0] : undefined}
   data-area-max={area ? area[1] : undefined}
   style={more ? 'display:none' : undefined}
@@ -88,6 +89,12 @@ if (b.taxRefund) priceParts.push(`退稅／補助 −${fmt.format(b.taxRefund)}`
       )}
 
       <div class="mt-auto flex flex-col gap-1.5">
+        {unverified ? (
+          <div class="flex flex-col gap-0.5">
+            <b class="text-xl font-extrabold text-slate-900">價格請至蝦皮查看</b>
+            <span class="text-xs text-slate-500">賣場標價與限時特價會隨時調整，以蝦皮頁面為準</span>
+          </div>
+        ) : (<>
         {onSale && (
           <div class="flex items-center gap-2">
             <span class="inline-flex items-center gap-1 rounded-md bg-rose-600 px-2.5 py-1 text-sm font-extrabold text-white shadow-sm"><span aria-hidden="true">⚡</span>{saleLabel}</span>
@@ -99,8 +106,9 @@ if (b.taxRefund) priceParts.push(`退稅／補助 −${fmt.format(b.taxRefund)}`
           {onSale && <s class="num text-base text-slate-400">原價 {fmt.format(b.price)}</s>}
           <span class="text-xs text-slate-500">到手價</span>
         </div>
-        {priceParts.length > 1 && <p class="num text-xs text-slate-500">{priceParts.join('　')} = {fmt.format(b.final)}</p>}
-        {histText && <p class="text-xs text-slate-500">{histText}</p>}
+        </>)}
+        {!unverified && priceParts.length > 1 && <p class="num text-xs text-slate-500">{priceParts.join('　')} = {fmt.format(b.final)}</p>}
+        {!unverified && histText && <p class="text-xs text-slate-500">{histText}</p>}
       </div>
 
       <a

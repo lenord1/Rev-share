@@ -65,24 +65,27 @@
       bodyEl.innerHTML = '<p class="q">這個品類目前沒有商品。</p>';
       return;
     }
+    const priceOf = (p) => (p.priceUnverified ? '請至蝦皮查看' : fmt(p.final));
     const link = (p, slot) => `/go/${esc(p.channel)}-${esc(p.code)}`;
     const attrs = (p, slot) => `href="${link(p)}" rel="sponsored nofollow noopener" data-track="go" data-channel="${esc(p.channel)}" data-code="${esc(p.code)}" data-slot="${slot}"`;
     const chName = (p) => channels[p.channel] || p.channel;
     const official = (p) => (p.officialStore ? '<span class="badge official">官方</span>' : '');
     const [{ p, reasons }] = picks;
-    const parts = [`標價 ${fmt(p.price)}`];
+    const parts = p.priceUnverified ? [] : [`標價 ${fmt(p.price)}`];
     if (p.discount) parts.push(`折扣 −${fmt(p.discount)}`);
     if (p.taxRefund) parts.push(`退稅／補助 −${fmt(p.taxRefund)}`);
     const hero = `<div class="result">
       <p class="q" style="margin:0">最適合你的是：${esc(p.name)}${official(p)}</p>
       ${p.img ? `<a class="thumb-box" ${attrs(p, 'finder')}><img src="${esc(p.img)}" alt="${esc(p.imgAlt || p.name)}" loading="lazy"></a>` : ''}
       ${reasons.length ? `<div class="why">${reasons.map((r) => `<span class="chip hit">${esc(r)}</span>`).join('')}</div>` : ''}
-      ${p.badge && p.discount ? `<div><span class="sale-pill">⚡ ${esc(p.badge)}</span></div>` : ''}
-      <div class="price"><b class="num"${p.badge && p.discount ? ' style="color:#e11d48"' : ''}>${fmt(p.final)}</b>${p.discount ? ` <s class="num" style="color:var(--ink-2);font-size:var(--step-0)">原價 ${fmt(p.price)}</s>` : ''} <span class="note">到手價</span></div>
+      ${p.priceUnverified
+        ? `<div class="price"><b>價格請至蝦皮查看</b></div><p class="note">賣場標價與限時特價會隨時調整，以蝦皮頁面為準。</p>`
+        : `${p.badge && p.discount ? `<div><span class="sale-pill">⚡ ${esc(p.badge)}</span></div>` : ''}
+      <div class="price"><b class="num"${p.badge && p.discount ? ' style="color:#e11d48"' : ''}>${fmt(p.final)}</b>${p.discount ? ` <s class="num" style="color:var(--ink-2);font-size:var(--step-0)">原價 ${fmt(p.price)}</s>` : ''} <span class="note">到手價</span></div>`}
       ${parts.length > 1 ? `<p class="math num">${parts.join(' ')} = ${fmt(p.final)}</p>` : ''}
       ${p.strength ? `<p class="strength-line">${esc(p.strength)}</p>` : ''}
       <p class="flaw-line">注意：${esc(p.flaw)}</p>
-      <p class="hist-line">${esc(histLine(p.hist, fmt))}</p>
+      ${p.hist?.enough && !p.hist.demo ? `<p class="hist-line">${esc(histLine(p.hist, fmt))}</p>` : ''}
       <div><a class="btn" ${attrs(p, 'finder')}>到${esc(chName(p))}看最新價格</a></div>
     </div>`;
     let cmp = '';
@@ -92,7 +95,7 @@
       const cell = (p, k) => { const s = (p.specs || []).find((x) => x.key === k); return s ? esc(s.value + (s.unit ? ' ' + s.unit : '')) : '—'; };
       const rows = [
         ['', (p) => (p.img ? `<img src="${esc(p.img)}" alt="${esc(p.imgAlt || p.name)}" loading="lazy" style="width:100%;max-width:140px;aspect-ratio:1;object-fit:contain">` : '')],
-        ['到手價', (p) => `<b class="num">${fmt(p.final)}</b>`],
+        ['到手價', (p) => (p.priceUnverified ? '請至蝦皮查看' : `<b class="num">${fmt(p.final)}</b>`)],
         ...keys.map((k) => [k, (p) => cell(p, k)]),
         ['缺點', (p) => esc(p.flaw)],
       ];
@@ -105,7 +108,7 @@
     const rest = pickProducts(inCategory(), state.answers).slice(3).filter((r) => r.score > 0).slice(0, 8);
     const others = rest.length
       ? `<div class="others"><p class="q" style="margin:14px 0 6px">還有 ${rest.length} 台也符合</p><ul class="others-list">${rest
-          .map(({ p, reasons: rs }) => `<li>${p.img ? `<img src="${esc(p.img)}" alt="${esc(p.imgAlt || p.name)}" width="56" height="56" loading="lazy" style="object-fit:contain;border-radius:6px">` : ''}<a href="/${esc(p.category)}/${esc(p.slug)}/">${esc(p.name)}</a>${official(p)} <b class="num">${fmt(p.final)}</b>${rs.length ? ` <span class="note">${esc(rs.join('、'))}</span>` : ''} <a class="btn small ghost" ${attrs(p, 'finder-more')}>到${esc(chName(p))}看價格</a></li>`)
+          .map(({ p, reasons: rs }) => `<li>${p.img ? `<img src="${esc(p.img)}" alt="${esc(p.imgAlt || p.name)}" width="56" height="56" loading="lazy" style="object-fit:contain;border-radius:6px">` : ''}<a href="/${esc(p.category)}/${esc(p.slug)}/">${esc(p.name)}</a>${official(p)} <b class="num">${priceOf(p)}</b>${rs.length ? ` <span class="note">${esc(rs.join('、'))}</span>` : ''} <a class="btn small ghost" ${attrs(p, 'finder-more')}>到${esc(chName(p))}看價格</a></li>`)
           .join('')}</ul></div>`
       : '';
     bodyEl.innerHTML = `<div class="res-layout">${hero}${cmp}${others}</div>` + `<button type="button" class="link-btn" data-restart>重新選一次</button>

@@ -20,9 +20,9 @@ if (b.taxRefund) parts.push(`退稅／補助 −${money(b.taxRefund)}`);
 <li class="panel res" data-code={p.modelCode}>
   <div class="row">
     <h3 class="name"><a href={`/${p.category}/${p.slug}/`}>{productName(p)}</a>{p.officialStore && <span class="badge official">官方</span>}</h3>
-    <div class="price num">{money(b.final)}</div>
+    <div class="price num">{p.priceUnverified ? '價格請至蝦皮查看' : money(b.final)}</div>
   </div>
-  {parts.length > 1 && <p class="note num" style="margin:0">到手價 = {parts.join(' ')}</p>}
+  {!p.priceUnverified && parts.length > 1 && <p class="note num" style="margin:0">到手價 = {parts.join(' ')}</p>}
   <p class="flaw-line">缺點：{p.flaw}</p>
   <p style="margin:0">{p.tldr}</p>
   <div class="actions">
