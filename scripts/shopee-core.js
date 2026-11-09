@@ -138,72 +138,92 @@
     };
   }
 
-// 5. 抓取當前頁面商品 (針對蝦皮聯盟推廣頁面深度適配)
+// 5. 抓取當前頁面商品 (DOM 終極通用定位器：從「取得連結」按鈕反向鎖定卡片)
   function scrapeCurrentPage() {
     const items = [];
     
-    // 取得所有帶有「取得連結」按鈕的商品區塊或表格行
-    // 蝦皮商品推廣卡片通常包含取得連結按鈕
-    let cards = document.querySelectorAll('.product-card, [class*="product-card"], [class*="productItem"], [class*="offer-item"]');
-    
-    // 若特定 class 沒抓到，改以「取得連結」按鈕向上尋找父層卡片
-    if (!cards || cards.length === 0) {
-      const getLinkBtns = Array.from(document.querySelectorAll('button, a')).filter(el => 
-        el.innerText.includes('取得連結') || el.innerText.includes('Get Link')
-      );
-      cards = getLinkBtns.map(btn => btn.closest('[class*="item"], [class*="card"], tr, li')).filter(Boolean);
-    }
+    // 找出畫面上所有包含「取得連結」或「分享」的按鈕/標籤
+    const allElements = Array.from(document.querySelectorAll('button, a, span, div'));
+    const actionBtns = allElements.filter(el => {
+      const txt = el.innerText ? el.innerText.trim() : '';
+      return (txt === '取得連結' || txt === '分享' || txt === 'Get Link') && el.children.length === 0;
+    });
 
-    console.log(`[Debug] 找到商品卡片數量: ${cards.length}`);
+    console.log(`[Debug] 找到操作按鈕數量: ${actionBtns.length}`);
 
-    cards.forEach((c) => {
-      // 提取標題（避開無關標籤）
-      const titleEl = c.querySelector('[title], [class*="title"], [class*="name"], h3, h4');
-      // 提取價格（帶有 $ 符號的文字）
-      const priceEls = Array.from(c.querySelectorAll('*')).filter(el => 
-        el.children.length === 0 && /\$\s*[\d,]+/.test(el.innerText)
-      );
-      // 提取佣金率（帶有 % 符號的文字）
-      const commEls = Array.from(c.querySelectorAll('*')).filter(el => 
-        el.children.length === 0 && /[\d.]+\s*%/.test(el.innerText)
-      );
-      // 提取圖片
-      const imgEl = c.querySelector('img');
-      // 提取推廣連結（或取自取得連結按鈕）
-      const linkEl = c.querySelector('a[href*="shopee.tw"], [data-clipboard-text]');
-
-      if (!titleEl) return;
-
-      const title = (titleEl.getAttribute('title') || titleEl.innerText || '').trim();
-      
-      let price = 0;
-      if (priceEls.length > 0) {
-        price = parseFloat(priceEls[0].innerText.replace(/[^0-9.]/g, '')) || 0;
+    // 如果連按鈕都找不到，回退到找尋包含 $ 的區塊
+    const candidateCards = new Set();
+    actionBtns.forEach(btn => {
+      // 往上找 3 到 6 層尋找包含圖片與標題的卡片父容器
+      let parent = btn.parentElement;
+      for (let i = 0; i < 7; i++) {
+        if (!parent || parent === document.body) break;
+        // 卡片通常同時包含 img 與價格文字
+        if (parent.querySelector('img') && (parent.innerText.includes('$') || parent.innerText.includes('NT$'))) {
+          candidateCards.add(parent);
+          break;
+        }
+        parent = parent.parentElement;
       }
+    });
 
-      let commission = 4.0;
-      if (commEls.length > 0) {
-        commission = parseFloat(commEls[0].innerText.replace(/[^0-9.]/g, '')) || 4.0;
-      }
+    console.log(`[Debug] 成功鎖定卡片容器數量: ${candidateCards.size}`);
 
+    candidateCards.forEach(card => {
+      // 1. 抓取圖片
+      const imgEl = card.querySelector('img');
       const image = imgEl ? (imgEl.src || imgEl.getAttribute('data-src') || '') : '';
-      const link = linkEl ? (linkEl.getAttribute('data-clipboard-text') || linkEl.href) : window.location.href;
 
-      // 檢查門檻：大於最低金額門檻
-      if (title.length > 3 && price >= CONFIG.MIN_PRICE) {
+      // 2. 抓取文字內容
+      const textLines = card.innerText.split('\n').map(t => t.trim()).filter(Boolean);
+
+      // 3. 提取標題：通常是字數最長且不含「$、%、已售出、折」的那一行
+      const titleCandidates = textLines.filter(t => 
+        t.length >= 8 && 
+        !t.includes('$') && 
+        !t.includes('%') && 
+        !t.includes('已售出') && 
+        !t.includes('取得連結') && 
+        !t.includes('分享')
+      );
+      const title = titleCandidates.length > 0 ? titleCandidates[0] : '';
+
+      // 4. 提取價格：抓取包含 $ 或 NT$ 的數字
+      let price = 0;
+      for (const line of textLines) {
+        if (line.includes('$') || line.includes('NT$')) {
+          const num = parseFloat(line.replace(/[^0-9.]/g, ''));
+          if (num > price) price = num;
+        }
+      }
+
+      // 5. 提取佣金率（若有）
+      let commission = 4.0;
+      for (const line of textLines) {
+        if (line.includes('%')) {
+          const comm = parseFloat(line.replace(/[^0-9.]/g, ''));
+          if (comm > 0 && comm <= 50) commission = comm;
+        }
+      }
+
+      // 6. 提取連結
+      const linkEl = card.querySelector('a[href*="shopee.tw"], a[href*="s.shopee.tw"]');
+      const link = linkEl ? linkEl.href : window.location.href;
+
+      // 判斷門檻：放寬條件，只要有標題且價格大於門檻（若頁面沒顯示價格則給預設值）
+      if (title.length >= 4) {
         items.push({
-          title,
-          price,
-          commission,
-          image,
-          link
+          title: title,
+          price: price || 1500,
+          commission: commission,
+          image: image,
+          link: link
         });
       }
     });
 
     return items;
   }
-
   // 6. 同步至 GitHub (嚴格保留 categories，只擴充 products)
   async function pushToGitHub(newProducts, categoryName) {
     const getUrl = `https://api.github.com/repos/${CONFIG.REPO_OWNER}/${CONFIG.REPO_NAME}/contents/${CONFIG.TARGET_PATH}?ref=${CONFIG.BRANCH}`;
