@@ -322,10 +322,10 @@ t('--force 重新匯入：保留已填的內容與已確認的圖片授權；已
   assert.equal(d.images[0].license, 'official');
 });
 t('attach-image：只能掛在示範商品；掛上後帶授權狀態並通過驗證；正式商品與不存在的草稿被拒絕', () => {
-  markDemo('test-lg-puricare-18l', 'test-lg-md161qpk3');
-  const r = attachImageToDemo('shopee-55-66', 'test-lg-puricare-18l');
+  markDemo('sampo-ad-s512t', 'panasonic-f-y22pn');
+  const r = attachImageToDemo('shopee-55-66', 'sampo-ad-s512t');
   assert.ok(r.ok, JSON.stringify(r));
-  const prod = JSON.parse(productsRaw()).products.find((x) => x.modelCode === 'test-lg-puricare-18l');
+  const prod = JSON.parse(productsRaw()).products.find((x) => x.modelCode === 'sampo-ad-s512t');
   assert.equal(prod.image.file, readDraft('shopee-55-66').images[0].file);
   assert.equal(prod.image.license, 'official');
   assert.ok(prod.image.alt);
@@ -333,13 +333,13 @@ t('attach-image：只能掛在示範商品；掛上後帶授權狀態並通過�
   const real = attachImageToDemo('shopee-55-66', 'import-test-a');
   assert.equal(real.ok, false);
   assert.ok(/示範商品/.test(real.message));
-  assert.equal(attachImageToDemo('nope-1', 'test-lg-puricare-18l').ok, false);
+  assert.equal(attachImageToDemo('nope-1', 'sampo-ad-s512t').ok, false);
 });
 
 t('匯入請求檔：處理成功寫出結果並刪除請求；失敗只記錄原因，不影響其他請求', async () => {
   const dir = path.join(tmp, 'import-requests');
   fs.mkdirSync(dir, { recursive: true });
-  fs.writeFileSync(path.join(dir, 'a-ok.json'), JSON.stringify({ url: 'https://shopee.tw/LG-i.77.88', officialUrl: OFF, category: 'dehumidifier', attachTo: 'test-lg-md161qpk3' }));
+  fs.writeFileSync(path.join(dir, 'a-ok.json'), JSON.stringify({ url: 'https://shopee.tw/LG-i.77.88', officialUrl: OFF, category: 'dehumidifier', attachTo: 'panasonic-f-y22pn' }));
   fs.writeFileSync(path.join(dir, 'b-bad.json'), JSON.stringify({ url: 'https://shopee.tw/LG-i.77.89', officialUrl: 'https://shopee.tw/product/1/2' }));
   fs.writeFileSync(path.join(dir, 'c-broken.json'), '{壞掉');
   const out = await processRequests({ fetcher: offFetcher() });

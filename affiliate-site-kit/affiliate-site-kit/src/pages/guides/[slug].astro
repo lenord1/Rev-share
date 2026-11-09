@@ -1,0 +1,69 @@
+---
+// 買前指南頁：由 src/content/guides/*.md 產生。草稿只在預覽環境輸出（見 src/lib/guides.mjs），且一律 noindex。
+import Layout from '../../layouts/Layout.astro';
+import productsData from '../../data/products.json';
+import { loadGuides, dateText } from '../../lib/guides.mjs';
+import { noindexCategory } from '../../lib/indexing.mjs';
+import { safeJson } from '../../lib/catalog.mjs';
+import { NEED_LABEL } from '../../lib/finder.js';
+import siteData from '../../data/site.json';
+
+export function getStaticPaths() {
+  return loadGuides().map((g) => ({ params: { slug: g.slug }, props: { guide: g } }));
+}
+const { guide } = Astro.props;
+const { fm, Content, draft } = guide;
+const { products, categories } = productsData as { products: any[]; categories: { slug: string; name: string }[] };
+const category = categories.find((c) => c.slug === fm.category);
+const noindex = draft || noindexCategory(products, fm.category);
+const site = Astro.site!;
+// 作者簡介（使用者提供的真實資料，見 src/data/site.json）：每篇開頭摘要區都要出現
+const a = (siteData as any).author ?? {};
+const intro = a.bio && fm.promise
+  ? `${a.name ? `我是${a.name}，` : '我'}${a.bio}。我將透過${a.method || '科學、理性'}的方式，帶你${fm.promise}。`
+  : '';
+// 來源情境：讀者從這篇回首頁時，首頁預設顯示同品類（若有 need 就只列符合的）。只存在讀者自己的瀏覽器，不上傳。
+const entry = category
+  ? { slug: guide.slug, title: fm.title, category: category.slug, group: (category as any).group ?? '', need: fm.need && NEED_LABEL[fm.need] ? fm.need : '', needLabel: fm.need ? NEED_LABEL[fm.need] ?? '' : '', sort: fm.sort === 'value' ? 'value' : '' }
+  : null;
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: '首頁', item: new URL('/', site).href },
+    ...(category ? [{ '@type': 'ListItem', position: 2, name: category.name, item: new URL(`/${category.slug}/`, site).href }] : []),
+    { '@type': 'ListItem', position: category ? 3 : 2, name: fm.title, item: new URL(`/guides/${guide.slug}/`, site).href },
+  ],
+};
+---
+<Layout title={`${fm.title}｜挑家電`} description={fm.description} noindex={noindex}>
+  <main class="wrap">
+    <nav class="crumbs" aria-label="麵包屑"><a href="/">首頁</a> / {category ? <><a href={`/${category.slug}/`}>{category.name}</a> / </> : null}買前指南</nav>
+    {draft && <p class="draft-banner" role="note">草稿預覽：這篇還沒發布，只有預覽環境看得到，正式站不會輸出。</p>}
+    <article class="article">
+      <h1>{fm.title}</h1>
+      <p class="note">{fm.author}　更新 {dateText(fm.updated)}</p>
+      <p class="disclosure">本頁含分潤連結，您購買不會多花錢。價格與優惠以賣場頁面為準。</p>
+      {intro && (
+        <aside class="author-intro" aria-label="作者簡介">
+          <p>{intro}</p>
+          <p class="note">本文整理各品牌官網與賣場標示的規格與價格，不是本站自己實測。</p>
+        </aside>
+      )}
+      <Content />
+    </article>
+  </main>
+  <script type="application/ld+json" set:html={safeJson(ld)} />
+  {entry && <script is:inline define:vars={{ entry }}>
+    try {
+      sessionStorage.setItem('ssp.entry.v1', JSON.stringify(entry));
+      // 首頁選購精靈的條件記在 finder.v1：同品類保留讀者原本的答案，換品類就重來
+      var raw = JSON.parse(localStorage.getItem('finder.v1') || 'null') || {};
+      var same = raw.category === entry.category;
+      var answers = same && raw.answers && typeof raw.answers === 'object' ? raw.answers : {};
+      var labels = same && raw.labels && typeof raw.labels === 'object' ? raw.labels : {};
+      if (entry.need) { answers.need = entry.need; labels.need = entry.needLabel; }
+      localStorage.setItem('finder.v1', JSON.stringify({ category: entry.category, group: entry.group, answers: answers, labels: labels, collapsed: false }));
+    } catch (e) { /* 隱私模式不能存就算了 */ }
+  </script>}
+</Layout>

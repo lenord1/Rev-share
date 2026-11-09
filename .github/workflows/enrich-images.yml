@@ -1,0 +1,40 @@
+name: 官方商品高解析圖片自動補全
+
+on:
+  push:
+    paths:
+      - 'affiliate-site-kit/affiliate-site-kit/src/data/products.json'
+    branches:
+      - main
+
+jobs:
+  enrich-images:
+    # 避免腳本更新時造成無限循環觸發
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: 簽出專案代碼
+        uses: actions/checkout@v4
+
+      - name: 安裝 Python 環境
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: 安裝抓圖相依套件
+        run: |
+          pip install requests ddgs
+
+      - name: 執行官網高解析度圖片比對與替換
+        run: |
+          python scripts/fetch_official_images.py
+
+      - name: 自動 Commit 回存倉庫並觸發 Vercel 上架
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add affiliate-site-kit/affiliate-site-kit/src/data/products.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: 自動補齊品牌官網高解析原圖 [skip ci]" && git push)

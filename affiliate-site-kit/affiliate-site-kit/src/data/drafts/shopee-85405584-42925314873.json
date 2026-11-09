@@ -1,0 +1,99 @@
+{
+  "draftId": "shopee-85405584-42925314873",
+  "status": "draft",
+  "name": "三菱 MITSUBISHI 變頻高效除濕型 MJ-EV180JX-TW",
+  "createdAt": "2026-11-09",
+  "source": {
+    "kind": "shopee",
+    "url": "https://shopee.tw/product/85405584/42925314873",
+    "host": "shopee.tw",
+    "ids": {
+      "shopId": "85405584",
+      "itemId": "42925314873"
+    },
+    "method": "official-page",
+    "fetchedAt": "2026-11-09",
+    "siteCanonical": "http://www.mitsubishielectric.com.tw/home/dehumidifier/"
+  },
+  "extracted": {
+    "name": "三菱電機除濕機",
+    "description": "三菱電機智慧變頻除濕機，三重除濕系統，高速除濕又省電！",
+    "brand": null,
+    "sku": null,
+    "price": null,
+    "imageUrls": [
+      "https://www.mitsubishielectric.com.tw/home/dehumidifier/images/mjev180jx_pd_lg.jpg",
+      "https://www.mitsubishielectric.com.tw/home/dehumidifier/images/mjev180jx_pd.png"
+    ]
+  },
+  "images": [
+    {
+      "file": "shopee-85405584-42925314873-1.jpg",
+      "sourceUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/images/mjev180jx_pd_lg.jpg",
+      "pageUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/PRODUCT_MJ_EV180JX.html",
+      "fetchedAt": "2026-11-09",
+      "sha256": "1719be0373fc97e492c3fcc2c29a251667d77f3e04854609b2dd1f9fc5dd579f",
+      "bytes": 139018,
+      "width": 980,
+      "height": 1500,
+      "mime": "image/jpeg",
+      "license": "pending-review",
+      "licenseNote": "",
+      "alt": "三菱電機除濕機"
+    },
+    {
+      "file": "shopee-85405584-42925314873-2.png",
+      "sourceUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/images/mjev180jx_pd.png",
+      "pageUrl": "https://www.mitsubishielectric.com.tw/home/dehumidifier/PRODUCT_MJ_EV180JX.html",
+      "fetchedAt": "2026-11-09",
+      "sha256": "3cca4adecee428a13779764d0932a0781108ba51ab729500b642afc5f4a4b5f7",
+      "bytes": 212858,
+      "width": 366,
+      "height": 560,
+      "mime": "image/png",
+      "license": "pending-review",
+      "licenseNote": "",
+      "alt": "三菱電機除濕機"
+    }
+  ],
+  "product": {
+    "category": "dehumidifier",
+    "slug": null,
+    "modelCode": null,
+    "titleTemplate": "三菱電機除濕機 評測：{year} 值不值得買",
+    "price": null,
+    "priceUpdatedAt": null,
+    "affiliate": {
+      "shopee": "https://s.shopee.tw/AAIZf4Ycm1"
+    },
+    "tldr": "",
+    "specs": [],
+    "faq": [],
+    "notFor": []
+  },
+  "editorial": {
+    "flaw": "",
+    "strength": "",
+    "reviewSummary": {
+      "sources": [],
+      "sampleSize": 0,
+      "summarizedAt": null,
+      "summary": "",
+      "pros": [],
+      "cons": [],
+      "sellerLogisticsNotes": []
+    }
+  },
+  "notes": [
+    "蝦皮官方 API 尚未接上（等待官方文件），只記下商品編號；名稱、價格、圖片請手動補。本工具不抓取其網頁。",
+    "名稱、說明、圖片取自官方頁 https://www.mitsubishielectric.com.tw/home/dehumidifier/PRODUCT_MJ_EV180JX.html；不取官網價格（蝦皮價格另行維護）。",
+    "圖片略過：http://www.mitsubishielectric.com.tw/home/dehumidifier/images/share.jpg（HTTP 404）"
+  ],
+  "official": {
+    "url": "https://www.mitsubishielectric.com.tw/home/dehumidifier/PRODUCT_MJ_EV180JX.html",
+    "fetchedAt": "2026-11-09",
+    "methods": [
+      "opengraph"
+    ]
+  }
+}

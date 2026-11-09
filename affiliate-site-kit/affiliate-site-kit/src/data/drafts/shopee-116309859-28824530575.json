@@ -1,0 +1,58 @@
+{
+  "draftId": "shopee-116309859-28824530575",
+  "status": "draft",
+  "name": "日立江森 26公升/日 HEPA濾網 極光鈦變頻除濕機 RD-520VC",
+  "createdAt": "2026-11-09",
+  "source": {
+    "kind": "shopee",
+    "url": "https://shopee.tw/product/116309859/28824530575",
+    "host": "shopee.tw",
+    "ids": {
+      "shopId": "116309859",
+      "itemId": "28824530575"
+    },
+    "method": "manual",
+    "fetchedAt": "2026-11-09",
+    "siteCanonical": null
+  },
+  "extracted": {
+    "name": "",
+    "description": "",
+    "brand": null,
+    "sku": null,
+    "price": null,
+    "imageUrls": []
+  },
+  "images": [],
+  "product": {
+    "category": "dehumidifier",
+    "slug": null,
+    "modelCode": null,
+    "titleTemplate": "日立江森 26公升/日 HEPA濾網 極光鈦變頻除濕機 RD-520VC 評測：{year} 值不值得買",
+    "price": null,
+    "priceUpdatedAt": null,
+    "affiliate": {
+      "shopee": "https://s.shopee.tw/80E555gsAW"
+    },
+    "tldr": "",
+    "specs": [],
+    "faq": [],
+    "notFor": []
+  },
+  "editorial": {
+    "flaw": "",
+    "strength": "",
+    "reviewSummary": {
+      "sources": [],
+      "sampleSize": 0,
+      "summarizedAt": null,
+      "summary": "",
+      "pros": [],
+      "cons": [],
+      "sellerLogisticsNotes": []
+    }
+  },
+  "notes": [
+    "蝦皮官方 API 尚未接上（等待官方文件），只記下商品編號；名稱、價格、圖片請手動補。本工具不抓取其網頁。"
+  ]
+}

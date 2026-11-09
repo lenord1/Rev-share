@@ -9,7 +9,7 @@
 - 把 `tokens.css` 的變數放進全域樣式，並在 Tailwind 的主題設定中對應成色彩名稱（`paper`、`surface`、`ink`、`ink-2`、`line`、`accent`、`promo`、`win`、`warn`）。設定檔寫法依 `npx astro add tailwind` 當時的官方做法為準（v3 與 v4 不同）。
 - 深色模式跟隨系統（`prefers-color-scheme`），所有 token 都有深色值，不另做切換按鈕（第一階段）。
 - 字體：系統中文字體堆疊，**不下載網路字型**（效能預算）。價格與數字一律 `tabular-nums`。
-- 字階：13 / 15 / 17 / 22 / 30 / 40 px。內文行高 1.7，標題 1.3。行長 ≤ 34 個中文字（`max-w`）。
+- 字階：14 / 16 / 18 / 22 / 30 / 40 px（中文內文 13–15px 偏小，2026-11-08 起內文提高到 16px）。內文行高 1.7，標題 1.3；中文標題不加負字距，標題 `text-wrap: balance`、段落 `text-wrap: pretty`、`line-break: strict`。行長 ≤ 34 個中文字（`max-w`）。
 - 圓角只有 `10px`（卡片）與 `999px`（按鈕、標籤）。不使用陰影，用 `1px` 邊線。
 
 ## 元件清單與規則

@@ -1,0 +1,73 @@
+---
+// 來源情境：讀者剛看過某篇買前指南（記在 sessionStorage 'ssp.entry.v1'），回首頁時先顯示同品類、同條件的商品。
+// 有條件（例如「安靜」）且有符合的商品才篩；沒有符合的就只顯示品類，不會讓畫面變空。讀者可一鍵「看全部」。
+// 資料只存在讀者自己的瀏覽器，不上傳。
+---
+<div id="entry-banner" class="entry-banner" role="status" hidden></div>
+
+<script>
+  const KEY = 'ssp.entry.v1';
+  let entry: any = null;
+  try { entry = JSON.parse(sessionStorage.getItem(KEY) || 'null'); } catch { /* 讀不到就當沒有 */ }
+  const banner = document.getElementById('entry-banner');
+  const grid = document.getElementById('featured-grid');
+
+  if (entry && entry.category && banner && grid) {
+    const cards = () => Array.from(grid.querySelectorAll<HTMLElement>('[data-category]'));
+    const setCount = () => {
+      const n = document.getElementById('featured-count');
+      if (n) n.textContent = String(cards().filter((c) => c.style.display !== 'none' && !c.hasAttribute('data-entry-hidden')).length);
+    };
+    const original = cards();
+    const clear = () => {
+      original.forEach((c) => grid.append(c)); // 還原預設排序
+      cards().forEach((c) => c.removeAttribute('data-entry-hidden'));
+      banner.hidden = true;
+      try { sessionStorage.removeItem(KEY); } catch { /* 同上 */ }
+      setCount();
+    };
+
+    const apply = () => {
+      const all = cards();
+      const inCat = all.filter((c) => c.getAttribute('data-category') === entry.category);
+      if (!inCat.length) return;
+      const hit = entry.need ? inCat.filter((c) => (c.dataset.finderTags || '').split(' ').includes(entry.need)) : inCat;
+      const filtered = Boolean(entry.need) && hit.length > 0;
+      // CP 值情境：同品類依「每公升日除濕量的價格」由低到高排到最前面；沒有數值的排最後，不補編
+      const byValue = entry.sort === 'value' && inCat.some((c) => c.dataset.unitPrice);
+      if (byValue) {
+        const u = (c: HTMLElement) => (c.dataset.unitPrice ? Number(c.dataset.unitPrice) : Infinity);
+        grid.prepend(...[...inCat].sort((a, b) => u(a) - u(b)));
+      }
+      if (filtered) all.forEach((c) => c.toggleAttribute('data-entry-hidden', !hit.includes(c)));
+      const catName = document.querySelector('#finder [data-cat][aria-pressed="true"]')?.firstChild?.textContent || '商品';
+      banner.replaceChildren();
+      const text = document.createElement('span');
+      text.textContent = filtered
+        ? `你剛看了〈${entry.title}〉，先列出「${entry.needLabel}」的${catName}，共 ${hit.length} 款。`
+        : byValue
+          ? `你剛看了〈${entry.title}〉，先列出${catName}，依每公升日除濕量的價格由低到高排序。`
+          : `你剛看了〈${entry.title}〉，先列出${catName}。`;
+      banner.append(text);
+      if (filtered || byValue) {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'link-btn';
+        btn.textContent = filtered ? `看全部 ${inCat.length} 款` : '恢復預設排序';
+        btn.addEventListener('click', clear);
+        banner.append(' ', btn);
+      }
+      banner.hidden = false;
+      setCount();
+    };
+
+    // 選購精靈與篩選列的 script 在 DOM 載入後才綁定，等一個 tick 再套用
+    addEventListener('load', () => setTimeout(() => {
+      apply();
+      // 讀者在精靈改選別的品類，來源情境就不再適用
+      new MutationObserver(() => {
+        if (cards().some((c) => c.getAttribute('data-category') !== entry.category && c.style.display !== 'none')) clear();
+      }).observe(grid, { attributes: true, subtree: true, attributeFilter: ['style'] });
+    }, 0));
+  }
+</script>

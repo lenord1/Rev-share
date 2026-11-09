@@ -116,7 +116,7 @@ const ld = [
       <div class="c-tldr">
         <section class="box" aria-labelledby="tldr">
           <h2 id="tldr" class="verdict">{p.tldr}</h2>
-          {img && <Image class="prod-img" src={img} alt={p.image.alt} widths={[360, 720]} sizes="(min-width: 900px) 600px, 100vw" />}
+          {img && <Image class="prod-img" src={img} alt={p.image.alt} loading="eager" fetchpriority="high" widths={[360, 720]} sizes="(min-width: 900px) 600px, 100vw" />}
           <div class="flaw-box" data-intent-zone="flaw"><b>要先知道的缺點</b>{p.flaw}</div>
         </section>
       </div>
@@ -136,7 +136,7 @@ const ld = [
         {p.notFor?.length > 0 && (
           <section class="sec" aria-labelledby="h-notfor">
             <h2 id="h-notfor">不適合你的情況</h2>
-            <div class="box"><ul class="plain">{p.notFor.map((n: string) => <li>{n}</li>)}</ul></div>
+            <div class="box callout-warn"><ul class="plain">{p.notFor.map((n: string) => <li>{n}</li>)}</ul></div>
           </section>
         )}
 
@@ -158,7 +158,7 @@ const ld = [
 
         <section class="sec" aria-labelledby="h-spec" data-intent-zone="spec">
           <h2 id="h-spec">規格{alt ? '比較' : ''}</h2>
-          <div class="tablewrap overflow-x-auto" tabindex="0" role="region" aria-label="規格比較表，可左右捲動">
+          <div class:list={['tablewrap overflow-x-auto', cols.length === 1 && 'single']} tabindex="0" role="region" aria-label="規格比較表，可左右捲動">
             <table>
               <thead>
                 <tr>
