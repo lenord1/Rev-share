@@ -1,6 +1,7 @@
 name: 官方商品高解析圖片自動補全
 
 on:
+  workflow_dispatch: # 啟用網頁介面的「Run workflow」手動執行按鈕
   push:
     paths:
       - 'affiliate-site-kit/affiliate-site-kit/src/data/products.json'
@@ -9,7 +10,6 @@ on:
 
 jobs:
   enrich-images:
-    # 避免腳本更新時造成無限循環觸發
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     runs-on: ubuntu-latest
     permissions:
@@ -26,7 +26,7 @@ jobs:
 
       - name: 安裝抓圖相依套件
         run: |
-         pip install requests duckduckgo-search
+          pip install requests duckduckgo-search
 
       - name: 執行官網高解析度圖片比對與替換
         run: |
