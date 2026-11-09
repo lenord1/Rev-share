@@ -138,29 +138,69 @@
     };
   }
 
-  // 5. 抓取當前頁面商品
+// 5. 抓取當前頁面商品 (針對蝦皮聯盟推廣頁面深度適配)
   function scrapeCurrentPage() {
     const items = [];
-    const rows = document.querySelectorAll('.product-card, .shopee-table__row, [data-qa="product-item"]');
     
-    rows.forEach(r => {
-      const titleEl = r.querySelector('.product-title, .title, [title]');
-      const priceEl = r.querySelector('.product-price, .price, .amount');
-      const commEl = r.querySelector('.commission-rate, .rate');
-      const linkEl = r.querySelector('a[href*="shopee.tw"], a[href*="s.shopee.tw"]');
-      const imgEl = r.querySelector('img');
+    // 取得所有帶有「取得連結」按鈕的商品區塊或表格行
+    // 蝦皮商品推廣卡片通常包含取得連結按鈕
+    let cards = document.querySelectorAll('.product-card, [class*="product-card"], [class*="productItem"], [class*="offer-item"]');
+    
+    // 若特定 class 沒抓到，改以「取得連結」按鈕向上尋找父層卡片
+    if (!cards || cards.length === 0) {
+      const getLinkBtns = Array.from(document.querySelectorAll('button, a')).filter(el => 
+        el.innerText.includes('取得連結') || el.innerText.includes('Get Link')
+      );
+      cards = getLinkBtns.map(btn => btn.closest('[class*="item"], [class*="card"], tr, li')).filter(Boolean);
+    }
 
-      if (!titleEl || !priceEl) return;
-      const title = titleEl.innerText.trim();
-      const price = parseFloat(priceEl.innerText.replace(/[^0-9.]/g, '')) || 0;
-      const commission = commEl ? parseFloat(commEl.innerText.replace(/[^0-9.]/g, '')) : 4.0;
-      const link = linkEl ? linkEl.href : window.location.href;
-      const image = imgEl ? (imgEl.src || imgEl.getAttribute('data-src')) : '';
+    console.log(`[Debug] 找到商品卡片數量: ${cards.length}`);
 
-      if (commission >= CONFIG.MIN_COMMISSION && price >= CONFIG.MIN_PRICE) {
-        items.push({ title, price, commission, link, image });
+    cards.forEach((c) => {
+      // 提取標題（避開無關標籤）
+      const titleEl = c.querySelector('[title], [class*="title"], [class*="name"], h3, h4');
+      // 提取價格（帶有 $ 符號的文字）
+      const priceEls = Array.from(c.querySelectorAll('*')).filter(el => 
+        el.children.length === 0 && /\$\s*[\d,]+/.test(el.innerText)
+      );
+      // 提取佣金率（帶有 % 符號的文字）
+      const commEls = Array.from(c.querySelectorAll('*')).filter(el => 
+        el.children.length === 0 && /[\d.]+\s*%/.test(el.innerText)
+      );
+      // 提取圖片
+      const imgEl = c.querySelector('img');
+      // 提取推廣連結（或取自取得連結按鈕）
+      const linkEl = c.querySelector('a[href*="shopee.tw"], [data-clipboard-text]');
+
+      if (!titleEl) return;
+
+      const title = (titleEl.getAttribute('title') || titleEl.innerText || '').trim();
+      
+      let price = 0;
+      if (priceEls.length > 0) {
+        price = parseFloat(priceEls[0].innerText.replace(/[^0-9.]/g, '')) || 0;
+      }
+
+      let commission = 4.0;
+      if (commEls.length > 0) {
+        commission = parseFloat(commEls[0].innerText.replace(/[^0-9.]/g, '')) || 4.0;
+      }
+
+      const image = imgEl ? (imgEl.src || imgEl.getAttribute('data-src') || '') : '';
+      const link = linkEl ? (linkEl.getAttribute('data-clipboard-text') || linkEl.href) : window.location.href;
+
+      // 檢查門檻：大於最低金額門檻
+      if (title.length > 3 && price >= CONFIG.MIN_PRICE) {
+        items.push({
+          title,
+          price,
+          commission,
+          image,
+          link
+        });
       }
     });
+
     return items;
   }
 
