@@ -176,6 +176,13 @@ const fakeFetcher = () => ({
     throw new ImportError('http-404', 'HTTP 404');
   },
 });
+// 正式資料已無示範商品；掛圖測試需要示範商品，在暫存副本上把指定型號標成 demo
+const markDemo = (...codes) => {
+  const file = path.join(tmp, 'src/data/products.json');
+  const j = JSON.parse(fs.readFileSync(file, 'utf8'));
+  for (const p of j.products) if (codes.includes(p.modelCode)) p.demo = true;
+  fs.writeFileSync(file, JSON.stringify(j, null, 2) + '\n');
+};
 const productsRaw = () => fs.readFileSync(path.join(tmp, 'src/data/products.json'), 'utf8');
 
 t('匯入一般網站：建立草稿、下載圖片、登記來源，不動 products.json', async () => {
@@ -315,6 +322,7 @@ t('--force 重新匯入：保留已填的內容與已確認的圖片授權；已
   assert.equal(d.images[0].license, 'official');
 });
 t('attach-image：只能掛在示範商品；掛上後帶授權狀態並通過驗證；正式商品與不存在的草稿被拒絕', () => {
+  markDemo('test-lg-puricare-18l', 'test-lg-md161qpk3');
   const r = attachImageToDemo('shopee-55-66', 'test-lg-puricare-18l');
   assert.ok(r.ok, JSON.stringify(r));
   const prod = JSON.parse(productsRaw()).products.find((x) => x.modelCode === 'test-lg-puricare-18l');

@@ -1,8 +1,8 @@
 // 哪些頁面不給搜尋引擎收錄（noindex）。頁面的 <meta robots> 與 sitemap 的排除清單共用這一份，避免兩邊不一致。
 import { buildableIntents } from './intents.mjs';
 
-/** 示範商品不收錄。 */
-export const noindexProduct = (p) => p.demo === true;
+/** 示範商品、價格尚未核對的商品不收錄。 */
+export const noindexProduct = (p) => p.demo === true || p.priceUnverified === true;
 
 /** 品類內全是示範商品時不收錄。 */
 export function noindexCategory(products, slug) {
