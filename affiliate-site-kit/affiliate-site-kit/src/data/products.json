@@ -1,274 +1,310 @@
 {
   "categories": [
     {
+      "id": "shopee-mw938ihb-fuo1",
+      "title": "標準安裝價~全新24公升台灣櫻花原廠公司貨SH2480智慧型水量+數位恆溫24L瓦斯熱水器 含標準基本安裝SH-2480",
+      "mainCategory": "廚房與用水",
+      "category": "熱水器",
+      "categorySlug": "water-heater",
+      "imageUrl": "https://deo.shopeemobile.com/shopee/shopee-affiliate-live-tw/static/img/label_xtra_inner_tw.59e5e185.svg",
+      "price": 53800,
+      "originalPrice": 61870,
+      "commissionRate": 13,
+      "estimatedCommission": 6994,
+      "affiliateLink": "https://s.shopee.tw/80E6H1hfHl",
+      "soldCount": "熱銷中",
+      "tags": [
+        "熱水器",
+        "蝦皮商城",
+        "加碼款"
+      ],
+      "isActive": true,
+      "pros": [
+        "蝦皮商城官方正品",
+        "高轉換加碼款"
+      ],
+      "cons": "優惠庫存以賣場即時標示為準"
+    },
+    {
+      "id": "shopee-mw938iyi-rk8e",
+      "title": "比換新更划算~一級櫻花牌SH2690數位恆溫強制排氣型瓦斯熱水器1台~有(給)舊機送基裝-比DH1638F還猛",
+      "mainCategory": "廚房與用水",
+      "category": "熱水器",
+      "categorySlug": "water-heater",
+      "imageUrl": "https://deo.shopeemobile.com/shopee/shopee-affiliate-live-tw/static/img/label_xtra_inner_tw.59e5e185.svg",
+      "price": 53500,
+      "originalPrice": 61525,
+      "commissionRate": 13,
+      "estimatedCommission": 6955,
+      "affiliateLink": "https://s.shopee.tw/1BokKHtYa",
+      "soldCount": "熱銷中",
+      "tags": [
+        "熱水器",
+        "蝦皮商城",
+        "加碼款"
+      ],
+      "isActive": true,
+      "pros": [
+        "蝦皮商城官方正品",
+        "高轉換加碼款"
+      ],
+      "cons": "優惠庫存以賣場即時標示為準"
+    },
+    {
+      "id": "shopee-mw938lsc-3do6",
+      "title": "比中國製更猛~日本原廠林內牌REUV1613WFATR數位恆溫強制排氣型16L瓦斯熱水器-原廠保固三年~有(給)舊送基裝",
+      "mainCategory": "廚房與用水",
+      "category": "熱水器",
+      "categorySlug": "water-heater",
+      "imageUrl": "https://deo.shopeemobile.com/shopee/shopee-affiliate-live-tw/static/img/label_xtra_inner_tw.59e5e185.svg",
+      "price": 38500,
+      "originalPrice": 44275,
+      "commissionRate": 13,
+      "estimatedCommission": 5005,
+      "affiliateLink": "https://s.shopee.tw/6q28st3MU8",
+      "soldCount": "熱銷中",
+      "tags": [
+        "熱水器",
+        "蝦皮商城",
+        "加碼款"
+      ],
+      "isActive": true,
+      "pros": [
+        "蝦皮商城官方正品",
+        "高轉換加碼款"
+      ],
+      "cons": "優惠庫存以賣場即時標示為準"
+    },
+    {
+      "id": "shopee-mw938hj3-whc7",
+      "title": "莊頭北 TH-7168 】TH7168BFE升級板【有安裝】 強制排氣熱水器 節能數位恆溫型",
+      "mainCategory": "廚房與用水",
+      "category": "熱水器",
+      "categorySlug": "water-heater",
+      "imageUrl": "https://deo.shopeemobile.com/shopee/shopee-affiliate-live-tw/static/img/label_xtra_inner_tw.59e5e185.svg",
+      "price": 125000,
+      "originalPrice": 143750,
+      "commissionRate": 9,
+      "estimatedCommission": 11250,
+      "affiliateLink": "https://s.shopee.tw/6VPIUGillG",
+      "soldCount": "熱銷中",
+      "tags": [
+        "熱水器",
+        "蝦皮商城",
+        "加碼款"
+      ],
+      "isActive": true,
+      "pros": [
+        "蝦皮商城官方正品",
+        "高轉換加碼款"
+      ],
+      "cons": "優惠庫存以賣場即時標示為準"
+    },
+    {
+      "id": "shopee-mw938i05-jrc3",
+      "title": "莊頭北13公升熱水器TH-7138FE TH7138FE TH7139 FETH-7139 升級版數位恆溫13公升",
+      "mainCategory": "廚房與用水",
+      "category": "熱水器",
+      "categorySlug": "water-heater",
+      "imageUrl": "https://deo.shopeemobile.com/shopee/shopee-affiliate-live-tw/static/img/label_xtra_inner_tw.59e5e185.svg",
+      "price": 99000,
+      "originalPrice": 113850,
+      "commissionRate": 9,
+      "estimatedCommission": 8910,
+      "affiliateLink": "https://s.shopee.tw/6AmS5eoIgy",
+      "soldCount": "熱銷中",
+      "tags": [
+        "熱水器",
+        "蝦皮商城",
+        "加碼款"
+      ],
+      "isActive": true,
+      "pros": [
+        "蝦皮商城官方正品",
+        "高轉換加碼款"
+      ],
+      "cons": "優惠庫存以賣場即時標示為準"
+    },
+    {
+      "id": "shopee-mw938jfd-jho0",
+      "title": "【SAKURA 櫻花牌】數位恆溫熱水器 SH-2480 (日本型) 24L 分段火排 自動調節 日本原裝進口 私訊可議價",
+      "mainCategory": "廚房與用水",
+      "category": "熱水器",
+      "categorySlug": "water-heater",
+      "imageUrl": "https://deo.shopeemobile.com/shopee/shopee-affiliate-live-tw/static/img/label_xtra_inner_tw.59e5e185.svg",
+      "price": 48690,
+      "originalPrice": 55993,
+      "commissionRate": 6,
+      "estimatedCommission": 2921,
+      "affiliateLink": "https://s.shopee.tw/AUvRFccChz",
+      "soldCount": "熱銷中",
+      "tags": [
+        "熱水器",
+        "蝦皮商城",
+        "加碼款"
+      ],
+      "isActive": true,
+      "pros": [
+        "蝦皮商城官方正品",
+        "高轉換加碼款"
+      ],
+      "cons": "優惠庫存以賣場即時標示為準"
+    },
+    {
+      "id": "shopee-mw938lb4-8bgd",
+      "title": "【SAKURA 櫻花牌】中央供水數位恆溫熱水器 SH-2470AFE 台灣型24L(室內機)分段火排自動調節 私訊可議價",
+      "mainCategory": "廚房與用水",
+      "category": "熱水器",
+      "categorySlug": "water-heater",
+      "imageUrl": "https://deo.shopeemobile.com/shopee/shopee-affiliate-live-tw/static/img/label_xtra_inner_tw.59e5e185.svg",
+      "price": 41490,
+      "originalPrice": 47713,
+      "commissionRate": 6,
+      "estimatedCommission": 2489,
+      "affiliateLink": "https://s.shopee.tw/9KjTrTvdDQ",
+      "soldCount": "熱銷中",
+      "tags": [
+        "熱水器",
+        "蝦皮商城",
+        "加碼款"
+      ],
+      "isActive": true,
+      "pros": [
+        "蝦皮商城官方正品",
+        "高轉換加碼款"
+      ],
+      "cons": "優惠庫存以賣場即時標示為準"
+    },
+    {
+      "id": "shopee-mw938jw7-ab7x",
+      "title": "TOPAX 莊頭北 24L【送廚房偵煙器】數位恆溫型 TH-7245(NG1/FE式)天然瓦斯",
+      "mainCategory": "廚房與用水",
+      "category": "熱水器",
+      "categorySlug": "water-heater",
+      "imageUrl": "https://deo.shopeemobile.com/shopee/shopee-affiliate-live-tw/static/img/label_xtra_inner_tw.59e5e185.svg",
+      "price": 42030,
+      "originalPrice": 48334,
+      "commissionRate": 5,
+      "estimatedCommission": 2102,
+      "affiliateLink": "https://s.shopee.tw/40hxVg6W76",
+      "soldCount": "熱銷中",
+      "tags": [
+        "熱水器",
+        "蝦皮商城",
+        "加碼款"
+      ],
+      "isActive": true,
+      "pros": [
+        "蝦皮商城官方正品",
+        "高轉換加碼款"
+      ],
+      "cons": "優惠庫存以賣場即時標示為準"
+    },
+    {
+      "id": "shopee-mw938kdd-wytu",
+      "title": "【莊頭北TH-7245FE(NG1/FE式)】24公升-數位恆溫強制排氣熱水器-部分地區含基本安裝",
+      "mainCategory": "廚房與用水",
+      "category": "熱水器",
+      "categorySlug": "water-heater",
+      "imageUrl": "https://deo.shopeemobile.com/shopee/shopee-affiliate-live-tw/static/img/label_xtra_inner_tw.59e5e185.svg",
+      "price": 42030,
+      "originalPrice": 48334,
+      "commissionRate": 4,
+      "estimatedCommission": 1681,
+      "affiliateLink": "https://s.shopee.tw/3LSGiSDJiq",
+      "soldCount": "熱銷中",
+      "tags": [
+        "熱水器",
+        "蝦皮商城",
+        "加碼款"
+      ],
+      "isActive": true,
+      "pros": [
+        "蝦皮商城官方正品",
+        "高轉換加碼款"
+      ],
+      "cons": "優惠庫存以賣場即時標示為準"
+    },
+    {
+      "id": "shopee-mw938kub-ebqs",
+      "title": "【莊頭北TH-7245FE(LPG/FE式)】24公升-數位恆溫強制排氣熱水器-部分地區含基本安裝",
+      "mainCategory": "廚房與用水",
+      "category": "熱水器",
+      "categorySlug": "water-heater",
+      "imageUrl": "https://deo.shopeemobile.com/shopee/shopee-affiliate-live-tw/static/img/label_xtra_inner_tw.59e5e185.svg",
+      "price": 42030,
+      "originalPrice": 48334,
+      "commissionRate": 4,
+      "estimatedCommission": 1681,
+      "affiliateLink": "https://s.shopee.tw/114LwALVpz",
+      "soldCount": "熱銷中",
+      "tags": [
+        "熱水器",
+        "蝦皮商城",
+        "加碼款"
+      ],
+      "isActive": true,
+      "pros": [
+        "蝦皮商城官方正品",
+        "高轉換加碼款"
+      ],
+      "cons": "優惠庫存以賣場即時標示為準"
+    },
+    {
+      "id": "shopee-mw938m9f-2e9j",
+      "title": "【林內牌 RUA-UC1628WF(LPG/FE式)】16L數位恆溫UFB強制排氣熱水器-部分地區含基本安裝",
+      "mainCategory": "廚房與用水",
+      "category": "熱水器",
+      "categorySlug": "water-heater",
+      "imageUrl": "https://deo.shopeemobile.com/shopee/shopee-affiliate-live-tw/static/img/label_xtra_inner_tw.59e5e185.svg",
+      "price": 28600,
+      "originalPrice": 32890,
+      "commissionRate": 4,
+      "estimatedCommission": 1144,
+      "affiliateLink": "https://s.shopee.tw/1LhCKmSd9R",
+      "soldCount": "熱銷中",
+      "tags": [
+        "熱水器",
+        "蝦皮商城",
+        "加碼款"
+      ],
+      "isActive": true,
+      "pros": [
+        "蝦皮商城官方正品",
+        "高轉換加碼款"
+      ],
+      "cons": "優惠庫存以賣場即時標示為準"
+    },
+    {
+      "id": "shopee-mw938mvz-evgl",
+      "title": "【林內牌 RUA-UC1628WF(NG1/FE式)】16L數位恆溫UFB強制排氣熱水器-部分地區含基本安裝",
+      "mainCategory": "廚房與用水",
+      "category": "熱水器",
+      "categorySlug": "water-heater",
+      "imageUrl": "https://deo.shopeemobile.com/shopee/shopee-affiliate-live-tw/static/img/label_xtra_inner_tw.59e5e185.svg",
+      "price": 28600,
+      "originalPrice": 32890,
+      "commissionRate": 4,
+      "estimatedCommission": 1144,
+      "affiliateLink": "https://s.shopee.tw/AKc13Jzrsc",
+      "soldCount": "1",
+      "tags": [
+        "熱水器",
+        "蝦皮商城",
+        "加碼款"
+      ],
+      "isActive": true,
+      "pros": [
+        "蝦皮商城官方正品",
+        "高轉換加碼款"
+      ],
+      "cons": "優惠庫存以賣場即時標示為準"
+    },
+    {
       "slug": "dehumidifier",
       "name": "除濕機",
       "group": "空氣與清潔",
       "desc": "梅雨與潮濕的房間用，先看日除濕量與適用坪數"
-    },
-    {
-      "slug": "air-purifier",
-      "name": "空氣清淨機",
-      "group": "空氣與清潔",
-      "desc": "過濾灰塵、花粉與異味，先看適用坪數與濾網更換成本"
-    },
-    {
-      "slug": "air-conditioner",
-      "name": "冷氣",
-      "group": "空氣與清潔",
-      "desc": "分離式與窗型冷暖氣，先看坪數、能效與安裝費"
-    },
-    {
-      "slug": "fan",
-      "name": "電風扇／循環扇",
-      "group": "空氣與清潔",
-      "desc": "電風扇與循環扇，看風量、噪音與是否能搭配冷氣循環"
-    },
-    {
-      "slug": "robot-vacuum",
-      "name": "掃拖機器人／吸塵器",
-      "group": "空氣與清潔",
-      "desc": "自動掃地與拖地的機器，看吸力、避障與基座維護"
-    },
-    {
-      "slug": "washer",
-      "name": "洗衣機",
-      "group": "空氣與清潔",
-      "desc": "滾筒與直立式洗衣機，看洗衣容量、烘衣功能與尺寸"
-    },
-    {
-      "slug": "dryer",
-      "name": "烘衣機",
-      "group": "空氣與清潔",
-      "desc": "專門烘乾衣物的機器，看容量、烘乾方式與耗電"
-    },
-    {
-      "slug": "cordless-vacuum",
-      "name": "無線吸塵器",
-      "group": "空氣與清潔",
-      "desc": "無線手持吸塵器，看吸力、續航與集塵桶容量"
-    },
-    {
-      "slug": "mite-cleaner",
-      "name": "除蟎機",
-      "group": "空氣與清潔",
-      "desc": "床墊與寢具除蟎吸塵器，看紫外線、拍打力與濾網"
-    },
-    {
-      "slug": "space-heater",
-      "name": "電暖器／暖風機",
-      "group": "空氣與清潔",
-      "desc": "冬天取暖的電暖器與暖風機，看適用空間、耗電與安全保護"
-    },
-    {
-      "slug": "water-heater",
-      "name": "熱水器",
-      "group": "廚房與用水",
-      "desc": "電熱水器、瓦斯熱水器與恆溫機種，看容量、安裝條件與瓦斯類型"
-    },
-    {
-      "slug": "water-purifier",
-      "name": "淨水器／瞬熱飲水機",
-      "group": "廚房與用水",
-      "desc": "淨水與即熱飲水設備，看濾芯更換成本與出水速度"
-    },
-    {
-      "slug": "dishwasher",
-      "name": "洗碗機",
-      "group": "廚房與用水",
-      "desc": "洗碗機，看容量（幾人份）、是否要安裝與烘乾方式"
-    },
-    {
-      "slug": "refrigerator",
-      "name": "電冰箱",
-      "group": "廚房與用水",
-      "desc": "家用冰箱，看容量、門型與耗電等級"
-    },
-    {
-      "slug": "food-waste-disposer",
-      "name": "廚餘機",
-      "group": "廚房與用水",
-      "desc": "廚餘處理機，看處理量、噪音與耗電"
-    },
-    {
-      "slug": "coffee-machine",
-      "name": "咖啡機",
-      "group": "廚房與用水",
-      "desc": "全自動與半自動咖啡機，看萃取方式與清潔維護"
-    },
-    {
-      "slug": "steam-oven",
-      "name": "水波爐／氣炸烤箱",
-      "group": "廚房與用水",
-      "desc": "水波爐與氣炸烤箱，看容量、功能與清潔難度"
-    },
-    {
-      "slug": "rice-cooker",
-      "name": "電鍋／壓力鍋",
-      "group": "廚房與用水",
-      "desc": "電鍋與壓力鍋，看容量與是否有預約、保溫功能"
-    },
-    {
-      "slug": "microwave-oven",
-      "name": "微波爐／烤箱",
-      "group": "廚房與用水",
-      "desc": "微波爐與烤箱，看容量、功率與是否有燒烤功能"
-    },
-    {
-      "slug": "blender",
-      "name": "調理機／豆漿機",
-      "group": "廚房與用水",
-      "desc": "調理機與豆漿機，看馬達功率、容量與清洗方便度"
-    },
-    {
-      "slug": "range-hood",
-      "name": "排油煙機",
-      "group": "廚房與用水",
-      "desc": "排油煙機，看排風量、靜音與清潔方式"
-    },
-    {
-      "slug": "ice-maker",
-      "name": "製冰機／冰溫熱飲水機",
-      "group": "廚房與用水",
-      "desc": "製冰機與冰溫熱飲水機，看製冰速度、儲冰量與水源接法"
-    },
-    {
-      "slug": "smart-lock",
-      "name": "智慧電子鎖",
-      "group": "居家與安全",
-      "desc": "智慧電子鎖，看解鎖方式、門型相容與停電時的備援"
-    },
-    {
-      "slug": "home-camera",
-      "name": "家用監視器／攝影機",
-      "group": "居家與安全",
-      "desc": "居家監視器與攝影機，看畫質、儲存方式與隱私設定"
-    },
-    {
-      "slug": "mattress",
-      "name": "床墊／枕頭",
-      "group": "居家與安全",
-      "desc": "床墊與枕頭，看軟硬度、材質與睡眠姿勢"
-    },
-    {
-      "slug": "massage-chair",
-      "name": "按摩椅",
-      "group": "居家與安全",
-      "desc": "按摩椅，看按摩手法、占地大小與保固"
-    },
-    {
-      "slug": "ergonomic-chair",
-      "name": "人體工學椅／升降桌",
-      "group": "居家與安全",
-      "desc": "人體工學椅與升降桌，看調整範圍、承重與保固"
-    },
-    {
-      "slug": "smart-home",
-      "name": "電動窗簾／智慧家居",
-      "group": "居家與安全",
-      "desc": "電動窗簾與智慧家居設備，看相容的控制系統與安裝條件"
-    },
-    {
-      "slug": "safe",
-      "name": "保險箱",
-      "group": "居家與安全",
-      "desc": "家用保險箱，看容量、防火防盜等級與固定方式"
-    },
-    {
-      "slug": "furniture",
-      "name": "沙發／床架／餐桌椅",
-      "group": "居家與安全",
-      "desc": "沙發、床架與餐桌椅，看尺寸、材質與配送安裝"
-    },
-    {
-      "slug": "tv-monitor",
-      "name": "電視與螢幕",
-      "group": "影音與個人",
-      "desc": "電視與電腦螢幕，看尺寸、解析度與更新率"
-    },
-    {
-      "slug": "projector",
-      "name": "投影機",
-      "group": "影音與個人",
-      "desc": "投影機，看亮度、解析度與投射距離"
-    },
-    {
-      "slug": "hair-dryer",
-      "name": "吹風機",
-      "group": "影音與個人",
-      "desc": "吹風機，看風量、溫控與重量"
-    },
-    {
-      "slug": "electric-toothbrush",
-      "name": "電動牙刷／沖牙機",
-      "group": "影音與個人",
-      "desc": "電動牙刷與沖牙機，看震動方式、續航與刷頭成本"
-    },
-    {
-      "slug": "headphones",
-      "name": "藍牙耳機／降噪耳機",
-      "group": "影音與個人",
-      "desc": "藍牙與降噪耳機，看降噪效果、續航與佩戴舒適度"
-    },
-    {
-      "slug": "soundbar",
-      "name": "音響／Soundbar",
-      "group": "影音與個人",
-      "desc": "電視喇叭與音響，看聲道數、連接方式與音場"
-    },
-    {
-      "slug": "laptop-tablet",
-      "name": "筆電／平板",
-      "group": "影音與個人",
-      "desc": "筆電與平板，看效能、重量與電池續航"
-    },
-    {
-      "slug": "camera",
-      "name": "相機／運動相機",
-      "group": "影音與個人",
-      "desc": "相機與運動相機，看畫質、防水防震與影像穩定"
-    },
-    {
-      "slug": "baby-gear",
-      "name": "嬰兒推車／汽車安全座椅",
-      "group": "寵物育兒與運動",
-      "desc": "嬰兒推車與汽車安全座椅，看安全認證、重量與適用年齡"
-    },
-    {
-      "slug": "pet-care",
-      "name": "貓砂機／自動餵食器",
-      "group": "寵物育兒與運動",
-      "desc": "貓砂機與自動餵食器，看容量、清潔方式與停電保護"
-    },
-    {
-      "slug": "treadmill",
-      "name": "跑步機／健身器材",
-      "group": "寵物育兒與運動",
-      "desc": "跑步機與健身器材，看馬達功率、承重與收納尺寸"
-    },
-    {
-      "slug": "pet-grooming",
-      "name": "寵物飲水機／美容器材",
-      "group": "寵物育兒與運動",
-      "desc": "寵物飲水機與美容器材，看容量、噪音與清潔方便度"
-    },
-    {
-      "slug": "kids-furniture",
-      "name": "嬰兒床／兒童學習桌椅",
-      "group": "寵物育兒與運動",
-      "desc": "嬰兒床與兒童學習桌椅，看安全規範與可調整年限"
-    },
-    {
-      "slug": "massage-gun",
-      "name": "筋膜槍／按摩器材",
-      "group": "寵物育兒與運動",
-      "desc": "筋膜槍與按摩器材，看力道、續航與噪音"
-    },
-    {
-      "slug": "fitness-equipment",
-      "name": "飛輪車／啞鈴組",
-      "group": "寵物育兒與運動",
-      "desc": "飛輪車與啞鈴組，看阻力調整、穩定度與占地"
     }
   ],
   "products": [
