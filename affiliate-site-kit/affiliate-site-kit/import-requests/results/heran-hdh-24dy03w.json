@@ -1,0 +1,15 @@
+{
+  "file": "heran-hdh-24dy03w.json",
+  "processedAt": "2026-11-09",
+  "ok": false,
+  "error": {
+    "code": "robots",
+    "message": "robots.txt 不允許抓取 https://www.heran.com.tw/product/hdh-24dy03w-hdh-24dy01w/"
+  },
+  "request": {
+    "url": "https://shopee.tw/product/57484544/3411706263",
+    "officialUrl": "https://www.heran.com.tw/product/hdh-24dy03w-hdh-24dy01w/",
+    "category": "dehumidifier",
+    "force": true
+  }
+}
