@@ -1,5 +1,5 @@
 ---
-// 品類索引頁：列出該品類所有商品（連到各自評測頁），並連到符合條件的情境頁。只為「有商品的品類」產生。
+// 品類索引頁：列出該品類所有商品（連到各自評測頁），並連到符合條件的情境頁。所有品類都產生（沒有商品的品類為 noindex）。
 import Layout from '../../layouts/Layout.astro';
 import CompareCard from '../../components/CompareCard.astro';
 import productsData from '../../data/products.json';
@@ -11,9 +11,8 @@ import { noindexCategory } from '../../lib/indexing.mjs';
 import { loadGuides } from '../../lib/guides.mjs';
 
 export function getStaticPaths() {
-  const { categories, products } = productsData;
+  const { categories } = productsData;
   return categories
-    .filter((c) => products.some((p) => p.category === c.slug))
     .map((category) => ({ params: { category: category.slug }, props: { category } }));
 }
 const { category } = Astro.props;
@@ -35,6 +34,7 @@ const ld = {
     <nav class="crumbs" aria-label="麵包屑"><a href="/">首頁</a> / {category.name}</nav>
     <h1>{category.name}怎麼選</h1>
     <p class="disclosure">本頁含分潤連結，您購買不會多花錢。價格與優惠以賣場頁面為準。</p>
+    {products.length === 0 && <p class="note" style="margin-top:16px">這個品類還在整理中，暫時沒有商品。</p>}
     <ol class="results" style="margin-top:16px">
       {products.map((p) => <CompareCard product={p} slot="grid" />)}
     </ol>

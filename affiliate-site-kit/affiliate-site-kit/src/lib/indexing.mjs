@@ -14,10 +14,10 @@ export function noindexCategory(products, slug) {
 export const noindexIntent = (intent) => intent.demo === true || intent.products.slice(0, 4).every((p) => p.demo === true);
 
 /** 所有 noindex 頁的路徑（/a/b/ 格式），給 sitemap filter 用。 */
-export function noindexPaths(products, intents, { minProducts = 2 } = {}) {
+export function noindexPaths(products, intents, { minProducts = 2, categories = [] } = {}) {
   const out = new Set(['/404/']);
   for (const p of products) if (noindexProduct(p)) out.add(`/${p.category}/${p.slug}/`);
-  for (const slug of new Set(products.map((p) => p.category))) if (noindexCategory(products, slug)) out.add(`/${slug}/`);
+  for (const slug of new Set([...products.map((p) => p.category), ...categories.map((c) => c.slug)])) if (noindexCategory(products, slug)) out.add(`/${slug}/`);
   for (const n of buildableIntents(products, intents, { minProducts })) if (noindexIntent(n)) out.add(`/${n.category}/for/${n.slug}/`);
   return out;
 }

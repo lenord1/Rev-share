@@ -24,6 +24,7 @@ import { loadGuides } from '../lib/guides.mjs';
 
 const now = Date.now();
 const categories = activeCategories(productsData);
+const allCategories = productsData.categories; // 品類列表顯示全部（含還沒有商品的），方便逐類匯入
 const catName = Object.fromEntries(categories.map((c) => [c.slug, c.name]));
 const featured = featuredProducts(productsData.products);
 const saleTop = featured.filter((x: any) => { const k = priceBreakdown(x); return !x.priceUnverified && k.active && k.discount > 0; }).sort((a: any, c: any) => priceBreakdown(c).discount - priceBreakdown(a).discount)[0];
@@ -53,7 +54,7 @@ const intents = buildableIntents(productsData.products, intentsData.intents, { m
 // 網站名稱的結構化資料（讓搜尋結果顯示站名）
 const websiteLd = { '@context': 'https://schema.org', '@type': 'WebSite', name: siteData.name, url: new URL('/', Astro.site!).href };
 const guides = loadGuides();
-const groups = [...new Set(categories.map((c: any) => c.group ?? ''))];
+const groups = [...new Set(allCategories.map((c: any) => c.group ?? ''))];
 const count = (slug: string) => productsData.products.filter((p) => p.category === slug).length;
 ---
 <Layout title="挑家電｜三題找到適合你家的那一台" description="每台都列出一個真實缺點和扣掉折扣、退稅後的到手價，看完直接去賣場下單。">
@@ -83,12 +84,12 @@ const count = (slug: string) => productsData.products.filter((p) => p.category =
     <div class="grid-h"><h2>用自己的話找</h2></div>
     <SmartSearch />
 
-    <div class="grid-h" id="categories"><h2>依品類慢慢看（{categories.length} 類）</h2></div>
+    <div class="grid-h" id="categories"><h2>依品類慢慢看（{allCategories.length} 類）</h2></div>
     {groups.map((g) => (
       <section aria-label={g || '品類'}>
         {g && <h3 class="grp">{g}</h3>}
         <div class="cats2">
-          {categories.filter((c: any) => (c.group ?? '') === g).map((c) => <a href={`/${c.slug}/`}>{c.name}<span>{count(c.slug)} 款整理</span></a>)}
+          {allCategories.filter((c: any) => (c.group ?? '') === g).map((c: any) => <a href={`/${c.slug}/`}>{c.name}<span>{count(c.slug) ? `${count(c.slug)} 款整理` : '尚無商品'}</span></a>)}
         </div>
       </section>
     ))}

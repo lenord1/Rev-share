@@ -7,10 +7,11 @@ import { noindexPaths } from './src/lib/indexing.mjs';
 
 // sitemap 不列 noindex 頁（示範商品、全是示範的品類與情境頁、404），規則與頁面的 <meta robots> 共用 src/lib/indexing.mjs
 const readJson = (f) => JSON.parse(readFileSync(new URL(f, import.meta.url), 'utf8'));
-const products = readJson('./src/data/products.json').products;
+const productsData = readJson('./src/data/products.json');
+const products = productsData.products;
 const intents = readJson('./src/data/intents.json').intents;
 const { minIntentProducts = 2 } = readJson('./scripts/config.json');
-const hidden = noindexPaths(products, intents, { minProducts: minIntentProducts });
+const hidden = noindexPaths(products, intents, { minProducts: minIntentProducts, categories: productsData.categories });
 // 買前指南：草稿或品類全是示範商品者不進 sitemap（頁面本身的 noindex 規則見 src/pages/guides）
 const guideDir = new URL('./src/content/guides/', import.meta.url);
 const guideMeta = existsSync(guideDir)
