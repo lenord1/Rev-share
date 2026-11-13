@@ -208,13 +208,14 @@
 
       // 6. 提取連結
       const linkEl = card.querySelector('a[href*="shopee.tw"], a[href*="s.shopee.tw"]');
-      const link = linkEl ? linkEl.href : window.location.href;
+      // 找不到連結時留空，不再退回目前頁面網址（舊寫法會把分潤後台網址寫成商品連結）
+      const link = linkEl ? linkEl.href : '';
 
       // 判斷門檻：放寬條件，只要有標題且價格大於門檻（若頁面沒顯示價格則給預設值）
       if (title.length >= 4) {
         items.push({
           title: title,
-          price: price || 1500,
+          price: price,
           commission: commission,
           image: image,
           link: link
@@ -257,6 +258,16 @@
     // 合併商品並依 modelCode 去重
     const modelSet = new Set(db.products.map(p => p.modelCode));
     for (const np of newProducts) {
+      // 守門：沒有 s.shopee.tw 分潤連結、或價格低於門檻（多半是抓錯卡片）的商品一律不上架
+      const link = (np.affiliate && np.affiliate.shopee) || '';
+      if (!/^https:\/\/s\.shopee\.tw\//.test(link)) {
+        console.warn(`[Skip] 非分潤連結，略過：${np.titleTemplate} → ${link}`);
+        continue;
+      }
+      if (!(np.price >= CONFIG.MIN_PRICE)) {
+        console.warn(`[Skip] 價格 NT$${np.price} 低於門檻 ${CONFIG.MIN_PRICE}，略過：${np.titleTemplate}`);
+        continue;
+      }
       if (!modelSet.has(np.modelCode)) {
         db.products.push(np);
         modelSet.add(np.modelCode);
