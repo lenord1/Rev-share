@@ -199,7 +199,7 @@ def test_filter_by_price():
 
     items = [mk(200.0), mk(1999.0), mk(2000.0), mk(8900.0), RawListing(raw_title="價格不明商品名稱", item_id="x")]
     keep, drop = filter_by_price(items, 2000)
-    assert [i.item_id for i in keep] == ["2000", "8900"]
+    assert [i.item_id for i in keep] == ["2000.0", "8900.0"]
     assert len(drop) == 3
     assert filter_by_price(items, 0) == (items, [])
     only_min = RawListing(raw_title="只有最低價商品", item_id="m", price_min_twd_inferred=3500.0)
