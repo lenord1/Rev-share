@@ -80,3 +80,27 @@ def test_launch_browser_reports_all_failures():
     with pytest.raises(SystemExit) as e:
         launch_browser(P(), headless=True)
     assert "msedge" in str(e.value) and "chromium" in str(e.value)
+
+
+def test_select_payloads_keeps_only_keyword_product_list():
+    from product_research.shopee_affiliate_collector import select_payloads
+    a = {"url": "https://affiliate.shopee.tw/api/v3/offer/product/list?list_type=0&page_offset=0", "json": {}}
+    b = {"url": "https://affiliate.shopee.tw/api/v3/offer/product/list?list_type=0&keyword=F-Y22PN&page_offset=0", "json": {}}
+    c = {"url": "https://affiliate.shopee.tw/api/v3/user/profile", "json": {}}
+    assert select_payloads([a, b, c], "F-Y22PN") == [b]
+    assert select_payloads([a, b, c], None) == [a, b]
+
+
+def test_price_inferred_only_for_product_list_api():
+    from product_research.shopee_affiliate_collector import parse_items
+    pl = {"url": "https://x/api/v3/offer/product/list?keyword=k", "json": {"data": {"list": [{"itemid": 1, "shopid": 2, "name": "衛生紙測試商品名稱", "price": 19900000}]}}}
+    other = {"url": "https://x/api/other", "json": {"list": [{"itemid": 3, "shopid": 2, "name": "其他接口商品名稱", "price": 19900000}]}}
+    got = parse_items([pl, other])
+    assert got[0].price_twd_inferred == 199.0
+    assert not hasattr(got[1], "price_twd_inferred")
+
+
+def test_describe_masks_urls():
+    from product_research.shopee_affiliate_collector import describe
+    out = "\n".join(describe({"offerLink": "https://s.shopee.tw/abc?affiliate_id=999", "n": 1, "sub": {"x": "y"}}))
+    assert "999" not in out and "s.shopee.tw" in out and "sub: object" in out

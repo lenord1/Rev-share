@@ -91,6 +91,27 @@ def walk_items(node: Any) -> list[dict]:
     return found
 
 
+PRODUCT_LIST_PATH = "/offer/product/list"
+PRICE_SCALE = 100000  # 由「標題寫 199 元、price_raw=19900000」推定；僅 1 筆對照，待更多資料確認
+
+
+def select_payloads(payloads: Iterable[dict], keyword: Optional[str] = None) -> list[dict]:
+    """只留商品清單接口的回應；有關鍵字時只留網址帶該關鍵字的（排除頁面載入時的預設清單）。"""
+    from urllib.parse import parse_qs, urlparse
+
+    out = []
+    for pl in payloads:
+        url = pl.get("url", "")
+        if PRODUCT_LIST_PATH not in url:
+            continue
+        if keyword is not None:
+            qs = parse_qs(urlparse(url).query)
+            if keyword not in qs.get("keyword", []):
+                continue
+        out.append(pl)
+    return out
+
+
 def parse_items(payloads: Iterable[dict], collected_at: Optional[str] = None) -> list[RawListing]:
     """把攔截到的 JSON 回應整理成 RawListing。欄位原值照存（price_raw、commission_raw），不猜單位。
 
@@ -110,8 +131,11 @@ def parse_items(payloads: Iterable[dict], collected_at: Optional[str] = None) ->
                 continue
             seen.add(key)
             link = _first(it, _LINK_KEYS)
+            price_raw = _first(it, _PRICE_KEYS)
+            is_list_api = PRODUCT_LIST_PATH in str(payload.get("url", ""))
             extra = {
-                "price_raw": _first(it, _PRICE_KEYS),
+                "price_raw": price_raw,
+                "price_twd_inferred": round(price_raw / PRICE_SCALE, 2) if is_list_api and isinstance(price_raw, (int, float)) else None,
                 "commission_raw": _first(it, _COMMISSION_KEYS),
                 "mall_flag_raw": _first(it, _MALL_KEYS),
                 "affiliate_link": link if isinstance(link, str) and link.startswith("http") else None,
@@ -259,14 +283,61 @@ def cmd_discover(args: argparse.Namespace) -> int:
     CAPTURE_DIR.mkdir(parents=True, exist_ok=True)
     path = CAPTURE_DIR / f"capture-{datetime.now():%Y%m%d-%H%M%S}.json"
     path.write_text(json.dumps(captured, ensure_ascii=False, indent=1), encoding="utf-8")
-    items = parse_items(captured)
+    items = parse_items(select_payloads(captured, args.keyword))
     print(f"攔截到 {len(captured)} 筆 JSON 回應，存到 {path}")
     for c in captured:
         print(f"  {c['status']} {c['url'][:110]}")
     print(f"解析出 {len(items)} 筆商品；前 5 筆：")
     for it in items[:5]:
-        print(f"  [{it.shop_id}/{it.item_id}] {it.raw_title[:50]}  price_raw={getattr(it, 'price_raw', None)} commission_raw={getattr(it, 'commission_raw', None)}")
+        print(f"  [{it.shop_id}/{it.item_id}] {it.raw_title[:50]}  price_raw={getattr(it, 'price_raw', None)} twd≈{getattr(it, 'price_twd_inferred', None)} commission_raw={getattr(it, 'commission_raw', None)}")
     print("把上面這段輸出貼給 Claude（不含 cookie），就能依真實欄位調整解析器。capture 檔可能含你的帳號資訊，不要整檔上傳。")
+    return 0
+
+
+def _mask(v: Any) -> Any:
+    if isinstance(v, str):
+        if v.startswith("http"):
+            return re.sub(r"^(https?://[^/]+).*", r"\1/…(已遮罩)", v)
+        return v if len(v) <= 40 else v[:40] + "…"
+    return v
+
+
+def describe(node: Any, depth: int = 0, max_depth: int = 4) -> list[str]:
+    """印出 JSON 結構（欄位名稱、型別、截短的值）。網址只留主機名，避免洩漏分潤編號。"""
+    pad = "  " * depth
+    lines: list[str] = []
+    if isinstance(node, dict):
+        for k, v in node.items():
+            if isinstance(v, (dict, list)) and depth < max_depth:
+                kind = f"list[{len(v)}]" if isinstance(v, list) else "object"
+                lines.append(f"{pad}{k}: {kind}")
+                lines += describe(v[0] if isinstance(v, list) and v else v, depth + 1, max_depth)
+            else:
+                lines.append(f"{pad}{k}: {_mask(v)!r}")
+    return lines
+
+
+def cmd_inspect(args: argparse.Namespace) -> int:
+    files = sorted(CAPTURE_DIR.glob("capture-*.json"))
+    if not files:
+        print("找不到 capture 檔，請先執行 discover。")
+        return 2
+    captured = json.loads(files[-1].read_text(encoding="utf-8"))
+    chosen = select_payloads(captured, args.keyword)
+    if not chosen:
+        print("沒有符合的商品清單回應。")
+        return 3
+    pl = chosen[-1]
+    print("接口：", re.sub(r"\?.*", "?…", pl["url"]))
+    data = pl["json"]
+    top = {k: v for k, v in data.items() if not isinstance(v, (dict, list))} if isinstance(data, dict) else {}
+    print("最上層欄位：", top)
+    items = walk_items(data)
+    print(f"商品筆數：{len(items)}。第一筆的欄位結構：")
+    print("\n".join(describe(items[0])) if items else "（解析不到商品）")
+    if items:
+        print("\n每筆商品的欄位名稱聯集：")
+        print(sorted({k for it in items for k in it}))
     return 0
 
 
@@ -276,7 +347,7 @@ def cmd_collect(args: argparse.Namespace) -> int:
     except _Stop as e:
         print(f"已停止：{e}")
         return 2
-    items = parse_items(captured)
+    items = parse_items(select_payloads(captured, args.keyword))
     if not items:
         print("沒有解析出商品。請先跑 discover 確認欄位。")
         return 3
@@ -292,6 +363,9 @@ def main(argv: Optional[list[str]] = None) -> int:
     lp = sub.add_parser("login", help="開瀏覽器手動登入一次，存登入狀態")
     lp.add_argument("--browser", choices=BROWSER_ORDER, default="msedge", help=browser_help)
     lp.set_defaults(fn=cmd_login)
+    ip = sub.add_parser("inspect", help="只印出最近一次 discover 的商品欄位結構（不含 cookie）")
+    ip.add_argument("--keyword", help="與 discover 時相同的關鍵字")
+    ip.set_defaults(fn=cmd_inspect)
     for name, fn in (("discover", cmd_discover), ("collect", cmd_collect)):
         sp = sub.add_parser(name)
         sp.add_argument("--browser", choices=BROWSER_ORDER, default="msedge", help=browser_help)
