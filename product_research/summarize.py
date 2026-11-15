@@ -14,11 +14,12 @@ def summarize(data: dict) -> str:
     lines = [f"主檔 {len(masters)}｜配件 {len(acc)}｜無型號 {len(unresolved)}", ""]
     for m in masters:
         lines.append(f"■ {m['canonical_name']}  [{m['status']}]  賣場 {len(m['listings'])} 個")
-        for l in m["listings"]:
-            price = l.get("price_twd_inferred")
+        for n in m["listings"]:
+            raw = n.get("listing", {})  # 價格、分潤率等賣場資料在原始賣場資料（listing）裡
+            price = raw.get("price_twd_inferred")
             lines.append(
-                f"   NT${price if price is not None else '?':>8}  分潤 預設{l.get('commission_default_pct', '?')}%／最高{l.get('commission_max_pct', '?')}%  "
-                f"{'商城' if l.get('shopee_verified') or l.get('is_official_shop') else '    '}  {l['cleaned_title'][:48]}"
+                f"   NT${price if price is not None else '?':>8}  分潤 預設{raw.get('commission_default_pct', '?')}%／最高{raw.get('commission_max_pct', '?')}%  "
+                f"{'商城' if raw.get('shopee_verified') or raw.get('is_official_shop') else '    '}  {n['cleaned_title'][:48]}"
             )
         for r in m.get("review_reasons", []):
             lines.append(f"     ⚠ {r['detail'][:70]}")
