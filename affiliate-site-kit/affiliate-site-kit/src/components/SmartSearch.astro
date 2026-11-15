@@ -50,7 +50,8 @@
     const offer = parsed.pet && !hasPet(pr) ? `<button type="button" class="btn ghost small" data-remember-pet="${esc(parsed.pet)}">記住「${esc(petLabel(parsed.pet))}」</button>` : '';
     if (parsedEl) parsedEl.innerHTML = (chips.length ? '<span class="label">我的理解：</span>' + chips.join('') : '') + offer;
 
-    if (listEl) {
+    if (listEl && !query.trim()) { listEl.innerHTML = ''; }
+    else if (listEl) {
       listEl.innerHTML =
         shown
           .map(({ p, score, reasons }, i) => `<li class="panel res">

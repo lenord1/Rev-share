@@ -66,5 +66,6 @@
 
   // 第一次來且沒跳過過才自動跳出（只問一次）
   const pr = Profile.get();
-  if (!pr.answered && !pr.skipped) setTimeout(open, 600);
+  // 不自動跳出：由使用者按「回答 3 個問題」開啟（避免一進站就被打斷）
+  void pr;
 </script>

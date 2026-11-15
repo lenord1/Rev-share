@@ -18,17 +18,17 @@ const { target = '#featured-grid' } = Astro.props;
     flex: none;
     min-height: 40px;
     padding: 0 16px;
-    border-radius: 4px;
-    border: 1px solid #e2e8f0;
-    background: #fff;
-    color: #475569;
+    border-radius: 2px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--ink-2);
     font: inherit;
     font-size: 0.875rem;
     font-weight: 600;
     white-space: nowrap;
     cursor: pointer;
   }
-  .pill[aria-pressed='true'] { background: #0f172a; color: #fff; border-color: #0f172a; }
+  .pill[aria-pressed='true'] { background: var(--ink); color: #fff; border-color: var(--ink); }
   .pill:disabled { opacity: 0.45; cursor: default; }
 </style>
 

@@ -84,15 +84,11 @@ const count = (slug: string) => productsData.products.filter((p) => p.category =
     <div class="grid-h"><h2>用自己的話找</h2></div>
     <SmartSearch />
 
-    <div class="grid-h" id="categories"><h2>依品類慢慢看（{allCategories.length} 類）</h2></div>
-    {groups.map((g) => (
-      <section aria-label={g || '品類'}>
-        {g && <h3 class="grp">{g}</h3>}
-        <div class="cats2">
-          {allCategories.filter((c: any) => (c.group ?? '') === g).map((c: any) => <a href={`/${c.slug}/`}>{c.name}<span>{count(c.slug) ? `${count(c.slug)} 款整理` : '尚無商品'}</span></a>)}
-        </div>
-      </section>
-    ))}
+    <div class="grid-h" id="categories"><h2>依品類看</h2></div>
+    <section class="cats2" aria-label="品類">
+      {allCategories.filter((c: any) => count(c.slug) > 0).map((c: any) => <a href={`/${c.slug}/`}>{c.name}<span>{count(c.slug)} 款整理</span></a>)}
+    </section>
+    {allCategories.some((c: any) => count(c.slug) === 0) && <p class="cats-more">其他 {allCategories.filter((c: any) => count(c.slug) === 0).length} 個品類整理中，完成後會陸續上架。</p>}
 
     {intents.length > 0 && <>
       <div class="grid-h"><h2>依情境挑</h2></div>
@@ -103,7 +99,7 @@ const count = (slug: string) => productsData.products.filter((p) => p.category =
   </main>
   <QuizDialog />
   <BehaviorTracker />
-  <ExitIntentModal product={saleTop} />
+  {/* 離站攔截彈窗已停用：與質感定位不符 */}
   <script type="application/json" id="catalog" set:html={safeJson(catalog)} />
   <script type="application/ld+json" set:html={safeJson(websiteLd)} />
 </Layout>

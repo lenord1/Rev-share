@@ -22,23 +22,23 @@
 /* 以下來自 design/tokens.css 與 design/base.css（唯一來源，見 docs/ui-spec.md） */
 /* 設計 token：Astro/Tailwind 實作時以此為唯一來源（見 docs/ui-spec.md）。 */
 :root {
-  --paper: #f6f6f4;      /* 頁面底色（slate-50） */
+  --paper: #f7f5f0;      /* 頁面底色（slate-50） */
   --surface: #ffffff;    /* 卡片、表格底 */
-  --ink: #1d2327;        /* 主要文字 */
-  --ink-2: #596066;      /* 次要文字 */
-  --line: #e0ded8;       /* 邊線（取代陰影） */
-  --accent: #c23516;     /* CTA、連結 */
+  --ink: #1f1c18;        /* 主要文字 */
+  --ink-2: #615b52;      /* 次要文字 */
+  --line: #e7e2d8;       /* 邊線（取代陰影） */
+  --accent: #b33a16;     /* CTA、連結 */
   --accent-ink: #ffffff;
-  --accent-soft: #fbe6df;
-  --promo: #8f2d14;      /* 只用於促銷與折扣金額 */
-  --promo-soft: #f6e3dc;
-  --win: #0b7a75;        /* 勝出參數 */
-  --win-soft: #dcefec;
-  --warn-soft: #f3ead2;  /* 缺點區底色 */
-  --warn-ink: #7a4b00;
-  --radius: 4px;        /* 只有一種圓角；按鈕與標籤另用 4px */
-  --font: "Noto Serif TC", "Source Han Serif TC", "Songti TC", "STSong", "PMingLiU", "MingLiU", "Noto Serif CJK TC", serif;
-  --font-ui: "PingFang TC", "Noto Sans TC", "Noto Sans CJK TC", "Microsoft JhengHei", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --accent-soft: #f6ebe5;
+  --promo: #9b2f12;      /* 只用於促銷與折扣金額 */
+  --promo-soft: #f6ebe5;
+  --win: #2f6b55;        /* 勝出參數 */
+  --win-soft: #e8f0eb;
+  --warn-soft: #f7f1e3;  /* 缺點區底色 */
+  --warn-ink: #6e4c12;
+  --radius: 2px;        /* 只有一種圓角；按鈕與標籤另用 4px */
+  --font: "PingFang TC", "Noto Sans TC", "Noto Sans CJK TC", "Microsoft JhengHei", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: "Noto Serif TC", "Source Han Serif TC", "Songti TC", "STSong", "Noto Serif CJK TC", "PMingLiU", serif;
   --step--1: 0.875rem;  --step-0: 1rem;      --step-1: 1.125rem;
   --step-2: 1.375rem;   --step-3: 1.875rem;  --step-4: 2.5rem;
 }
@@ -309,66 +309,139 @@ details p{margin:8px 0 0;color:var(--ink-2)}
 .author-intro{margin:16px 0 20px;padding:14px 18px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
 .author-intro p{margin:0}.author-intro .note{margin-top:6px}
 
-/* ---- 比較卡：目標是「看懂 → 比較 → 下單」。橘色 CTA 是全卡最醒目的元件 ---- */
-ol.results{list-style:none;padding:0;display:grid;gap:14px}
-@media(min-width:900px){ol.results{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}}
-.panel.res.cmp{display:grid;grid-template-columns:104px minmax(0,1fr);grid-template-areas:"img main" "cta cta";gap:10px 14px;padding:14px;margin:0;align-items:start}
-.cmp-img{grid-area:img;display:grid;place-items:center;aspect-ratio:1;background:#fff;border:1px solid var(--line);color:var(--ink-2);font-size:var(--step--1);text-align:center}
-.cmp-img img{width:100%;height:100%;object-fit:contain;padding:6px}
-.cmp-main{grid-area:main;display:grid;gap:6px;min-width:0}
-.cmp .name{font-size:var(--step-0);line-height:1.4}
-.cmp-specs{display:flex;flex-wrap:wrap;gap:4px 12px;margin:0;padding:0;list-style:none;font-size:var(--step--1);color:var(--ink-2)}
-.cmp-specs b{color:var(--ink)}
-.cmp-price{display:flex;align-items:baseline;flex-wrap:wrap;gap:2px 8px}
-.cmp-label{font-size:var(--step--1);color:var(--ink-2)}
-.cmp-price .price{font-size:var(--step-3);line-height:1.1;font-weight:700;color:var(--ink);white-space:nowrap}
-.cmp-price s{color:var(--ink-2);font-size:var(--step--1)}
-.cmp-off{font-size:var(--step--1);font-weight:700;color:var(--promo);background:var(--promo-soft);padding:1px 8px;border-radius:2px}
-.cmp-calc{margin:0}
-.cmp .flaw-line{margin:0;font-size:var(--step--1);line-height:1.6}
-.cmp-tldr{margin:0;font-size:var(--step--1);color:var(--ink-2)}
-.cmp-cta{grid-area:cta;display:grid;gap:6px;justify-items:center}
-.btn.cta-main{width:100%;min-height:52px;font-size:var(--step-1);font-weight:700;background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
-.btn.cta-main:hover{background:var(--ink);border-color:var(--ink)}
-.cmp-more{font-size:var(--step--1);color:var(--ink-2);padding:8px 12px;min-height:36px;display:inline-flex;align-items:center;text-underline-offset:3px}
-.cmp-more:hover{color:var(--accent)}
-@media(min-width:640px){.panel.res.cmp{grid-template-columns:168px minmax(0,1fr)}}
-
-/* ---- 版面：企業導購站（白底、方正按鈕、清楚分區），不做裝飾性效果 ---- */
-.site-head{background:var(--surface);border-bottom:1px solid var(--line)}
-.brand{letter-spacing:0}
-.nav a:hover{color:var(--accent);text-decoration:underline;text-underline-offset:4px}
-.btn{border-radius:4px;border:1px solid var(--accent);font-size:var(--step-0);box-shadow:none;transition:background-color .15s,border-color .15s}
-.btn:hover{filter:none;background:#a52c10;border-color:#a52c10}
-.btn.ghost{background:var(--surface);color:var(--accent);border-color:var(--accent)}
-.btn.ghost:hover{background:var(--accent-soft)}
-.btn.cta-main:hover{background:#a52c10;border-color:#a52c10}
-.hero{background:var(--surface);border-bottom:1px solid var(--line);padding:28px 0 20px;margin:0 -16px;padding-left:16px;padding-right:16px}
-.hero h1{font-size:var(--step-3);font-weight:700;max-width:none}
-.grid-h{border-bottom:1px solid var(--line);padding-bottom:8px}
-.grid-h h2{font-size:var(--step-2)}
-.finder,.panel,.pcard{border:1px solid var(--line);border-radius:4px;background:var(--surface)}
-.cats button,.pill{border-radius:4px}
-.cats2 a{border-radius:4px}
-.price,.num{font-variant-numeric:tabular-nums}
-.site-foot{border-top:1px solid var(--line);background:var(--surface)}
-.panel.res .flaw-line,.flaw-line{border-radius:4px}
-
-/* ---- 字體系統：單一系統中文字體、固定角色階層（不下載網路字型，見 ui-spec） ---- */
-@theme{--text-xs:.875rem;--text-xs--line-height:1.5}
-html{font-synthesis:none}
-body{font-weight:400;line-height:1.75}
-h1{font-size:clamp(1.625rem,5.5vw,2.125rem);line-height:1.3;font-weight:700}
-h2{font-weight:700}
-h3{font-weight:700;line-height:1.4}
+/* =====================================================================
+   質感選物層（2026-11-15）
+   方向：安靜、可信、像一本選物誌。暖白紙底、細線、留白；
+   標題與商品名用宋體，內文、價格、按鈕用黑體（小螢幕與 Windows 都好讀）。
+   燒橘只給「到蝦皮」的行動按鈕，其他元素一律退後。
+   ===================================================================== */
+html{font-synthesis:none;scrollbar-color:#cfc8bb var(--paper);accent-color:var(--accent)}
+::selection{background:#ecdcd2;color:var(--ink)}
+body{line-height:1.75;font-feature-settings:"palt" 0}
+h1,h2,h3,.brand,.serif{font-family:var(--font-serif);font-weight:700;letter-spacing:.01em}
+h1{font-size:clamp(1.75rem,1.1rem + 2.6vw,2.5rem);line-height:1.3}
+h2{font-size:clamp(1.25rem,1.05rem + .8vw,1.5rem);line-height:1.35}
+h3{font-size:var(--step-1);line-height:1.45}
 p,li{max-width:40em}
-.res p,.cmp-main p,.finder p,.panel p,.sticky-bar p,.drawer p,td,th{max-width:none}
-strong,b{font-weight:700}
-.note,.disclosure,.cmp-specs,.cmp-label,.cmp-more{line-height:1.6}
-.cmp-price .price{font-size:var(--step-3);font-weight:700}
-.rl.total strong{font-weight:700}
+.price,.num,.btn,button,input,select,textarea{font-family:var(--font)}
+a{color:var(--accent);text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1120px;padding:0 20px}
 
-/* ---- 宋體（襯線）為內文與標題；按鈕、價格、標籤、表單維持黑體，確保下單動作清楚好點 ---- */
-.btn,button,input,select,textarea,.badge,.chip,.pill,.nav,.cats,.price,.num,.cmp-price,.cmp-specs,.cmp-off,.cmp-more,.sticky-bar,.drawer .cta,.rl,.steps,.opts,.tablewrap th{font-family:var(--font-ui)}
-h1,h2,h3{font-weight:700}
-body{font-synthesis:weight}
+/* 頁首／頁尾 */
+.site-head{background:var(--surface);border-bottom:1px solid var(--line)}
+.site-head .wrap{min-height:64px}
+.brand{font-size:1.25rem;letter-spacing:.14em;color:var(--ink)}
+.nav{gap:0 24px;font-size:var(--step--1)}
+.nav a{color:var(--ink-2)}.nav a:hover{color:var(--ink);text-decoration:underline}
+.site-foot{background:transparent;border-top:1px solid var(--line);margin-top:80px;line-height:1.8}
+
+/* 按鈕：只有一個主色、方正、無陰影無漸層 */
+.btn{border-radius:2px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);font-weight:700;font-size:var(--step-0);letter-spacing:.04em;min-height:50px;padding:0 24px;box-shadow:none;transition:background-color .2s,border-color .2s,color .2s}
+.btn:hover{filter:none;background:#8f2c10;border-color:#8f2c10}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:var(--surface)}
+.btn.small{min-height:40px;padding:0 14px;font-size:var(--step--1);letter-spacing:.02em}
+.badge{border-radius:2px;font-size:12px;letter-spacing:.06em}
+.badge.official{background:transparent;color:var(--ink-2);border:1px solid var(--line);font-weight:500;padding:1px 8px;margin-left:8px}
+.chip{border-radius:2px}
+
+/* 共用容器：白底細線，不疊陰影 */
+.panel,.box,.finder,.pcard,.tablewrap{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:none}
+.note,.disclosure{color:var(--ink-2)}
+.crumbs{padding:20px 0 8px;letter-spacing:.02em}
+
+/* 首頁 */
+.hero{background:transparent;border:0;margin:0;padding:48px 0 8px}
+.hero h1{max-width:14em}
+.hero>p{font-size:var(--step-1);color:var(--ink-2);max-width:30em;margin:14px 0 0;line-height:1.8}
+.finder{margin-top:28px;padding:20px}
+.cats button,.opts button,.quiz-opt{border-radius:2px;border:1px solid var(--line);background:var(--surface);color:var(--ink);box-shadow:none}
+.cats button[aria-pressed="true"],.cats button.on{background:var(--ink);border-color:var(--ink);color:var(--surface)}
+.opts button:hover,.quiz-opt:hover,.cats button:hover{border-color:var(--ink)}
+.steps i{border-radius:0;height:2px}.steps i.on{background:var(--ink)}
+.grid-h{margin:64px 0 16px;padding-bottom:12px;border-bottom:1px solid var(--ink)}
+.grid-h h2{font-size:clamp(1.25rem,1.05rem + .8vw,1.5rem)}
+.grid-h a{font-size:var(--step--1);color:var(--ink-2)}
+.cats2{gap:0;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));border-top:1px solid var(--line)}
+.cats2 a{border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent;padding:16px 4px;font-family:var(--font-serif);font-weight:700}
+.cats2 a:hover{background:var(--surface)}
+.cats2 a span{font-family:var(--font);margin-top:2px}
+.cats-more{margin:14px 0 0;font-size:var(--step--1);color:var(--ink-2)}
+
+/* 首頁商品卡（ProductCard） */
+#featured-grid{gap:20px}
+.pc{display:grid;grid-template-columns:minmax(0,1fr);background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+@media(min-width:768px){.pc{grid-template-columns:300px minmax(0,1fr)}}
+.pc-img{display:grid;place-items:center;aspect-ratio:1;padding:28px;background:#fff;border-bottom:1px solid var(--line)}
+@media(min-width:768px){.pc-img{border-bottom:0;border-right:1px solid var(--line)}}
+.pc-img img{width:100%;height:100%;object-fit:contain}
+.pc-img .ph{font-family:var(--font-serif);color:#b9b1a3;font-size:var(--step-1);letter-spacing:.2em}
+.pc-body{display:flex;flex-direction:column;gap:14px;padding:22px 20px}
+@media(min-width:768px){.pc-body{padding:28px 32px}}
+.pc-meta{display:flex;gap:10px;align-items:center;font-size:12px;letter-spacing:.12em;color:var(--ink-2)}
+.pc-meta .badge.official{margin:0}
+.pc-name{font-size:clamp(1.125rem,1rem + .5vw,1.3rem);line-height:1.45;margin:0}
+.pc-name a{color:var(--ink);text-decoration:none}.pc-name a:hover{text-decoration:underline;text-decoration-thickness:1px}
+.pc-points{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:4px 18px;font-size:var(--step--1);color:var(--ink-2)}
+.pc-points li::before{content:"";display:inline-block;width:4px;height:4px;background:var(--ink-2);margin:0 8px 3px 0;vertical-align:middle}
+.pc-flaw{margin:0;padding:12px 14px;background:var(--warn-soft);color:var(--warn-ink);font-size:var(--step--1);line-height:1.7}
+.pc-flaw b{font-weight:700;margin-right:4px}
+.pc-flaw small{display:block;opacity:.8;margin-top:2px;font-size:12px}
+.pc-price{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;margin-top:4px;padding-top:16px;border-top:1px solid var(--line)}
+.pc-price .lbl{font-size:12px;letter-spacing:.12em;color:var(--ink-2)}
+.pc-price b{font-size:clamp(1.75rem,1.4rem + 1.2vw,2.125rem);font-weight:700;line-height:1;color:var(--ink);letter-spacing:0}
+.pc-price s{color:var(--ink-2);font-size:var(--step--1)}
+.pc-price .off{font-size:var(--step--1);color:var(--promo);font-weight:700}
+.pc-calc{margin:0;font-size:12px;color:var(--ink-2);line-height:1.6}
+.pc .btn{width:100%;margin-top:4px}
+
+/* 品類比較卡（CompareCard） */
+ol.results{list-style:none;padding:0;margin:28px 0 0;display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
+@media(min-width:900px){ol.results{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}}
+ol.results>li{min-width:0}
+.panel.res.cmp{display:grid;grid-template-columns:96px minmax(0,1fr);grid-template-areas:"img main" "cta cta";gap:14px 16px;padding:18px;margin:0;align-items:start}
+@media(min-width:640px){.panel.res.cmp{grid-template-columns:150px minmax(0,1fr);padding:22px}}
+.cmp-img{grid-area:img;display:grid;place-items:center;aspect-ratio:1;background:#fff;color:#b9b1a3;font-size:12px;text-align:center;letter-spacing:.1em}
+.cmp-img img{width:100%;height:100%;object-fit:contain}
+.cmp-main{grid-area:main;display:grid;gap:8px;min-width:0}
+.cmp .name{font-size:var(--step-1);line-height:1.45;overflow-wrap:anywhere}
+.cmp .name a{color:var(--ink);text-decoration:none}.cmp .name a:hover{text-decoration:underline}
+.cmp-specs{display:flex;flex-wrap:wrap;gap:2px 14px;margin:0;padding:0;list-style:none;font-size:var(--step--1);color:var(--ink-2)}
+.cmp-specs b{color:var(--ink);font-weight:500}
+.cmp-price{display:flex;align-items:baseline;flex-wrap:wrap;gap:2px 10px}
+.cmp-label{font-size:12px;letter-spacing:.12em;color:var(--ink-2)}
+.cmp-price .price{font-size:1.75rem;line-height:1.1;font-weight:700;color:var(--ink)}
+.cmp-price s{color:var(--ink-2);font-size:var(--step--1)}
+.cmp-off{font-size:var(--step--1);font-weight:700;color:var(--promo);background:none;padding:0}
+.cmp-calc{margin:0;font-size:12px}
+.cmp .flaw-line{margin:0;padding:10px 12px;font-size:var(--step--1);line-height:1.7;background:var(--warn-soft);color:var(--warn-ink);border-radius:0}
+.cmp-cta{grid-area:cta;display:grid;gap:4px;justify-items:center}
+.btn.cta-main{width:100%}
+.cmp-more{font-size:var(--step--1);color:var(--ink-2);padding:8px 12px}
+.cmp-more:hover{color:var(--ink)}
+
+/* 商品頁 */
+.verdict{font-family:var(--font-serif);font-size:clamp(1.25rem,1.05rem + .8vw,1.5rem);line-height:1.5}
+.box{padding:24px}
+.prod-img{background:#fff;padding:12px}
+.flaw-box{background:var(--warn-soft);color:var(--warn-ink);border-radius:0;padding:14px 16px;line-height:1.7}
+.flaw-box b{letter-spacing:.08em;margin-bottom:2px}
+.callout-warn{border:0;border-radius:0;background:var(--warn-soft)}
+.sec{margin-top:56px}
+.sec>h2{padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:16px}
+.tablewrap th,.tablewrap thead th{font-family:var(--font);font-weight:700;background:#faf8f4}
+.tablewrap td.win{background:var(--win-soft);box-shadow:inset 3px 0 0 var(--win)}
+.rl.total{border-top-color:var(--ink)}
+.sticky-bar{background:rgba(255,255,255,.96);border-top:1px solid var(--line)}
+.flaw-line{border-radius:0}
+@media (prefers-reduced-motion:reduce){.btn{transition:none}}
+
+.pc-flaw,.cmp .flaw-line,.pc-calc{max-width:none}
+@media(min-width:768px){.pc .btn{max-width:400px}}
+@media(max-width:639px){
+  .panel.res.cmp{grid-template-columns:minmax(0,1fr);grid-template-areas:"img" "main" "cta"}
+  .cmp-img{aspect-ratio:auto;height:200px}
+}
+.callout-warn{padding:14px 16px}.callout-warn ul{margin:0;padding-left:1.2em}
+@media(max-width:639px){.cmp-img{overflow:hidden}.cmp-img img{max-height:184px;width:auto;max-width:100%}}
