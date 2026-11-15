@@ -7,7 +7,7 @@ Python 套件，與 `affiliate-site-kit/`（Astro 網站與 Node 腳本）並列
 | 階段 | 內容 | 狀態 |
 |---|---|---|
 | A | 商品名稱清理與型號正規化（`product_normalizer.py`） | 完成，77 項離線測試通過（2026-11-15） |
-| B | 官方資料與圖片來源搜尋 | 未開始 |
+| B | 官方資料與圖片來源搜尋 | 進行中：蝦皮分潤後台收集器已寫好（尚未對真實後台測試），官方資料與圖片未開始 |
 | C | 優缺點研究與證據管理 | 未開始 |
 | D | 商品主檔與資料庫整合 | 未開始 |
 | E | SEO 商品卡片與詳情頁輸出 | 未開始 |
@@ -32,6 +32,21 @@ python -m product_research.product_normalizer --input titles.json --single   # �
 ```
 
 `--input` 接受標題字串陣列，或物件陣列（`raw_title`、`shop_id`、`item_id`、`shop_name`、`source_url`、`collected_at`…，其餘欄位原樣保留）。
+
+## 蝦皮分潤後台收集器（Phase B 前段）
+
+沒有官方 Open API 時，用無頭瀏覽器讀你自己的分潤後台（`affiliate.shopee.tw/offer/product_offer`）。在**你的電腦**執行：
+
+```bash
+pip install -r product_research/requirements.txt
+python -m playwright install chromium
+python -m product_research.shopee_affiliate_collector login                    # 開視窗，手動登入一次
+python -m product_research.shopee_affiliate_collector discover --keyword "F-Y22PN" --show   # 第一次：看實際收到什麼
+python -m product_research.shopee_affiliate_collector collect --keyword "F-Y22PN" --out titles.json
+python -m product_research.product_normalizer --input titles.json
+```
+
+登入狀態只存在 `~/.shopee_research/`；遇到登入頁或驗證碼會停止，不繞過。後台欄位名稱尚未用真實資料驗證，所以請先跑 `discover`。
 
 ## Phase A：規則
 
