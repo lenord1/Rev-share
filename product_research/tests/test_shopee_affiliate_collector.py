@@ -226,3 +226,12 @@ def test_check_block_returns_true_only_after_user_solved(monkeypatch):
     page.wait_for_timeout = lambda ms: setattr(page, "url", "https://affiliate.shopee.tw/offer/product_offer")
     monkeypatch.setattr("builtins.input", lambda *a: "")
     assert c._check_block(page, False, "x") is True
+
+
+def test_should_capture_only_affiliate_api():
+    from product_research.shopee_affiliate_collector import should_capture
+    assert should_capture("https://affiliate.shopee.tw/api/v3/offer/product/list?keyword=x")
+    assert should_capture("https://affiliate.shopee.tw/api/v3/gql?q=productOfferLinks")
+    assert not should_capture("https://monitor-report.affiliate.shopee.tw/api/reportLogs")
+    assert not should_capture("https://deo.shopeemobile.com/shopee/mkt-web-sdk/translate/1539/en.json")
+    assert not should_capture("https://dem.shopee.com/dem/entrance/v1/apps/website/tags/config-monitor/event/json")

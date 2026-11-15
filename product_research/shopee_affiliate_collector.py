@@ -36,7 +36,8 @@ CAPTURE_DIR = HOME_DIR / "captures"
 OFFER_URL = "https://affiliate.shopee.tw/offer/product_offer"
 
 MIN_DELAY, MAX_DELAY = 3.0, 6.0
-MAX_CAPTURES = 60
+MAX_CAPTURES = 150
+CAPTURE_HOST = "affiliate.shopee.tw"  # 只記後台自己的 API（主機名稱需完全相同）；監控、翻譯檔、追蹤回報等雜訊不記
 
 #: 出現在網址裡代表需要人工處理（登入、驗證）的字樣
 BLOCK_MARKERS = ("/buyer/login", "/seller/login", "verify", "captcha", "/user/login", "anti_crawler", "anti-bot")
@@ -225,6 +226,13 @@ class _Stop(Exception):
     pass
 
 
+def should_capture(url: str) -> bool:
+    from urllib.parse import urlparse
+
+    u = urlparse(url)
+    return u.hostname == CAPTURE_HOST and u.path.startswith("/api/")
+
+
 def is_keyword_list_url(url: str, keyword: Optional[str]) -> bool:
     """是否為（帶指定關鍵字的）商品清單接口網址。"""
     return bool(select_payloads([{"url": url}], keyword))
@@ -309,7 +317,7 @@ def _run_capture(keyword: Optional[str], pages: int, headless: bool, browser_nam
     def on_response(resp) -> None:
         try:
             ctype = (resp.headers or {}).get("content-type", "")
-            if "json" not in ctype or len(captured) >= MAX_CAPTURES:
+            if "json" not in ctype or not should_capture(resp.url) or len(captured) >= MAX_CAPTURES:
                 return
             entry = {"url": resp.url, "status": resp.status, "json": resp.json()}
             if "/gql" in resp.url or "/offer/" in resp.url:
