@@ -225,10 +225,17 @@ class _Stop(Exception):
     pass
 
 
-def _check_block(page, headless: bool, where: str) -> None:
-    """遇到登入／驗證頁：無頭模式直接停止；有視窗時暫停，讓使用者自己完成驗證後再繼續。不繞過。"""
+def is_keyword_list_url(url: str, keyword: Optional[str]) -> bool:
+    """是否為（帶指定關鍵字的）商品清單接口網址。"""
+    return bool(select_payloads([{"url": url}], keyword))
+
+
+def _check_block(page, headless: bool, where: str) -> bool:
+    """遇到登入／驗證頁：無頭模式直接停止；有視窗時暫停，讓使用者自己完成驗證後再繼續。不繞過。
+
+    回傳 True 代表曾遇到驗證頁且使用者已完成（呼叫端應重新載入頁面）。"""
     if not is_blocked_url(page.url):
-        return
+        return False
     if headless:
         raise _Stop(f"{where}被導向登入／驗證頁（{page.url[:80]}）。請改用 --show 在視窗裡自己完成驗證。")
     print(f"\n{where}出現驗證頁。請在跳出的視窗裡自己完成驗證，回到商品列表後，在這裡按 Enter 繼續。")
@@ -236,6 +243,7 @@ def _check_block(page, headless: bool, where: str) -> None:
     page.wait_for_timeout(1500)
     if is_blocked_url(page.url):
         raise _Stop("驗證後仍停在驗證／登入頁，已停止。請稍後再試（建議間隔數小時）。")
+    return True
 
 
 def _require_playwright():
@@ -322,14 +330,22 @@ def _run_capture(keyword: Optional[str], pages: int, headless: bool, browser_nam
         page.on("response", on_response)
         try:
             page.goto(OFFER_URL, wait_until="networkidle", timeout=45000)
-            _check_block(page, headless, "開啟後台時")
+            if _check_block(page, headless, "開啟後台時"):
+                # 驗證完成後，驗證前收到的資料不完整，重新載入後台再繼續
+                page.goto(OFFER_URL, wait_until="networkidle", timeout=45000)
+                _check_block(page, headless, "重新載入後")
             _sleep()
             if keyword:
                 box = page.get_by_placeholder(re.compile("搜尋|search|關鍵字|商品", re.I)).first
                 if box.count() == 0:
                     raise _Stop("找不到搜尋框。請用 discover 的結果與畫面截圖確認頁面結構（不硬猜選擇器）。")
                 box.fill(keyword)
-                box.press("Enter")
+                try:  # 明確等到「帶關鍵字的商品清單」回應，不只等網路閒置
+                    with page.expect_response(lambda r: is_keyword_list_url(r.url, keyword), timeout=25000):
+                        box.press("Enter")
+                except Exception:
+                    _check_block(page, headless, "搜尋後")
+                    raise _Stop("搜尋送出後 25 秒內沒有收到商品清單回應。可能頁面還在載入或被限制，請稍後再試。")
                 page.wait_for_load_state("networkidle", timeout=30000)
                 _check_block(page, headless, "搜尋後")
             for _ in range(max(0, pages - 1)):
@@ -471,7 +487,8 @@ def cmd_collect(args: argparse.Namespace) -> int:
         return 2
     items = parse_items(select_payloads(captured, args.keyword))
     if not items:
-        print("沒有解析出商品。請先跑 discover 確認欄位。")
+        got_list = any(PRODUCT_LIST_PATH in c.get("url", "") for c in captured)
+        print("收到商品清單，但不是這個關鍵字的搜尋結果。" if got_list else "沒有收到商品清單回應。", "請重新執行，或先用 discover 檢查。")
         return 3
     items, dropped = filter_by_price(items, args.min_price)
     print(f"價格門檻 NT${args.min_price:g}：保留 {len(items)} 筆，排除 {len(dropped)} 筆（價格低於門檻或價格不明）。")

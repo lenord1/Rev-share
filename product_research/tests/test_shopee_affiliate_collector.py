@@ -204,3 +204,25 @@ def test_filter_by_price():
     assert filter_by_price(items, 0) == (items, [])
     only_min = RawListing(raw_title="只有最低價商品", item_id="m", price_min_twd_inferred=3500.0)
     assert filter_by_price([only_min], 2000)[0] == [only_min]
+
+
+def test_is_keyword_list_url():
+    from product_research.shopee_affiliate_collector import is_keyword_list_url
+    base = "https://affiliate.shopee.tw/api/v3/offer/product/list"
+    assert is_keyword_list_url(base + "?list_type=0&keyword=F-Y22PN&page_offset=0", "F-Y22PN")
+    assert not is_keyword_list_url(base + "?list_type=0&page_offset=0", "F-Y22PN")
+    assert not is_keyword_list_url("https://affiliate.shopee.tw/api/v3/user/profile?keyword=F-Y22PN", "F-Y22PN")
+
+
+def test_check_block_returns_true_only_after_user_solved(monkeypatch):
+    import product_research.shopee_affiliate_collector as c
+
+    class Page:
+        def __init__(self, url): self.url = url
+        def wait_for_timeout(self, ms): pass
+
+    assert c._check_block(Page("https://affiliate.shopee.tw/offer/product_offer"), True, "x") is False
+    page = Page("https://shopee.tw/verify/traffic/error")
+    page.wait_for_timeout = lambda ms: setattr(page, "url", "https://affiliate.shopee.tw/offer/product_offer")
+    monkeypatch.setattr("builtins.input", lambda *a: "")
+    assert c._check_block(page, False, "x") is True
