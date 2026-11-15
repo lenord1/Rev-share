@@ -79,6 +79,8 @@ _BUNDLE_WORD_RE = re.compile(
     r"組合|套組|超值組|雙機組|[2-9二兩三四]\s*(?:入|台)|買[一1]送[一1]"
     r"|(?<![A-Za-z0-9])[xX*×]\s*[2-9](?![0-9A-Za-z])"
 )
+# 「RD-22FC 另RD-22FJ/…」：另 + 型號（英文字母開頭）
+_STUFFING_BARE_RE = re.compile(r"另(?=[A-Za-z]{1,4}-?\d)")
 _BOGO_RE = re.compile(r"買[一1二2兩]送[一1]")
 _SYMBOL_RE = re.compile(r"[™®©★☆◎●○◆◇■□▲△▼▽▶►◀♥♡❤✨🔥⚡💥🎁👉✅❗‼!！?？~～*＊·•・|｜\\^`]+")
 _EMOJI_RE = re.compile("[\U0001F000-\U0001FAFF☀-➿️]")
@@ -108,6 +110,7 @@ class _Rules:
         self.official_channel_terms = sorted(rules["official_channel_terms"], key=len, reverse=True)
         self.import_terms = sorted(rules["import_terms"], key=len, reverse=True)
         self.condition_terms = sorted(rules["condition_terms"], key=len, reverse=True)
+        self.stuffing_markers = sorted(rules["keyword_stuffing_markers"], key=len, reverse=True)
         self.accessory_nouns = rules["accessory_nouns"]
         self.categories = rules["categories"]
         aliases: list[tuple[str, dict]] = []
@@ -339,6 +342,19 @@ def _clean_text(text: str, removed: list[str]) -> str:
     return re.sub(r"\s+", " ", text).strip()
 
 
+def _cut_keyword_stuffing(text: str) -> tuple[str, str]:
+    """賣家常在標題尾端塞「另售 型號/型號/…」蹭搜尋。回傳（保留的前半段, 被切掉的後半段）。"""
+    cut = len(text)
+    for m in _rules().stuffing_markers:
+        i = text.find(m)
+        if 0 <= i < cut:
+            cut = i
+    bare = _STUFFING_BARE_RE.search(text)
+    if bare and bare.start() < cut:
+        cut = bare.start()
+    return text[:cut], text[cut:]
+
+
 def normalize_title(
     listing: Union[str, RawListing, dict],
     registry: Optional[OfficialModelRegistry] = None,
@@ -357,6 +373,8 @@ def normalize_title(
 
     removed: list[str] = []
     reasons: list[ReviewReason] = []
+    text, stuffed = _cut_keyword_stuffing(text)
+    ignored_models = [_restore_paren(c.written) for c in _extract_models(_detect_brands(_clean_text(stuffed, []))[1])] if stuffed else []
     attrs = _extract_attributes(text, removed)
     bogo = _BOGO_RE.search(text)  # 「買一送一」是多入組合，不是贈品，要在贈品規則之前處理
     if bogo:
@@ -386,7 +404,8 @@ def normalize_title(
         re.search(re.escape(k) + r"\s*" + re.escape(n) + r"(?![型式])", cleaned)
         for k in cat_words for n in r.accessory_nouns
     )
-    if acc and (adjacent or "適用" in cleaned or "專用" + acc in cleaned or "原廠" + acc in cleaned or not categories or cleaned.rstrip().endswith(acc)):
+    dedicated = bool(acc and re.search(r"專用[\s,，、]*[^\s]{0,6}?" + "(?:" + "|".join(re.escape(n) for n in r.accessory_nouns) + ")", cleaned))
+    if acc and (adjacent or dedicated or "適用" in cleaned or "專用" + acc in cleaned or "原廠" + acc in cleaned or not categories or cleaned.rstrip().endswith(acc)):
         kind, kind_reason = ListingKind.ACCESSORY, f"標題為配件／耗材（{acc}）"
     elif bundle_word:
         kind, kind_reason = ListingKind.BUNDLE, f"標題含組合字樣「{bundle_word.group(0).strip()}」"
@@ -397,10 +416,8 @@ def normalize_title(
     model: Optional[ModelCandidate] = None
     if models:
         official = [c for c in models if c.official_match]
-        ranked = official or sorted(
-            models, key=lambda c: (c.joined_by_space, -("-" in c.written), -min(len(c.key), 8))
-        )
-        model = ranked[0]
+        ranked = official or sorted(enumerate(models), key=lambda ic: (ic[1].joined_by_space, ic[0]))
+        model = ranked[0] if official else ranked[0][1]
         distinct = {c.key for c in models}
         if len(distinct) > 1 and kind == ListingKind.SINGLE and len(official) != 1:
             reasons.append(ReviewReason(
@@ -441,6 +458,7 @@ def normalize_title(
         category_label=categories[0]["label"] if categories else None,
         model=model,
         model_candidates=models,
+        ignored_models=ignored_models,
         attributes=attrs,
         kind=kind,
         kind_reason=kind_reason,

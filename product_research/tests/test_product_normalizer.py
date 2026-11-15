@@ -343,3 +343,36 @@ def test_real_filter_titles_are_accessories(title):
 def test_filter_type_machine_is_not_accessory():
     n = normalize_title("SHARP夏普 15公升 乾淨方 3合1雙氣流美型清淨除濕機濾網型 DW-T15FT")
     assert n.kind == ListingKind.SINGLE and n.model.written == "DW-T15FT"
+
+
+# 以下標題取自使用者 2026-11-15 collect 搜尋 F-Y22PN 實際抓到的結果（真實賣場標題）
+@pytest.mark.parametrize("title,model,ignored", [
+    ("日立 RD-260HC 另售RD-300HC/F-Y22PN/F-YV24NN/DW-PT9HT/DD121QWE0", "RD-260HC", 5),
+    ("F-Y22PN 另售F-Y18PN/F-Y20JH/F-YV24NN/RD-22FC/RD-220HC/RD-260HC", "F-Y22PN", 6),
+    ("RD-22FC 另RD-22FJ/RD-220HC/RD-260HC/F-Y20JH/F-Y22PN/DD121QWE0", "RD-22FC", 6),
+    ("RD-18FJ 另有RD-18FC/F-Y18PN/F-Y22PN/DW-L71HT/DW-L8HT/DW-L10FT", "RD-18FJ", 6),
+])
+def test_keyword_stuffing_uses_first_model_only(title, model, ignored):
+    n = normalize_title(title)
+    assert n.model.written == model
+    assert [c.written for c in n.model_candidates] == [model]
+    assert len(n.ignored_models) == ignored
+    assert n.kind == ListingKind.SINGLE
+
+
+@pytest.mark.parametrize("title", [
+    "Panasonic 國際牌除濕機水箱上蓋/水箱蓋 適用:F-Y22BW/F-Y22EN/F-Y22PN",
+    "Panasonic 國際牌F-Y22EN導風葉片 F-Y22PN也適用",
+    "Panasonic國際牌 除濕機專用 溫濕度感知器P板,F-Y22EN、F-Y22PN",
+    "國際牌 國際除濕機導風葉片 葉片 0090 尺寸:50×304mm 適用:F-Y22PN F-Y22BW...等 便利網",
+    "F-Y24CXW、F-Y45EX F-Y45GX、F-Y26JH、F-Y28GX、F-Y36JH、Y22PN 水箱蓋",
+])
+def test_real_parts_titles_are_accessories(title):
+    assert normalize_title(title).kind == ListingKind.ACCESSORY
+
+
+def test_first_model_wins_over_longer_later_model():
+    n = normalize_title("Panasonic 國際牌 F-Y22PN 聊聊再折 11公升 除濕機 F-Y22EN 升級款")
+    assert n.model.written == "F-Y22PN"
+    assert ReasonCode.MULTIPLE_MODELS in [r.code for r in n.review_reasons]
+    assert "聊聊再折" not in n.cleaned_title

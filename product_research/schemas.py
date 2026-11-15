@@ -102,6 +102,7 @@ class NormalizedTitle(BaseModel):
     category_label: Optional[str] = None
     model: Optional[ModelCandidate] = None
     model_candidates: list[ModelCandidate] = Field(default_factory=list)
+    ignored_models: list[str] = Field(default_factory=list)  # 「另售…」之後塞的型號，不當成本商品的型號
     attributes: TitleAttributes = Field(default_factory=TitleAttributes)
     kind: ListingKind = ListingKind.SINGLE
     kind_reason: Optional[str] = None
