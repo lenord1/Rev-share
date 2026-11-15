@@ -40,7 +40,7 @@ const ld = [
 ];
 const catalog = { products: cards.map((p: any) => slimProduct(p)) };
 ---
-<Layout title={`${intent.title}｜決選`} description={intent.intro.slice(0, 90)} noindex={noindexIntent(intent)}>
+<Layout title={`${intent.title}｜BeMyPick 必買`} description={intent.intro.slice(0, 90)} noindex={noindexIntent(intent)}>
   <main class="wrap">
     <nav class="crumbs" aria-label="麵包屑"><a href="/">首頁</a> / <a href={`/${category.slug}/`}>{category.name}</a> / {intent.title}</nav>
     <h1>{intent.title}</h1>

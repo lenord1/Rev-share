@@ -3,7 +3,7 @@ title: 除濕機除濕能力比較：18 台依日除濕量排序，怎麼選才�
 description: 把站內 18 台除濕機的日除濕量由大到小排開，說明適合的空間與每台的缺點。
 category: dehumidifier
 updated: 2026-11-09
-author: 決選
+author: BeMyPick 必買
 draft: false
 promise: 看懂日除濕量，選到大小剛好的除濕機
 sources:

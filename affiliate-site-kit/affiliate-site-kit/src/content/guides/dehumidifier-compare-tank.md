@@ -3,7 +3,7 @@ title: 除濕機水箱容量比較：滿載運轉一天要倒幾次水
 description: 比較站內有公布水箱容量的 5 台除濕機，並用日除濕量換算滿載時的倒水次數。
 category: dehumidifier
 updated: 2026-11-08
-author: 決選
+author: BeMyPick 必買
 draft: true
 promise: 算清楚倒水頻率，挑對水箱大小
 sources:

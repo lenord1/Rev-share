@@ -3,7 +3,7 @@ title: 除濕機推薦：18 款依坪數與情境對號入座（$3,990 到 $31,3
 description: 依房間坪數與預算，從站內 18 台除濕機挑出各價位的選擇，並列出每台的缺點。
 category: dehumidifier
 updated: 2026-11-09
-author: 決選
+author: BeMyPick 必買
 draft: false
 promise: 依坪數與情境，挑出適合你家的那一台除濕機
 sources:

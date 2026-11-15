@@ -445,3 +445,6 @@ ol.results>li{min-width:0}
 }
 .callout-warn{padding:14px 16px}.callout-warn ul{margin:0;padding-left:1.2em}
 @media(max-width:639px){.cmp-img{overflow:hidden}.cmp-img img{max-height:184px;width:auto;max-width:100%}}
+.brand{display:inline-flex;align-items:baseline;gap:10px;text-decoration:none}
+.brand-en{font-family:var(--font-serif);font-size:1.3rem;letter-spacing:.02em;color:var(--ink)}
+.brand-zh{font-family:var(--font-serif);font-size:.875rem;letter-spacing:.3em;color:var(--accent);padding-left:10px;border-left:1px solid var(--line)}
