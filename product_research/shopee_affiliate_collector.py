@@ -193,6 +193,25 @@ def parse_items(payloads: Iterable[dict], collected_at: Optional[str] = None) ->
     return out
 
 
+DEFAULT_MIN_PRICE_TWD = 2000
+
+
+def filter_by_price(items: list[RawListing], min_price: Optional[float]) -> tuple[list[RawListing], list[RawListing]]:
+    """依推定的新台幣價格篩選。價格取 price_twd_inferred，沒有就用 price_min；都沒有的歸為「價格不明」並排除。
+
+    回傳 (保留, 排除)。價格是由 ×100000 推定的，門檻附近的商品建議人工再看一眼。
+    """
+    if not min_price:
+        return items, []
+    keep, drop = [], []
+    for it in items:
+        price = getattr(it, "price_twd_inferred", None)
+        if price is None:
+            price = getattr(it, "price_min_twd_inferred", None)
+        (keep if price is not None and price >= min_price else drop).append(it)
+    return keep, drop
+
+
 def is_blocked_url(url: str) -> bool:
     low = url.lower()
     return any(m in low for m in BLOCK_MARKERS)
@@ -454,6 +473,11 @@ def cmd_collect(args: argparse.Namespace) -> int:
     if not items:
         print("沒有解析出商品。請先跑 discover 確認欄位。")
         return 3
+    items, dropped = filter_by_price(items, args.min_price)
+    print(f"價格門檻 NT${args.min_price:g}：保留 {len(items)} 筆，排除 {len(dropped)} 筆（價格低於門檻或價格不明）。")
+    if not items:
+        print("沒有商品達到價格門檻。可用 --min-price 0 取消門檻。")
+        return 3
     Path(args.out).write_text(json.dumps([i.model_dump(mode="json", exclude_none=True) for i in items], ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"已寫入 {args.out}：{len(items)} 筆。可接著執行 python -m product_research.product_normalizer --input {args.out}")
     return 0
@@ -478,6 +502,7 @@ def main(argv: Optional[list[str]] = None) -> int:
         sp.add_argument("--show", action="store_true", help="顯示瀏覽器視窗；遇到驗證頁會暫停讓你自己完成")
         if name == "collect":
             sp.add_argument("--out", default="titles.json")
+            sp.add_argument("--min-price", type=float, default=DEFAULT_MIN_PRICE_TWD, help="價格下限（新台幣，預設 2000；0 代表不篩）")
         sp.set_defaults(fn=fn)
     args = ap.parse_args(argv)
     if hasattr(args, "pages"):

@@ -188,3 +188,19 @@ def test_check_block_headless_stops_and_headed_waits(monkeypatch):
     still = Page("https://shopee.tw/verify/traffic/error")
     with pytest.raises(c._Stop):
         c._check_block(still, headless=False, where="測試")
+
+
+def test_filter_by_price():
+    from product_research.shopee_affiliate_collector import filter_by_price
+    from product_research.schemas import RawListing
+
+    def mk(price, **kw):
+        return RawListing(raw_title="測試商品名稱啊啊", item_id=str(price), price_twd_inferred=price, **kw)
+
+    items = [mk(200.0), mk(1999.0), mk(2000.0), mk(8900.0), RawListing(raw_title="價格不明商品名稱", item_id="x")]
+    keep, drop = filter_by_price(items, 2000)
+    assert [i.item_id for i in keep] == ["2000", "8900"]
+    assert len(drop) == 3
+    assert filter_by_price(items, 0) == (items, [])
+    only_min = RawListing(raw_title="只有最低價商品", item_id="m", price_min_twd_inferred=3500.0)
+    assert filter_by_price([only_min], 2000)[0] == [only_min]
