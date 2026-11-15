@@ -104,3 +104,23 @@ def test_describe_masks_urls():
     from product_research.shopee_affiliate_collector import describe
     out = "\n".join(describe({"offerLink": "https://s.shopee.tw/abc?affiliate_id=999", "n": 1, "sub": {"x": "y"}}))
     assert "999" not in out and "s.shopee.tw" in out and "sub: object" in out
+
+
+def test_string_prices_and_shop_flags_from_real_shape():
+    """欄位形狀取自使用者 inspect 輸出（price 為字串、無分潤欄位）；數值是模擬。"""
+    from product_research.shopee_affiliate_collector import parse_items
+    item = {"itemid": "52561360941", "shopid": "9675593", "name": "國際牌除濕機濾網 F-Y16EN/F-Y22EN/F-Y22PN",
+            "price": "20000000", "price_min": "20000000", "price_max": "25000000", "sold": 18, "historical_sold": 33,
+            "shop_name": "TOP生活家電", "is_official_shop": False, "shopee_verified": False, "item_status": "normal"}
+    pl = {"url": "https://affiliate.shopee.tw/api/v3/offer/product/list?keyword=F-Y22PN", "json": {"code": 0, "data": {"list": [item]}}}
+    got = parse_items([pl])[0]
+    assert got.price_twd_inferred == 200.0 and got.price_max_twd_inferred == 250.0
+    assert got.is_official_shop is False and got.shopee_verified is False and got.shop_name == "TOP生活家電"
+
+
+def test_find_item_path_reports_wrapper_fields():
+    from product_research.shopee_affiliate_collector import find_item_path
+    data = {"data": {"total": 1, "list": [{"commission_rate": 5, "item": {"itemid": 1, "name": "測試商品名稱啊啊"}}]}}
+    path, chain = find_item_path(data)
+    assert path == ("data", "list", 0, "item")
+    assert any(isinstance(o, dict) and "commission_rate" in o for _, o in chain)

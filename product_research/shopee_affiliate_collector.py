@@ -52,6 +52,22 @@ _SHOP_NAME_KEYS = ("shop_name", "shopName", "seller_name", "sellerName")
 _MALL_KEYS = ("is_official_shop", "isOfficialShop", "shopee_verified", "is_shopee_mall", "isMall", "official_shop")
 
 
+def _num(v: Any) -> Optional[float]:
+    """數字或數字字串 → float；其他回 None。"""
+    if isinstance(v, bool):
+        return None
+    if isinstance(v, (int, float)):
+        return float(v)
+    if isinstance(v, str) and re.fullmatch(r"-?\d+(?:\.\d+)?", v.strip()):
+        return float(v)
+    return None
+
+
+def _twd(v: Any, is_list_api: bool) -> Optional[float]:
+    n = _num(v)
+    return round(n / PRICE_SCALE, 2) if is_list_api and n is not None else None
+
+
 def _first(d: dict, keys: Iterable[str]) -> Any:
     for k in keys:
         if k in d and d[k] not in (None, ""):
@@ -135,9 +151,18 @@ def parse_items(payloads: Iterable[dict], collected_at: Optional[str] = None) ->
             is_list_api = PRODUCT_LIST_PATH in str(payload.get("url", ""))
             extra = {
                 "price_raw": price_raw,
-                "price_twd_inferred": round(price_raw / PRICE_SCALE, 2) if is_list_api and isinstance(price_raw, (int, float)) else None,
+                "price_twd_inferred": _twd(price_raw, is_list_api),
+                "price_min_twd_inferred": _twd(it.get("price_min"), is_list_api),
+                "price_max_twd_inferred": _twd(it.get("price_max"), is_list_api),
+                "sold": it.get("sold"),
+                "historical_sold": it.get("historical_sold"),
+                "stock": it.get("stock"),
+                "shop_rating": it.get("shop_rating"),
+                "comment_count": it.get("cmt_count"),
+                "is_official_shop": it.get("is_official_shop"),
+                "shopee_verified": it.get("shopee_verified"),
+                "item_status": it.get("item_status"),
                 "commission_raw": _first(it, _COMMISSION_KEYS),
-                "mall_flag_raw": _first(it, _MALL_KEYS),
                 "affiliate_link": link if isinstance(link, str) and link.startswith("http") else None,
                 "capture_url": payload.get("url"),
             }
@@ -317,6 +342,33 @@ def describe(node: Any, depth: int = 0, max_depth: int = 4) -> list[str]:
     return lines
 
 
+def find_item_path(node: Any, path: tuple = ()) -> Optional[tuple[tuple, list]]:
+    """回傳第一個商品的路徑，以及沿途每一層的物件（用來看商品外面有哪些欄位）。"""
+    chain: list = []
+
+    def visit(n: Any, pth: tuple) -> Optional[tuple]:
+        if isinstance(n, dict):
+            if looks_like_item(n):
+                return pth
+            for k, v in n.items():
+                chain.append((pth, n))
+                r = visit(v, pth + (k,))
+                if r is not None:
+                    return r
+                chain.pop()
+        elif isinstance(n, list):
+            for i, v in enumerate(n):
+                chain.append((pth, n))
+                r = visit(v, pth + (i,))
+                if r is not None:
+                    return r
+                chain.pop()
+        return None
+
+    found = visit(node, path)
+    return (found, chain) if found is not None else None
+
+
 def cmd_inspect(args: argparse.Namespace) -> int:
     files = sorted(CAPTURE_DIR.glob("capture-*.json"))
     if not files:
@@ -332,6 +384,15 @@ def cmd_inspect(args: argparse.Namespace) -> int:
     data = pl["json"]
     top = {k: v for k, v in data.items() if not isinstance(v, (dict, list))} if isinstance(data, dict) else {}
     print("最上層欄位：", top)
+    located = find_item_path(data)
+    if located:
+        pth, chain = located
+        print("第一筆商品的位置：", " → ".join(str(x) for x in pth))
+        print("商品外層（沿途每一層）的欄位：")
+        for p_, obj in chain:
+            if isinstance(obj, dict):
+                row = {k: (f"{type(v).__name__}" if isinstance(v, (dict, list)) else _mask(v)) for k, v in obj.items()}
+                print(f"  [{'/'.join(str(x) for x in p_) or '根'}] {row}")
     items = walk_items(data)
     print(f"商品筆數：{len(items)}。第一筆的欄位結構：")
     print("\n".join(describe(items[0])) if items else "（解析不到商品）")
