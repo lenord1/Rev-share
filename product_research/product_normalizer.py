@@ -380,7 +380,13 @@ def normalize_title(
     r = _rules()
     acc = next((n for n in r.accessory_nouns if n in cleaned), None)
     kind, kind_reason = ListingKind.SINGLE, None
-    if acc and ("適用" in cleaned or "專用" + acc in cleaned or "原廠" + acc in cleaned or not categories or cleaned.rstrip().endswith(acc)):
+    # 「除濕機濾網」「除濕機 排水管」：品類詞後面直接接配件名詞＝配件；「濾網型」「濾網式」是機型描述，不算
+    cat_words = [k for c in r.categories for k in c["keywords"]]
+    adjacent = any(
+        re.search(re.escape(k) + r"\s*" + re.escape(n) + r"(?![型式])", cleaned)
+        for k in cat_words for n in r.accessory_nouns
+    )
+    if acc and (adjacent or "適用" in cleaned or "專用" + acc in cleaned or "原廠" + acc in cleaned or not categories or cleaned.rstrip().endswith(acc)):
         kind, kind_reason = ListingKind.ACCESSORY, f"標題為配件／耗材（{acc}）"
     elif bundle_word:
         kind, kind_reason = ListingKind.BUNDLE, f"標題含組合字樣「{bundle_word.group(0).strip()}」"

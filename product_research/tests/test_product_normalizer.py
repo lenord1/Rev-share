@@ -328,3 +328,18 @@ def test_refurbished_not_merged_with_new():
     assert len(r.masters) == 2
     assert {m.variant.condition for m in r.masters} == {"non-new", None}
     assert all(m.status == ReviewStatus.NEEDS_REVIEW for m in r.masters)
+
+
+# 以下標題取自使用者 collect 實際抓到的搜尋結果（標題為真實，已被截短的以「…」結尾者只取可見部分）
+@pytest.mark.parametrize("title", [
+    "國際牌除濕機濾網 F-Y16EN/F-Y22EN/F-Y22PN/F-Y20EH/F-Y24GX",
+    "國際牌 除濕機 濾網 適用F-Y16EN F-Y22EN  F-Y22PN附發票",
+    "F-Y22EN、F-Y22BW、F-YV32LX、F-Y22PN 濾網 奈米銀抗菌抗敏清淨濾網",
+])
+def test_real_filter_titles_are_accessories(title):
+    assert normalize_title(title).kind == ListingKind.ACCESSORY
+
+
+def test_filter_type_machine_is_not_accessory():
+    n = normalize_title("SHARP夏普 15公升 乾淨方 3合1雙氣流美型清淨除濕機濾網型 DW-T15FT")
+    assert n.kind == ListingKind.SINGLE and n.model.written == "DW-T15FT"
