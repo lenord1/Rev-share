@@ -2,6 +2,8 @@
 
 真實欄位要等使用者在自己電腦跑 discover 後才能確認；那之後會另外加真實擷取的測試。
 """
+from pathlib import Path
+
 from product_research.product_normalizer import group_listings
 from product_research.shopee_affiliate_collector import is_blocked_url, parse_items, walk_items
 
@@ -235,3 +237,92 @@ def test_should_capture_only_affiliate_api():
     assert not should_capture("https://monitor-report.affiliate.shopee.tw/api/reportLogs")
     assert not should_capture("https://deo.shopeemobile.com/shopee/mkt-web-sdk/translate/1539/en.json")
     assert not should_capture("https://dem.shopee.com/dem/entrance/v1/apps/website/tags/config-monitor/event/json")
+
+
+# ---- 批次 ----
+def _rec(*items):
+    return {"at": "2026-11-15T21:00:00", "count": len(items), "items": list(items)}
+
+
+def _item(item_id, shop_id, price, sold):
+    return {"raw_title": f"測試商品名稱 {item_id}", "item_id": item_id, "shop_id": shop_id,
+            "price_twd_inferred": price, "historical_sold": sold}
+
+
+def test_load_keywords_file(tmp_path):
+    from product_research.shopee_affiliate_collector import load_keywords_file
+    f = tmp_path / "k.txt"
+    f.write_text("# 註解\nF-Y22PN\n\n  RD-14FJ  # 後面註解\nF-Y22PN\n", encoding="utf-8")
+    assert load_keywords_file(f) == ["F-Y22PN", "RD-14FJ"]
+
+
+def test_seed_file_is_loadable_and_has_no_duplicates():
+    from product_research.shopee_affiliate_collector import load_keywords_file
+    kws = load_keywords_file(Path(__file__).parents[1] / "data" / "dehumidifier_seed_models.txt")
+    assert "F-Y22PN" in kws and len(kws) == len(set(kws)) and len(kws) >= 20
+
+
+def test_merge_progress_dedupes_filters_sorts_and_reports_missing():
+    from product_research.shopee_affiliate_collector import merge_progress
+    progress = {"done": {
+        "除濕機": _rec(_item("1", "9", 9000.0, "50"), _item("2", "9", 500.0, "999"), _item("3", "8", 12000.0, "300")),
+        "F-Y22PN": _rec(_item("1", "9", 9000.0, "50"), _item("4", "7", 10990.0, "20")),   # 1 與上面重複
+        "AD-S512T": _rec(_item("5", "6", 450.0, "10")),                                      # 全部低於門檻
+        "RD-460VJ": _rec(),                                                                   # 沒結果
+    }}
+    keep, drop, missing = merge_progress(progress, 3000)
+    assert [i.item_id for i in keep] == ["3", "1", "4"]          # 依歷史銷量 300、50、20
+    assert {i.item_id for i in drop} == {"2", "5"}
+    assert missing == ["AD-S512T", "RD-460VJ"]
+
+
+def test_progress_roundtrip_and_corrupt_file(tmp_path):
+    from product_research.shopee_affiliate_collector import load_progress, save_progress
+    path = tmp_path / "p.json"
+    assert load_progress(path) == {"done": {}}
+    save_progress({"done": {"a": _rec()}}, path)
+    assert load_progress(path)["done"]["a"]["count"] == 0
+    path.write_text("{壞掉", encoding="utf-8")
+    assert load_progress(path) == {"done": {}}
+
+
+def test_cmd_batch_wiring_with_fake_browser(tmp_path, monkeypatch, capsys):
+    """瀏覽器部分以假函式取代：驗證關鍵字排序、跳過已完成、上限、輸出檔與報告。"""
+    import json
+    import product_research.shopee_affiliate_collector as c
+
+    monkeypatch.setattr(c, "PROGRESS_FILE", tmp_path / "progress.json")
+    seen_calls = []
+
+    def fake_run(todo, headless, browser_name, progress, max_searches):
+        seen_calls.append([k for k, _ in todo])
+        n = 0
+        for kw, pages in todo:
+            if n >= max_searches:
+                break
+            data = {"除濕機": [_item("1", "9", 9000.0, "80"), _item("2", "9", 300.0, "5")], "F-Y22PN": [_item("3", "8", 10990.0, "40")]}.get(kw, [])
+            progress.setdefault("done", {})[kw] = _rec(*data)
+            c.save_progress(progress, tmp_path / "progress.json")
+            n += 1
+        return n
+
+    monkeypatch.setattr(c, "_run_batch", fake_run)
+    models = tmp_path / "m.txt"
+    models.write_text("F-Y22PN\nRD-14FJ\nAD-S512T\n", encoding="utf-8")
+    out = tmp_path / "titles.json"
+
+    def args(**kw):
+        base = dict(category="除濕機", category_pages=5, models_file=str(models), max_searches=2, min_price=3000.0,
+                    out=str(out), reset=False, show=True, browser="msedge")
+        base.update(kw)
+        return type("A", (), base)()
+
+    assert c.cmd_batch(args()) == 0
+    first = capsys.readouterr().out
+    assert seen_calls[0] == ["除濕機", "F-Y22PN", "RD-14FJ", "AD-S512T"]
+    assert "尚未搜尋（2）：RD-14FJ、AD-S512T" in first
+    assert [i["item_id"] for i in json.loads(out.read_text(encoding="utf-8"))] == ["1", "3"]  # 依銷量 80、40；300 元被排除
+
+    assert c.cmd_batch(args(max_searches=5)) == 0          # 第二輪：只搜剩下的
+    assert seen_calls[1] == ["RD-14FJ", "AD-S512T"]
+    assert "沒有 NT$3000 以上商品的關鍵字（2）：RD-14FJ、AD-S512T" in capsys.readouterr().out

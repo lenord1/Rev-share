@@ -1,0 +1,36 @@
+# 除濕機型號種子清單：一行一個搜尋關鍵字，# 開頭是註解。
+# 來源只有兩種，都有證據：(A) 網站 products.json 既有商品；(B) 2026-11-15 搜尋結果裡實際出現過的型號。
+# 這不是「熱門排行」。熱門與否由蝦皮後台的已售數量（historical_sold）決定，看 batch 結果的排名。
+# 沒有賣的型號會被列在「找不到」報告裡，不會造成錯誤。
+
+# (A) 網站既有商品
+MJ-EV150JX
+F-Y22PN
+AD-S512T
+RD-14FJ
+RD-22FJ
+RD-460VJ
+F-Y12PM
+F-YV50LX
+FD-Y60L
+FD-A90W
+FD-Y180L
+MJ-EHV180JX
+MJ-EHV280KX
+AD-W520T
+AD-S552DT
+HDH-12DY030
+HDH-24DY03W
+TDH-120MD
+
+# (B) 搜尋 F-Y22PN 時實際出現的其他型號
+F-Y18PN
+F-Y22EN
+F-Y22BW
+F-YV24NN
+F-YV32LX
+RD-18FJ
+RD-22FC
+RD-220HC
+RD-260HC
+RD-300HC

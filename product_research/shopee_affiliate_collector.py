@@ -36,6 +36,7 @@ CAPTURE_DIR = HOME_DIR / "captures"
 OFFER_URL = "https://affiliate.shopee.tw/offer/product_offer"
 
 MIN_DELAY, MAX_DELAY = 3.0, 6.0
+MIN_DELAY_RANGE = (MIN_DELAY, MAX_DELAY)
 MAX_CAPTURES = 150
 CAPTURE_HOST = "affiliate.shopee.tw"  # 只記後台自己的 API（主機名稱需完全相同）；監控、翻譯檔、追蹤回報等雜訊不記
 
@@ -211,6 +212,64 @@ def filter_by_price(items: list[RawListing], min_price: Optional[float]) -> tupl
             price = getattr(it, "price_min_twd_inferred", None)
         (keep if price is not None and price >= min_price else drop).append(it)
     return keep, drop
+
+
+# ---------------------------------------------------------------------------
+# 批次抓取：同一個瀏覽器工作階段搜尋多個關鍵字，每搜完一個就存進度，可中斷後接續
+# ---------------------------------------------------------------------------
+
+PROGRESS_FILE = HOME_DIR / "batch_progress.json"
+BATCH_DELAY = (8.0, 15.0)
+
+
+def load_keywords_file(path: Path) -> list[str]:
+    """一行一個關鍵字；空行與 # 開頭略過；重複的只留第一個。"""
+    out: list[str] = []
+    for raw in Path(path).read_text(encoding="utf-8").splitlines():
+        line = raw.split("#", 1)[0].strip()
+        if line and line not in out:
+            out.append(line)
+    return out
+
+
+def load_progress(path: Optional[Path] = None) -> dict:
+    path = path or PROGRESS_FILE
+    if path.exists():
+        try:
+            return json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            pass
+    return {"done": {}}
+
+
+def save_progress(progress: dict, path: Optional[Path] = None) -> None:
+    path = path or PROGRESS_FILE
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_suffix(".tmp")
+    tmp.write_text(json.dumps(progress, ensure_ascii=False), encoding="utf-8")
+    tmp.replace(path)  # 先寫暫存再取代，避免中途被中斷時把進度檔寫壞
+
+
+def merge_progress(progress: dict, min_price: Optional[float]) -> tuple[list[RawListing], list[RawListing], list[str]]:
+    """把所有已完成關鍵字的結果合併：依（賣場,商品）去重、套價格門檻、依歷史銷量由高到低排序。
+
+    回傳（保留, 排除, 沒有任何保留商品的關鍵字）。"""
+    seen: set[tuple] = set()
+    all_items: list[RawListing] = []
+    by_kw: dict[str, list[RawListing]] = {}
+    for kw, rec in progress.get("done", {}).items():
+        items = [RawListing.model_validate(i) for i in rec.get("items", [])]
+        by_kw[kw] = items
+        for it in items:
+            key = (it.shop_id, it.item_id)
+            if key not in seen:
+                seen.add(key)
+                all_items.append(it)
+    keep, drop = filter_by_price(all_items, min_price)
+    keep.sort(key=lambda i: -(_num(getattr(i, "historical_sold", None)) or 0))
+    keep_keys = {(i.shop_id, i.item_id) for i in keep}
+    missing = [kw for kw, items in by_kw.items() if not any((i.shop_id, i.item_id) in keep_keys for i in items)]
+    return keep, drop, missing
 
 
 def is_blocked_url(url: str) -> bool:
@@ -443,6 +502,110 @@ def find_item_path(node: Any, path: tuple = ()) -> Optional[tuple[tuple, list]]:
     return (found, chain) if found is not None else None
 
 
+def _search(page, keyword: str, headless: bool) -> None:
+    """在後台搜尋框搜尋；等到帶該關鍵字的商品清單回應才返回。"""
+    box = page.get_by_placeholder(re.compile("搜尋|search|關鍵字|商品", re.I)).first
+    if box.count() == 0:
+        raise _Stop("找不到搜尋框。")
+    box.fill(keyword)
+    try:
+        with page.expect_response(lambda r: is_keyword_list_url(r.url, keyword), timeout=25000):
+            box.press("Enter")
+    except Exception:
+        _check_block(page, headless, "搜尋後")
+        raise _Stop(f"搜尋「{keyword}」後 25 秒內沒有收到商品清單回應。")
+    page.wait_for_load_state("networkidle", timeout=30000)
+    _check_block(page, headless, "搜尋後")
+
+
+def _run_batch(keywords: list[tuple[str, int]], headless: bool, browser_name: Optional[str],
+               progress: dict, max_searches: int) -> int:
+    """依序搜尋 keywords（關鍵字, 捲動頁數）。每完成一個就存進度。回傳這次實際搜尋的數量。"""
+    if not STATE_FILE.exists():
+        sys.exit("找不到登入狀態，請先執行 login。")
+    sync_playwright = _require_playwright()
+    captured: list[dict] = []
+    done_now = 0
+
+    def on_response(resp) -> None:
+        try:
+            if "json" not in (resp.headers or {}).get("content-type", "") or not should_capture(resp.url):
+                return
+            captured.append({"url": resp.url, "status": resp.status, "json": resp.json()})
+        except Exception:
+            pass
+
+    with sync_playwright() as p:
+        browser = launch_browser(p, headless=headless, preferred=browser_name)
+        ctx = browser.new_context(storage_state=str(STATE_FILE), locale="zh-TW")
+        page = ctx.new_page()
+        page.on("response", on_response)
+        try:
+            page.goto(OFFER_URL, wait_until="networkidle", timeout=45000)
+            if _check_block(page, headless, "開啟後台時"):
+                page.goto(OFFER_URL, wait_until="networkidle", timeout=45000)
+                _check_block(page, headless, "重新載入後")
+            for kw, pages in keywords:
+                if done_now >= max_searches:
+                    print(f"已達本輪上限 {max_searches} 次，停止（進度已存，下次執行會接續）。")
+                    break
+                _sleep() if done_now == 0 else time.sleep(random.uniform(*BATCH_DELAY))
+                start = len(captured)
+                _search(page, kw, headless)
+                for _ in range(max(0, pages - 1)):
+                    time.sleep(random.uniform(*MIN_DELAY_RANGE))
+                    page.mouse.wheel(0, 2400)
+                    page.wait_for_load_state("networkidle", timeout=30000)
+                    _check_block(page, headless, "捲動時")
+                items = parse_items(select_payloads(captured[start:], kw))
+                progress.setdefault("done", {})[kw] = {
+                    "at": datetime.now().isoformat(timespec="seconds"),
+                    "count": len(items),
+                    "items": [i.model_dump(mode="json", exclude_none=True) for i in items],
+                }
+                save_progress(progress)
+                done_now += 1
+                print(f"  [{done_now}] 「{kw}」：收到 {len(items)} 筆")
+                if len(captured) > 400:  # 長時間執行時避免記憶體一直長大
+                    del captured[:-60]
+        finally:
+            browser.close()
+    return done_now
+
+
+def cmd_batch(args: argparse.Namespace) -> int:
+    keywords: list[tuple[str, int]] = []
+    if args.category:
+        keywords.append((args.category, max(1, min(args.category_pages, 10))))
+    if args.models_file:
+        keywords += [(k, 1) for k in load_keywords_file(Path(args.models_file)) if k != args.category]
+    if not keywords:
+        print("請用 --category 或 --models-file 指定要搜尋的內容。")
+        return 2
+    progress = {"done": {}} if args.reset else load_progress()
+    todo = [(k, p) for k, p in keywords if k not in progress.get("done", {})]
+    print(f"關鍵字共 {len(keywords)} 個，已完成 {len(keywords) - len(todo)} 個，待搜尋 {len(todo)} 個；本輪最多 {args.max_searches} 個。")
+    stopped = None
+    if todo:
+        try:
+            _run_batch(todo, headless=not args.show, browser_name=args.browser, progress=progress, max_searches=args.max_searches)
+        except _Stop as e:
+            stopped = str(e)
+            print(f"已停止：{e}")
+    keep, drop, missing = merge_progress(progress, args.min_price)
+    remaining = [k for k, _ in keywords if k not in progress.get("done", {})]
+    if keep:
+        Path(args.out).write_text(json.dumps([i.model_dump(mode="json", exclude_none=True) for i in keep], ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(f"\n價格門檻 NT${args.min_price:g}：保留 {len(keep)} 筆（已依歷史銷量排序），排除 {len(drop)} 筆。")
+    if keep:
+        print(f"已寫入 {args.out}")
+    if missing:
+        print(f"沒有 NT${args.min_price:g} 以上商品的關鍵字（{len(missing)}）：" + "、".join(missing))
+    if remaining:
+        print(f"尚未搜尋（{len(remaining)}）：" + "、".join(remaining[:12]) + ("…" if len(remaining) > 12 else "") + "\n再執行一次相同指令就會接續。")
+    return 2 if stopped else (0 if keep else 3)
+
+
 def cmd_inspect(args: argparse.Namespace) -> int:
     files = sorted(CAPTURE_DIR.glob("capture-*.json"))
     if not files:
@@ -515,6 +678,17 @@ def main(argv: Optional[list[str]] = None) -> int:
     lp = sub.add_parser("login", help="開瀏覽器手動登入一次，存登入狀態")
     lp.add_argument("--browser", choices=BROWSER_ORDER, default="msedge", help=browser_help)
     lp.set_defaults(fn=cmd_login)
+    bp = sub.add_parser("batch", help="批次搜尋多個關鍵字（品類＋型號清單），可中斷後接續")
+    bp.add_argument("--category", help="先搜這個品類關鍵字（例如 除濕機），多捲動幾頁")
+    bp.add_argument("--category-pages", type=int, default=5, help="品類搜尋捲動頁數（預設 5，上限 10）")
+    bp.add_argument("--models-file", help="型號清單檔：一行一個關鍵字")
+    bp.add_argument("--max-searches", type=int, default=10, help="本輪最多搜尋幾個關鍵字（預設 10）")
+    bp.add_argument("--min-price", type=float, default=DEFAULT_MIN_PRICE_TWD)
+    bp.add_argument("--out", default="titles.json")
+    bp.add_argument("--reset", action="store_true", help="清掉已存的進度重新開始")
+    bp.add_argument("--show", action="store_true", default=True, help=argparse.SUPPRESS)
+    bp.add_argument("--browser", choices=BROWSER_ORDER, default="msedge")
+    bp.set_defaults(fn=cmd_batch)
     ip = sub.add_parser("inspect", help="只印出最近一次 discover 的商品欄位結構（不含 cookie）")
     ip.add_argument("--keyword", help="與 discover 時相同的關鍵字")
     ip.add_argument("--match", help="改看網址含此文字的接口（例如 productOfferLinks），印出請求內容與回應結構")

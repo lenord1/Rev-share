@@ -48,6 +48,16 @@ python -m product_research.product_normalizer --input titles.json
 
 登入狀態只存在 `~/.shopee_research/`；遇到登入頁或驗證碼會停止，不繞過。後台欄位名稱尚未用真實資料驗證，所以請先跑 `discover`。
 
+## 批次抓取（品類＋型號清單）
+
+```cmd
+run_batch.bat                 :: 除濕機、最低價 3000、每輪最多搜 10 個關鍵字
+run_batch.bat 2500 12         :: 最低價 2500、每輪 12 個
+run_batch.bat 3000 10 reset   :: 清掉進度重來
+```
+
+先搜品類關鍵字（多捲動幾頁），再依 `data/dehumidifier_seed_models.txt` 逐個型號補搜。每完成一個關鍵字就存進度（`~/.shopee_research/batch_progress.json`），被擋或達上限後再執行同一指令會接續。結果依蝦皮後台的歷史已售數量排序。遇到驗證頁就停手，過幾小時再接續。
+
 ## Phase A：規則
 
 - **比對鍵**：型號去掉連字號與空白、轉大寫（`ABC-120TW` = `abc120tw`）。鍵完全相同才會進同一份主檔候選。
