@@ -8,7 +8,7 @@ import { noindexCategory } from '../../lib/indexing.mjs';
 const guides = loadGuides();
 const noindex = guides.length === 0 || guides.every((g) => g.draft || noindexCategory(productsData.products, g.fm.category));
 ---
-<Layout title="買前指南｜挑家電" description="依坪數與情境整理的買前指南，每款都列出缺點與到手價。" noindex={noindex}>
+<Layout title="買前指南｜決選" description="依坪數與情境整理的買前指南，每款都列出缺點與到手價。" noindex={noindex}>
   <main class="wrap">
     <nav class="crumbs" aria-label="麵包屑"><a href="/">首頁</a> / 買前指南</nav>
     <h1>買前指南</h1>

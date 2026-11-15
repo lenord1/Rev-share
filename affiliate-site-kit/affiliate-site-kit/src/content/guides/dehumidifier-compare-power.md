@@ -3,7 +3,7 @@ title: 除濕機耗電比較：6 台標示功率，換算每公升除濕要幾�
 description: 比較站內有標示耗電或消耗功率的 6 台除濕機，並換算每公升日除濕量對應的瓦數。
 category: dehumidifier
 updated: 2026-11-08
-author: 挑家電
+author: 決選
 draft: true
 promise: 看懂耗電標示，算出真正的用電成本
 sources:

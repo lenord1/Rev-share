@@ -4,7 +4,7 @@ description: 整理站內 12 台除濕機官方標示的運轉噪音，沒公布
 category: dehumidifier
 need: quiet
 updated: 2026-11-08
-author: 挑家電
+author: 決選
 draft: true
 promise: 看懂噪音標示，挑出睡覺不吵的除濕機
 sources:

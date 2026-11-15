@@ -4,7 +4,7 @@ description: 用蝦皮標價除以日除濕量，比較站內 18 台除濕機的
 category: dehumidifier
 sort: value
 updated: 2026-11-09
-author: 挑家電
+author: 決選
 draft: false
 promise: 算出每公升除濕量的真實價格，不被標價騙
 sources:
