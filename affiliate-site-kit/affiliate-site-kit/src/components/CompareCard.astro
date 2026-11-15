@@ -19,28 +19,41 @@ const chName = channelsData.channels.find((c) => c.id === ch)?.name ?? ch;
 const img = p.image?.file ? images[`../assets/products/${p.image.file}`]?.default : undefined;
 const onSale = !p.priceUnverified && b.discount > 0;
 const zhe = onSale ? (Math.round((b.final / b.price) * 100) / 10).toString().replace(/\.0$/, '') : '';
+const keySpecs = (p.specs ?? []).filter((x: any) => x.value && x.value !== '待補').slice(0, 3);
+const showTldr = p.tldr && !String(p.tldr).includes('整理中');
 const parts = [`標價 ${money(b.price)}`];
 if (b.discount) parts.push(`現折 −${money(b.discount)}`);
 if (b.taxRefund) parts.push(`退稅／補助 −${money(b.taxRefund)}`);
 ---
-<li class="panel res" data-code={p.modelCode}>
-  {img && (
-    <a href={`/${p.category}/${p.slug}/`} class="block" aria-label={`${productName(p)}：看評測與規格`} style="background:#fff;border-radius:8px;margin-bottom:8px">
-      <Image src={img} alt={p.image.alt} widths={[240, 480]} sizes="(min-width: 768px) 240px, 100vw" style="width:100%;height:180px;object-fit:contain;padding:8px" />
-    </a>
-  )}
-  <div class="row">
+<li class="panel res cmp" data-code={p.modelCode}>
+  <a href={`/${p.category}/${p.slug}/`} class="cmp-img" aria-label={`${productName(p)}：看評測與規格`}>
+    {img
+      ? <Image src={img} alt={p.image.alt} widths={[240, 480]} sizes="(min-width: 640px) 200px, 112px" />
+      : <span aria-hidden="true">圖片待補</span>}
+  </a>
+  <div class="cmp-main">
     <h3 class="name"><a href={`/${p.category}/${p.slug}/`}>{productName(p)}</a>{p.officialStore && <span class="badge official">官方</span>}</h3>
-    <div class="price num">
-      {p.priceUnverified ? '價格請至蝦皮查看' : money(b.final)}
-      {onSale && <div style="font-size:12px;font-weight:600"><s style="opacity:.6">{money(b.price)}</s> <span style="color:#e11d48">{p.promoBadge || '優惠價'}・{zhe} 折</span></div>}
+    {keySpecs.length > 0 && (
+      <ul class="cmp-specs">
+        {keySpecs.map((x: any) => <li><span>{x.key}</span> <b class="num">{x.value}{x.unit ? ` ${x.unit}` : ''}</b></li>)}
+      </ul>
+    )}
+    <div class="cmp-price">
+      {p.priceUnverified
+        ? <span class="price">價格請至蝦皮查看</span>
+        : <>
+            <span class="cmp-label">到手價</span>
+            <b class="price num">{money(b.final)}</b>
+            {onSale && <s class="num">{money(b.price)}</s>}
+            {onSale && <span class="cmp-off">{p.promoBadge || '優惠價'}・{zhe} 折</span>}
+          </>}
     </div>
+    {!p.priceUnverified && parts.length > 1 && <p class="note num cmp-calc">{parts.join(' ')}</p>}
+    <p class="flaw-line">缺點：{p.flaw}</p>
+    {showTldr && <p class="cmp-tldr">{p.tldr}</p>}
   </div>
-  {!p.priceUnverified && parts.length > 1 && <p class="note num" style="margin:0">到手價 = {parts.join(' ')}</p>}
-  <p class="flaw-line">缺點：{p.flaw}</p>
-  <p style="margin:0">{p.tldr}</p>
-  <div class="actions">
-    <a class="btn small ghost" href={`/${p.category}/${p.slug}/`}>看評測與規格</a>
-    <a class="btn small" href={`/go/${ch}-${p.modelCode}`} rel="sponsored nofollow noopener" data-track="go" data-channel={ch} data-code={p.modelCode} data-slot={slot}>到{chName}看最新價格</a>
+  <div class="cmp-cta">
+    <a class="btn cta-main" href={`/go/${ch}-${p.modelCode}`} rel="sponsored nofollow noopener" data-track="go" data-channel={ch} data-code={p.modelCode} data-slot={slot}>到{chName}看最新價格</a>
+    <a class="cmp-more" href={`/${p.category}/${p.slug}/`}>看評測與規格</a>
   </div>
 </li>

@@ -340,3 +340,28 @@ h1{font-weight:800}
 .panel.res a[aria-label] img{mix-blend-mode:multiply}
 .panel.res .price s{font-weight:400}
 @media (prefers-reduced-motion:reduce){.btn,.cats button{transition:none}}
+
+/* ---- 比較卡：目標是「看懂 → 比較 → 下單」。橘色 CTA 是全卡最醒目的元件 ---- */
+ol.results{list-style:none;padding:0;display:grid;gap:14px}
+@media(min-width:900px){ol.results{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}}
+.panel.res.cmp{display:grid;grid-template-columns:104px minmax(0,1fr);grid-template-areas:"img main" "cta cta";gap:10px 14px;padding:14px;margin:0;align-items:start}
+.cmp-img{grid-area:img;display:grid;place-items:center;aspect-ratio:1;background:#fff;border:1px solid var(--line);color:var(--ink-2);font-size:12px;text-align:center}
+.cmp-img img{width:100%;height:100%;object-fit:contain;padding:6px}
+.cmp-main{grid-area:main;display:grid;gap:6px;min-width:0}
+.cmp .name{font-size:var(--step-0);line-height:1.4}
+.cmp-specs{display:flex;flex-wrap:wrap;gap:4px 12px;margin:0;padding:0;list-style:none;font-size:var(--step--1);color:var(--ink-2)}
+.cmp-specs b{color:var(--ink)}
+.cmp-price{display:flex;align-items:baseline;flex-wrap:wrap;gap:2px 8px}
+.cmp-label{font-size:var(--step--1);color:var(--ink-2)}
+.cmp-price .price{font-size:var(--step-3);line-height:1.1;font-weight:800;color:var(--ink);white-space:nowrap}
+.cmp-price s{color:var(--ink-2);font-size:var(--step--1)}
+.cmp-off{font-size:var(--step--1);font-weight:700;color:var(--promo);background:var(--promo-soft);padding:1px 8px;border-radius:2px}
+.cmp-calc{margin:0}
+.cmp .flaw-line{margin:0;font-size:var(--step--1);line-height:1.6}
+.cmp-tldr{margin:0;font-size:var(--step--1);color:var(--ink-2)}
+.cmp-cta{grid-area:cta;display:grid;gap:6px;justify-items:center}
+.btn.cta-main{width:100%;min-height:52px;font-size:var(--step-1);font-weight:800;background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.cta-main:hover{background:var(--ink);border-color:var(--ink)}
+.cmp-more{font-size:var(--step--1);color:var(--ink-2);padding:8px 12px;min-height:36px;display:inline-flex;align-items:center;text-underline-offset:3px}
+.cmp-more:hover{color:var(--accent)}
+@media(min-width:640px){.panel.res.cmp{grid-template-columns:168px minmax(0,1fr)}}
