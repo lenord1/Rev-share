@@ -308,36 +308,35 @@ details p{margin:8px 0 0;color:var(--ink-2)}
 .author-intro{margin:16px 0 20px;padding:14px 18px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
 .author-intro p{margin:0}.author-intro .note{margin-top:6px}
 
-/* ================= 視覺系統：解構瑞士 × 孔版印刷（2026-11-15） =================
-   暖白紙底、細線、方正轉角、編號標註；青綠／藍／洋紅／橙只作功能色。
-   只改樣式，不動資料與連結。顆粒與錯位皆為純 CSS，不載入外部資源。 */
-:root{--mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,"Noto Sans Mono CJK TC",monospace;--cyan:#0b7a75;--orange:#d9560b}
-body{position:relative;background:var(--paper);background-image:linear-gradient(to right,rgba(21,24,26,.035) 1px,transparent 1px);background-size:calc(100% / 12) 100%}
-body::before{content:"";position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.22;mix-blend-mode:multiply;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .2  0 0 0 0 .18  0 0 0 0 .15  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
-h1,h2,h3{letter-spacing:-.01em}
-h1{font-weight:800;text-shadow:1.5px 0 0 rgba(200,30,100,.28),-1.5px 0 0 rgba(11,122,117,.28)}
+/* ================= 視覺系統：解構瑞士 × 孔版印刷 =================
+   暖白紙底、細線、方正轉角。青綠／藍／洋紅／橙只作功能色（勝出／行動／優惠／缺點）。
+   依 docs/ui-spec.md：不用陰影、不用編號裝飾；等寬字只給價格與數字。純 CSS，不載入外部資源。 */
+:root{--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;--cyan:#0b7a75;--orange:#b84a08}
+html{scrollbar-color:var(--ink-2) var(--paper);accent-color:var(--accent)}
+::selection{background:var(--ink);color:var(--paper)}
+body{position:relative}
+@media (min-width:1024px){body{background-image:linear-gradient(to right,rgba(21,24,26,.04) 1px,transparent 1px);background-size:calc(100% / 12) 100%}}
+body::before{content:"";position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.14;mix-blend-mode:multiply;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .2  0 0 0 0 .18  0 0 0 0 .15  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+@media print{body::before{display:none}}
+h1,h2,h3{letter-spacing:0}
+h1{font-weight:800}
 .site-head{background:transparent;border-bottom:1.5px solid var(--ink)}
-.brand{font-family:var(--mono);font-weight:700;font-size:var(--step-0);letter-spacing:.04em;display:inline-flex;align-items:center;gap:10px}
-.brand::before{content:"";width:18px;height:18px;flex:none;background:radial-gradient(circle at 70% 30%,var(--promo) 0 3px,transparent 3.5px),conic-gradient(from 90deg at 50% 50%,var(--ink) 0 25%,transparent 0 50%,var(--cyan) 0 75%,transparent 0);border:1.5px solid var(--ink)}
-.nav{font-family:var(--mono);font-size:.8rem;letter-spacing:.06em}
-.nav a:hover{color:var(--accent);text-decoration:underline;text-underline-offset:4px}
-.btn{border-radius:2px;font-size:var(--step-0);letter-spacing:.02em;box-shadow:3px 3px 0 var(--ink);transition:transform .1s,box-shadow .1s}
-.btn:hover{filter:none;transform:translate(1px,1px);box-shadow:2px 2px 0 var(--ink)}
-.btn.ghost{box-shadow:none;border-width:1.5px;border-color:var(--ink);color:var(--ink)}
-.btn.ghost:hover{background:var(--ink);color:var(--paper);transform:none}
-.badge{border-radius:2px;font-family:var(--mono);font-size:.72rem;letter-spacing:.04em;text-transform:uppercase}
-.cats button{border-radius:2px;border-color:var(--ink);font-family:var(--mono);font-size:.85rem}
-.finder,.panel{border:1.5px solid var(--ink);background:var(--surface);position:relative}
-.note,.disclosure{font-family:var(--mono);font-size:.78rem;letter-spacing:.02em}
-.price,.num{font-family:var(--mono)}
-.site-foot{border-top:1.5px solid var(--ink);font-family:var(--mono);font-size:.78rem}
-/* 商品卡編號：像檔案索引 */
-ul:has(> .panel.res){counter-reset:idx;list-style:none;padding:0}
-.panel.res{counter-increment:idx;margin-bottom:14px;padding:14px 14px 14px 14px}
-.panel.res::before{content:"№ " counter(idx,decimal-leading-zero);position:absolute;top:-1px;right:-1px;padding:2px 8px;background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:.7rem;letter-spacing:.08em}
-.panel.res .flaw-line{border-left:3px solid var(--orange);padding-left:10px;background:transparent;color:var(--ink)}
-.panel.res s{font-family:var(--mono)}
-img{image-rendering:auto}
-.panel.res a[aria-label] img{mix-blend-mode:multiply;filter:contrast(1.03) saturate(.95)}
-@media (max-width:640px){body{background-image:none}}
-@media (prefers-reduced-motion:reduce){.btn{transition:none}}
+.brand{letter-spacing:.02em;display:inline-flex;align-items:center;gap:10px}
+.brand::before{content:"";width:16px;height:16px;flex:none;border:1.5px solid var(--ink);background:linear-gradient(135deg,var(--ink) 0 50%,var(--cyan) 50% 100%)}
+.nav a{text-underline-offset:4px}.nav a:hover{color:var(--accent);text-decoration:underline}
+.btn{border-radius:2px;font-size:var(--step-0);box-shadow:none;border:1.5px solid var(--accent);transition:background-color .15s,color .15s,border-color .15s}
+.btn:hover{filter:none;background:var(--ink);border-color:var(--ink)}
+.btn.ghost{border-color:var(--ink);color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:var(--paper)}
+.badge{border-radius:2px}
+.cats button{border-radius:2px;border-color:var(--ink)}
+.cats button:hover{background:var(--accent-soft)}
+.finder,.panel{border:1px solid var(--ink);background:var(--surface)}
+.price,.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.site-foot{border-top:1.5px solid var(--ink)}
+/* 商品卡：缺點用 warn 底色（ui-spec），原價劃線保持等寬對齊 */
+.panel.res{margin-bottom:14px;padding:14px}
+.panel.res .flaw-line{background:var(--warn-soft);color:var(--warn-ink);padding:8px 10px;border-radius:2px}
+.panel.res a[aria-label] img{mix-blend-mode:multiply}
+.panel.res .price s{font-weight:400}
+@media (prefers-reduced-motion:reduce){.btn,.cats button{transition:none}}
