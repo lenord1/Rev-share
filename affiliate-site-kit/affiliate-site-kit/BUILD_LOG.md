@@ -84,7 +84,7 @@
 ### 商品匯入工具（貼連結 → 草稿商品）
 **狀態（2026-11-08）**：通用部分已完成並有離線測試（`npm run test:import`，24 項）；說明見 `docs/product-import.md`。
 - 已做：網址解析（蝦皮 shopId／itemId、酷澎 productId）、一般網站 OpenGraph／JSON-LD、robots.txt 與限速、圖片下載與來源登記（`src/data/image-sources.json`）、草稿（`src/data/drafts/`）、轉正式驗證（缺點／優點／評論彙整／圖片授權）、`import-product.yml`。
-- **待你提供後才能做**：蝦皮聯盟後台（台灣）是否有官方資料介面與文件；酷澎官方 API 文件連結。介面已預留在 `scripts/providers/{shopee,coupang}-product.mjs`（`implemented = false`，不猜簽名、不爬網頁）。
+- **待你提供後才能做**：蝦皮聯盟後台（台灣）是否有官方資料介面與文件；酷澎官方 API 文件連結。介面已預留在 `scripts/providers/{shopee,coupang}-product.mjs`（`implemented = false`，不猜簽名）。
 - 待你實測：`import-product.yml` 第一次在 GitHub 手機版執行（需先開啟 Actions 建立 PR 的權限）；找一個有 OpenGraph／JSON-LD 的真實品牌官網商品頁試一次。
 - 待你確認：各聯盟條款對圖片使用的規定（確認前，所有匯入圖片維持「待確認授權」，不會上線）。
 
@@ -92,7 +92,7 @@
 - 放在專案的 `scripts/`，不做成網站上的頁面（公開靜態站不放寫入表單）。
 - 入口有兩個：手機 Claude（Code 分頁）說「新增這個商品」；或 GitHub 手機版執行工作流程 `import-product.yml`（輸入欄位 url），結果為 PR。
 - 依網域分流：蝦皮、酷澎走各自 API（`scripts/providers/`，設定驅動，不猜簽名）；其他網站只讀公開的 OpenGraph／JSON-LD，遵守 robots.txt、放慢速度；抓不到就請使用者手動貼。
-- 不爬蝦皮／酷澎網頁（違反條款、會被擋）。
+- （2026-11-15 已由使用者取消「不爬蝦皮／酷澎網頁」規則。）
 - 產出為「草稿」：放候選清單，不出現在網站；補完缺點、優點、評論彙整並通過驗證器才轉正式。
 - 圖片下載到 `src/assets/products/`，記錄來源與抓取日期；他站圖片預設標「待確認授權」，不自動上線。
 - API 金鑰只放 GitHub Secrets，不進對話與專案檔案。

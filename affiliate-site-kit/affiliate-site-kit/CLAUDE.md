@@ -14,7 +14,7 @@
 - **自動化到底**：`.github/workflows/`（由 templates 複製）的 ci / daily / weekly / link-check 負責驗證、價格觀測、commit 部署、重建、告警與週報；價格來源透過 `scripts/providers/`（預設 manual；本套件不內建爬蟲，需先確認官方 API 與條款）。
 - **個人化意圖推薦（Step 4）依 `docs/personalization-spec.md`，參考稿 `design/personalize.html`**：問卷、搜尋語意排序、購買意圖抽屜三個模組只透過共享的 `userProfile`（`src/lib/profile.js`）串聯；純原生 JS、偏好只存 localStorage、抽屜的價格與「較低／較快」說法必須有資料支持（`pricing.mjs` 的 `priceStats` / `compareChannels`）。商品 `tags` 限用 `scripts/config.json` 的 `tagVocabulary`。
 - **情境落地頁** `/{品類}/for/{情境}`：資料在 `src/data/intents.json`，產生規則在 `src/lib/intents.mjs`（符合商品數達門檻且導言已審核才產生）；導言由我審核，不得套模板量產。商品 slug 不可為 `for`。
-- **酷澎官方 API 已確認存在**：Step 15 依官方文件實作 `scripts/providers/coupang.mjs`（已有骨架；請我提供官方文件連結，不要向我索取金鑰）。商品用 `channelIds.coupang` 存 API 商品 ID。蝦皮若沒有官方資料介面，維持 manual/feed。
+- **酷澎官方 API 已確認存在**：Step 15 依官方文件實作 `scripts/providers/coupang.mjs`（已有骨架；請我提供官方文件連結，不要向我索取金鑰）。商品用 `channelIds.coupang` 存 API 商品 ID。蝦皮資料來源不限官方 API，也可直接讀取蝦皮商品頁（2026-11-15 使用者決定取消「不爬蝦皮／酷澎網頁」規則）。
 - 語系 `zh-Hant-TW`；金額 TWD；年份由建置動態產生，不寫死。
 
 ## 指令
@@ -30,7 +30,7 @@
 - `/draft-guide <品類>`、`/social-drafts <slug>`：內容與貼文起草（只起草，發布需我核准）
 - `npm run local`：建置後在 http://localhost:4322 開本機網站，照 vercel.json 套用 /go/ 轉址（示範商品停在模擬轉址頁）；`npm run local:serve` 不重新建置
 - `npm run local:check`：本機一鍵完整檢查（驗證、建置、閘門 0–8、全站頁面、/go/ 302、404、連結檢查、瀏覽器實測），結果寫入 reports/local-check.json。**部署前每次改動都先跑它**
-- `node scripts/import-product.mjs <商品網址> [--category …]`：貼連結產生**草稿**商品與圖片（`src/data/drafts/`，不進網站）；`node scripts/drafts.mjs list|check|license|promote`：補完缺點、優點、評論彙整、圖片授權後才轉正式；`npm run test:import` 離線測試。蝦皮／酷澎只解析網址編號，資料等官方 API（`scripts/providers/*-product.mjs`），不爬網頁。說明：`docs/product-import.md`
+- `node scripts/import-product.mjs <商品網址> [--category …]`：貼連結產生**草稿**商品與圖片（`src/data/drafts/`，不進網站）；`node scripts/drafts.mjs list|check|license|promote`：補完缺點、優點、評論彙整、圖片授權後才轉正式；`npm run test:import` 離線測試。蝦皮／酷澎預設只解析網址編號（`scripts/import/net.mjs` 仍封鎖這兩個網域，尚未改程式）。說明：`docs/product-import.md`
 - `node scripts/verify.mjs <0-16|all>`：步驟閘門（建站流程用 `/affiliate-site-architect`）
 
 ## 不可違反

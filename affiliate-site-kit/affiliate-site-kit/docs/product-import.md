@@ -29,4 +29,4 @@
 - `node scripts/drafts.mjs promote <代號>` 會寫入 `products.json` 並跑 `validate-products`，失敗自動還原。之後 `npm run sync`、`npm run local:check`。
 
 ## 不做的事
-不爬蝦皮／酷澎網頁、不猜 API 簽名、金鑰不進對話或檔案（之後只放 GitHub Secrets）、不以佣金排序選品、不替你確認圖片授權。
+不猜 API 簽名、金鑰不進對話或檔案（之後只放 GitHub Secrets）、不以佣金排序選品、不替你確認圖片授權。
