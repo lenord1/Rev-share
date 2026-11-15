@@ -1,0 +1,34 @@
+"""把 product_normalizer 的輸出（result.json）印成一頁摘要，不用手打長指令。
+
+    py -m product_research.summarize result.json
+"""
+from __future__ import annotations
+
+import json
+import sys
+from pathlib import Path
+
+
+def summarize(data: dict) -> str:
+    masters, acc, unresolved = data.get("masters", []), data.get("accessories", []), data.get("unresolved", [])
+    lines = [f"主檔 {len(masters)}｜配件 {len(acc)}｜無型號 {len(unresolved)}", ""]
+    for m in masters:
+        lines.append(f"■ {m['canonical_name']}  [{m['status']}]  賣場 {len(m['listings'])} 個")
+        for l in m["listings"]:
+            price = l.get("price_twd_inferred")
+            lines.append(
+                f"   NT${price if price is not None else '?':>8}  分潤 預設{l.get('commission_default_pct', '?')}%／最高{l.get('commission_max_pct', '?')}%  "
+                f"{'商城' if l.get('shopee_verified') or l.get('is_official_shop') else '    '}  {l['cleaned_title'][:48]}"
+            )
+        for r in m.get("review_reasons", []):
+            lines.append(f"     ⚠ {r['detail'][:70]}")
+    if unresolved:
+        lines += ["", "— 辨識不出型號 —"] + [f"   {u['cleaned_title'][:60]}" for u in unresolved]
+    return "\n".join(lines)
+
+
+if __name__ == "__main__":
+    path = sys.argv[1] if len(sys.argv) > 1 else "result.json"
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    print(summarize(json.loads(Path(path).read_text(encoding="utf-8"))))
