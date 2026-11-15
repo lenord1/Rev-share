@@ -124,3 +124,17 @@ def test_find_item_path_reports_wrapper_fields():
     path, chain = find_item_path(data)
     assert path == ("data", "list", 0, "item")
     assert any(isinstance(o, dict) and "commission_rate" in o for _, o in chain)
+
+
+def test_inspect_match_mode(tmp_path, monkeypatch, capsys):
+    import json
+    import product_research.shopee_affiliate_collector as c
+    monkeypatch.setattr(c, "CAPTURE_DIR", tmp_path)
+    cap = [{"url": "https://affiliate.shopee.tw/api/v3/gql?q=productOfferLinks", "status": 200,
+            "request_body": '{"query":"query productOfferLinks","variables":{"ids":[1]}}',
+            "json": {"data": {"productOfferLinks": [{"itemId": "1", "shortLink": "https://s.shopee.tw/secret123", "commissionRate": "5%"}]}}}]
+    (tmp_path / "capture-20261115-000000.json").write_text(json.dumps(cap), encoding="utf-8")
+    args = type("A", (), {"match": "productOfferLinks", "keyword": None})()
+    assert c.cmd_inspect(args) == 0
+    out = capsys.readouterr().out
+    assert "variables" in out and "commissionRate" in out and "secret123" not in out

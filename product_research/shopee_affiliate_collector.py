@@ -258,7 +258,15 @@ def _run_capture(keyword: Optional[str], pages: int, headless: bool, browser_nam
             ctype = (resp.headers or {}).get("content-type", "")
             if "json" not in ctype or len(captured) >= MAX_CAPTURES:
                 return
-            captured.append({"url": resp.url, "status": resp.status, "json": resp.json()})
+            entry = {"url": resp.url, "status": resp.status, "json": resp.json()}
+            if "/gql" in resp.url or "/offer/" in resp.url:
+                try:  # 只記下送出的查詢內容（GraphQL 語句與參數），不記標頭與 cookie
+                    body = resp.request.post_data
+                    if body:
+                        entry["request_body"] = body[:4000]
+                except Exception:
+                    pass
+            captured.append(entry)
         except Exception:
             pass  # 非 JSON 或已被關閉的回應，略過
 
@@ -375,11 +383,22 @@ def cmd_inspect(args: argparse.Namespace) -> int:
         print("找不到 capture 檔，請先執行 discover。")
         return 2
     captured = json.loads(files[-1].read_text(encoding="utf-8"))
-    chosen = select_payloads(captured, args.keyword)
+    if args.match:
+        chosen = [c for c in captured if args.match in c.get("url", "")]
+    else:
+        chosen = select_payloads(captured, args.keyword)
     if not chosen:
-        print("沒有符合的商品清單回應。")
+        print("沒有符合的回應。")
         return 3
     pl = chosen[-1]
+    if args.match:
+        print("接口：", re.sub(r"\?.*", "?…", pl["url"]), f"（共 {len(chosen)} 筆符合，顯示最後一筆）")
+        body = pl.get("request_body")
+        print("送出的內容（request body）：", body if body else "（這份 capture 沒有記錄，請重新執行 discover）")
+        print("回應結構：")
+        data = pl["json"]
+        print("\n".join(describe(data, max_depth=6)) or repr(data)[:500])
+        return 0
     print("接口：", re.sub(r"\?.*", "?…", pl["url"]))
     data = pl["json"]
     top = {k: v for k, v in data.items() if not isinstance(v, (dict, list))} if isinstance(data, dict) else {}
@@ -426,6 +445,7 @@ def main(argv: Optional[list[str]] = None) -> int:
     lp.set_defaults(fn=cmd_login)
     ip = sub.add_parser("inspect", help="只印出最近一次 discover 的商品欄位結構（不含 cookie）")
     ip.add_argument("--keyword", help="與 discover 時相同的關鍵字")
+    ip.add_argument("--match", help="改看網址含此文字的接口（例如 productOfferLinks），印出請求內容與回應結構")
     ip.set_defaults(fn=cmd_inspect)
     for name, fn in (("discover", cmd_discover), ("collect", cmd_collect)):
         sp = sub.add_parser(name)
