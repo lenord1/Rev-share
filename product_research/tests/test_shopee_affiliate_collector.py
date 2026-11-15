@@ -47,3 +47,36 @@ def test_block_detection():
     assert is_blocked_url("https://shopee.tw/buyer/login?next=x")
     assert is_blocked_url("https://shopee.tw/verify/traffic")
     assert not is_blocked_url("https://affiliate.shopee.tw/offer/product_offer")
+
+
+def test_launch_browser_falls_back_in_order(capsys):
+    from product_research.shopee_affiliate_collector import launch_browser
+
+    class FakeChromium:
+        def __init__(self): self.calls = []
+        def launch(self, channel=None, headless=True):
+            self.calls.append(channel)
+            if channel in ("msedge", "chrome"):
+                raise RuntimeError("Target closed\nlog line")
+            return "browser-ok"
+
+    class FakeP:
+        chromium = FakeChromium()
+
+    assert launch_browser(FakeP(), headless=True, preferred="msedge") == "browser-ok"
+    assert FakeP.chromium.calls == ["msedge", "chrome", None]
+
+
+def test_launch_browser_reports_all_failures():
+    import pytest
+    from product_research.shopee_affiliate_collector import launch_browser
+
+    class Boom:
+        def launch(self, channel=None, headless=True): raise RuntimeError(f"fail {channel}")
+
+    class P:
+        chromium = Boom()
+
+    with pytest.raises(SystemExit) as e:
+        launch_browser(P(), headless=True)
+    assert "msedge" in str(e.value) and "chromium" in str(e.value)

@@ -153,11 +153,35 @@ def _require_playwright():
     return sync_playwright
 
 
+BROWSER_ORDER = ("msedge", "chrome", "chromium")
+
+
+def launch_browser(p, headless: bool, preferred: Optional[str] = None):
+    """依序嘗試 Edge、Chrome、內建 Chromium；回傳第一個能啟動的瀏覽器。
+
+    Windows 一定有 Edge，用系統已安裝的瀏覽器比 Playwright 下載的 Chromium 穩定。
+    """
+    order = [preferred] if preferred else []
+    order += [b for b in BROWSER_ORDER if b not in order]
+    errors: list[str] = []
+    for name in order:
+        try:
+            if name == "chromium":
+                browser = p.chromium.launch(headless=headless)
+            else:
+                browser = p.chromium.launch(channel=name, headless=headless)
+            print(f"使用瀏覽器：{name}")
+            return browser
+        except Exception as e:  # noqa: BLE001 —— 要試下一個，不論原因
+            errors.append(f"{name}: {str(e).splitlines()[0][:120]}")
+    sys.exit("找不到可啟動的瀏覽器：\n  " + "\n  ".join(errors))
+
+
 def cmd_login(args: argparse.Namespace) -> int:
     sync_playwright = _require_playwright()
     HOME_DIR.mkdir(parents=True, exist_ok=True)
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
+        browser = launch_browser(p, headless=False, preferred=args.browser)
         ctx = browser.new_context(storage_state=str(STATE_FILE)) if STATE_FILE.exists() else browser.new_context()
         page = ctx.new_page()
         page.goto(OFFER_URL)
@@ -174,7 +198,7 @@ def cmd_login(args: argparse.Namespace) -> int:
     return 0
 
 
-def _run_capture(keyword: Optional[str], pages: int, headless: bool) -> list[dict]:
+def _run_capture(keyword: Optional[str], pages: int, headless: bool, browser_name: Optional[str] = None) -> list[dict]:
     if not STATE_FILE.exists():
         sys.exit("找不到登入狀態，請先執行：python -m product_research.shopee_affiliate_collector login")
     sync_playwright = _require_playwright()
@@ -190,7 +214,7 @@ def _run_capture(keyword: Optional[str], pages: int, headless: bool) -> list[dic
             pass  # 非 JSON 或已被關閉的回應，略過
 
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=headless)
+        browser = launch_browser(p, headless=headless, preferred=browser_name)
         ctx = browser.new_context(storage_state=str(STATE_FILE), locale="zh-TW")
         page = ctx.new_page()
         page.on("response", on_response)
@@ -228,7 +252,7 @@ def _run_capture(keyword: Optional[str], pages: int, headless: bool) -> list[dic
 
 def cmd_discover(args: argparse.Namespace) -> int:
     try:
-        captured = _run_capture(args.keyword, args.pages, headless=not args.show)
+        captured = _run_capture(args.keyword, args.pages, headless=not args.show, browser_name=args.browser)
     except _Stop as e:
         print(f"已停止：{e}")
         return 2
@@ -248,7 +272,7 @@ def cmd_discover(args: argparse.Namespace) -> int:
 
 def cmd_collect(args: argparse.Namespace) -> int:
     try:
-        captured = _run_capture(args.keyword, args.pages, headless=True)
+        captured = _run_capture(args.keyword, args.pages, headless=True, browser_name=args.browser)
     except _Stop as e:
         print(f"已停止：{e}")
         return 2
@@ -264,9 +288,13 @@ def cmd_collect(args: argparse.Namespace) -> int:
 def main(argv: Optional[list[str]] = None) -> int:
     ap = argparse.ArgumentParser(description="蝦皮分潤後台資料收集（無頭瀏覽器）")
     sub = ap.add_subparsers(dest="cmd", required=True)
-    sub.add_parser("login", help="開瀏覽器手動登入一次，存登入狀態").set_defaults(fn=cmd_login)
+    browser_help = "指定瀏覽器：msedge（預設）、chrome、chromium；失敗會自動換下一個"
+    lp = sub.add_parser("login", help="開瀏覽器手動登入一次，存登入狀態")
+    lp.add_argument("--browser", choices=BROWSER_ORDER, default="msedge", help=browser_help)
+    lp.set_defaults(fn=cmd_login)
     for name, fn in (("discover", cmd_discover), ("collect", cmd_collect)):
         sp = sub.add_parser(name)
+        sp.add_argument("--browser", choices=BROWSER_ORDER, default="msedge", help=browser_help)
         sp.add_argument("--keyword", help="在後台搜尋框輸入的關鍵字（型號或品名）")
         sp.add_argument("--pages", type=int, default=1, help="捲動載入的頁數（預設 1，上限 5）")
         if name == "discover":
