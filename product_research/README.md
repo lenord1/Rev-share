@@ -1,0 +1,58 @@
+# product_research｜商品研究與內容生成模組（蝦皮智慧選品系統 V3.0）
+
+Python 套件，與 `affiliate-site-kit/`（Astro 網站與 Node 腳本）並列。網站建置不會讀到這裡。
+
+## 進度
+
+| 階段 | 內容 | 狀態 |
+|---|---|---|
+| A | 商品名稱清理與型號正規化（`product_normalizer.py`） | 完成，77 項離線測試通過（2026-11-15） |
+| B | 官方資料與圖片來源搜尋 | 未開始 |
+| C | 優缺點研究與證據管理 | 未開始 |
+| D | 商品主檔與資料庫整合 | 未開始 |
+| E | SEO 商品卡片與詳情頁輸出 | 未開始 |
+
+## 安裝與執行（在 repo 根目錄）
+
+```bash
+pip install -r product_research/requirements.txt
+
+# 全部測試
+python -m pytest
+# 只跑模擬標題／只跑真實標題樣本
+python -m pytest -m "not real_titles"
+python -m pytest -m real_titles
+
+# 清理並合併標題
+python -m product_research.product_normalizer \
+  --title "【限時優惠】XX牌除濕機 ABC-120TW 公司貨 現貨免運" \
+  --title "【商城熱賣】XX牌 ABC120TW 高效除濕機"
+python -m product_research.product_normalizer --input titles.json --registry official_models.json --out result.json
+python -m product_research.product_normalizer --input titles.json --single   # 只清理，不合併
+```
+
+`--input` 接受標題字串陣列，或物件陣列（`raw_title`、`shop_id`、`item_id`、`shop_name`、`source_url`、`collected_at`…，其餘欄位原樣保留）。
+
+## Phase A：規則
+
+- **比對鍵**：型號去掉連字號與空白、轉大寫（`ABC-120TW` = `abc120tw`）。鍵完全相同才會進同一份主檔候選。
+- **不合併、標 `NEEDS_REVIEW`**：型號只差尾碼或版本字（`MJ-EV150JX` / `MJ-EV150JX-TW`、`FD-Y60L` / `FD-Y60L PLUS`）、O/0 與 I/1 混淆、同型號但容量／電壓不同、公司貨與平行輸入、新品與福利品。
+- **寫法不一致**（有無連字號、`AD S512T`）：合併成一份，但在沒有官方資料前標 `NEEDS_REVIEW`，型號寫法為「暫定」。
+- **官方型號登記表**（`--registry`，Phase B 產出）：對到官方型號才會變成 `VERIFIED`；登記表列為別名的寫法才會跨尾碼合併。
+- **組合／多入**與單機分開；**配件耗材**（適用某型號的濾網等）不建主檔；**找不到型號**的標題放 `unresolved`。
+- 促銷字、贈品、價格、日期、賣家宣稱（保固、產地、能效）會從名稱移除，記在 `removed_terms` 與 `attributes.seller_claims`（未查證）。
+- 原始標題與來源欄位全部保留在輸出的 `listings[].listing`。
+
+規則資料在 `data/title_rules.json`（促銷字、品類、配件詞）與 `data/brands.json`（品牌別名；`slug` 對齊 `products.json` 的 `modelCode` 前綴）。新增品牌或促銷字只改這兩個檔。
+
+## 已知限制
+
+- 少於 4 個英數字的型號（例如 Dyson `V12`）不會被辨識，會進 `unresolved`。
+- 品牌表以外的品牌只認得「○○牌」這種寫法。
+- `site_model_code` 是依型號產生的建議值；既有 `products.json` 有些 `modelCode` 省略了尾碼（`mitsubishi-mj-ev150jx`、`heran-hdh-12dy030`），對應留待 Phase D。
+
+## 測試資料
+
+- `tests/test_product_normalizer.py`：模擬標題（自行編寫的 23 種格式與各項合併規則）。
+- `tests/test_real_titles.py` + `tests/fixtures/real_titles.json`：真實標題樣本（專案草稿內的蝦皮標題與官網頁面名稱、2026-11-15 搜尋到的其他電商賣場標題），每筆有來源。
+- 兩者都不連網路。真實網站擷取測試從 Phase B 開始，另行記錄。

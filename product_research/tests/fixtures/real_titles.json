@@ -1,0 +1,33 @@
+{
+  "_說明": "真實標題樣本（非模擬）。來源分兩種：(1) 專案內既有草稿／商品資料保存的蝦皮商品標題與品牌官網頁面名稱；(2) 2026-11-15 以網路搜尋取得的其他電商賣場標題（搜尋引擎未收錄蝦皮頁面，且本專案不爬蝦皮網頁）。這些只用來測試標題清理與型號辨識，不代表已完成官方資料查證。",
+  "collected_at": "2026-11-15",
+  "f_y22pn": [
+    {"raw_title": "[ 雅虎周年慶感謝祭 ] Panasonic國際牌 11公升nanoeX清淨除濕機 F-Y22PN 線上刷卡免手續 全省宅配到府", "platform": "yahoo-auction", "source_url": "https://tw.bid.yahoo.com/item/101721026494", "shop_name": "泰昀嚴選", "collected_at": "2026-11-15", "source_note": "網路搜尋結果"},
+    {"raw_title": "◎金長美◎ 國際除濕機$94K F-Y22PN/FY22PN 11L 一級能效ECONAVI空氣清淨除濕機", "platform": "yahoo-auction", "source_url": "https://tw.bid.yahoo.com/item/101707908983", "shop_name": "金長美冷氣", "collected_at": "2026-11-15", "source_note": "網路搜尋結果"},
+    {"raw_title": "Panasonic國際牌 11公升nanoeX清淨除濕機 F-Y22PN", "platform": "yahoo-shopping", "source_url": "https://tw.buy.yahoo.com/gdsale/Panasonic%E5%9C%8B%E9%9A%9B%E7%89%8C-11%E5%85%AC%E5%8D%87nanoeX%E6%B8%85%E6%B7%A8%E9%99%A4%E6%BF%95%E6%A9%9F-F-Y22PN-11884611.html", "collected_at": "2026-11-15", "source_note": "網路搜尋結果"},
+    {"raw_title": "Panasonic國際牌 11L nanoeX 除濕機 F-Y22PN 原廠保固 智慧節能", "platform": "yahoo-shopping", "source_url": "https://tw.buy.yahoo.com/brands/41166754", "collected_at": "2026-11-15", "source_note": "網路搜尋結果"},
+    {"raw_title": "除濕機 除濕專用型 F-Y22PN - Panasonic 台灣", "platform": "official-page-title", "source_url": "https://shopee.tw/product/116309859/26592906704", "shop_id": "116309859", "item_id": "26592906704", "collected_at": "2026-11-08", "source_note": "專案草稿 shopee-116309859-26592906704.json 的 extracted.name（取自品牌官網頁面）"},
+    {"raw_title": "Panasonic 國際牌 11L nanoeX 除濕機 F-Y22PN", "platform": "shopee", "collected_at": "2026-11-09", "source_note": "專案 products.json panasonic-f-y22pn 的標題（依蝦皮商品標題整理）"},
+    {"raw_title": "國際牌 Panasonic 11L除濕機", "platform": "tk3c", "source_url": "https://www.tk3c.com/product/262556", "collected_at": "2026-11-15", "source_note": "網路搜尋結果；賣場標題本身沒有型號（型號寫在規格欄）"}
+  ],
+  "repo_titles": [
+    {"raw_title": "【蝦皮直營】SAMPO 聲寶 6L 微電腦除濕機 AD S512T 廠商直送", "platform": "shopee", "shop_id": "116309859", "item_id": "44202972894", "source_url": "https://shopee.tw/product/116309859/44202972894", "source_note": "專案草稿"},
+    {"raw_title": "SAMPO 聲寶 6L 微電腦除濕機 AD-S512T", "platform": "shopee", "source_note": "專案 products.json sampo-ad-s512t"},
+    {"raw_title": "【蝦皮直營】LG 樂金 PuriCare 18公升雙變頻除濕機 白 (DD181MWE0) 廠商直送", "platform": "shopee", "shop_id": "116309859", "item_id": "46352096111", "source_url": "https://shopee.tw/product/116309859/46352096111", "source_note": "專案草稿"},
+    {"raw_title": "PuriCare™ 雙變頻除濕機 - 18公升(白) - 時尚款 DD181MWE0", "platform": "official-page-title", "shop_id": "66851718", "item_id": "29643010579", "source_note": "專案草稿 extracted.name"},
+    {"raw_title": "PuriCare™ 雙變頻除濕機 - 18公升(白) MD181QWE0", "platform": "official-page-title", "source_note": "專案草稿 extracted.name"},
+    {"raw_title": "PuriCare™ 雙變頻除濕機 - 16公升 (粉紅) (無UVC) - 經典款 MD161QPK3", "platform": "official-page-title", "source_note": "專案草稿 extracted.name"},
+    {"raw_title": "日立江森 26公升/日 HEPA濾網 極光鈦變頻除濕機 RD-520VC", "platform": "shopee", "shop_id": "116309859", "item_id": "28824530575", "source_note": "專案草稿"},
+    {"raw_title": "3M 雙效空氣清淨除溼機 20公升 FD-Y200L", "platform": "shopee", "shop_id": "758501043", "item_id": "43684889876", "source_note": "專案草稿"},
+    {"raw_title": "3M™ 淨呼吸™ 6公升雙效空氣清淨除溼機 FD-Y60L", "platform": "official-page-title", "source_note": "專案草稿 extracted.name"},
+    {"raw_title": "3M 6L 雙效空氣清淨除濕機 FD-Y60L PLUS", "platform": "shopee", "source_note": "專案 products.json 3m-fd-y60l-plus"},
+    {"raw_title": "3M 18L 雙效空氣清淨除濕機 FD-Y180L Plus", "platform": "shopee", "source_note": "專案 products.json 3m-fd-y180l-plus"},
+    {"raw_title": "3M™ 淨呼吸™ 18公升雙效空氣清淨除溼機 FD-Y180L", "platform": "official-page-title", "source_note": "專案草稿 extracted.name"},
+    {"raw_title": "三菱 MITSUBISHI MJ-EV150JX-TW 15.2L 日製空氣清淨變頻除濕機", "platform": "shopee", "source_note": "專案 products.json mitsubishi-mj-ev150jx"},
+    {"raw_title": "HERAN 禾聯 6L 除濕機 HDH-12DY030(N)", "platform": "shopee", "source_note": "專案 products.json heran-hdh-12dy030"},
+    {"raw_title": "除濕機 [指定通路銷售] 變頻高效型 F-YV32NN - Panasonic 台灣", "platform": "official-page-title", "source_note": "專案草稿 extracted.name"},
+    {"raw_title": "除濕專用型RD-FJ系列除濕機｜日立冷氣", "platform": "official-page-title", "source_note": "專案草稿 extracted.name（系列頁，沒有完整型號）"},
+    {"raw_title": "26L 極適家居600除濕機 除濕適用空間33坪 (流光白)", "platform": "official-page-title", "source_note": "專案草稿 extracted.name（沒有型號）"},
+    {"raw_title": "【現貨免運★台灣保固】Hysure海說George 除濕機 空氣清淨除濕機 除溼機 小型除濕機 除濕器 除濕 浴室除濕機", "platform": "shopee", "shop_id": "344095175", "item_id": "8554568924", "source_note": "專案草稿（沒有型號）"}
+  ]
+}

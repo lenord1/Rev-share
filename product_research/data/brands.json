@@ -1,0 +1,26 @@
+{
+  "_說明": "品牌別名表。slug 對齊網站 products.json 的 modelCode 前綴；display 為網站顯示名稱。aliases 由長到短比對；英文別名不分大小寫且需獨立成詞。新增品牌只改這個檔案。",
+  "brands": [
+    {"slug": "panasonic", "display": "Panasonic 國際牌", "aliases": ["Panasonic", "國際牌", "松下"]},
+    {"slug": "mitsubishi-heavy", "display": "MITSUBISHI 三菱重工", "aliases": ["三菱重工", "Mitsubishi Heavy"]},
+    {"slug": "mitsubishi", "display": "MITSUBISHI 三菱", "aliases": ["三菱電機", "Mitsubishi Electric", "MITSUBISHI", "三菱"]},
+    {"slug": "hitachi", "display": "HITACHI 日立", "aliases": ["日立江森", "日立冷氣", "HITACHI", "日立"]},
+    {"slug": "sampo", "display": "SAMPO 聲寶", "aliases": ["SAMPO", "聲寶"]},
+    {"slug": "heran", "display": "HERAN 禾聯", "aliases": ["HERAN", "禾聯"]},
+    {"slug": "tatung", "display": "TATUNG 大同", "aliases": ["TATUNG", "大同"]},
+    {"slug": "lg", "display": "LG 樂金", "aliases": ["LG", "樂金"]},
+    {"slug": "3m", "display": "3M", "aliases": ["3M"]},
+    {"slug": "electrolux", "display": "Electrolux 伊萊克斯", "aliases": ["Electrolux", "伊萊克斯"]},
+    {"slug": "sharp", "display": "SHARP 夏普", "aliases": ["SHARP", "夏普"]},
+    {"slug": "teco", "display": "TECO 東元", "aliases": ["TECO", "東元"]},
+    {"slug": "kolin", "display": "Kolin 歌林", "aliases": ["Kolin", "歌林"]},
+    {"slug": "whirlpool", "display": "Whirlpool 惠而浦", "aliases": ["Whirlpool", "惠而浦"]},
+    {"slug": "chimei", "display": "CHIMEI 奇美", "aliases": ["CHIMEI", "奇美"]},
+    {"slug": "hawrin", "display": "HAWRIN 華菱", "aliases": ["HAWRIN", "華菱"]},
+    {"slug": "sanlux", "display": "SANLUX 台灣三洋", "aliases": ["SANLUX", "台灣三洋", "三洋"]},
+    {"slug": "dyson", "display": "Dyson", "aliases": ["Dyson", "戴森"]},
+    {"slug": "honeywell", "display": "Honeywell", "aliases": ["Honeywell"]},
+    {"slug": "philips", "display": "PHILIPS 飛利浦", "aliases": ["PHILIPS", "飛利浦"]},
+    {"slug": "xiaomi", "display": "Xiaomi 小米", "aliases": ["Xiaomi", "小米"]}
+  ]
+}

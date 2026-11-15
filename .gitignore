@@ -1,1 +1,4 @@
 affiliate-site-kit.zip
+__pycache__/
+.pytest_cache/
+*.pyc
