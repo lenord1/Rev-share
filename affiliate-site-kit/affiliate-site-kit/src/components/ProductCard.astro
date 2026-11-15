@@ -97,13 +97,13 @@ if (b.taxRefund) priceParts.push(`退稅／補助 −${fmt.format(b.taxRefund)}`
         {onSale && <p data-dwell-hint class="dwell-hint w-fit rounded-md bg-rose-50 px-2 py-1 text-xs font-bold text-rose-700 ring-1 ring-rose-200">⚡ 限時特價中，現折 {fmt.format(b.discount)}{p.promoValidUntil ? ` · 活動至 ${String(p.promoValidUntil).slice(5,10).replace('-','/')}` : ''}</p>}
         {unverified ? (
           <div class="flex flex-col gap-0.5">
-            <b class="text-xl font-extrabold text-slate-900">價格請至蝦皮查看</b>
+            <b class="text-xl font-bold text-slate-900">價格請至蝦皮查看</b>
             <span class="text-xs text-slate-500">賣場標價與限時特價會隨時調整，以蝦皮頁面為準</span>
           </div>
         ) : (<>
         <div class="flex flex-wrap items-baseline gap-x-3 gap-y-0.5">
           <span class="text-xs text-slate-500">到手價</span>
-          <b class="num text-3xl font-extrabold tracking-tight text-slate-900">{fmt.format(b.final)}</b>
+          <b class="num text-3xl font-bold tracking-tight text-slate-900">{fmt.format(b.final)}</b>
           {onSale && <s class="num text-base text-slate-400">{fmt.format(b.price)}</s>}
           {onSale && <span class="text-xs font-semibold text-slate-500">{saleLabel}・{zhe} 折</span>}
         </div>

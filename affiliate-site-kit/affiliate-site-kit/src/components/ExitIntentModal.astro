@@ -13,7 +13,7 @@ const fmt = new Intl.NumberFormat('zh-TW', { style: 'currency', currency: 'TWD',
 {ok && (
   <div id="exit-modal" class="fixed inset-0 z-50 hidden items-end justify-center bg-slate-900/40 backdrop-blur-sm md:items-center" role="dialog" aria-modal="true" aria-labelledby="exit-title">
     <div class="w-full max-w-md rounded-t-2xl bg-white p-5 shadow-2xl md:rounded-2xl">
-      <h2 id="exit-title" class="text-lg font-extrabold text-slate-900">等等！先看一下目前的特價</h2>
+      <h2 id="exit-title" class="text-lg font-bold text-slate-900">等等！先看一下目前的特價</h2>
       <p class="mt-2 text-sm text-slate-600">{productName(p)} 目前{p.promoBadge || '優惠'}，現折 {fmt.format(b.discount)}，到手價 <b class="text-rose-600">{fmt.format(b.final)}</b>{p.promoValidUntil ? `（活動至 ${String(p.promoValidUntil).slice(0, 10).replaceAll('-', '/')}）` : ''}。活動與價格以蝦皮頁面為準。</p>
       <a class="mt-4 flex min-h-12 w-full items-center justify-center rounded-lg bg-gradient-to-r from-orange-500 to-orange-600 px-4 font-bold text-white no-underline" href={`/go/${primaryChannel(p)}-${p.modelCode}`} rel="sponsored nofollow noopener" data-track="go" data-channel={primaryChannel(p)} data-code={p.modelCode} data-slot="exit">👉 前往官方旗艦館看特價 ➔</a>
       <button type="button" data-close class="mt-2 min-h-10 w-full text-sm text-slate-500">我再看看</button>
