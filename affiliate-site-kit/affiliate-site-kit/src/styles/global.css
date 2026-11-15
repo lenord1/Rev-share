@@ -22,19 +22,19 @@
 /* 以下來自 design/tokens.css 與 design/base.css（唯一來源，見 docs/ui-spec.md） */
 /* 設計 token：Astro/Tailwind 實作時以此為唯一來源（見 docs/ui-spec.md）。 */
 :root {
-  --paper: #f5f1e8;      /* 頁面底色（slate-50） */
+  --paper: #f6f2ea;      /* 頁面底色（slate-50） */
   --surface: #fbf8f1;    /* 卡片、表格底 */
   --ink: #15181a;        /* 主要文字 */
   --ink-2: #4f554f;      /* 次要文字 */
   --line: #cfc8b8;       /* 邊線（取代陰影） */
-  --accent: #1c3fc4;     /* CTA、連結 */
+  --accent: #c23516;     /* CTA、連結 */
   --accent-ink: #ffffff;
-  --accent-soft: #e3e7f6;
-  --promo: #c81e64;      /* 只用於促銷與折扣金額 */
-  --promo-soft: #f8e1ea;
+  --accent-soft: #fbe6df;
+  --promo: #8f2d14;      /* 只用於促銷與折扣金額 */
+  --promo-soft: #f6e3dc;
   --win: #0b7a75;        /* 勝出參數 */
   --win-soft: #dcefec;
-  --warn-soft: #fff3d6;  /* 缺點區底色 */
+  --warn-soft: #f3ead2;  /* 缺點區底色 */
   --warn-ink: #7a4b00;
   --radius: 2px;        /* 只有一種圓角；按鈕與標籤另用 999px */
   --font: "PingFang TC", "Noto Sans TC", "Noto Sans CJK TC", "Source Han Sans TC", "Microsoft JhengHei", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -311,7 +311,7 @@ details p{margin:8px 0 0;color:var(--ink-2)}
 /* ================= 視覺系統：解構瑞士 × 孔版印刷 =================
    暖白紙底、細線、方正轉角。青綠／藍／洋紅／橙只作功能色（勝出／行動／優惠／缺點）。
    依 docs/ui-spec.md：不用陰影、不用編號裝飾；等寬字只給價格與數字。純 CSS，不載入外部資源。 */
-:root{--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;--cyan:#0b7a75;--orange:#b84a08}
+:root{--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;--cyan:#0b7a75}
 html{scrollbar-color:var(--ink-2) var(--paper);accent-color:var(--accent)}
 ::selection{background:var(--ink);color:var(--paper)}
 body{position:relative}
@@ -322,7 +322,7 @@ h1,h2,h3{letter-spacing:0}
 h1{font-weight:800}
 .site-head{background:transparent;border-bottom:1.5px solid var(--ink)}
 .brand{letter-spacing:.02em;display:inline-flex;align-items:center;gap:10px}
-.brand::before{content:"";width:16px;height:16px;flex:none;border:1.5px solid var(--ink);background:linear-gradient(135deg,var(--ink) 0 50%,var(--cyan) 50% 100%)}
+.brand::before{content:"";width:16px;height:16px;flex:none;border:1.5px solid var(--ink);background:linear-gradient(135deg,var(--ink) 0 50%,var(--accent) 50% 100%)}
 .nav a{text-underline-offset:4px}.nav a:hover{color:var(--accent);text-decoration:underline}
 .btn{border-radius:2px;font-size:var(--step-0);box-shadow:none;border:1.5px solid var(--accent);transition:background-color .15s,color .15s,border-color .15s}
 .btn:hover{filter:none;background:var(--ink);border-color:var(--ink)}
