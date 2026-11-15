@@ -47,7 +47,7 @@ _NAME_KEYS = ("name", "title", "item_name", "itemName", "productName", "product_
 _PRICE_KEYS = ("price", "price_min", "priceMin", "sale_price", "salePrice", "item_price")
 _COMMISSION_KEYS = ("commission_rate", "commissionRate", "commission", "rate", "seller_commission_rate",
                     "default_commission_rate", "max_commission_rate", "commissionRateText")
-_LINK_KEYS = ("offerLink", "offer_link", "affiliate_link", "affiliateLink", "short_link", "shortLink", "productLink", "product_link", "url", "link")
+_LINK_KEYS = ("productOfferLink", "offerLink", "offer_link", "affiliate_link", "affiliateLink", "short_link", "shortLink", "productLink", "product_link", "url", "link")
 _SHOP_NAME_KEYS = ("shop_name", "shopName", "seller_name", "sellerName")
 _MALL_KEYS = ("is_official_shop", "isOfficialShop", "shopee_verified", "is_shopee_mall", "isMall", "official_shop")
 
@@ -61,6 +61,16 @@ def _num(v: Any) -> Optional[float]:
     if isinstance(v, str) and re.fullmatch(r"-?\d+(?:\.\d+)?", v.strip()):
         return float(v)
     return None
+
+
+def _pct(v: Any) -> Optional[float]:
+    """'1%' → 1.0；'0%' → 0.0；其他格式回 None。"""
+    if isinstance(v, str):
+        m = re.fullmatch(r"\s*(\d+(?:\.\d+)?)\s*%\s*", v)
+        if m:
+            return float(m.group(1))
+    n = _num(v)
+    return n
 
 
 def _twd(v: Any, is_list_api: bool) -> Optional[float]:
@@ -90,7 +100,7 @@ def walk_items(node: Any) -> list[dict]:
             if looks_like_item(n):
                 found.append(n)
                 return
-            for key in ("item_basic", "itemBasic", "item", "product", "productInfo"):
+            for key in ("batch_item_for_item_card_full", "item_basic", "itemBasic", "item", "product", "productInfo"):
                 inner = n.get(key)
                 if isinstance(inner, dict) and looks_like_item(inner):
                     merged = {**n, **inner}
@@ -151,6 +161,10 @@ def parse_items(payloads: Iterable[dict], collected_at: Optional[str] = None) ->
             is_list_api = PRODUCT_LIST_PATH in str(payload.get("url", ""))
             extra = {
                 "price_raw": price_raw,
+                "commission_default_pct": _pct(it.get("default_commission_rate")),
+                "commission_seller_pct": _pct(it.get("seller_commission_rate")),
+                "commission_max_pct": _pct(it.get("max_commission_rate")),
+                "product_link": it.get("product_link"),
                 "price_twd_inferred": _twd(price_raw, is_list_api),
                 "price_min_twd_inferred": _twd(it.get("price_min"), is_list_api),
                 "price_max_twd_inferred": _twd(it.get("price_max"), is_list_api),
@@ -162,7 +176,6 @@ def parse_items(payloads: Iterable[dict], collected_at: Optional[str] = None) ->
                 "is_official_shop": it.get("is_official_shop"),
                 "shopee_verified": it.get("shopee_verified"),
                 "item_status": it.get("item_status"),
-                "commission_raw": _first(it, _COMMISSION_KEYS),
                 "affiliate_link": link if isinstance(link, str) and link.startswith("http") else None,
                 "capture_url": payload.get("url"),
             }
@@ -322,7 +335,7 @@ def cmd_discover(args: argparse.Namespace) -> int:
         print(f"  {c['status']} {c['url'][:110]}")
     print(f"解析出 {len(items)} 筆商品；前 5 筆：")
     for it in items[:5]:
-        print(f"  [{it.shop_id}/{it.item_id}] {it.raw_title[:50]}  price_raw={getattr(it, 'price_raw', None)} twd≈{getattr(it, 'price_twd_inferred', None)} commission_raw={getattr(it, 'commission_raw', None)}")
+        print(f"  [{it.shop_id}/{it.item_id}] {it.raw_title[:50]}  price_raw={getattr(it, 'price_raw', None)} twd≈{getattr(it, 'price_twd_inferred', None)} 分潤 預設/賣家/最高={getattr(it, 'commission_default_pct', None)}/{getattr(it, 'commission_seller_pct', None)}/{getattr(it, 'commission_max_pct', None)}%")
     print("把上面這段輸出貼給 Claude（不含 cookie），就能依真實欄位調整解析器。capture 檔可能含你的帳號資訊，不要整檔上傳。")
     return 0
 

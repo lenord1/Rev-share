@@ -138,3 +138,27 @@ def test_inspect_match_mode(tmp_path, monkeypatch, capsys):
     assert c.cmd_inspect(args) == 0
     out = capsys.readouterr().out
     assert "variables" in out and "commissionRate" in out and "secret123" not in out
+
+
+def test_real_wrapper_shape_commission_and_item():
+    """外層與商品欄位結構取自使用者的 inspect 輸出（真實結構）；欄位值是模擬。"""
+    from product_research.shopee_affiliate_collector import parse_items
+    entry = {
+        "item_id": "52561360941", "long_link": "https://shopee.tw/x?aff=SECRET", "product_link": "https://shopee.tw/y?aff=SECRET",
+        "max_commission_rate": "6.5%", "seller_commission_rate": "3%", "default_commission_rate": "1%",
+        "batch_item_for_item_card_full": {"itemid": "52561360941", "shopid": "9675593", "name": "國際牌除濕機濾網 F-Y16EN/F-Y22PN",
+                                          "price": "20000000", "shop_name": "TOP生活家電", "is_official_shop": False, "shopee_verified": False},
+    }
+    pl = {"url": "https://affiliate.shopee.tw/api/v3/offer/product/list?keyword=F-Y22PN",
+          "json": {"code": 0, "msg": "success", "data": {"list": [entry], "total_count": 64}}}
+    got = parse_items([pl])
+    assert len(got) == 1
+    g = got[0]
+    assert (g.commission_default_pct, g.commission_seller_pct, g.commission_max_pct) == (1.0, 3.0, 6.5)
+    assert g.price_twd_inferred == 200.0 and g.item_id == "52561360941"
+    assert g.source_url == "https://shopee.tw/product/9675593/52561360941"
+
+
+def test_pct_parsing():
+    from product_research.shopee_affiliate_collector import _pct
+    assert _pct("0%") == 0.0 and _pct("12.5 %") == 12.5 and _pct("abc") is None and _pct(None) is None
