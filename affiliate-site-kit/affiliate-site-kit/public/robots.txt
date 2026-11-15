@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /go/
 
-Sitemap: https://example.vercel.app/sitemap-index.xml
+Sitemap: https://affiliate-site-kit.vercel.app/sitemap-index.xml

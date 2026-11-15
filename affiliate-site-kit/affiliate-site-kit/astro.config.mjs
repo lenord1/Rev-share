@@ -28,7 +28,7 @@ if (guideMeta.every((g) => g.draft || products.filter((p) => p.category === g.ca
 
 // site 先用佔位網址，拿到 Vercel 預覽網址後改，Step 9 換正式網域（robots.txt 的 Sitemap 行要一併改）
 export default defineConfig({
-  site: 'https://example.vercel.app',
+  site: 'https://affiliate-site-kit.vercel.app',
   prefetch: { prefetchAll: false, defaultStrategy: "hover" },
   vite: { plugins: [tailwindcss()] },
   integrations: [validateData(), sitemap({ filter: (page) => !hidden.has(new URL(page).pathname) })],

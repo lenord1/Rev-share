@@ -62,8 +62,15 @@ const count = (slug: string) => productsData.products.filter((p) => p.category =
     <section class="hero">
       <h1>沒有最完美的，只有最適合你的</h1>
       <p>每台都先說缺點、算好到手價。你能接受它的缺點，就是適合你的那一台，直接下單。</p>
-      <ProfileBar />
-      <SmartFinder />
+      <div class="hero-actions">
+        <a class="btn" href="#featured-grid">直接看推薦商品</a>
+        <a class="btn ghost pref-btn" href={`https://www.google.com/preferences/source?q=${Astro.site?.host ?? ''}`} target="_blank" rel="noopener">設為 Google 偏好來源</a>
+      </div>
+      <details class="finder-toggle" id="finder-toggle">
+        <summary>需要的話，回答幾個問題幫你縮小範圍</summary>
+        <ProfileBar />
+        <SmartFinder />
+      </details>
     </section>
 
     <EntryContext />

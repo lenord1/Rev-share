@@ -448,3 +448,16 @@ ol.results>li{min-width:0}
 .brand{display:inline-flex;align-items:baseline;gap:10px;text-decoration:none}
 .brand-en{font-family:var(--font-serif);font-size:1.3rem;letter-spacing:.02em;color:var(--ink)}
 .brand-zh{font-family:var(--font-serif);font-size:.875rem;letter-spacing:.3em;color:var(--accent);padding-left:10px;border-left:1px solid var(--line)}
+
+/* 首頁：選購精靈預設收合，需要的人才展開（不是每個品類都需要問答） */
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.finder-toggle{margin-top:20px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.finder-toggle>summary{cursor:pointer;list-style:none;padding:16px 0;font-size:var(--step-0);color:var(--ink);display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:48px}
+.finder-toggle>summary::-webkit-details-marker{display:none}
+.finder-toggle>summary::after{content:"＋";color:var(--ink-2);font-size:1.1rem}
+.finder-toggle[open]>summary::after{content:"－"}
+.finder-toggle[open]{padding-bottom:20px}
+.finder-toggle .finder{margin-top:8px}
+.pref-src{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline}
+.pref-src a{color:var(--ink);font-weight:700}
+.pref-src span{font-size:var(--step--1)}
