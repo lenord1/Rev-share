@@ -162,3 +162,29 @@ def test_real_wrapper_shape_commission_and_item():
 def test_pct_parsing():
     from product_research.shopee_affiliate_collector import _pct
     assert _pct("0%") == 0.0 and _pct("12.5 %") == 12.5 and _pct("abc") is None and _pct(None) is None
+
+
+def test_check_block_headless_stops_and_headed_waits(monkeypatch):
+    import pytest
+    import product_research.shopee_affiliate_collector as c
+
+    class Page:
+        def __init__(self, url): self.url = url
+        def wait_for_timeout(self, ms): pass
+
+    blocked = Page("https://shopee.tw/verify/traffic/error?x=1")
+    with pytest.raises(c._Stop):
+        c._check_block(blocked, headless=True, where="測試")
+    c._check_block(Page("https://affiliate.shopee.tw/offer/product_offer"), headless=True, where="測試")
+
+    asked = []
+    monkeypatch.setattr("builtins.input", lambda *a: asked.append(1) or "")
+    ok = Page("https://shopee.tw/verify/traffic/error")
+
+    def solve(ms): ok.url = "https://affiliate.shopee.tw/offer/product_offer"
+    ok.wait_for_timeout = solve
+    c._check_block(ok, headless=False, where="測試")
+    assert asked == [1]
+    still = Page("https://shopee.tw/verify/traffic/error")
+    with pytest.raises(c._Stop):
+        c._check_block(still, headless=False, where="測試")

@@ -206,6 +206,19 @@ class _Stop(Exception):
     pass
 
 
+def _check_block(page, headless: bool, where: str) -> None:
+    """遇到登入／驗證頁：無頭模式直接停止；有視窗時暫停，讓使用者自己完成驗證後再繼續。不繞過。"""
+    if not is_blocked_url(page.url):
+        return
+    if headless:
+        raise _Stop(f"{where}被導向登入／驗證頁（{page.url[:80]}）。請改用 --show 在視窗裡自己完成驗證。")
+    print(f"\n{where}出現驗證頁。請在跳出的視窗裡自己完成驗證，回到商品列表後，在這裡按 Enter 繼續。")
+    input()
+    page.wait_for_timeout(1500)
+    if is_blocked_url(page.url):
+        raise _Stop("驗證後仍停在驗證／登入頁，已停止。請稍後再試（建議間隔數小時）。")
+
+
 def _require_playwright():
     try:
         from playwright.sync_api import sync_playwright  # noqa: F401
@@ -290,8 +303,7 @@ def _run_capture(keyword: Optional[str], pages: int, headless: bool, browser_nam
         page.on("response", on_response)
         try:
             page.goto(OFFER_URL, wait_until="networkidle", timeout=45000)
-            if is_blocked_url(page.url):
-                raise _Stop(f"被導向登入／驗證頁（{page.url}）。請重新執行 login，並自行完成驗證。")
+            _check_block(page, headless, "開啟後台時")
             _sleep()
             if keyword:
                 box = page.get_by_placeholder(re.compile("搜尋|search|關鍵字|商品", re.I)).first
@@ -300,14 +312,12 @@ def _run_capture(keyword: Optional[str], pages: int, headless: bool, browser_nam
                 box.fill(keyword)
                 box.press("Enter")
                 page.wait_for_load_state("networkidle", timeout=30000)
-                if is_blocked_url(page.url):
-                    raise _Stop(f"搜尋後被導向驗證頁（{page.url}），已停止。")
+                _check_block(page, headless, "搜尋後")
             for _ in range(max(0, pages - 1)):
                 _sleep()
                 page.mouse.wheel(0, 2400)  # 捲動載入更多；不點任何按鈕
                 page.wait_for_load_state("networkidle", timeout=30000)
-                if is_blocked_url(page.url):
-                    raise _Stop("捲動時被導向驗證頁，已停止。")
+                _check_block(page, headless, "捲動時")
             if not captured:
                 raise _Stop("沒有攔截到任何 JSON 回應，可能尚未登入或頁面改版。")
         finally:
@@ -436,7 +446,7 @@ def cmd_inspect(args: argparse.Namespace) -> int:
 
 def cmd_collect(args: argparse.Namespace) -> int:
     try:
-        captured = _run_capture(args.keyword, args.pages, headless=True, browser_name=args.browser)
+        captured = _run_capture(args.keyword, args.pages, headless=not args.show, browser_name=args.browser)
     except _Stop as e:
         print(f"已停止：{e}")
         return 2
@@ -465,9 +475,8 @@ def main(argv: Optional[list[str]] = None) -> int:
         sp.add_argument("--browser", choices=BROWSER_ORDER, default="msedge", help=browser_help)
         sp.add_argument("--keyword", help="在後台搜尋框輸入的關鍵字（型號或品名）")
         sp.add_argument("--pages", type=int, default=1, help="捲動載入的頁數（預設 1，上限 5）")
-        if name == "discover":
-            sp.add_argument("--show", action="store_true", help="顯示瀏覽器視窗，方便你看它做了什麼")
-        else:
+        sp.add_argument("--show", action="store_true", help="顯示瀏覽器視窗；遇到驗證頁會暫停讓你自己完成")
+        if name == "collect":
             sp.add_argument("--out", default="titles.json")
         sp.set_defaults(fn=fn)
     args = ap.parse_args(argv)
