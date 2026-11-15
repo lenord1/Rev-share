@@ -1,20 +1,20 @@
 /* 設計 token：Astro/Tailwind 實作時以此為唯一來源（見 docs/ui-spec.md）。 */
 :root {
   --paper: #eef2f0;      /* 頁面底色（冷灰綠） */
-  --surface: #ffffff;    /* 卡片、表格底 */
-  --ink: #16231f;        /* 主要文字 */
-  --ink-2: #4a5b55;      /* 次要文字 */
-  --line: #d3dbd8;       /* 邊線（取代陰影） */
-  --accent: #1f4fd8;     /* CTA、連結 */
+  --surface: #fbf8f1;    /* 卡片、表格底 */
+  --ink: #15181a;        /* 主要文字 */
+  --ink-2: #4f554f;      /* 次要文字 */
+  --line: #cfc8b8;       /* 邊線（取代陰影） */
+  --accent: #1c3fc4;     /* CTA、連結 */
   --accent-ink: #ffffff;
-  --accent-soft: #e4ebfc;
-  --promo: #d92d20;      /* 只用於促銷與折扣金額 */
-  --promo-soft: #fdeceb;
-  --win: #0f7a4d;        /* 勝出參數 */
-  --win-soft: #e2f4eb;
+  --accent-soft: #e3e7f6;
+  --promo: #c81e64;      /* 只用於促銷與折扣金額 */
+  --promo-soft: #f8e1ea;
+  --win: #0b7a75;        /* 勝出參數 */
+  --win-soft: #dcefec;
   --warn-soft: #fff3d6;  /* 缺點區底色 */
   --warn-ink: #7a4b00;
-  --radius: 10px;        /* 只有一種圓角；按鈕與標籤另用 999px */
+  --radius: 2px;        /* 只有一種圓角；按鈕與標籤另用 999px */
   --font: "PingFang TC", "Noto Sans TC", "Noto Sans CJK TC", "Source Han Sans TC", "Microsoft JhengHei", system-ui, -apple-system, "Segoe UI", sans-serif;
   --step--1: 0.875rem;  --step-0: 1rem;      --step-1: 1.125rem;
   --step-2: 1.375rem;   --step-3: 1.875rem;  --step-4: 2.5rem;
